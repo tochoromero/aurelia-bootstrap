@@ -1,9 +1,11 @@
-import {bindable, inject} from "aurelia-framework";
+import {bindable, inject, bindingMode} from "aurelia-framework";
 
 @inject(Element)
 export class AubsTooltipCustomAttribute {
     @bindable text;
     @bindable position = 'top';
+    @bindable disabled = false;
+    @bindable({defaultBindingMode: bindingMode.twoWay}) open = false;
 
     validPositions = ['top', 'bottom', 'left', 'right'];
     valuesChanged = false;
@@ -24,12 +26,29 @@ export class AubsTooltipCustomAttribute {
 
     attached() {
         this.element.addEventListener('mouseover', this.inListener);
-        this.element.addEventListener('mouseout', this.outListener);
+        this.element.addEventListener('mouseleave', this.outListener);
+
+        this.attached = true;
+        if(this.open){
+            this.handleHover();
+        }
     }
 
     detached() {
         this.element.removeEventListener('mouseover', this.inListener)
-        this.element.removeEventListener('mouseout', this.outListener)
+        this.element.removeEventListener('mouseleave', this.outListener)
+    }
+    
+    openChanged(){
+        if(!this.attached){
+            return;
+        }
+
+        if(this.open){
+            this.handleHover();
+        }else{
+            this.handleOut();
+        }
     }
 
     textChanged() {
@@ -46,7 +65,7 @@ export class AubsTooltipCustomAttribute {
     }
 
     handleHover() {
-        if (this.visible) {
+        if (this.visible || this.disabled) {
             return;
         }
 
@@ -62,6 +81,7 @@ export class AubsTooltipCustomAttribute {
 
         this.tooltip.classList.add('in');
         this.visible = true;
+        this.open = true;
     }
 
     calculatePosition() {
@@ -88,9 +108,14 @@ export class AubsTooltipCustomAttribute {
     }
 
     handleOut() {
+        if(!this.visible){
+            return;
+        }
+
         this.tooltip.classList.remove('in');
         document.body.removeChild(this.tooltip);
         this.visible = false;
+        this.open = false;
     }
 
     createTooltip() {
