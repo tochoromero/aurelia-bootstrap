@@ -57,9 +57,6 @@ export class AubsTooltipCustomAttribute {
             }
         }
 
-        window.addEventListener('resize', this.resizeListener);
-
-
         this.attached = true;
         if (this.open) {
             this.handleShow();
@@ -132,6 +129,8 @@ export class AubsTooltipCustomAttribute {
         this.tooltip.classList.add('in');
         this.visible = true;
         this.open = true;
+
+        window.addEventListener('resize', this.resizeListener);
     }
 
     calculatePosition() {
@@ -184,6 +183,8 @@ export class AubsTooltipCustomAttribute {
         document.body.removeChild(this.tooltip);
         this.visible = false;
         this.open = false;
+
+        window.removeEventListener('resize', this.resizeListener);
     }
 
     handleOutside(event) {
