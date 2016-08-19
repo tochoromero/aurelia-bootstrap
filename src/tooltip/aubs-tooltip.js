@@ -25,6 +25,7 @@ export class AubsTooltipCustomAttribute {
         };
 
         this.outsideListener = event => this.handleOutside(event);
+        this.resizeListener = () => this.resizeThrottler();
     }
 
     bind() {
@@ -56,6 +57,8 @@ export class AubsTooltipCustomAttribute {
             }
         }
 
+        window.addEventListener('resize', this.resizeListener);
+
 
         this.attached = true;
         if (this.open) {
@@ -64,26 +67,26 @@ export class AubsTooltipCustomAttribute {
     }
 
     detached() {
-        if (this.triggers.includes('none')) {
-            return;
+        if (!this.triggers.includes('none')) {
+            if (this.triggers.includes('mouseover')) {
+                this.element.removeEventListener('mouseover', this.inListener);
+                this.element.removeEventListener('mouseleave', this.outListener);
+            }
+
+            if (this.triggers.includes('focus')) {
+                this.element.removeEventListener('focus', this.inListener);
+                this.element.removeEventListener('blur', this.outListener);
+            }
+
+            if (this.triggers.includes('click')) {
+                this.element.removeEventListener('click', this.clickListener);
+            } else if (this.triggers.includes('outsideClick')) {
+                this.element.removeEventListener('click', this.inListener);
+                document.removeEventListener('click', this.outsideListener);
+            }
         }
 
-        if (this.triggers.includes('mouseover')) {
-            this.element.removeEventListener('mouseover', this.inListener);
-            this.element.removeEventListener('mouseleave', this.outListener);
-        }
-
-        if (this.triggers.includes('focus')) {
-            this.element.removeEventListener('focus', this.inListener);
-            this.element.removeEventListener('blur', this.outListener);
-        }
-
-        if (this.triggers.includes('click')) {
-            this.element.removeEventListener('click', this.clickListener);
-        } else if (this.triggers.includes('outsideClick')) {
-            this.element.removeEventListener('click', this.inListener);
-            document.removeEventListener('click', this.outsideListener);
-        }
+        window.removeEventListener('resize', this.resizeListener);
     }
 
     openChanged() {
@@ -152,6 +155,24 @@ export class AubsTooltipCustomAttribute {
         }
 
         return result;
+    }
+
+    resizeThrottler() {
+        if (!this.visible) {
+            return;
+        }
+
+        if (!this.resizeTimeout) {
+            this.resizeTimeout = setTimeout(() => {
+                this.resizeTimeout = null;
+                this.handleResize();
+            }, 66);
+        }
+    }
+
+    handleResize() {
+        let position = this.calculatePosition();
+        this.tooltip.setAttribute("style", `top: ${position.top}px; left: ${position.left}px`);
     }
 
     handleHide() {
