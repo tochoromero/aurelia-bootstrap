@@ -1,6 +1,7 @@
 import {bindable, inject, bindingMode} from "aurelia-framework";
+import {TooltipService} from "../utils/tooltip-service";
 
-@inject(Element)
+@inject(Element, TooltipService)
 export class AubsTooltipCustomAttribute {
     @bindable text;
     @bindable position = 'top';
@@ -14,18 +15,19 @@ export class AubsTooltipCustomAttribute {
     valuesChanged = false;
     visible = false;
 
-    constructor(element) {
+    constructor(element, tooltipService) {
         this.element = element;
+        this.tooltipService = tooltipService;
 
-        this.inListener = () => this.handleShow();
-        this.outListener = () => this.handleHide();
-
-        this.clickListener = () => {
-            this.visible ? this.handleHide() : this.handleShow()
+        this.listeners = {
+            in: () => this.handleShow(),
+            out: () => this.handleHide(),
+            click: () => {
+                this.visible ? this.handleHide() : this.handleShow()
+            },
+            outside: event => this.handleOutside(event),
+            resize: () => this.resizeThrottler()
         };
-
-        this.outsideListener = event => this.handleOutside(event);
-        this.resizeListener = () => this.resizeThrottler();
     }
 
     bind() {
@@ -37,25 +39,7 @@ export class AubsTooltipCustomAttribute {
     }
 
     attached() {
-
-        if (!this.triggers.includes('none')) {
-            if (this.triggers.includes('mouseover')) {
-                this.element.addEventListener('mouseover', this.inListener);
-                this.element.addEventListener('mouseleave', this.outListener);
-            }
-
-            if (this.triggers.includes('focus')) {
-                this.element.addEventListener('focus', this.inListener);
-                this.element.addEventListener('blur', this.outListener);
-            }
-
-            if (this.triggers.includes('click')) {
-                this.element.addEventListener('click', this.clickListener);
-            } else if (this.triggers.includes('outsideClick')) {
-                this.element.addEventListener('click', this.inListener);
-                document.addEventListener('click', this.outsideListener);
-            }
-        }
+        this.tooltipService.setTriggers(this.element, this.triggers, this.listeners);
 
         this.attached = true;
         if (this.open) {
@@ -64,26 +48,7 @@ export class AubsTooltipCustomAttribute {
     }
 
     detached() {
-        if (!this.triggers.includes('none')) {
-            if (this.triggers.includes('mouseover')) {
-                this.element.removeEventListener('mouseover', this.inListener);
-                this.element.removeEventListener('mouseleave', this.outListener);
-            }
-
-            if (this.triggers.includes('focus')) {
-                this.element.removeEventListener('focus', this.inListener);
-                this.element.removeEventListener('blur', this.outListener);
-            }
-
-            if (this.triggers.includes('click')) {
-                this.element.removeEventListener('click', this.clickListener);
-            } else if (this.triggers.includes('outsideClick')) {
-                this.element.removeEventListener('click', this.inListener);
-                document.removeEventListener('click', this.outsideListener);
-            }
-        }
-
-        window.removeEventListener('resize', this.resizeListener);
+        this.tooltipService.removeTriggers(this.element, this.triggers, this.listeners);
     }
 
     openChanged() {
@@ -123,37 +88,14 @@ export class AubsTooltipCustomAttribute {
 
         document.body.appendChild(this.tooltip);
 
-        let position = this.calculatePosition();
+        let position = this.tooltipService.calculatePosition(this.element, this.tooltip, this.position);
         this.tooltip.setAttribute("style", `top: ${position.top}px; left: ${position.left}px`);
 
         this.tooltip.classList.add('in');
         this.visible = true;
         this.open = true;
 
-        window.addEventListener('resize', this.resizeListener);
-    }
-
-    calculatePosition() {
-        let elementRect = this.element.getBoundingClientRect();
-        let tooltipRect = this.tooltip.getBoundingClientRect();
-
-        let result = {};
-
-        if (this.position === 'top') {
-            result.top = elementRect.top - tooltipRect.height;
-            result.left = elementRect.left + (elementRect.width / 2) - (tooltipRect.width / 2);
-        } else if (this.position === 'bottom') {
-            result.top = elementRect.top + elementRect.height;
-            result.left = elementRect.left + (elementRect.width / 2) - (tooltipRect.width / 2);
-        } else if (this.position === 'left') {
-            result.top = elementRect.top + (elementRect.height / 2) - (tooltipRect.height / 2);
-            result.left = elementRect.left - tooltipRect.width;
-        } else {
-            result.top = elementRect.top + (elementRect.height / 2) - (tooltipRect.height / 2);
-            result.left = elementRect.left + elementRect.width;
-        }
-
-        return result;
+        window.addEventListener('resize', this.listeners.resize);
     }
 
     resizeThrottler() {
@@ -170,7 +112,7 @@ export class AubsTooltipCustomAttribute {
     }
 
     handleResize() {
-        let position = this.calculatePosition();
+        let position = this.tooltipService.calculatePosition(this.element, this.tooltip, this.position);
         this.tooltip.setAttribute("style", `top: ${position.top}px; left: ${position.left}px`);
     }
 
@@ -184,7 +126,7 @@ export class AubsTooltipCustomAttribute {
         this.visible = false;
         this.open = false;
 
-        window.removeEventListener('resize', this.resizeListener);
+        window.removeEventListener('resize', this.listeners.resize);
     }
 
     handleOutside(event) {
