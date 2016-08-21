@@ -10,6 +10,7 @@ export class AubsPopoverCustomAttribute {
     @bindable disabled = false;
     @bindable({defaultBindingMode: bindingMode.twoWay}) open = false;
     @bindable trigger = 'mouseover';
+    @bindable customModel;
 
     triggers = [];
 
@@ -138,12 +139,23 @@ export class AubsPopoverCustomAttribute {
     }
 
     handleOutside(event) {
-        if (this.element !== event.target) {
+        if (!this.visible) {
+            return;
+        }
+
+        if (this.element !== event.target && !this.popover.contains(event.target)) {
             this.handleHide();
         }
     }
 
     createPopover() {
+        if (this.customModel) {
+            this.popover = this.customModel;
+            this.popover.classList.add(this.position);
+            return;
+        }
+
+
         if (this.popover) {
             document.body.removeChild(this.popover);
         }
