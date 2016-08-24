@@ -1,15 +1,13 @@
-import {bindable, inject, child} from "aurelia-framework";
+import {bindable, inject} from "aurelia-framework";
 import {AubsTabsetCustomElement} from "./aubs-tabset";
 
 @inject(AubsTabsetCustomElement)
-export class aubsTabCustomElement {
+export class AubsTabCustomElement {
     @bindable header;
     @bindable active = false;
     @bindable disabled = false;
     @bindable onSelect;
     @bindable onDeselect;
-
-    @child('aubs-tab-header') headerElement;
 
     index;
 
@@ -20,7 +18,7 @@ export class aubsTabCustomElement {
     }
 
     attached() {
-        if(!this.headerElement && !this.header) {
+        if(!this.header) {
             throw new Error('Must provide a header for the tab.');
         }
 
