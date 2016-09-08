@@ -123,7 +123,7 @@ System.register(['aurelia-framework'], function (_export, _context) {
                 };
 
                 AubsDropdownCustomAttribute.prototype.handleBlur = function handleBlur(evt) {
-                    if (!this.isOpen) {
+                    if (!this.state) {
                         return;
                     }
 

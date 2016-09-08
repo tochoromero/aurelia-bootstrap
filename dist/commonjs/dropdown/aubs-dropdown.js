@@ -116,7 +116,7 @@ var AubsDropdownCustomAttribute = exports.AubsDropdownCustomAttribute = (_dec = 
     };
 
     AubsDropdownCustomAttribute.prototype.handleBlur = function handleBlur(evt) {
-        if (!this.isOpen) {
+        if (!this.state) {
             return;
         }
 

@@ -119,7 +119,7 @@ define(['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
         };
 
         AubsDropdownCustomAttribute.prototype.handleBlur = function handleBlur(evt) {
-            if (!this.isOpen) {
+            if (!this.state) {
                 return;
             }
 

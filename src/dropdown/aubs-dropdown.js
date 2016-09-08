@@ -58,7 +58,7 @@ export class AubsDropdownCustomAttribute {
     }
 
     handleBlur(evt) {
-        if(!this.isOpen){
+        if(!this.state){
             return;
         }
 

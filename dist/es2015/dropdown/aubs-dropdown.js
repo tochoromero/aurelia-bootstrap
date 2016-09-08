@@ -102,7 +102,7 @@ export let AubsDropdownCustomAttribute = (_dec = inject(Element), _dec2 = bindab
     }
 
     handleBlur(evt) {
-        if (!this.isOpen) {
+        if (!this.state) {
             return;
         }
 
