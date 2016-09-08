@@ -119,6 +119,10 @@ define(['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
         };
 
         AubsDropdownCustomAttribute.prototype.handleBlur = function handleBlur(evt) {
+            if (!this.isOpen) {
+                return;
+            }
+
             if (!this.element.contains(evt.target) || this.autoClose !== 'outside' && evt.target.parentNode.tagName === 'LI') {
                 this.toggle();
             }

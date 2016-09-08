@@ -58,6 +58,10 @@ export class AubsDropdownCustomAttribute {
     }
 
     handleBlur(evt) {
+        if(!this.isOpen){
+            return;
+        }
+
         if (!this.element.contains(evt.target) || (this.autoClose !== 'outside' && evt.target.parentNode.tagName === 'LI')) {
             this.toggle();
         }
