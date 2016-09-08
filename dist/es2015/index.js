@@ -11,5 +11,5 @@ export function configure(config) {
     config.globalResources('./popover/aubs-custom-popover');
     config.globalResources('./tabs/aubs-tab');
     config.globalResources('./tabs/aubs-tabset');
-    config.globalResources('./tabs/aubs-tooltip');
+    config.globalResources('./tooltip/aubs-tooltip');
 }
