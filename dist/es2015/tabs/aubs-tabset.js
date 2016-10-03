@@ -73,7 +73,7 @@ export let AubsTabsetCustomElement = (_dec = children('aubs-tab'), (_class = cla
     addTabChangedListener(index, isDefault, callback) {
         this.tabChangedListeners.push(callback);
 
-        if (!this.active || isDefault) {
+        if (this.active == undefined || isDefault) {
             this.active = index;
         }
 

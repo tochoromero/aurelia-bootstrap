@@ -86,7 +86,7 @@ var AubsTabsetCustomElement = exports.AubsTabsetCustomElement = (_dec = (0, _aur
     AubsTabsetCustomElement.prototype.addTabChangedListener = function addTabChangedListener(index, isDefault, callback) {
         this.tabChangedListeners.push(callback);
 
-        if (!this.active || isDefault) {
+        if (this.active == undefined || isDefault) {
             this.active = index;
         }
 
