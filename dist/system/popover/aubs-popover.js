@@ -81,7 +81,7 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
 
                     _initDefineProp(this, "trigger", _descriptor6, this);
 
-                    _initDefineProp(this, "customModel", _descriptor7, this);
+                    _initDefineProp(this, "customPopover", _descriptor7, this);
 
                     this.triggers = [];
                     this.validPositions = ['top', 'bottom', 'left', 'right'];
@@ -289,7 +289,7 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
                 initializer: function initializer() {
                     return 'mouseover';
                 }
-            }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "customModel", [bindable], {
+            }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "customPopover", [bindable], {
                 enumerable: true,
                 initializer: null
             })), _class2)) || _class));

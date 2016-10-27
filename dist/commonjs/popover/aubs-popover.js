@@ -74,7 +74,7 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
 
         _initDefineProp(this, "trigger", _descriptor6, this);
 
-        _initDefineProp(this, "customModel", _descriptor7, this);
+        _initDefineProp(this, "customPopover", _descriptor7, this);
 
         this.triggers = [];
         this.validPositions = ['top', 'bottom', 'left', 'right'];
@@ -282,7 +282,7 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
     initializer: function initializer() {
         return 'mouseover';
     }
-}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "customModel", [_aureliaFramework.bindable], {
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "customPopover", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: null
 })), _class2)) || _class);

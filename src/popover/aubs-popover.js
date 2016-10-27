@@ -1,5 +1,6 @@
 import {bindable, bindingMode, inject} from "aurelia-framework";
 import {TooltipService} from "../utils/tooltip-service";
+import velocity from "velocity";
 
 @inject(Element, TooltipService)
 export class AubsPopoverCustomAttribute {
@@ -10,7 +11,7 @@ export class AubsPopoverCustomAttribute {
     @bindable disabled = false;
     @bindable({defaultBindingMode: bindingMode.twoWay}) open = false;
     @bindable trigger = 'mouseover';
-    @bindable customModel;
+    @bindable customPopover;
 
     triggers = [];
 
@@ -43,6 +44,11 @@ export class AubsPopoverCustomAttribute {
 
     attached() {
         this.tooltipService.setTriggers(this.element, this.triggers, this.listeners);
+
+
+        if (this.customPopover) {
+            this.customPopover.style.display = 'none';
+        }
 
         this.attached = true;
         if (this.open) {
@@ -93,14 +99,19 @@ export class AubsPopoverCustomAttribute {
             this.valuesChanged = false;
         }
 
-        document.body.appendChild(this.popover);
         this.popover.setAttribute("style", `display: block;`);
 
 
         let position = this.tooltipService.calculatePosition(this.element, this.popover, this.position);
         this.popover.setAttribute("style", `top: ${position.top}px; left: ${position.left}px; display: block;`);
 
-        this.popover.classList.add('in');
+
+        velocity(this.popover, 'stop')
+            .then(() => {
+                velocity(this.popover, 'fadeIn')
+                    .then(() => this.popover.classList.add('in'));
+            });
+
         this.visible = true;
         this.open = true;
 
@@ -130,8 +141,12 @@ export class AubsPopoverCustomAttribute {
             return;
         }
 
-        this.popover.classList.remove('in');
-        document.body.removeChild(this.popover);
+        velocity(this.popover, 'stop')
+            .then(() => {
+                velocity(this.popover, 'fadeOut')
+                    .then(() => this.popover.classList.remove('in'));
+            });
+
         this.visible = false;
         this.open = false;
 
@@ -149,9 +164,9 @@ export class AubsPopoverCustomAttribute {
     }
 
     createPopover() {
-        if (this.customModel) {
-            this.popover = this.customModel;
-            this.popover.classList.add(this.position);
+        if (this.customPopover) {
+            this.popover = this.customPopover;
+            this.popover.classList.add('popover-' + this.position);
             return;
         }
 
@@ -162,7 +177,7 @@ export class AubsPopoverCustomAttribute {
 
         this.popover = document.createElement('div');
         this.popover.classList.add('popover');
-        this.popover.classList.add(this.position);
+        this.popover.classList.add('popover-' + this.position);
 
         let arrow = document.createElement('div');
         arrow.classList.add('arrow');
@@ -184,5 +199,7 @@ export class AubsPopoverCustomAttribute {
         contentParagraph.appendChild(text);
         content.appendChild(contentParagraph);
         this.popover.appendChild(content);
+
+        document.body.appendChild(this.popover);
     }
 }

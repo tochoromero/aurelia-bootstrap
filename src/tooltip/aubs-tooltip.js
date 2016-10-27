@@ -1,5 +1,6 @@
 import {bindable, inject, bindingMode} from "aurelia-framework";
 import {TooltipService} from "../utils/tooltip-service";
+import velocity from "velocity";
 
 @inject(Element, TooltipService)
 export class AubsTooltipCustomAttribute {
@@ -86,14 +87,23 @@ export class AubsTooltipCustomAttribute {
             this.valuesChanged = false;
         }
 
-        document.body.appendChild(this.tooltip);
+        this.tooltip.style.display = 'block';
 
         let position = this.tooltipService.calculatePosition(this.element, this.tooltip, this.position);
         this.tooltip.setAttribute("style", `top: ${position.top}px; left: ${position.left}px`);
 
-        this.tooltip.classList.add('in');
+
+        velocity(this.tooltip, 'stop')
+            .then(() => {
+                velocity(this.tooltip, 'fadeIn').then(() => {
+                    this.tooltip.classList.add('in');
+                });
+            });
+
+
         this.visible = true;
         this.open = true;
+
 
         window.addEventListener('resize', this.listeners.resize);
     }
@@ -121,11 +131,14 @@ export class AubsTooltipCustomAttribute {
             return;
         }
 
-        this.tooltip.classList.remove('in');
-        document.body.removeChild(this.tooltip);
+        velocity(this.tooltip, 'stop').then(() => {
+            velocity(this.tooltip, 'fadeOut').then(() => {
+                this.tooltip.classList.remove('in');
+            });
+        });
+
         this.visible = false;
         this.open = false;
-
         window.removeEventListener('resize', this.listeners.resize);
     }
 
@@ -142,7 +155,7 @@ export class AubsTooltipCustomAttribute {
 
         this.tooltip = document.createElement('div');
         this.tooltip.classList.add('tooltip');
-        this.tooltip.classList.add(this.position);
+        this.tooltip.classList.add('tooltip-' + this.position);
         this.tooltip.setAttribute('role', 'tooltip');
 
         let arrow = document.createElement('div');
@@ -154,6 +167,8 @@ export class AubsTooltipCustomAttribute {
         let text = document.createTextNode(this.text);
         inner.appendChild(text);
         this.tooltip.appendChild(inner);
+
+        document.body.appendChild(this.tooltip);
     }
 
 }

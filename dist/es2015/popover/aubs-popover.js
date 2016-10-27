@@ -61,7 +61,7 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
 
         _initDefineProp(this, "trigger", _descriptor6, this);
 
-        _initDefineProp(this, "customModel", _descriptor7, this);
+        _initDefineProp(this, "customPopover", _descriptor7, this);
 
         this.triggers = [];
         this.validPositions = ['top', 'bottom', 'left', 'right'];
@@ -197,8 +197,8 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
     }
 
     createPopover() {
-        if (this.customModel) {
-            this.popover = this.customModel;
+        if (this.customPopover) {
+            this.popover = this.customPopover;
             this.popover.classList.add(this.position);
             return;
         }
@@ -257,7 +257,7 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
     initializer: function () {
         return 'mouseover';
     }
-}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "customModel", [bindable], {
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "customPopover", [bindable], {
     enumerable: true,
     initializer: null
 })), _class2)) || _class);
