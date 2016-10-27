@@ -1,7 +1,8 @@
 import {bindable, inject} from "aurelia-framework";
 import {AubsTabsetCustomElement} from "./aubs-tabset";
+import velocity from 'velocity';
 
-@inject(AubsTabsetCustomElement)
+@inject(AubsTabsetCustomElement, Element)
 export class AubsTabCustomElement {
     @bindable header;
     @bindable active = false;
@@ -11,39 +12,40 @@ export class AubsTabCustomElement {
 
     index;
 
-    constructor(tabset) {
+    constructor(tabset, element) {
         this.tabset = tabset;
+        this.element = element;
+    }
 
-        this.tabChangedListener = index => this.handleTabChanged(index);
+    bind() {
+        if (!this.header) {
+            throw new Error('Must provide a header for the tab.');
+        }
     }
 
     attached() {
-        if(!this.header) {
-            throw new Error('Must provide a header for the tab.');
-        }
-
-        this.index = this.tabset.getTabIndex();
-        this.tabset.addTabChangedListener(this.index, this.active, this.tabChangedListener);
-    }
-
-    detached() {
-        this.tabset.removeTabChangedListener(this.tabChangedListener);
+        this.$tabPane = this.element.querySelector('.tab-pane');
+        this.$tabPane.style.display = this.active ? 'block' : 'none';
     }
 
     handleTabChanged(index) {
         let isSelected = index === this.index;
 
-        if(isSelected === this.active) {
+        if (isSelected === this.active) {
             return;
         }
 
         this.active = isSelected;
 
         if (isSelected) {
+            velocity(this.$tabPane, 'fadeIn');
+
             if (this.onSelect && typeof this.onSelect === 'function') {
                 this.onSelect();
             }
         } else {
+            this.$tabPane.style.display = 'none';
+
             if (this.onDeselect && typeof this.onDeselect == 'function') {
                 this.onDeselect();
             }

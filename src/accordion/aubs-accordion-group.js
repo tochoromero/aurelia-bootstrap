@@ -1,40 +1,47 @@
 import {bindable, bindingMode, inject, containerless} from "aurelia-framework";
-import {AubsAccordionCustomElement} from './aubs-accordion';
+import velocity from 'velocity';
 
-@inject(AubsAccordionCustomElement)
-@containerless
+@inject(Element)
 export class AubsAccordionGroupCustomElement {
 
     @bindable title;
-    @bindable panelClass = 'panel-default';
     @bindable({defaultBindingMode: bindingMode.twoWay}) isOpen = false;
+    $collapse;
 
-    constructor(accordion) {
+    constructor(element) {
+        this.element = element;
+    }
 
-        if(!accordion) {
-            throw new Error('The aubs-accordion-group must be a child of aubs-accordion.');
-        }
-
-        this.accordion = accordion;
-        this.accordion.registerGroup(this);
-
+    bind(){
         if (typeof this.isOpen !== 'boolean') {
             this.isOpen = false;
         }
     }
 
+    attached(){
+        this.$collapse = this.element.querySelector('.collapse');
+
+        if(this.isOpen){
+            this.$collapse.classList.add('in');
+            velocity(this.$collapse, 'slideDown', {duration: 0});
+        }
+    }
+
     isOpenChanged() {
-        this.notifyToggle();
+        this.animate();
     }
 
     toggle() {
         this.isOpen = !this.isOpen;
-        this.notifyToggle();
     }
 
-    notifyToggle() {
+    animate(){
         if(this.isOpen){
-            this.accordion.groupToggled(this);
+            this.$collapse.classList.add('in');
+            velocity(this.$collapse, 'slideDown');
+        }else{
+            velocity(this.$collapse, 'slideUp');
+            this.$collapse.classList.remove('in');
         }
     }
 }

@@ -1,52 +1,45 @@
 import {children, bindable} from "aurelia-framework";
 
 export class AubsTabsetCustomElement {
-    @children('aubs-tab') tabs = [];
-    
     @bindable type = 'tabs';
     @bindable vertical = false;
 
-    tabChangedListeners = [];
-    active;
+    active = 0;
     tabsClass = 'nav-tabs';
-    
-    indexCount= 0;
+
+    @children('aubs-tab') tabs = [];
 
     bind() {
-        this.tabs.forEach((tab, index) => tab.index = index + 10)
-        
-        if(this.type === 'pills'){
+        if (this.type === 'pills') {
             this.tabsClass = 'nav-pills';
         }
     }
 
-    getTabIndex(){
-        return this.indexCount++;
-    }
-    
-    addTabChangedListener(index, isDefault, callback) {
-        this.tabChangedListeners.push(callback);
+    tabsChanged() {
+        let activeTab;
 
-        if (this.active == undefined || isDefault) {
-            this.active = index;
+        for(let i = 0; i < this.tabs.length; i++){
+            let next = this.tabs[i];
+            next.index = i;
+
+            if(next.active){
+                activeTab = next;
+            }
         }
 
-        this.emitTabChanged();
-    }
-
-    removeTabChangedListener(callback) {
-        var index = this.tabChangedListeners.indexOf(callback);
-
-        if (index > -1) {
-            this.tabChangedListeners.splice(index, 1);
+        if(!activeTab){
+            activeTab = this.tabs[0];
+            activeTab.active = true;
         }
+
+        this.selectTab(activeTab);
     }
 
     selectTab(tab) {
-        if(tab.disabled){
+        if (tab.disabled) {
             return;
         }
-        
+
         if (this.active === tab.index) {
             return;
         }
@@ -57,8 +50,8 @@ export class AubsTabsetCustomElement {
     }
 
     emitTabChanged() {
-        for (let listener of this.tabChangedListeners) {
-            listener(this.active);
+        for (let next of this.tabs) {
+            next.handleTabChanged(this.active);
         }
     }
 }
