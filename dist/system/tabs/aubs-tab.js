@@ -1,6 +1,6 @@
 "use strict";
 
-System.register(["aurelia-framework", "./aubs-tabset", "velocity"], function (_export, _context) {
+System.register(["aurelia-framework", "./aubs-tabset", "velocity-animate"], function (_export, _context) {
     "use strict";
 
     var bindable, inject, AubsTabsetCustomElement, velocity, _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, AubsTabCustomElement;
@@ -60,8 +60,8 @@ System.register(["aurelia-framework", "./aubs-tabset", "velocity"], function (_e
             inject = _aureliaFramework.inject;
         }, function (_aubsTabset) {
             AubsTabsetCustomElement = _aubsTabset.AubsTabsetCustomElement;
-        }, function (_velocity) {
-            velocity = _velocity.default;
+        }, function (_velocityAnimate) {
+            velocity = _velocityAnimate.default;
         }],
         execute: function () {
             _export("AubsTabCustomElement", AubsTabCustomElement = (_dec = inject(AubsTabsetCustomElement, Element), _dec(_class = (_class2 = function () {

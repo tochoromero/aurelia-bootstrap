@@ -1,4 +1,4 @@
-define(["exports", "aurelia-framework", "../utils/bootstrap-options", "velocity"], function (exports, _aureliaFramework, _bootstrapOptions, _velocity) {
+define(["exports", "aurelia-framework", "../utils/bootstrap-options", "velocity-animate"], function (exports, _aureliaFramework, _bootstrapOptions, _velocityAnimate) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
@@ -6,7 +6,7 @@ define(["exports", "aurelia-framework", "../utils/bootstrap-options", "velocity"
     });
     exports.AubsAccordionGroupCustomElement = undefined;
 
-    var _velocity2 = _interopRequireDefault(_velocity);
+    var _velocityAnimate2 = _interopRequireDefault(_velocityAnimate);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -87,7 +87,7 @@ define(["exports", "aurelia-framework", "../utils/bootstrap-options", "velocity"
         AubsAccordionGroupCustomElement.prototype.attached = function attached() {
             if (this.isOpen) {
                 this.$collapse.classList.add('in');
-                (0, _velocity2.default)(this.$collapse, 'slideDown', { duration: 0 });
+                (0, _velocityAnimate2.default)(this.$collapse, 'slideDown', { duration: 0 });
             }
         };
 
@@ -106,9 +106,9 @@ define(["exports", "aurelia-framework", "../utils/bootstrap-options", "velocity"
         AubsAccordionGroupCustomElement.prototype.animate = function animate() {
             if (this.isOpen) {
                 this.$collapse.classList.add('in');
-                (0, _velocity2.default)(this.$collapse, 'slideDown');
+                (0, _velocityAnimate2.default)(this.$collapse, 'slideDown');
             } else {
-                (0, _velocity2.default)(this.$collapse, 'slideUp');
+                (0, _velocityAnimate2.default)(this.$collapse, 'slideUp');
                 this.$collapse.classList.remove('in');
             }
         };

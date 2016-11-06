@@ -46,7 +46,7 @@ function _initializerWarningHelper(descriptor, context) {
 import { bindable, inject, bindingMode } from "aurelia-framework";
 import { TooltipService } from "../utils/tooltip-service";
 import { bootstrapOptions } from "../utils/bootstrap-options";
-import velocity from "velocity";
+import velocity from "velocity-animate";
 
 export let AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = (_class2 = class AubsTooltipCustomAttribute {
 

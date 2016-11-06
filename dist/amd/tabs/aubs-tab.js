@@ -1,4 +1,4 @@
-define(["exports", "aurelia-framework", "./aubs-tabset", "velocity"], function (exports, _aureliaFramework, _aubsTabset, _velocity) {
+define(["exports", "aurelia-framework", "./aubs-tabset", "velocity-animate"], function (exports, _aureliaFramework, _aubsTabset, _velocityAnimate) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
@@ -6,7 +6,7 @@ define(["exports", "aurelia-framework", "./aubs-tabset", "velocity"], function (
     });
     exports.AubsTabCustomElement = undefined;
 
-    var _velocity2 = _interopRequireDefault(_velocity);
+    var _velocityAnimate2 = _interopRequireDefault(_velocityAnimate);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -104,7 +104,7 @@ define(["exports", "aurelia-framework", "./aubs-tabset", "velocity"], function (
             this.active = isSelected;
 
             if (isSelected) {
-                (0, _velocity2.default)(this.$tabPane, 'fadeIn');
+                (0, _velocityAnimate2.default)(this.$tabPane, 'fadeIn');
 
                 if (this.onSelect && typeof this.onSelect === 'function') {
                     this.onSelect();

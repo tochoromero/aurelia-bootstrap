@@ -1,4 +1,4 @@
-define(["exports", "aurelia-framework", "../utils/tooltip-service", "../utils/bootstrap-options", "velocity"], function (exports, _aureliaFramework, _tooltipService, _bootstrapOptions, _velocity) {
+define(["exports", "aurelia-framework", "../utils/tooltip-service", "../utils/bootstrap-options", "velocity-animate"], function (exports, _aureliaFramework, _tooltipService, _bootstrapOptions, _velocityAnimate) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
@@ -6,7 +6,7 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service", "../utils/bo
     });
     exports.AubsPopoverCustomAttribute = undefined;
 
-    var _velocity2 = _interopRequireDefault(_velocity);
+    var _velocityAnimate2 = _interopRequireDefault(_velocityAnimate);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -187,8 +187,8 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service", "../utils/bo
             var position = this.tooltipService.calculatePosition(this.element, this.popover, this.position);
             this.popover.setAttribute("style", "top: " + position.top + "px; left: " + position.left + "px; display: block;");
 
-            (0, _velocity2.default)(this.popover, 'stop').then(function () {
-                (0, _velocity2.default)(_this2.popover, 'fadeIn').then(function () {
+            (0, _velocityAnimate2.default)(this.popover, 'stop').then(function () {
+                (0, _velocityAnimate2.default)(_this2.popover, 'fadeIn').then(function () {
                     _this2.popover.classList.add('in');
 
                     if (typeof _this2.onOpen === 'function') {
@@ -230,8 +230,8 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service", "../utils/bo
                 return;
             }
 
-            (0, _velocity2.default)(this.popover, 'stop').then(function () {
-                (0, _velocity2.default)(_this4.popover, 'fadeOut').then(function () {
+            (0, _velocityAnimate2.default)(this.popover, 'stop').then(function () {
+                (0, _velocityAnimate2.default)(_this4.popover, 'fadeOut').then(function () {
                     _this4.popover.classList.remove('in');
 
                     if (typeof _this4.onClose === 'function') {

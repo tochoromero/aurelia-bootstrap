@@ -11,9 +11,9 @@ var _aureliaFramework = require("aurelia-framework");
 
 var _bootstrapOptions = require("../utils/bootstrap-options");
 
-var _velocity = require("velocity");
+var _velocityAnimate = require("velocity-animate");
 
-var _velocity2 = _interopRequireDefault(_velocity);
+var _velocityAnimate2 = _interopRequireDefault(_velocityAnimate);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -84,7 +84,7 @@ var AubsAccordionGroupCustomElement = exports.AubsAccordionGroupCustomElement = 
     AubsAccordionGroupCustomElement.prototype.attached = function attached() {
         if (this.isOpen) {
             this.$collapse.classList.add('in');
-            (0, _velocity2.default)(this.$collapse, 'slideDown', { duration: 0 });
+            (0, _velocityAnimate2.default)(this.$collapse, 'slideDown', { duration: 0 });
         }
     };
 
@@ -103,9 +103,9 @@ var AubsAccordionGroupCustomElement = exports.AubsAccordionGroupCustomElement = 
     AubsAccordionGroupCustomElement.prototype.animate = function animate() {
         if (this.isOpen) {
             this.$collapse.classList.add('in');
-            (0, _velocity2.default)(this.$collapse, 'slideDown');
+            (0, _velocityAnimate2.default)(this.$collapse, 'slideDown');
         } else {
-            (0, _velocity2.default)(this.$collapse, 'slideUp');
+            (0, _velocityAnimate2.default)(this.$collapse, 'slideUp');
             this.$collapse.classList.remove('in');
         }
     };

@@ -1,7 +1,7 @@
 import {bindable, bindingMode, inject} from "aurelia-framework";
 import {TooltipService} from "../utils/tooltip-service";
 import {bootstrapOptions} from "../utils/bootstrap-options";
-import velocity from "velocity";
+import velocity from "velocity-animate";
 
 @inject(Element, TooltipService)
 export class AubsPopoverCustomAttribute {

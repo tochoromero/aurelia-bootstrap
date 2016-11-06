@@ -1,6 +1,6 @@
 import {bindable, bindingMode, inject, containerless} from "aurelia-framework";
 import {bootstrapOptions} from "../utils/bootstrap-options";
-import velocity from 'velocity';
+import velocity from 'velocity-animate';
 
 @inject(Element)
 @containerless

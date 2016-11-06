@@ -1,6 +1,6 @@
 "use strict";
 
-System.register(["aurelia-framework", "../utils/bootstrap-options", "velocity"], function (_export, _context) {
+System.register(["aurelia-framework", "../utils/bootstrap-options", "velocity-animate"], function (_export, _context) {
     "use strict";
 
     var bindable, bindingMode, inject, containerless, bootstrapOptions, velocity, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, AubsAccordionGroupCustomElement;
@@ -62,8 +62,8 @@ System.register(["aurelia-framework", "../utils/bootstrap-options", "velocity"],
             containerless = _aureliaFramework.containerless;
         }, function (_utilsBootstrapOptions) {
             bootstrapOptions = _utilsBootstrapOptions.bootstrapOptions;
-        }, function (_velocity) {
-            velocity = _velocity.default;
+        }, function (_velocityAnimate) {
+            velocity = _velocityAnimate.default;
         }],
         execute: function () {
             _export("AubsAccordionGroupCustomElement", AubsAccordionGroupCustomElement = (_dec = inject(Element), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = containerless(_class = (_class2 = function () {

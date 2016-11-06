@@ -45,7 +45,7 @@ function _initializerWarningHelper(descriptor, context) {
 
 import { bindable, inject } from "aurelia-framework";
 import { AubsTabsetCustomElement } from "./aubs-tabset";
-import velocity from 'velocity';
+import velocity from 'velocity-animate';
 
 export let AubsTabCustomElement = (_dec = inject(AubsTabsetCustomElement, Element), _dec(_class = (_class2 = class AubsTabCustomElement {
 

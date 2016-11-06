@@ -45,7 +45,7 @@ function _initializerWarningHelper(descriptor, context) {
 
 import { bindable, bindingMode, inject, containerless } from "aurelia-framework";
 import { bootstrapOptions } from "../utils/bootstrap-options";
-import velocity from 'velocity';
+import velocity from 'velocity-animate';
 
 export let AubsAccordionGroupCustomElement = (_dec = inject(Element), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = containerless(_class = (_class2 = class AubsAccordionGroupCustomElement {
 

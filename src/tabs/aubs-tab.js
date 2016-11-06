@@ -1,6 +1,6 @@
 import {bindable, inject} from "aurelia-framework";
 import {AubsTabsetCustomElement} from "./aubs-tabset";
-import velocity from 'velocity';
+import velocity from 'velocity-animate';
 
 @inject(AubsTabsetCustomElement, Element)
 export class AubsTabCustomElement {

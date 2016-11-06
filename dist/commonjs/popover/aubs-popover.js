@@ -13,9 +13,9 @@ var _tooltipService = require("../utils/tooltip-service");
 
 var _bootstrapOptions = require("../utils/bootstrap-options");
 
-var _velocity = require("velocity");
+var _velocityAnimate = require("velocity-animate");
 
-var _velocity2 = _interopRequireDefault(_velocity);
+var _velocityAnimate2 = _interopRequireDefault(_velocityAnimate);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -186,8 +186,8 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
         var position = this.tooltipService.calculatePosition(this.element, this.popover, this.position);
         this.popover.setAttribute("style", "top: " + position.top + "px; left: " + position.left + "px; display: block;");
 
-        (0, _velocity2.default)(this.popover, 'stop').then(function () {
-            (0, _velocity2.default)(_this2.popover, 'fadeIn').then(function () {
+        (0, _velocityAnimate2.default)(this.popover, 'stop').then(function () {
+            (0, _velocityAnimate2.default)(_this2.popover, 'fadeIn').then(function () {
                 _this2.popover.classList.add('in');
 
                 if (typeof _this2.onOpen === 'function') {
@@ -229,8 +229,8 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
             return;
         }
 
-        (0, _velocity2.default)(this.popover, 'stop').then(function () {
-            (0, _velocity2.default)(_this4.popover, 'fadeOut').then(function () {
+        (0, _velocityAnimate2.default)(this.popover, 'stop').then(function () {
+            (0, _velocityAnimate2.default)(_this4.popover, 'fadeOut').then(function () {
                 _this4.popover.classList.remove('in');
 
                 if (typeof _this4.onClose === 'function') {

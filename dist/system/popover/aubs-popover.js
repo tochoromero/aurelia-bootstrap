@@ -1,6 +1,6 @@
 "use strict";
 
-System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/bootstrap-options", "velocity"], function (_export, _context) {
+System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/bootstrap-options", "velocity-animate"], function (_export, _context) {
     "use strict";
 
     var bindable, bindingMode, inject, TooltipService, bootstrapOptions, velocity, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, AubsPopoverCustomAttribute;
@@ -63,8 +63,8 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
             TooltipService = _utilsTooltipService.TooltipService;
         }, function (_utilsBootstrapOptions) {
             bootstrapOptions = _utilsBootstrapOptions.bootstrapOptions;
-        }, function (_velocity) {
-            velocity = _velocity.default;
+        }, function (_velocityAnimate) {
+            velocity = _velocityAnimate.default;
         }],
         execute: function () {
             _export("AubsPopoverCustomAttribute", AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = (_class2 = function () {

@@ -11,9 +11,9 @@ var _aureliaFramework = require("aurelia-framework");
 
 var _aubsTabset = require("./aubs-tabset");
 
-var _velocity = require("velocity");
+var _velocityAnimate = require("velocity-animate");
 
-var _velocity2 = _interopRequireDefault(_velocity);
+var _velocityAnimate2 = _interopRequireDefault(_velocityAnimate);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -101,7 +101,7 @@ var AubsTabCustomElement = exports.AubsTabCustomElement = (_dec = (0, _aureliaFr
         this.active = isSelected;
 
         if (isSelected) {
-            (0, _velocity2.default)(this.$tabPane, 'fadeIn');
+            (0, _velocityAnimate2.default)(this.$tabPane, 'fadeIn');
 
             if (this.onSelect && typeof this.onSelect === 'function') {
                 this.onSelect();
