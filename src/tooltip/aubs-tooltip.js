@@ -1,5 +1,6 @@
 import {bindable, inject, bindingMode} from "aurelia-framework";
 import {TooltipService} from "../utils/tooltip-service";
+import {bootstrapOptions} from "../utils/bootstrap-options";
 import velocity from "velocity";
 
 @inject(Element, TooltipService)
@@ -155,7 +156,8 @@ export class AubsTooltipCustomAttribute {
 
         this.tooltip = document.createElement('div');
         this.tooltip.classList.add('tooltip');
-        this.tooltip.classList.add('tooltip-' + this.position);
+
+        this.tooltip.classList.add((bootstrapOptions.version === 4 ? 'tooltip-' : '') + this.position);
         this.tooltip.setAttribute('role', 'tooltip');
 
         let arrow = document.createElement('div');

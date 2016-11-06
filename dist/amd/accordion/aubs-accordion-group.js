@@ -1,10 +1,18 @@
-define(['exports', 'aurelia-framework', './aubs-accordion'], function (exports, _aureliaFramework, _aubsAccordion) {
-    'use strict';
+define(["exports", "aurelia-framework", "../utils/bootstrap-options", "velocity"], function (exports, _aureliaFramework, _bootstrapOptions, _velocity) {
+    "use strict";
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
     exports.AubsAccordionGroupCustomElement = undefined;
+
+    var _velocity2 = _interopRequireDefault(_velocity);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -57,53 +65,64 @@ define(['exports', 'aurelia-framework', './aubs-accordion'], function (exports, 
 
     var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
-    var AubsAccordionGroupCustomElement = exports.AubsAccordionGroupCustomElement = (_dec = (0, _aureliaFramework.inject)(_aubsAccordion.AubsAccordionCustomElement), _dec2 = (0, _aureliaFramework.bindable)({ defaultBindingMode: _aureliaFramework.bindingMode.twoWay }), _dec(_class = (0, _aureliaFramework.containerless)(_class = (_class2 = function () {
-        function AubsAccordionGroupCustomElement(accordion) {
+    var AubsAccordionGroupCustomElement = exports.AubsAccordionGroupCustomElement = (_dec = (0, _aureliaFramework.inject)(Element), _dec2 = (0, _aureliaFramework.bindable)({ defaultBindingMode: _aureliaFramework.bindingMode.twoWay }), _dec(_class = (0, _aureliaFramework.containerless)(_class = (_class2 = function () {
+        function AubsAccordionGroupCustomElement(element) {
             _classCallCheck(this, AubsAccordionGroupCustomElement);
 
-            _initDefineProp(this, 'title', _descriptor, this);
+            _initDefineProp(this, "title", _descriptor, this);
 
-            _initDefineProp(this, 'panelClass', _descriptor2, this);
+            _initDefineProp(this, "panelClass", _descriptor2, this);
 
-            _initDefineProp(this, 'isOpen', _descriptor3, this);
+            _initDefineProp(this, "isOpen", _descriptor3, this);
 
-            if (!accordion) {
-                throw new Error('The aubs-accordion-group must be a child of aubs-accordion.');
-            }
+            this.element = element;
+        }
 
-            this.accordion = accordion;
-            this.accordion.registerGroup(this);
-
+        AubsAccordionGroupCustomElement.prototype.bind = function bind() {
             if (typeof this.isOpen !== 'boolean') {
                 this.isOpen = false;
             }
-        }
+        };
+
+        AubsAccordionGroupCustomElement.prototype.attached = function attached() {
+            if (this.isOpen) {
+                this.$collapse.classList.add('in');
+                (0, _velocity2.default)(this.$collapse, 'slideDown', { duration: 0 });
+            }
+        };
+
+        AubsAccordionGroupCustomElement.prototype.isBootstrapVersion = function isBootstrapVersion(version) {
+            return _bootstrapOptions.bootstrapOptions.version === version;
+        };
 
         AubsAccordionGroupCustomElement.prototype.isOpenChanged = function isOpenChanged() {
-            this.notifyToggle();
+            this.animate();
         };
 
         AubsAccordionGroupCustomElement.prototype.toggle = function toggle() {
             this.isOpen = !this.isOpen;
-            this.notifyToggle();
         };
 
-        AubsAccordionGroupCustomElement.prototype.notifyToggle = function notifyToggle() {
+        AubsAccordionGroupCustomElement.prototype.animate = function animate() {
             if (this.isOpen) {
-                this.accordion.groupToggled(this);
+                this.$collapse.classList.add('in');
+                (0, _velocity2.default)(this.$collapse, 'slideDown');
+            } else {
+                (0, _velocity2.default)(this.$collapse, 'slideUp');
+                this.$collapse.classList.remove('in');
             }
         };
 
         return AubsAccordionGroupCustomElement;
-    }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'title', [_aureliaFramework.bindable], {
+    }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "title", [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: null
-    }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'panelClass', [_aureliaFramework.bindable], {
+    }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "panelClass", [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: function initializer() {
             return 'panel-default';
         }
-    }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'isOpen', [_dec2], {
+    }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec2], {
         enumerable: true,
         initializer: function initializer() {
             return false;

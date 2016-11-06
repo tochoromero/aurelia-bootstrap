@@ -47,45 +47,40 @@ import { children, bindable } from "aurelia-framework";
 
 export let AubsTabsetCustomElement = (_dec = children('aubs-tab'), (_class = class AubsTabsetCustomElement {
     constructor() {
-        _initDefineProp(this, 'tabs', _descriptor, this);
+        _initDefineProp(this, 'type', _descriptor, this);
 
-        _initDefineProp(this, 'type', _descriptor2, this);
+        _initDefineProp(this, 'vertical', _descriptor2, this);
 
-        _initDefineProp(this, 'vertical', _descriptor3, this);
-
-        this.tabChangedListeners = [];
+        this.active = 0;
         this.tabsClass = 'nav-tabs';
-        this.indexCount = 0;
+
+        _initDefineProp(this, 'tabs', _descriptor3, this);
     }
 
     bind() {
-        this.tabs.forEach((tab, index) => tab.index = index + 10);
-
         if (this.type === 'pills') {
             this.tabsClass = 'nav-pills';
         }
     }
 
-    getTabIndex() {
-        return this.indexCount++;
-    }
+    tabsChanged() {
+        let activeTab;
 
-    addTabChangedListener(index, isDefault, callback) {
-        this.tabChangedListeners.push(callback);
+        for (let i = 0; i < this.tabs.length; i++) {
+            let next = this.tabs[i];
+            next.index = i;
 
-        if (this.active == undefined || isDefault) {
-            this.active = index;
+            if (next.active) {
+                activeTab = next;
+            }
         }
 
-        this.emitTabChanged();
-    }
-
-    removeTabChangedListener(callback) {
-        var index = this.tabChangedListeners.indexOf(callback);
-
-        if (index > -1) {
-            this.tabChangedListeners.splice(index, 1);
+        if (!activeTab) {
+            activeTab = this.tabs[0];
+            activeTab.active = true;
         }
+
+        this.selectTab(activeTab);
     }
 
     selectTab(tab) {
@@ -103,23 +98,23 @@ export let AubsTabsetCustomElement = (_dec = children('aubs-tab'), (_class = cla
     }
 
     emitTabChanged() {
-        for (let listener of this.tabChangedListeners) {
-            listener(this.active);
+        for (let next of this.tabs) {
+            next.handleTabChanged(this.active);
         }
     }
-}, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'tabs', [_dec], {
-    enumerable: true,
-    initializer: function () {
-        return [];
-    }
-}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'type', [bindable], {
+}, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'type', [bindable], {
     enumerable: true,
     initializer: function () {
         return 'tabs';
     }
-}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'vertical', [bindable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'vertical', [bindable], {
     enumerable: true,
     initializer: function () {
         return false;
+    }
+}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'tabs', [_dec], {
+    enumerable: true,
+    initializer: function () {
+        return [];
     }
 })), _class));

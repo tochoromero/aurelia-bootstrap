@@ -1,4 +1,4 @@
-var _desc, _value, _class, _descriptor;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2;
 
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -43,21 +43,51 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-import { children, bindable } from "aurelia-framework";
+import { children, bindable, BindingEngine, inject } from "aurelia-framework";
+import { bootstrapOptions } from "../utils/bootstrap-options";
 
-export let AubsAccordionCustomElement = (_class = class AubsAccordionCustomElement {
-    constructor() {
+export let AubsAccordionCustomElement = (_dec = inject(BindingEngine), _dec2 = children('aubs-accordion-group'), _dec(_class = (_class2 = class AubsAccordionCustomElement {
+
+    constructor(bindingEngine) {
         _initDefineProp(this, "closeOthers", _descriptor, this);
 
-        this.groups = [];
+        _initDefineProp(this, "groups", _descriptor2, this);
+
+        this.toggledListeners = [];
+
+        this.bindingEngine = bindingEngine;
+        this.bootstrapOptions = bootstrapOptions;
     }
 
-    registerGroup(group) {
-        this.groups.push(group);
+    detached() {
+        this.disposeListeners();
+    }
+
+    closeOthersChanged() {
+        this.groupsChanged();
+    }
+
+    groupsChanged() {
+        this.disposeListeners();
+
+        if (this.closeOthers) {
+            for (let group of this.groups) {
+                let subscription = this.bindingEngine.propertyObserver(group, 'isOpen').subscribe(() => this.groupToggled(group));
+                this.toggledListeners.push(subscription);
+            }
+        }
+    }
+
+    disposeListeners() {
+        for (let listener of this.toggledListeners) {
+            listener.dispose();
+        }
+
+        this.toggledListeners = [];
     }
 
     groupToggled(group) {
-        if (this.closeOthers) {
+        if (group.isOpen) {
             for (let next of this.groups) {
                 if (next !== group) {
                     next.isOpen = false;
@@ -65,9 +95,14 @@ export let AubsAccordionCustomElement = (_class = class AubsAccordionCustomEleme
             }
         }
     }
-}, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "closeOthers", [bindable], {
+}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "closeOthers", [bindable], {
     enumerable: true,
     initializer: function () {
         return true;
     }
-})), _class);
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "groups", [_dec2], {
+    enumerable: true,
+    initializer: function () {
+        return [];
+    }
+})), _class2)) || _class);

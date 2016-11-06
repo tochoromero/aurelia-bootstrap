@@ -64,47 +64,40 @@ System.register(['aurelia-framework'], function (_export, _context) {
                 function AubsTabsetCustomElement() {
                     _classCallCheck(this, AubsTabsetCustomElement);
 
-                    _initDefineProp(this, 'tabs', _descriptor, this);
+                    _initDefineProp(this, 'type', _descriptor, this);
 
-                    _initDefineProp(this, 'type', _descriptor2, this);
+                    _initDefineProp(this, 'vertical', _descriptor2, this);
 
-                    _initDefineProp(this, 'vertical', _descriptor3, this);
-
-                    this.tabChangedListeners = [];
+                    this.active = 0;
                     this.tabsClass = 'nav-tabs';
-                    this.indexCount = 0;
+
+                    _initDefineProp(this, 'tabs', _descriptor3, this);
                 }
 
                 AubsTabsetCustomElement.prototype.bind = function bind() {
-                    this.tabs.forEach(function (tab, index) {
-                        return tab.index = index + 10;
-                    });
-
                     if (this.type === 'pills') {
                         this.tabsClass = 'nav-pills';
                     }
                 };
 
-                AubsTabsetCustomElement.prototype.getTabIndex = function getTabIndex() {
-                    return this.indexCount++;
-                };
+                AubsTabsetCustomElement.prototype.tabsChanged = function tabsChanged() {
+                    var activeTab = void 0;
 
-                AubsTabsetCustomElement.prototype.addTabChangedListener = function addTabChangedListener(index, isDefault, callback) {
-                    this.tabChangedListeners.push(callback);
+                    for (var i = 0; i < this.tabs.length; i++) {
+                        var next = this.tabs[i];
+                        next.index = i;
 
-                    if (this.active == undefined || isDefault) {
-                        this.active = index;
+                        if (next.active) {
+                            activeTab = next;
+                        }
                     }
 
-                    this.emitTabChanged();
-                };
-
-                AubsTabsetCustomElement.prototype.removeTabChangedListener = function removeTabChangedListener(callback) {
-                    var index = this.tabChangedListeners.indexOf(callback);
-
-                    if (index > -1) {
-                        this.tabChangedListeners.splice(index, 1);
+                    if (!activeTab) {
+                        activeTab = this.tabs[0];
+                        activeTab.active = true;
                     }
+
+                    this.selectTab(activeTab);
                 };
 
                 AubsTabsetCustomElement.prototype.selectTab = function selectTab(tab) {
@@ -122,7 +115,7 @@ System.register(['aurelia-framework'], function (_export, _context) {
                 };
 
                 AubsTabsetCustomElement.prototype.emitTabChanged = function emitTabChanged() {
-                    for (var _iterator = this.tabChangedListeners, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+                    for (var _iterator = this.tabs, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
                         var _ref;
 
                         if (_isArray) {
@@ -134,27 +127,27 @@ System.register(['aurelia-framework'], function (_export, _context) {
                             _ref = _i.value;
                         }
 
-                        var listener = _ref;
+                        var next = _ref;
 
-                        listener(this.active);
+                        next.handleTabChanged(this.active);
                     }
                 };
 
                 return AubsTabsetCustomElement;
-            }(), (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'tabs', [_dec], {
-                enumerable: true,
-                initializer: function initializer() {
-                    return [];
-                }
-            }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'type', [bindable], {
+            }(), (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'type', [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return 'tabs';
                 }
-            }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'vertical', [bindable], {
+            }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'vertical', [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return false;
+                }
+            }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'tabs', [_dec], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return [];
                 }
             })), _class)));
 

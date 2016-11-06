@@ -38,6 +38,9 @@ define(['exports'], function (exports) {
 
             result.top += window.scrollY;
 
+            result.top = Math.round(result.top);
+            result.left = Math.round(result.left);
+
             return result;
         };
 

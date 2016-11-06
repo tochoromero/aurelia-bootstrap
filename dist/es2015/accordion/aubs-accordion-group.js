@@ -44,52 +44,64 @@ function _initializerWarningHelper(descriptor, context) {
 }
 
 import { bindable, bindingMode, inject, containerless } from "aurelia-framework";
-import { AubsAccordionCustomElement } from './aubs-accordion';
+import { bootstrapOptions } from "../utils/bootstrap-options";
+import velocity from 'velocity';
 
-export let AubsAccordionGroupCustomElement = (_dec = inject(AubsAccordionCustomElement), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = containerless(_class = (_class2 = class AubsAccordionGroupCustomElement {
+export let AubsAccordionGroupCustomElement = (_dec = inject(Element), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = containerless(_class = (_class2 = class AubsAccordionGroupCustomElement {
 
-    constructor(accordion) {
-        _initDefineProp(this, 'title', _descriptor, this);
+    constructor(element) {
+        _initDefineProp(this, "title", _descriptor, this);
 
-        _initDefineProp(this, 'panelClass', _descriptor2, this);
+        _initDefineProp(this, "panelClass", _descriptor2, this);
 
-        _initDefineProp(this, 'isOpen', _descriptor3, this);
+        _initDefineProp(this, "isOpen", _descriptor3, this);
 
-        if (!accordion) {
-            throw new Error('The aubs-accordion-group must be a child of aubs-accordion.');
-        }
+        this.element = element;
+    }
 
-        this.accordion = accordion;
-        this.accordion.registerGroup(this);
-
+    bind() {
         if (typeof this.isOpen !== 'boolean') {
             this.isOpen = false;
         }
     }
 
+    attached() {
+        if (this.isOpen) {
+            this.$collapse.classList.add('in');
+            velocity(this.$collapse, 'slideDown', { duration: 0 });
+        }
+    }
+
+    isBootstrapVersion(version) {
+        return bootstrapOptions.version === version;
+    }
+
     isOpenChanged() {
-        this.notifyToggle();
+        this.animate();
     }
 
     toggle() {
         this.isOpen = !this.isOpen;
-        this.notifyToggle();
     }
 
-    notifyToggle() {
+    animate() {
         if (this.isOpen) {
-            this.accordion.groupToggled(this);
+            this.$collapse.classList.add('in');
+            velocity(this.$collapse, 'slideDown');
+        } else {
+            velocity(this.$collapse, 'slideUp');
+            this.$collapse.classList.remove('in');
         }
     }
-}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'title', [bindable], {
+}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "title", [bindable], {
     enumerable: true,
     initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'panelClass', [bindable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "panelClass", [bindable], {
     enumerable: true,
     initializer: function () {
         return 'panel-default';
     }
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'isOpen', [_dec2], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec2], {
     enumerable: true,
     initializer: function () {
         return false;

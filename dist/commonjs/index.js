@@ -32,20 +32,28 @@ var _aubsTabset = require('./tabs/aubs-tabset');
 
 var _aubsTooltip = require('./tooltip/aubs-tooltip');
 
-function configure(config) {
-    config.globalResources('./accordion/aubs-accordion');
-    config.globalResources('./accordion/aubs-accordion-group');
-    config.globalResources('./buttons/aubs-btn-checkbox');
-    config.globalResources('./buttons/aubs-btn-disabled');
-    config.globalResources('./buttons/aubs-btn-loading');
-    config.globalResources('./buttons/aubs-btn-radio');
-    config.globalResources('./dropdown/aubs-dropdown');
-    config.globalResources('./dropdown/aubs-dropdown-toggle');
-    config.globalResources('./popover/aubs-popover');
-    config.globalResources('./popover/aubs-custom-popover');
-    config.globalResources('./tabs/aubs-tab');
-    config.globalResources('./tabs/aubs-tabset');
-    config.globalResources('./tooltip/aubs-tooltip');
+var _bootstrapConfig = require('./utils/bootstrap-config');
+
+function configure(aurelia, callback) {
+    aurelia.globalResources('./accordion/aubs-accordion');
+    aurelia.globalResources('./accordion/aubs-accordion-group');
+    aurelia.globalResources('./buttons/aubs-btn-checkbox');
+    aurelia.globalResources('./buttons/aubs-btn-disabled');
+    aurelia.globalResources('./buttons/aubs-btn-loading');
+    aurelia.globalResources('./buttons/aubs-btn-radio');
+    aurelia.globalResources('./dropdown/aubs-dropdown');
+    aurelia.globalResources('./dropdown/aubs-dropdown-toggle');
+    aurelia.globalResources('./popover/aubs-popover');
+    aurelia.globalResources('./popover/aubs-custom-popover');
+    aurelia.globalResources('./tabs/aubs-tab');
+    aurelia.globalResources('./tabs/aubs-tabset');
+    aurelia.globalResources('./tooltip/aubs-tooltip');
+
+    var config = new _bootstrapConfig.BootstrapConfig();
+
+    if (typeof callback === 'function') {
+        callback(config);
+    }
 }
 
 exports.AubsAccordionCustomElement = _aubsAccordion.AubsAccordionCustomElement;

@@ -1,9 +1,9 @@
 "use strict";
 
-System.register(["aurelia-framework", "./aubs-tabset"], function (_export, _context) {
+System.register(["aurelia-framework", "./aubs-tabset", "velocity"], function (_export, _context) {
     "use strict";
 
-    var bindable, inject, AubsTabsetCustomElement, _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, AubsTabCustomElement;
+    var bindable, inject, AubsTabsetCustomElement, velocity, _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, AubsTabCustomElement;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -60,12 +60,12 @@ System.register(["aurelia-framework", "./aubs-tabset"], function (_export, _cont
             inject = _aureliaFramework.inject;
         }, function (_aubsTabset) {
             AubsTabsetCustomElement = _aubsTabset.AubsTabsetCustomElement;
+        }, function (_velocity) {
+            velocity = _velocity.default;
         }],
         execute: function () {
-            _export("AubsTabCustomElement", AubsTabCustomElement = (_dec = inject(AubsTabsetCustomElement), _dec(_class = (_class2 = function () {
-                function AubsTabCustomElement(tabset) {
-                    var _this = this;
-
+            _export("AubsTabCustomElement", AubsTabCustomElement = (_dec = inject(AubsTabsetCustomElement, Element), _dec(_class = (_class2 = function () {
+                function AubsTabCustomElement(tabset, element) {
                     _classCallCheck(this, AubsTabCustomElement);
 
                     _initDefineProp(this, "header", _descriptor, this);
@@ -79,23 +79,18 @@ System.register(["aurelia-framework", "./aubs-tabset"], function (_export, _cont
                     _initDefineProp(this, "onDeselect", _descriptor5, this);
 
                     this.tabset = tabset;
-
-                    this.tabChangedListener = function (index) {
-                        return _this.handleTabChanged(index);
-                    };
+                    this.element = element;
                 }
 
-                AubsTabCustomElement.prototype.attached = function attached() {
+                AubsTabCustomElement.prototype.bind = function bind() {
                     if (!this.header) {
                         throw new Error('Must provide a header for the tab.');
                     }
-
-                    this.index = this.tabset.getTabIndex();
-                    this.tabset.addTabChangedListener(this.index, this.active, this.tabChangedListener);
                 };
 
-                AubsTabCustomElement.prototype.detached = function detached() {
-                    this.tabset.removeTabChangedListener(this.tabChangedListener);
+                AubsTabCustomElement.prototype.attached = function attached() {
+                    this.$tabPane = this.element.querySelector('.tab-pane');
+                    this.$tabPane.style.display = this.active ? 'block' : 'none';
                 };
 
                 AubsTabCustomElement.prototype.handleTabChanged = function handleTabChanged(index) {
@@ -108,10 +103,14 @@ System.register(["aurelia-framework", "./aubs-tabset"], function (_export, _cont
                     this.active = isSelected;
 
                     if (isSelected) {
+                        velocity(this.$tabPane, 'fadeIn');
+
                         if (this.onSelect && typeof this.onSelect === 'function') {
                             this.onSelect();
                         }
                     } else {
+                        this.$tabPane.style.display = 'none';
+
                         if (this.onDeselect && typeof this.onDeselect == 'function') {
                             this.onDeselect();
                         }

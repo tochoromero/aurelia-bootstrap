@@ -1,10 +1,18 @@
-define(["exports", "aurelia-framework", "../utils/tooltip-service"], function (exports, _aureliaFramework, _tooltipService) {
+define(["exports", "aurelia-framework", "../utils/tooltip-service", "../utils/bootstrap-options", "velocity"], function (exports, _aureliaFramework, _tooltipService, _bootstrapOptions, _velocity) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
     exports.AubsTooltipCustomAttribute = undefined;
+
+    var _velocity2 = _interopRequireDefault(_velocity);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -147,6 +155,8 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service"], function (e
         };
 
         AubsTooltipCustomAttribute.prototype.handleShow = function handleShow() {
+            var _this2 = this;
+
             if (this.visible || this.disabled) {
                 return;
             }
@@ -156,12 +166,17 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service"], function (e
                 this.valuesChanged = false;
             }
 
-            document.body.appendChild(this.tooltip);
+            this.tooltip.style.display = 'block';
 
             var position = this.tooltipService.calculatePosition(this.element, this.tooltip, this.position);
             this.tooltip.setAttribute("style", "top: " + position.top + "px; left: " + position.left + "px");
 
-            this.tooltip.classList.add('in');
+            (0, _velocity2.default)(this.tooltip, 'stop').then(function () {
+                (0, _velocity2.default)(_this2.tooltip, 'fadeIn').then(function () {
+                    _this2.tooltip.classList.add('in');
+                });
+            });
+
             this.visible = true;
             this.open = true;
 
@@ -169,7 +184,7 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service"], function (e
         };
 
         AubsTooltipCustomAttribute.prototype.resizeThrottler = function resizeThrottler() {
-            var _this2 = this;
+            var _this3 = this;
 
             if (!this.visible) {
                 return;
@@ -177,8 +192,8 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service"], function (e
 
             if (!this.resizeTimeout) {
                 this.resizeTimeout = setTimeout(function () {
-                    _this2.resizeTimeout = null;
-                    _this2.handleResize();
+                    _this3.resizeTimeout = null;
+                    _this3.handleResize();
                 }, 66);
             }
         };
@@ -189,15 +204,20 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service"], function (e
         };
 
         AubsTooltipCustomAttribute.prototype.handleHide = function handleHide() {
+            var _this4 = this;
+
             if (!this.visible) {
                 return;
             }
 
-            this.tooltip.classList.remove('in');
-            document.body.removeChild(this.tooltip);
+            (0, _velocity2.default)(this.tooltip, 'stop').then(function () {
+                (0, _velocity2.default)(_this4.tooltip, 'fadeOut').then(function () {
+                    _this4.tooltip.classList.remove('in');
+                });
+            });
+
             this.visible = false;
             this.open = false;
-
             window.removeEventListener('resize', this.listeners.resize);
         };
 
@@ -214,7 +234,8 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service"], function (e
 
             this.tooltip = document.createElement('div');
             this.tooltip.classList.add('tooltip');
-            this.tooltip.classList.add(this.position);
+
+            this.tooltip.classList.add((_bootstrapOptions.bootstrapOptions.version === 4 ? 'tooltip-' : '') + this.position);
             this.tooltip.setAttribute('role', 'tooltip');
 
             var arrow = document.createElement('div');
@@ -226,6 +247,8 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service"], function (e
             var text = document.createTextNode(this.text);
             inner.appendChild(text);
             this.tooltip.appendChild(inner);
+
+            document.body.appendChild(this.tooltip);
         };
 
         return AubsTooltipCustomAttribute;

@@ -1,4 +1,4 @@
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9;
 
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -45,6 +45,8 @@ function _initializerWarningHelper(descriptor, context) {
 
 import { bindable, bindingMode, inject } from "aurelia-framework";
 import { TooltipService } from "../utils/tooltip-service";
+import { bootstrapOptions } from "../utils/bootstrap-options";
+import velocity from "velocity";
 
 export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = (_class2 = class AubsPopoverCustomAttribute {
 
@@ -62,6 +64,10 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
         _initDefineProp(this, "trigger", _descriptor6, this);
 
         _initDefineProp(this, "customPopover", _descriptor7, this);
+
+        _initDefineProp(this, "onOpen", _descriptor8, this);
+
+        _initDefineProp(this, "onClose", _descriptor9, this);
 
         this.triggers = [];
         this.validPositions = ['top', 'bottom', 'left', 'right'];
@@ -92,6 +98,10 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
 
     attached() {
         this.tooltipService.setTriggers(this.element, this.triggers, this.listeners);
+
+        if (this.customPopover) {
+            this.customPopover.style.display = 'none';
+        }
 
         this.attached = true;
         if (this.open) {
@@ -142,13 +152,21 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
             this.valuesChanged = false;
         }
 
-        document.body.appendChild(this.popover);
         this.popover.setAttribute("style", `display: block;`);
 
         let position = this.tooltipService.calculatePosition(this.element, this.popover, this.position);
         this.popover.setAttribute("style", `top: ${ position.top }px; left: ${ position.left }px; display: block;`);
 
-        this.popover.classList.add('in');
+        velocity(this.popover, 'stop').then(() => {
+            velocity(this.popover, 'fadeIn').then(() => {
+                this.popover.classList.add('in');
+
+                if (typeof this.onOpen === 'function') {
+                    this.onOpen();
+                }
+            });
+        });
+
         this.visible = true;
         this.open = true;
 
@@ -178,8 +196,16 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
             return;
         }
 
-        this.popover.classList.remove('in');
-        document.body.removeChild(this.popover);
+        velocity(this.popover, 'stop').then(() => {
+            velocity(this.popover, 'fadeOut').then(() => {
+                this.popover.classList.remove('in');
+
+                if (typeof this.onClose === 'function') {
+                    this.onClose();
+                }
+            });
+        });
+
         this.visible = false;
         this.open = false;
 
@@ -196,10 +222,15 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
         }
     }
 
+    getPositionClass() {
+        return this.popover.classList.add((bootstrapOptions.version === 4 ? 'popover-' : '') + this.position);
+    }
+
     createPopover() {
         if (this.customPopover) {
             this.popover = this.customPopover;
-            this.popover.classList.add(this.position);
+            this.popover.classList.add('popover');
+            this.popover.classList.add(this.getPositionClass());
             return;
         }
 
@@ -209,7 +240,8 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
 
         this.popover = document.createElement('div');
         this.popover.classList.add('popover');
-        this.popover.classList.add(this.position);
+        this.popover.classList.add('popover-' + this.position);
+        this.popover.classList.add(this.getPositionClass());
 
         let arrow = document.createElement('div');
         arrow.classList.add('arrow');
@@ -230,6 +262,8 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
         contentParagraph.appendChild(text);
         content.appendChild(contentParagraph);
         this.popover.appendChild(content);
+
+        document.body.appendChild(this.popover);
     }
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "title", [bindable], {
     enumerable: true,
@@ -258,6 +292,12 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
         return 'mouseover';
     }
 }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "customPopover", [bindable], {
+    enumerable: true,
+    initializer: null
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, "onOpen", [bindable], {
+    enumerable: true,
+    initializer: null
+}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, "onClose", [bindable], {
     enumerable: true,
     initializer: null
 })), _class2)) || _class);

@@ -23,6 +23,9 @@ export let TooltipService = class TooltipService {
 
         result.top += window.scrollY;
 
+        result.top = Math.round(result.top);
+        result.left = Math.round(result.left);
+
         return result;
     }
 

@@ -1,10 +1,18 @@
-define(["exports", "aurelia-framework", "./aubs-tabset"], function (exports, _aureliaFramework, _aubsTabset) {
+define(["exports", "aurelia-framework", "./aubs-tabset", "velocity"], function (exports, _aureliaFramework, _aubsTabset, _velocity) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
     exports.AubsTabCustomElement = undefined;
+
+    var _velocity2 = _interopRequireDefault(_velocity);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -57,10 +65,8 @@ define(["exports", "aurelia-framework", "./aubs-tabset"], function (exports, _au
 
     var _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
 
-    var AubsTabCustomElement = exports.AubsTabCustomElement = (_dec = (0, _aureliaFramework.inject)(_aubsTabset.AubsTabsetCustomElement), _dec(_class = (_class2 = function () {
-        function AubsTabCustomElement(tabset) {
-            var _this = this;
-
+    var AubsTabCustomElement = exports.AubsTabCustomElement = (_dec = (0, _aureliaFramework.inject)(_aubsTabset.AubsTabsetCustomElement, Element), _dec(_class = (_class2 = function () {
+        function AubsTabCustomElement(tabset, element) {
             _classCallCheck(this, AubsTabCustomElement);
 
             _initDefineProp(this, "header", _descriptor, this);
@@ -74,23 +80,18 @@ define(["exports", "aurelia-framework", "./aubs-tabset"], function (exports, _au
             _initDefineProp(this, "onDeselect", _descriptor5, this);
 
             this.tabset = tabset;
-
-            this.tabChangedListener = function (index) {
-                return _this.handleTabChanged(index);
-            };
+            this.element = element;
         }
 
-        AubsTabCustomElement.prototype.attached = function attached() {
+        AubsTabCustomElement.prototype.bind = function bind() {
             if (!this.header) {
                 throw new Error('Must provide a header for the tab.');
             }
-
-            this.index = this.tabset.getTabIndex();
-            this.tabset.addTabChangedListener(this.index, this.active, this.tabChangedListener);
         };
 
-        AubsTabCustomElement.prototype.detached = function detached() {
-            this.tabset.removeTabChangedListener(this.tabChangedListener);
+        AubsTabCustomElement.prototype.attached = function attached() {
+            this.$tabPane = this.element.querySelector('.tab-pane');
+            this.$tabPane.style.display = this.active ? 'block' : 'none';
         };
 
         AubsTabCustomElement.prototype.handleTabChanged = function handleTabChanged(index) {
@@ -103,10 +104,14 @@ define(["exports", "aurelia-framework", "./aubs-tabset"], function (exports, _au
             this.active = isSelected;
 
             if (isSelected) {
+                (0, _velocity2.default)(this.$tabPane, 'fadeIn');
+
                 if (this.onSelect && typeof this.onSelect === 'function') {
                     this.onSelect();
                 }
             } else {
+                this.$tabPane.style.display = 'none';
+
                 if (this.onDeselect && typeof this.onDeselect == 'function') {
                     this.onDeselect();
                 }

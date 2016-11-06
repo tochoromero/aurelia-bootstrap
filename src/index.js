@@ -11,21 +11,28 @@ import {AubsCustomPopoverCustomElement} from './popover/aubs-custom-popover';
 import {AubsTabCustomElement} from './tabs/aubs-tab';
 import {AubsTabsetCustomElement} from './tabs/aubs-tabset';
 import {AubsTooltipCustomAttribute} from './tooltip/aubs-tooltip';
+import {BootstrapConfig} from './utils/bootstrap-config';
 
-export function configure(config) {
-    config.globalResources('./accordion/aubs-accordion');
-    config.globalResources('./accordion/aubs-accordion-group');
-    config.globalResources('./buttons/aubs-btn-checkbox');
-    config.globalResources('./buttons/aubs-btn-disabled');
-    config.globalResources('./buttons/aubs-btn-loading');
-    config.globalResources('./buttons/aubs-btn-radio');
-    config.globalResources('./dropdown/aubs-dropdown');
-    config.globalResources('./dropdown/aubs-dropdown-toggle');
-    config.globalResources('./popover/aubs-popover');
-    config.globalResources('./popover/aubs-custom-popover');
-    config.globalResources('./tabs/aubs-tab');
-    config.globalResources('./tabs/aubs-tabset');
-    config.globalResources('./tooltip/aubs-tooltip');
+export function configure(aurelia, callback) {
+    aurelia.globalResources('./accordion/aubs-accordion');
+    aurelia.globalResources('./accordion/aubs-accordion-group');
+    aurelia.globalResources('./buttons/aubs-btn-checkbox');
+    aurelia.globalResources('./buttons/aubs-btn-disabled');
+    aurelia.globalResources('./buttons/aubs-btn-loading');
+    aurelia.globalResources('./buttons/aubs-btn-radio');
+    aurelia.globalResources('./dropdown/aubs-dropdown');
+    aurelia.globalResources('./dropdown/aubs-dropdown-toggle');
+    aurelia.globalResources('./popover/aubs-popover');
+    aurelia.globalResources('./popover/aubs-custom-popover');
+    aurelia.globalResources('./tabs/aubs-tab');
+    aurelia.globalResources('./tabs/aubs-tabset');
+    aurelia.globalResources('./tooltip/aubs-tooltip');
+
+    let config = new BootstrapConfig();
+
+    if(typeof callback === 'function'){
+        callback(config);
+    }
 }
 
 export {

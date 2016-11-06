@@ -1,12 +1,14 @@
 import {bindable, bindingMode, inject, containerless} from "aurelia-framework";
+import {bootstrapOptions} from "../utils/bootstrap-options";
 import velocity from 'velocity';
 
 @inject(Element)
+@containerless
 export class AubsAccordionGroupCustomElement {
 
     @bindable title;
+    @bindable panelClass = 'panel-default';
     @bindable({defaultBindingMode: bindingMode.twoWay}) isOpen = false;
-    $collapse;
 
     constructor(element) {
         this.element = element;
@@ -19,12 +21,14 @@ export class AubsAccordionGroupCustomElement {
     }
 
     attached(){
-        this.$collapse = this.element.querySelector('.collapse');
-
         if(this.isOpen){
             this.$collapse.classList.add('in');
             velocity(this.$collapse, 'slideDown', {duration: 0});
         }
+    }
+
+    isBootstrapVersion(version){
+        return bootstrapOptions.version === version;
     }
 
     isOpenChanged() {

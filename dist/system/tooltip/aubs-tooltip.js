@@ -1,9 +1,9 @@
 "use strict";
 
-System.register(["aurelia-framework", "../utils/tooltip-service"], function (_export, _context) {
+System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/bootstrap-options", "velocity"], function (_export, _context) {
     "use strict";
 
-    var bindable, inject, bindingMode, TooltipService, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, AubsTooltipCustomAttribute;
+    var bindable, inject, bindingMode, TooltipService, bootstrapOptions, velocity, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, AubsTooltipCustomAttribute;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -61,6 +61,10 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
             bindingMode = _aureliaFramework.bindingMode;
         }, function (_utilsTooltipService) {
             TooltipService = _utilsTooltipService.TooltipService;
+        }, function (_utilsBootstrapOptions) {
+            bootstrapOptions = _utilsBootstrapOptions.bootstrapOptions;
+        }, function (_velocity) {
+            velocity = _velocity.default;
         }],
         execute: function () {
             _export("AubsTooltipCustomAttribute", AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = (_class2 = function () {
@@ -153,6 +157,8 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
                 };
 
                 AubsTooltipCustomAttribute.prototype.handleShow = function handleShow() {
+                    var _this2 = this;
+
                     if (this.visible || this.disabled) {
                         return;
                     }
@@ -162,12 +168,17 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
                         this.valuesChanged = false;
                     }
 
-                    document.body.appendChild(this.tooltip);
+                    this.tooltip.style.display = 'block';
 
                     var position = this.tooltipService.calculatePosition(this.element, this.tooltip, this.position);
                     this.tooltip.setAttribute("style", "top: " + position.top + "px; left: " + position.left + "px");
 
-                    this.tooltip.classList.add('in');
+                    velocity(this.tooltip, 'stop').then(function () {
+                        velocity(_this2.tooltip, 'fadeIn').then(function () {
+                            _this2.tooltip.classList.add('in');
+                        });
+                    });
+
                     this.visible = true;
                     this.open = true;
 
@@ -175,7 +186,7 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
                 };
 
                 AubsTooltipCustomAttribute.prototype.resizeThrottler = function resizeThrottler() {
-                    var _this2 = this;
+                    var _this3 = this;
 
                     if (!this.visible) {
                         return;
@@ -183,8 +194,8 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
 
                     if (!this.resizeTimeout) {
                         this.resizeTimeout = setTimeout(function () {
-                            _this2.resizeTimeout = null;
-                            _this2.handleResize();
+                            _this3.resizeTimeout = null;
+                            _this3.handleResize();
                         }, 66);
                     }
                 };
@@ -195,15 +206,20 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
                 };
 
                 AubsTooltipCustomAttribute.prototype.handleHide = function handleHide() {
+                    var _this4 = this;
+
                     if (!this.visible) {
                         return;
                     }
 
-                    this.tooltip.classList.remove('in');
-                    document.body.removeChild(this.tooltip);
+                    velocity(this.tooltip, 'stop').then(function () {
+                        velocity(_this4.tooltip, 'fadeOut').then(function () {
+                            _this4.tooltip.classList.remove('in');
+                        });
+                    });
+
                     this.visible = false;
                     this.open = false;
-
                     window.removeEventListener('resize', this.listeners.resize);
                 };
 
@@ -220,7 +236,8 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
 
                     this.tooltip = document.createElement('div');
                     this.tooltip.classList.add('tooltip');
-                    this.tooltip.classList.add(this.position);
+
+                    this.tooltip.classList.add((bootstrapOptions.version === 4 ? 'tooltip-' : '') + this.position);
                     this.tooltip.setAttribute('role', 'tooltip');
 
                     var arrow = document.createElement('div');
@@ -232,6 +249,8 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
                     var text = document.createTextNode(this.text);
                     inner.appendChild(text);
                     this.tooltip.appendChild(inner);
+
+                    document.body.appendChild(this.tooltip);
                 };
 
                 return AubsTooltipCustomAttribute;

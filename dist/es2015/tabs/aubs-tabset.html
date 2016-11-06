@@ -1,8 +1,8 @@
 <template>
-    <ul class="nav ${tabsClass} ${vertical ? 'nav-stacked' : ''}" role="tablist">
-        <li role="presentation" repeat.for="tab of tabs"
-            class="${active === tab.index ? 'active' : ''} ${tab.disabled ? 'disabled' : ''}">
-            <a href role="tab" click.delegate="selectTab(tab)" innerHTML.bind="tab.header"></a>
+    <ul class="nav ${tabsClass} ${vertical ? 'nav-stacked' : ''}">
+        <li repeat.for="tab of tabs" class="nav-item">
+            <a class="nav-link ${tab.active ? 'active' : ''} ${tab.disabled ? 'disabled' : ''}"
+               href="javascript:void(0)" click.delegate="selectTab(tab)" innerhtml.bind="tab.header"></a>
         </li>
     </ul>
 

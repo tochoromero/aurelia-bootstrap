@@ -1,23 +1,29 @@
 'use strict';
 
-System.register(['./accordion/aubs-accordion', './accordion/aubs-accordion-group', './buttons/aubs-btn-checkbox', './buttons/aubs-btn-disabled', './buttons/aubs-btn-loading', './buttons/aubs-btn-radio', './dropdown/aubs-dropdown', './dropdown/aubs-dropdown-toggle', './popover/aubs-popover', './popover/aubs-custom-popover', './tabs/aubs-tab', './tabs/aubs-tabset', './tooltip/aubs-tooltip'], function (_export, _context) {
+System.register(['./accordion/aubs-accordion', './accordion/aubs-accordion-group', './buttons/aubs-btn-checkbox', './buttons/aubs-btn-disabled', './buttons/aubs-btn-loading', './buttons/aubs-btn-radio', './dropdown/aubs-dropdown', './dropdown/aubs-dropdown-toggle', './popover/aubs-popover', './popover/aubs-custom-popover', './tabs/aubs-tab', './tabs/aubs-tabset', './tooltip/aubs-tooltip', './utils/bootstrap-config'], function (_export, _context) {
     "use strict";
 
-    var AubsAccordionCustomElement, AubsAccordionGroupCustomElement, AubsBtnCheckboxCustomAttribute, AubsBtnDisabledCustomAttribute, AubsBtnLoadingCustomAttribute, AubsBtnRadioCustomAttribute, AubsDropdownCustomAttribute, AubsDropdownToggleCustomAttribute, AubsPopoverCustomAttribute, AubsCustomPopoverCustomElement, AubsTabCustomElement, AubsTabsetCustomElement, AubsTooltipCustomAttribute;
-    function configure(config) {
-        config.globalResources('./accordion/aubs-accordion');
-        config.globalResources('./accordion/aubs-accordion-group');
-        config.globalResources('./buttons/aubs-btn-checkbox');
-        config.globalResources('./buttons/aubs-btn-disabled');
-        config.globalResources('./buttons/aubs-btn-loading');
-        config.globalResources('./buttons/aubs-btn-radio');
-        config.globalResources('./dropdown/aubs-dropdown');
-        config.globalResources('./dropdown/aubs-dropdown-toggle');
-        config.globalResources('./popover/aubs-popover');
-        config.globalResources('./popover/aubs-custom-popover');
-        config.globalResources('./tabs/aubs-tab');
-        config.globalResources('./tabs/aubs-tabset');
-        config.globalResources('./tooltip/aubs-tooltip');
+    var AubsAccordionCustomElement, AubsAccordionGroupCustomElement, AubsBtnCheckboxCustomAttribute, AubsBtnDisabledCustomAttribute, AubsBtnLoadingCustomAttribute, AubsBtnRadioCustomAttribute, AubsDropdownCustomAttribute, AubsDropdownToggleCustomAttribute, AubsPopoverCustomAttribute, AubsCustomPopoverCustomElement, AubsTabCustomElement, AubsTabsetCustomElement, AubsTooltipCustomAttribute, BootstrapConfig;
+    function configure(aurelia, callback) {
+        aurelia.globalResources('./accordion/aubs-accordion');
+        aurelia.globalResources('./accordion/aubs-accordion-group');
+        aurelia.globalResources('./buttons/aubs-btn-checkbox');
+        aurelia.globalResources('./buttons/aubs-btn-disabled');
+        aurelia.globalResources('./buttons/aubs-btn-loading');
+        aurelia.globalResources('./buttons/aubs-btn-radio');
+        aurelia.globalResources('./dropdown/aubs-dropdown');
+        aurelia.globalResources('./dropdown/aubs-dropdown-toggle');
+        aurelia.globalResources('./popover/aubs-popover');
+        aurelia.globalResources('./popover/aubs-custom-popover');
+        aurelia.globalResources('./tabs/aubs-tab');
+        aurelia.globalResources('./tabs/aubs-tabset');
+        aurelia.globalResources('./tooltip/aubs-tooltip');
+
+        var config = new BootstrapConfig();
+
+        if (typeof callback === 'function') {
+            callback(config);
+        }
     }
 
     _export('configure', configure);
@@ -49,6 +55,8 @@ System.register(['./accordion/aubs-accordion', './accordion/aubs-accordion-group
             AubsTabsetCustomElement = _tabsAubsTabset.AubsTabsetCustomElement;
         }, function (_tooltipAubsTooltip) {
             AubsTooltipCustomAttribute = _tooltipAubsTooltip.AubsTooltipCustomAttribute;
+        }, function (_utilsBootstrapConfig) {
+            BootstrapConfig = _utilsBootstrapConfig.BootstrapConfig;
         }],
         execute: function () {
             _export('AubsAccordionCustomElement', AubsAccordionCustomElement);

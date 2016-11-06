@@ -1,5 +1,6 @@
 import {bindable, bindingMode, inject} from "aurelia-framework";
 import {TooltipService} from "../utils/tooltip-service";
+import {bootstrapOptions} from "../utils/bootstrap-options";
 import velocity from "velocity";
 
 @inject(Element, TooltipService)
@@ -12,6 +13,8 @@ export class AubsPopoverCustomAttribute {
     @bindable({defaultBindingMode: bindingMode.twoWay}) open = false;
     @bindable trigger = 'mouseover';
     @bindable customPopover;
+    @bindable onOpen;
+    @bindable onClose;
 
     triggers = [];
 
@@ -109,7 +112,13 @@ export class AubsPopoverCustomAttribute {
         velocity(this.popover, 'stop')
             .then(() => {
                 velocity(this.popover, 'fadeIn')
-                    .then(() => this.popover.classList.add('in'));
+                    .then(() => {
+                        this.popover.classList.add('in');
+
+                        if(typeof this.onOpen === 'function'){
+                            this.onOpen();
+                        }
+                    });
             });
 
         this.visible = true;
@@ -144,7 +153,13 @@ export class AubsPopoverCustomAttribute {
         velocity(this.popover, 'stop')
             .then(() => {
                 velocity(this.popover, 'fadeOut')
-                    .then(() => this.popover.classList.remove('in'));
+                    .then(() => {
+                        this.popover.classList.remove('in');
+
+                        if (typeof this.onClose === 'function') {
+                            this.onClose();
+                        }
+                    });
             });
 
         this.visible = false;
@@ -163,10 +178,16 @@ export class AubsPopoverCustomAttribute {
         }
     }
 
+    getPositionClass() {
+        return this.popover.classList.add((bootstrapOptions.version === 4 ? 'popover-' : '') + this.position);
+
+    }
+
     createPopover() {
         if (this.customPopover) {
             this.popover = this.customPopover;
-            this.popover.classList.add('popover-' + this.position);
+            this.popover.classList.add('popover');
+            this.popover.classList.add(this.getPositionClass());
             return;
         }
 
@@ -178,6 +199,8 @@ export class AubsPopoverCustomAttribute {
         this.popover = document.createElement('div');
         this.popover.classList.add('popover');
         this.popover.classList.add('popover-' + this.position);
+        this.popover.classList.add(this.getPositionClass());
+
 
         let arrow = document.createElement('div');
         arrow.classList.add('arrow');

@@ -1,4 +1,5 @@
 import {children, bindable, BindingEngine, inject} from "aurelia-framework";
+import {bootstrapOptions} from "../utils/bootstrap-options";
 
 @inject(BindingEngine)
 export class AubsAccordionCustomElement {
@@ -10,6 +11,7 @@ export class AubsAccordionCustomElement {
 
     constructor(bindingEngine){
         this.bindingEngine = bindingEngine;
+        this.bootstrapOptions = bootstrapOptions;
     }
 
     detached(){

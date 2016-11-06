@@ -1,9 +1,9 @@
 "use strict";
 
-System.register(["aurelia-framework", "../utils/tooltip-service"], function (_export, _context) {
+System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/bootstrap-options", "velocity"], function (_export, _context) {
     "use strict";
 
-    var bindable, bindingMode, inject, TooltipService, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, AubsPopoverCustomAttribute;
+    var bindable, bindingMode, inject, TooltipService, bootstrapOptions, velocity, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, AubsPopoverCustomAttribute;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -61,6 +61,10 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
             inject = _aureliaFramework.inject;
         }, function (_utilsTooltipService) {
             TooltipService = _utilsTooltipService.TooltipService;
+        }, function (_utilsBootstrapOptions) {
+            bootstrapOptions = _utilsBootstrapOptions.bootstrapOptions;
+        }, function (_velocity) {
+            velocity = _velocity.default;
         }],
         execute: function () {
             _export("AubsPopoverCustomAttribute", AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = (_class2 = function () {
@@ -82,6 +86,10 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
                     _initDefineProp(this, "trigger", _descriptor6, this);
 
                     _initDefineProp(this, "customPopover", _descriptor7, this);
+
+                    _initDefineProp(this, "onOpen", _descriptor8, this);
+
+                    _initDefineProp(this, "onClose", _descriptor9, this);
 
                     this.triggers = [];
                     this.validPositions = ['top', 'bottom', 'left', 'right'];
@@ -120,6 +128,10 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
 
                 AubsPopoverCustomAttribute.prototype.attached = function attached() {
                     this.tooltipService.setTriggers(this.element, this.triggers, this.listeners);
+
+                    if (this.customPopover) {
+                        this.customPopover.style.display = 'none';
+                    }
 
                     this.attached = true;
                     if (this.open) {
@@ -161,6 +173,8 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
                 };
 
                 AubsPopoverCustomAttribute.prototype.handleShow = function handleShow() {
+                    var _this2 = this;
+
                     if (this.visible || this.disabled) {
                         return;
                     }
@@ -170,13 +184,21 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
                         this.valuesChanged = false;
                     }
 
-                    document.body.appendChild(this.popover);
                     this.popover.setAttribute("style", "display: block;");
 
                     var position = this.tooltipService.calculatePosition(this.element, this.popover, this.position);
                     this.popover.setAttribute("style", "top: " + position.top + "px; left: " + position.left + "px; display: block;");
 
-                    this.popover.classList.add('in');
+                    velocity(this.popover, 'stop').then(function () {
+                        velocity(_this2.popover, 'fadeIn').then(function () {
+                            _this2.popover.classList.add('in');
+
+                            if (typeof _this2.onOpen === 'function') {
+                                _this2.onOpen();
+                            }
+                        });
+                    });
+
                     this.visible = true;
                     this.open = true;
 
@@ -184,7 +206,7 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
                 };
 
                 AubsPopoverCustomAttribute.prototype.resizeThrottler = function resizeThrottler() {
-                    var _this2 = this;
+                    var _this3 = this;
 
                     if (!this.visible) {
                         return;
@@ -192,8 +214,8 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
 
                     if (!this.resizeTimeout) {
                         this.resizeTimeout = setTimeout(function () {
-                            _this2.resizeTimeout = null;
-                            _this2.handleResize();
+                            _this3.resizeTimeout = null;
+                            _this3.handleResize();
                         }, 66);
                     }
                 };
@@ -204,12 +226,22 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
                 };
 
                 AubsPopoverCustomAttribute.prototype.handleHide = function handleHide() {
+                    var _this4 = this;
+
                     if (!this.visible) {
                         return;
                     }
 
-                    this.popover.classList.remove('in');
-                    document.body.removeChild(this.popover);
+                    velocity(this.popover, 'stop').then(function () {
+                        velocity(_this4.popover, 'fadeOut').then(function () {
+                            _this4.popover.classList.remove('in');
+
+                            if (typeof _this4.onClose === 'function') {
+                                _this4.onClose();
+                            }
+                        });
+                    });
+
                     this.visible = false;
                     this.open = false;
 
@@ -226,10 +258,15 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
                     }
                 };
 
+                AubsPopoverCustomAttribute.prototype.getPositionClass = function getPositionClass() {
+                    return this.popover.classList.add((bootstrapOptions.version === 4 ? 'popover-' : '') + this.position);
+                };
+
                 AubsPopoverCustomAttribute.prototype.createPopover = function createPopover() {
-                    if (this.customModel) {
-                        this.popover = this.customModel;
-                        this.popover.classList.add(this.position);
+                    if (this.customPopover) {
+                        this.popover = this.customPopover;
+                        this.popover.classList.add('popover');
+                        this.popover.classList.add(this.getPositionClass());
                         return;
                     }
 
@@ -239,7 +276,8 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
 
                     this.popover = document.createElement('div');
                     this.popover.classList.add('popover');
-                    this.popover.classList.add(this.position);
+                    this.popover.classList.add('popover-' + this.position);
+                    this.popover.classList.add(this.getPositionClass());
 
                     var arrow = document.createElement('div');
                     arrow.classList.add('arrow');
@@ -260,6 +298,8 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
                     contentParagraph.appendChild(text);
                     content.appendChild(contentParagraph);
                     this.popover.appendChild(content);
+
+                    document.body.appendChild(this.popover);
                 };
 
                 return AubsPopoverCustomAttribute;
@@ -290,6 +330,12 @@ System.register(["aurelia-framework", "../utils/tooltip-service"], function (_ex
                     return 'mouseover';
                 }
             }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "customPopover", [bindable], {
+                enumerable: true,
+                initializer: null
+            }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, "onOpen", [bindable], {
+                enumerable: true,
+                initializer: null
+            }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, "onClose", [bindable], {
                 enumerable: true,
                 initializer: null
             })), _class2)) || _class));

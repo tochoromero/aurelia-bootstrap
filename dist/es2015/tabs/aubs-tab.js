@@ -45,10 +45,11 @@ function _initializerWarningHelper(descriptor, context) {
 
 import { bindable, inject } from "aurelia-framework";
 import { AubsTabsetCustomElement } from "./aubs-tabset";
+import velocity from 'velocity';
 
-export let AubsTabCustomElement = (_dec = inject(AubsTabsetCustomElement), _dec(_class = (_class2 = class AubsTabCustomElement {
+export let AubsTabCustomElement = (_dec = inject(AubsTabsetCustomElement, Element), _dec(_class = (_class2 = class AubsTabCustomElement {
 
-    constructor(tabset) {
+    constructor(tabset, element) {
         _initDefineProp(this, "header", _descriptor, this);
 
         _initDefineProp(this, "active", _descriptor2, this);
@@ -60,21 +61,18 @@ export let AubsTabCustomElement = (_dec = inject(AubsTabsetCustomElement), _dec(
         _initDefineProp(this, "onDeselect", _descriptor5, this);
 
         this.tabset = tabset;
-
-        this.tabChangedListener = index => this.handleTabChanged(index);
+        this.element = element;
     }
 
-    attached() {
+    bind() {
         if (!this.header) {
             throw new Error('Must provide a header for the tab.');
         }
-
-        this.index = this.tabset.getTabIndex();
-        this.tabset.addTabChangedListener(this.index, this.active, this.tabChangedListener);
     }
 
-    detached() {
-        this.tabset.removeTabChangedListener(this.tabChangedListener);
+    attached() {
+        this.$tabPane = this.element.querySelector('.tab-pane');
+        this.$tabPane.style.display = this.active ? 'block' : 'none';
     }
 
     handleTabChanged(index) {
@@ -87,10 +85,14 @@ export let AubsTabCustomElement = (_dec = inject(AubsTabsetCustomElement), _dec(
         this.active = isSelected;
 
         if (isSelected) {
+            velocity(this.$tabPane, 'fadeIn');
+
             if (this.onSelect && typeof this.onSelect === 'function') {
                 this.onSelect();
             }
         } else {
+            this.$tabPane.style.display = 'none';
+
             if (this.onDeselect && typeof this.onDeselect == 'function') {
                 this.onDeselect();
             }

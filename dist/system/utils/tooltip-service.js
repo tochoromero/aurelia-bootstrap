@@ -41,6 +41,9 @@ System.register([], function (_export, _context) {
 
                     result.top += window.scrollY;
 
+                    result.top = Math.round(result.top);
+                    result.left = Math.round(result.left);
+
                     return result;
                 };
 
