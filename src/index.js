@@ -7,7 +7,6 @@ import {AubsBtnRadioCustomAttribute} from './buttons/aubs-btn-radio';
 import {AubsDropdownCustomAttribute} from './dropdown/aubs-dropdown';
 import {AubsDropdownToggleCustomAttribute} from './dropdown/aubs-dropdown-toggle';
 import {AubsPopoverCustomAttribute} from './popover/aubs-popover';
-import {AubsCustomPopoverCustomElement} from './popover/aubs-custom-popover';
 import {AubsTabCustomElement} from './tabs/aubs-tab';
 import {AubsTabsetCustomElement} from './tabs/aubs-tabset';
 import {AubsTooltipCustomAttribute} from './tooltip/aubs-tooltip';
@@ -23,7 +22,6 @@ export function configure(aurelia, callback) {
     aurelia.globalResources('./dropdown/aubs-dropdown');
     aurelia.globalResources('./dropdown/aubs-dropdown-toggle');
     aurelia.globalResources('./popover/aubs-popover');
-    aurelia.globalResources('./popover/aubs-custom-popover');
     aurelia.globalResources('./tabs/aubs-tab');
     aurelia.globalResources('./tabs/aubs-tabset');
     aurelia.globalResources('./tooltip/aubs-tooltip');
@@ -45,7 +43,6 @@ export {
     AubsDropdownCustomAttribute,
     AubsDropdownToggleCustomAttribute,
     AubsPopoverCustomAttribute,
-    AubsCustomPopoverCustomElement,
     AubsTabCustomElement,
     AubsTabsetCustomElement,
     AubsTooltipCustomAttribute

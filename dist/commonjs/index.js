@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.AubsTooltipCustomAttribute = exports.AubsTabsetCustomElement = exports.AubsTabCustomElement = exports.AubsCustomPopoverCustomElement = exports.AubsPopoverCustomAttribute = exports.AubsDropdownToggleCustomAttribute = exports.AubsDropdownCustomAttribute = exports.AubsBtnRadioCustomAttribute = exports.AubsBtnLoadingCustomAttribute = exports.AubsBtnDisabledCustomAttribute = exports.AubsBtnCheckboxCustomAttribute = exports.AubsAccordionGroupCustomElement = exports.AubsAccordionCustomElement = undefined;
+exports.AubsTooltipCustomAttribute = exports.AubsTabsetCustomElement = exports.AubsTabCustomElement = exports.AubsPopoverCustomAttribute = exports.AubsDropdownToggleCustomAttribute = exports.AubsDropdownCustomAttribute = exports.AubsBtnRadioCustomAttribute = exports.AubsBtnLoadingCustomAttribute = exports.AubsBtnDisabledCustomAttribute = exports.AubsBtnCheckboxCustomAttribute = exports.AubsAccordionGroupCustomElement = exports.AubsAccordionCustomElement = undefined;
 exports.configure = configure;
 
 var _aubsAccordion = require('./accordion/aubs-accordion');
@@ -24,8 +24,6 @@ var _aubsDropdownToggle = require('./dropdown/aubs-dropdown-toggle');
 
 var _aubsPopover = require('./popover/aubs-popover');
 
-var _aubsCustomPopover = require('./popover/aubs-custom-popover');
-
 var _aubsTab = require('./tabs/aubs-tab');
 
 var _aubsTabset = require('./tabs/aubs-tabset');
@@ -44,7 +42,6 @@ function configure(aurelia, callback) {
     aurelia.globalResources('./dropdown/aubs-dropdown');
     aurelia.globalResources('./dropdown/aubs-dropdown-toggle');
     aurelia.globalResources('./popover/aubs-popover');
-    aurelia.globalResources('./popover/aubs-custom-popover');
     aurelia.globalResources('./tabs/aubs-tab');
     aurelia.globalResources('./tabs/aubs-tabset');
     aurelia.globalResources('./tooltip/aubs-tooltip');
@@ -65,7 +62,6 @@ exports.AubsBtnRadioCustomAttribute = _aubsBtnRadio.AubsBtnRadioCustomAttribute;
 exports.AubsDropdownCustomAttribute = _aubsDropdown.AubsDropdownCustomAttribute;
 exports.AubsDropdownToggleCustomAttribute = _aubsDropdownToggle.AubsDropdownToggleCustomAttribute;
 exports.AubsPopoverCustomAttribute = _aubsPopover.AubsPopoverCustomAttribute;
-exports.AubsCustomPopoverCustomElement = _aubsCustomPopover.AubsCustomPopoverCustomElement;
 exports.AubsTabCustomElement = _aubsTab.AubsTabCustomElement;
 exports.AubsTabsetCustomElement = _aubsTabset.AubsTabsetCustomElement;
 exports.AubsTooltipCustomAttribute = _aubsTooltip.AubsTooltipCustomAttribute;
