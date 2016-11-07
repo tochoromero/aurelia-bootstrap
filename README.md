@@ -1,1 +1,2 @@
-Please visit the [project page](http://tochoromero.github.com/aurelia-table) for the documentation and examples.
+This is a work in progress. The code is on a usable state, but the documentation is still missing.
+I hope that have the documentation up very soon.
