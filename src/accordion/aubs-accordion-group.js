@@ -1,18 +1,13 @@
-import {bindable, bindingMode, inject, containerless} from "aurelia-framework";
+import {bindable, bindingMode, containerless} from "aurelia-framework";
 import {bootstrapOptions} from "../utils/bootstrap-options";
 import velocity from 'velocity-animate';
 
-@inject(Element)
 @containerless
 export class AubsAccordionGroupCustomElement {
 
     @bindable title;
     @bindable panelClass = 'panel-default';
     @bindable({defaultBindingMode: bindingMode.twoWay}) isOpen = false;
-
-    constructor(element) {
-        this.element = element;
-    }
 
     bind(){
         if (typeof this.isOpen !== 'boolean') {

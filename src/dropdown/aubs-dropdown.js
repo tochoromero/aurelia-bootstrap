@@ -1,4 +1,5 @@
 import {inject, bindable, bindingMode} from "aurelia-framework";
+import {bootstrapOptions} from "../utils/bootstrap-options";
 
 @inject(Element)
 export class AubsDropdownCustomAttribute {
@@ -62,9 +63,18 @@ export class AubsDropdownCustomAttribute {
             return;
         }
 
-        if (!this.element.contains(evt.target) || (this.autoClose !== 'outside' && evt.target.parentNode.tagName === 'LI')) {
+        if (!this.element.contains(evt.target) || (this.autoClose !== 'outside' && this.isMenuItem(evt))) {
             this.toggle();
         }
+    }
+
+    isMenuItem(evt){
+        if(bootstrapOptions.version === 4){
+            return evt.target.parentNode.classList.contains('dropdown-item');
+        }else{
+            return evt.target.parentNode.parentNode.classList.contains('dropdown-menu');
+        }
+
     }
 
     setClass() {

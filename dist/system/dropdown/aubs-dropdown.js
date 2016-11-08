@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-System.register(['aurelia-framework'], function (_export, _context) {
+System.register(["aurelia-framework", "../utils/bootstrap-options"], function (_export, _context) {
     "use strict";
 
-    var inject, bindable, bindingMode, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, AubsDropdownCustomAttribute;
+    var inject, bindable, bindingMode, bootstrapOptions, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, AubsDropdownCustomAttribute;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -59,19 +59,21 @@ System.register(['aurelia-framework'], function (_export, _context) {
             inject = _aureliaFramework.inject;
             bindable = _aureliaFramework.bindable;
             bindingMode = _aureliaFramework.bindingMode;
+        }, function (_utilsBootstrapOptions) {
+            bootstrapOptions = _utilsBootstrapOptions.bootstrapOptions;
         }],
         execute: function () {
-            _export('AubsDropdownCustomAttribute', AubsDropdownCustomAttribute = (_dec = inject(Element), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = (_class2 = function () {
+            _export("AubsDropdownCustomAttribute", AubsDropdownCustomAttribute = (_dec = inject(Element), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = (_class2 = function () {
                 function AubsDropdownCustomAttribute(element) {
                     var _this = this;
 
                     _classCallCheck(this, AubsDropdownCustomAttribute);
 
-                    _initDefineProp(this, 'isOpen', _descriptor, this);
+                    _initDefineProp(this, "isOpen", _descriptor, this);
 
-                    _initDefineProp(this, 'autoClose', _descriptor2, this);
+                    _initDefineProp(this, "autoClose", _descriptor2, this);
 
-                    _initDefineProp(this, 'onToggle', _descriptor3, this);
+                    _initDefineProp(this, "onToggle", _descriptor3, this);
 
                     this.element = element;
 
@@ -127,8 +129,16 @@ System.register(['aurelia-framework'], function (_export, _context) {
                         return;
                     }
 
-                    if (!this.element.contains(evt.target) || this.autoClose !== 'outside' && evt.target.parentNode.tagName === 'LI') {
+                    if (!this.element.contains(evt.target) || this.autoClose !== 'outside' && this.isMenuItem(evt)) {
                         this.toggle();
+                    }
+                };
+
+                AubsDropdownCustomAttribute.prototype.isMenuItem = function isMenuItem(evt) {
+                    if (bootstrapOptions.version === 4) {
+                        return evt.target.parentNode.classList.contains('dropdown-item');
+                    } else {
+                        return evt.target.parentNode.parentNode.classList.contains('dropdown-menu');
                     }
                 };
 
@@ -145,20 +155,20 @@ System.register(['aurelia-framework'], function (_export, _context) {
                 };
 
                 return AubsDropdownCustomAttribute;
-            }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'isOpen', [_dec2], {
+            }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec2], {
                 enumerable: true,
                 initializer: null
-            }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'autoClose', [bindable], {
+            }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "autoClose", [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return 'always';
                 }
-            }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'onToggle', [bindable], {
+            }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "onToggle", [bindable], {
                 enumerable: true,
                 initializer: null
             })), _class2)) || _class));
 
-            _export('AubsDropdownCustomAttribute', AubsDropdownCustomAttribute);
+            _export("AubsDropdownCustomAttribute", AubsDropdownCustomAttribute);
         }
     };
 });

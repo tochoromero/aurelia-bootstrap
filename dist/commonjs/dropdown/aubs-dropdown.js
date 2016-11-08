@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -7,7 +7,9 @@ exports.AubsDropdownCustomAttribute = undefined;
 
 var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
-var _aureliaFramework = require('aurelia-framework');
+var _aureliaFramework = require("aurelia-framework");
+
+var _bootstrapOptions = require("../utils/bootstrap-options");
 
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -60,11 +62,11 @@ var AubsDropdownCustomAttribute = exports.AubsDropdownCustomAttribute = (_dec = 
 
         _classCallCheck(this, AubsDropdownCustomAttribute);
 
-        _initDefineProp(this, 'isOpen', _descriptor, this);
+        _initDefineProp(this, "isOpen", _descriptor, this);
 
-        _initDefineProp(this, 'autoClose', _descriptor2, this);
+        _initDefineProp(this, "autoClose", _descriptor2, this);
 
-        _initDefineProp(this, 'onToggle', _descriptor3, this);
+        _initDefineProp(this, "onToggle", _descriptor3, this);
 
         this.element = element;
 
@@ -120,8 +122,16 @@ var AubsDropdownCustomAttribute = exports.AubsDropdownCustomAttribute = (_dec = 
             return;
         }
 
-        if (!this.element.contains(evt.target) || this.autoClose !== 'outside' && evt.target.parentNode.tagName === 'LI') {
+        if (!this.element.contains(evt.target) || this.autoClose !== 'outside' && this.isMenuItem(evt)) {
             this.toggle();
+        }
+    };
+
+    AubsDropdownCustomAttribute.prototype.isMenuItem = function isMenuItem(evt) {
+        if (_bootstrapOptions.bootstrapOptions.version === 4) {
+            return evt.target.parentNode.classList.contains('dropdown-item');
+        } else {
+            return evt.target.parentNode.parentNode.classList.contains('dropdown-menu');
         }
     };
 
@@ -138,15 +148,15 @@ var AubsDropdownCustomAttribute = exports.AubsDropdownCustomAttribute = (_dec = 
     };
 
     return AubsDropdownCustomAttribute;
-}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'isOpen', [_dec2], {
+}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec2], {
     enumerable: true,
     initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'autoClose', [_aureliaFramework.bindable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "autoClose", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: function initializer() {
         return 'always';
     }
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'onToggle', [_aureliaFramework.bindable], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "onToggle", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: null
 })), _class2)) || _class);
