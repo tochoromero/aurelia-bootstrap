@@ -1,0 +1,23 @@
+<template bindable="router">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <span>Aurelia Bootstrap</span>
+            </a>
+        </div>
+
+        <ul class="nav navbar-nav">
+            <li><a href="#/introduction">Getting Started</a></li>
+            <li class="dropdown" aubs-dropdown>
+                <a href="javascript:void(0)" class="dropdown-toggle" aubs-dropdown-toggle>
+                    Components <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="javascript:void(0)">Accordion</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)">Second Action</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)">Third Action</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</template>

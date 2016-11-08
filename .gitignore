@@ -2,3 +2,5 @@
 jspm_packages/
 node_modules/
 *.iml
+doc/export/
+doc/dist/
