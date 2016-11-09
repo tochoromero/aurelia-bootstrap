@@ -1,9 +1,9 @@
 "use strict";
 
-System.register(["aurelia-framework", "../utils/bootstrap-options", "velocity-animate"], function (_export, _context) {
+System.register(["aurelia-framework", "../utils/bootstrap-options", "velocity-animate", "./aubs-accordion"], function (_export, _context) {
     "use strict";
 
-    var bindable, bindingMode, containerless, bootstrapOptions, velocity, _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, AubsAccordionGroupCustomElement;
+    var inject, bindable, bindingMode, containerless, bootstrapOptions, velocity, AubsAccordionCustomElement, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, AubsAccordionGroupCustomElement;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -56,6 +56,7 @@ System.register(["aurelia-framework", "../utils/bootstrap-options", "velocity-an
 
     return {
         setters: [function (_aureliaFramework) {
+            inject = _aureliaFramework.inject;
             bindable = _aureliaFramework.bindable;
             bindingMode = _aureliaFramework.bindingMode;
             containerless = _aureliaFramework.containerless;
@@ -63,10 +64,12 @@ System.register(["aurelia-framework", "../utils/bootstrap-options", "velocity-an
             bootstrapOptions = _utilsBootstrapOptions.bootstrapOptions;
         }, function (_velocityAnimate) {
             velocity = _velocityAnimate.default;
+        }, function (_aubsAccordion) {
+            AubsAccordionCustomElement = _aubsAccordion.AubsAccordionCustomElement;
         }],
         execute: function () {
-            _export("AubsAccordionGroupCustomElement", AubsAccordionGroupCustomElement = (_dec = bindable({ defaultBindingMode: bindingMode.twoWay }), containerless(_class = (_class2 = function () {
-                function AubsAccordionGroupCustomElement() {
+            _export("AubsAccordionGroupCustomElement", AubsAccordionGroupCustomElement = (_dec = inject(AubsAccordionCustomElement), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), containerless(_class = _dec(_class = (_class2 = function () {
+                function AubsAccordionGroupCustomElement(accordion) {
                     _classCallCheck(this, AubsAccordionGroupCustomElement);
 
                     _initDefineProp(this, "title", _descriptor, this);
@@ -74,6 +77,9 @@ System.register(["aurelia-framework", "../utils/bootstrap-options", "velocity-an
                     _initDefineProp(this, "panelClass", _descriptor2, this);
 
                     _initDefineProp(this, "isOpen", _descriptor3, this);
+
+                    this.accordion = accordion;
+                    this.accordion.register(this);
                 }
 
                 AubsAccordionGroupCustomElement.prototype.bind = function bind() {
@@ -99,6 +105,10 @@ System.register(["aurelia-framework", "../utils/bootstrap-options", "velocity-an
 
                 AubsAccordionGroupCustomElement.prototype.toggle = function toggle() {
                     this.isOpen = !this.isOpen;
+
+                    if (this.isOpen) {
+                        this.accordion.groupToggled(this);
+                    }
                 };
 
                 AubsAccordionGroupCustomElement.prototype.animate = function animate() {
@@ -120,12 +130,12 @@ System.register(["aurelia-framework", "../utils/bootstrap-options", "velocity-an
                 initializer: function initializer() {
                     return 'panel-default';
                 }
-            }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec], {
+            }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec2], {
                 enumerable: true,
                 initializer: function initializer() {
                     return false;
                 }
-            })), _class2)) || _class));
+            })), _class2)) || _class) || _class));
 
             _export("AubsAccordionGroupCustomElement", AubsAccordionGroupCustomElement);
         }

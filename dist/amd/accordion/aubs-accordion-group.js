@@ -1,4 +1,4 @@
-define(["exports", "aurelia-framework", "../utils/bootstrap-options", "velocity-animate"], function (exports, _aureliaFramework, _bootstrapOptions, _velocityAnimate) {
+define(["exports", "aurelia-framework", "../utils/bootstrap-options", "velocity-animate", "./aubs-accordion"], function (exports, _aureliaFramework, _bootstrapOptions, _velocityAnimate, _aubsAccordion) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
@@ -63,10 +63,10 @@ define(["exports", "aurelia-framework", "../utils/bootstrap-options", "velocity-
         throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
     }
 
-    var _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
+    var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
-    var AubsAccordionGroupCustomElement = exports.AubsAccordionGroupCustomElement = (_dec = (0, _aureliaFramework.bindable)({ defaultBindingMode: _aureliaFramework.bindingMode.twoWay }), (0, _aureliaFramework.containerless)(_class = (_class2 = function () {
-        function AubsAccordionGroupCustomElement() {
+    var AubsAccordionGroupCustomElement = exports.AubsAccordionGroupCustomElement = (_dec = (0, _aureliaFramework.inject)(_aubsAccordion.AubsAccordionCustomElement), _dec2 = (0, _aureliaFramework.bindable)({ defaultBindingMode: _aureliaFramework.bindingMode.twoWay }), (0, _aureliaFramework.containerless)(_class = _dec(_class = (_class2 = function () {
+        function AubsAccordionGroupCustomElement(accordion) {
             _classCallCheck(this, AubsAccordionGroupCustomElement);
 
             _initDefineProp(this, "title", _descriptor, this);
@@ -74,6 +74,9 @@ define(["exports", "aurelia-framework", "../utils/bootstrap-options", "velocity-
             _initDefineProp(this, "panelClass", _descriptor2, this);
 
             _initDefineProp(this, "isOpen", _descriptor3, this);
+
+            this.accordion = accordion;
+            this.accordion.register(this);
         }
 
         AubsAccordionGroupCustomElement.prototype.bind = function bind() {
@@ -99,6 +102,10 @@ define(["exports", "aurelia-framework", "../utils/bootstrap-options", "velocity-
 
         AubsAccordionGroupCustomElement.prototype.toggle = function toggle() {
             this.isOpen = !this.isOpen;
+
+            if (this.isOpen) {
+                this.accordion.groupToggled(this);
+            }
         };
 
         AubsAccordionGroupCustomElement.prototype.animate = function animate() {
@@ -120,10 +127,10 @@ define(["exports", "aurelia-framework", "../utils/bootstrap-options", "velocity-
         initializer: function initializer() {
             return 'panel-default';
         }
-    }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec], {
+    }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec2], {
         enumerable: true,
         initializer: function initializer() {
             return false;
         }
-    })), _class2)) || _class);
+    })), _class2)) || _class) || _class);
 });

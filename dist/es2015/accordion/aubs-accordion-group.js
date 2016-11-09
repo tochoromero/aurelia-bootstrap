@@ -1,4 +1,4 @@
-var _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -43,17 +43,22 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-import { bindable, bindingMode, containerless } from "aurelia-framework";
+import { inject, bindable, bindingMode, containerless } from "aurelia-framework";
 import { bootstrapOptions } from "../utils/bootstrap-options";
 import velocity from 'velocity-animate';
+import { AubsAccordionCustomElement } from './aubs-accordion';
 
-export let AubsAccordionGroupCustomElement = (_dec = bindable({ defaultBindingMode: bindingMode.twoWay }), containerless(_class = (_class2 = class AubsAccordionGroupCustomElement {
-    constructor() {
+export let AubsAccordionGroupCustomElement = (_dec = inject(AubsAccordionCustomElement), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), containerless(_class = _dec(_class = (_class2 = class AubsAccordionGroupCustomElement {
+
+    constructor(accordion) {
         _initDefineProp(this, "title", _descriptor, this);
 
         _initDefineProp(this, "panelClass", _descriptor2, this);
 
         _initDefineProp(this, "isOpen", _descriptor3, this);
+
+        this.accordion = accordion;
+        this.accordion.register(this);
     }
 
     bind() {
@@ -79,6 +84,10 @@ export let AubsAccordionGroupCustomElement = (_dec = bindable({ defaultBindingMo
 
     toggle() {
         this.isOpen = !this.isOpen;
+
+        if (this.isOpen) {
+            this.accordion.groupToggled(this);
+        }
     }
 
     animate() {
@@ -98,9 +107,9 @@ export let AubsAccordionGroupCustomElement = (_dec = bindable({ defaultBindingMo
     initializer: function () {
         return 'panel-default';
     }
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec2], {
     enumerable: true,
     initializer: function () {
         return false;
     }
-})), _class2)) || _class);
+})), _class2)) || _class) || _class);

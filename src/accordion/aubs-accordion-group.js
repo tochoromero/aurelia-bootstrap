@@ -1,13 +1,20 @@
-import {bindable, bindingMode, containerless} from "aurelia-framework";
+import {inject, bindable, bindingMode, containerless} from "aurelia-framework";
 import {bootstrapOptions} from "../utils/bootstrap-options";
 import velocity from 'velocity-animate';
+import {AubsAccordionCustomElement} from './aubs-accordion';
 
 @containerless
+@inject(AubsAccordionCustomElement)
 export class AubsAccordionGroupCustomElement {
 
     @bindable title;
     @bindable panelClass = 'panel-default';
     @bindable({defaultBindingMode: bindingMode.twoWay}) isOpen = false;
+
+    constructor(accordion){
+        this.accordion = accordion;
+        this.accordion.register(this);
+    }
 
     bind(){
         if (typeof this.isOpen !== 'boolean') {
@@ -32,6 +39,10 @@ export class AubsAccordionGroupCustomElement {
 
     toggle() {
         this.isOpen = !this.isOpen;
+
+        if(this.isOpen){
+            this.accordion.groupToggled(this);
+        }
     }
 
     animate(){

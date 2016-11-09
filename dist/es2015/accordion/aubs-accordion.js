@@ -63,19 +63,8 @@ export let AubsAccordionCustomElement = (_dec = inject(BindingEngine), _dec2 = c
         this.disposeListeners();
     }
 
-    closeOthersChanged() {
-        this.groupsChanged();
-    }
-
-    groupsChanged() {
-        this.disposeListeners();
-
-        if (this.closeOthers) {
-            for (let group of this.groups) {
-                let subscription = this.bindingEngine.propertyObserver(group, 'isOpen').subscribe(() => this.groupToggled(group));
-                this.toggledListeners.push(subscription);
-            }
-        }
+    register(accordionGroup) {
+        this.groups.push(accordionGroup);
     }
 
     disposeListeners() {
@@ -87,7 +76,7 @@ export let AubsAccordionCustomElement = (_dec = inject(BindingEngine), _dec2 = c
     }
 
     groupToggled(group) {
-        if (group.isOpen) {
+        if (group.isOpen && this.closeOthers) {
             for (let next of this.groups) {
                 if (next !== group) {
                     next.isOpen = false;

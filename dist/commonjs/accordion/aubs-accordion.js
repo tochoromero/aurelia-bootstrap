@@ -74,58 +74,24 @@ var AubsAccordionCustomElement = exports.AubsAccordionCustomElement = (_dec = (0
         this.disposeListeners();
     };
 
-    AubsAccordionCustomElement.prototype.closeOthersChanged = function closeOthersChanged() {
-        this.groupsChanged();
-    };
-
-    AubsAccordionCustomElement.prototype.groupsChanged = function groupsChanged() {
-        var _this = this;
-
-        this.disposeListeners();
-
-        if (this.closeOthers) {
-            var _loop = function _loop() {
-                if (_isArray) {
-                    if (_i >= _iterator.length) return "break";
-                    _ref = _iterator[_i++];
-                } else {
-                    _i = _iterator.next();
-                    if (_i.done) return "break";
-                    _ref = _i.value;
-                }
-
-                var group = _ref;
-
-                var subscription = _this.bindingEngine.propertyObserver(group, 'isOpen').subscribe(function () {
-                    return _this.groupToggled(group);
-                });
-                _this.toggledListeners.push(subscription);
-            };
-
-            for (var _iterator = this.groups, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-                var _ref;
-
-                var _ret = _loop();
-
-                if (_ret === "break") break;
-            }
-        }
+    AubsAccordionCustomElement.prototype.register = function register(accordionGroup) {
+        this.groups.push(accordionGroup);
     };
 
     AubsAccordionCustomElement.prototype.disposeListeners = function disposeListeners() {
-        for (var _iterator2 = this.toggledListeners, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
-            var _ref2;
+        for (var _iterator = this.toggledListeners, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+            var _ref;
 
-            if (_isArray2) {
-                if (_i2 >= _iterator2.length) break;
-                _ref2 = _iterator2[_i2++];
+            if (_isArray) {
+                if (_i >= _iterator.length) break;
+                _ref = _iterator[_i++];
             } else {
-                _i2 = _iterator2.next();
-                if (_i2.done) break;
-                _ref2 = _i2.value;
+                _i = _iterator.next();
+                if (_i.done) break;
+                _ref = _i.value;
             }
 
-            var listener = _ref2;
+            var listener = _ref;
 
             listener.dispose();
         }
@@ -134,20 +100,20 @@ var AubsAccordionCustomElement = exports.AubsAccordionCustomElement = (_dec = (0
     };
 
     AubsAccordionCustomElement.prototype.groupToggled = function groupToggled(group) {
-        if (group.isOpen) {
-            for (var _iterator3 = this.groups, _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
-                var _ref3;
+        if (group.isOpen && this.closeOthers) {
+            for (var _iterator2 = this.groups, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+                var _ref2;
 
-                if (_isArray3) {
-                    if (_i3 >= _iterator3.length) break;
-                    _ref3 = _iterator3[_i3++];
+                if (_isArray2) {
+                    if (_i2 >= _iterator2.length) break;
+                    _ref2 = _iterator2[_i2++];
                 } else {
-                    _i3 = _iterator3.next();
-                    if (_i3.done) break;
-                    _ref3 = _i3.value;
+                    _i2 = _iterator2.next();
+                    if (_i2.done) break;
+                    _ref2 = _i2.value;
                 }
 
-                var next = _ref3;
+                var next = _ref2;
 
                 if (next !== group) {
                     next.isOpen = false;
