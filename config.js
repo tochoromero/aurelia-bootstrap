@@ -220,6 +220,8 @@ System.config({
   },
   bundles: {
     "app-build.js": [
+      "accordion/accordion.html!github:systemjs/plugin-text@0.0.8.js",
+      "accordion/accordion.js",
       "app.html!github:systemjs/plugin-text@0.0.8.js",
       "app.js",
       "introduction/introduction.html!github:systemjs/plugin-text@0.0.8.js",
