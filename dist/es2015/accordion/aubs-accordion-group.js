@@ -82,14 +82,14 @@ export let AubsAccordionGroupCustomElement = (_dec = inject(AubsAccordionCustomE
 
     isOpenChanged() {
         this.animate();
-    }
-
-    toggle() {
-        this.isOpen = !this.isOpen;
 
         if (this.isOpen) {
             this.accordion.groupToggled(this);
         }
+    }
+
+    toggle() {
+        this.isOpen = !this.isOpen;
     }
 
     animate() {

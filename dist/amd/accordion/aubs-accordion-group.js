@@ -100,14 +100,14 @@ define(["exports", "aurelia-framework", "../utils/bootstrap-options", "velocity-
 
         AubsAccordionGroupCustomElement.prototype.isOpenChanged = function isOpenChanged() {
             this.animate();
-        };
-
-        AubsAccordionGroupCustomElement.prototype.toggle = function toggle() {
-            this.isOpen = !this.isOpen;
 
             if (this.isOpen) {
                 this.accordion.groupToggled(this);
             }
+        };
+
+        AubsAccordionGroupCustomElement.prototype.toggle = function toggle() {
+            this.isOpen = !this.isOpen;
         };
 
         AubsAccordionGroupCustomElement.prototype.animate = function animate() {
