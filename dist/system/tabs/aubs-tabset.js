@@ -68,7 +68,6 @@ System.register(['aurelia-framework'], function (_export, _context) {
 
                     _initDefineProp(this, 'vertical', _descriptor2, this);
 
-                    this.active = 0;
                     this.tabsClass = 'nav-tabs';
 
                     _initDefineProp(this, 'tabs', _descriptor3, this);
@@ -94,7 +93,6 @@ System.register(['aurelia-framework'], function (_export, _context) {
 
                     if (!activeTab) {
                         activeTab = this.tabs[0];
-                        activeTab.active = true;
                     }
 
                     this.selectTab(activeTab);

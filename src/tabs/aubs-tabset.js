@@ -4,7 +4,7 @@ export class AubsTabsetCustomElement {
     @bindable type = 'tabs';
     @bindable vertical = false;
 
-    active = 0;
+    active;
     tabsClass = 'nav-tabs';
 
     @children('aubs-tab') tabs = [];
@@ -29,7 +29,6 @@ export class AubsTabsetCustomElement {
 
         if(!activeTab){
             activeTab = this.tabs[0];
-            activeTab.active = true;
         }
 
         this.selectTab(activeTab);

@@ -62,7 +62,6 @@ var AubsTabsetCustomElement = exports.AubsTabsetCustomElement = (_dec = (0, _aur
 
         _initDefineProp(this, 'vertical', _descriptor2, this);
 
-        this.active = 0;
         this.tabsClass = 'nav-tabs';
 
         _initDefineProp(this, 'tabs', _descriptor3, this);
@@ -88,7 +87,6 @@ var AubsTabsetCustomElement = exports.AubsTabsetCustomElement = (_dec = (0, _aur
 
         if (!activeTab) {
             activeTab = this.tabs[0];
-            activeTab.active = true;
         }
 
         this.selectTab(activeTab);

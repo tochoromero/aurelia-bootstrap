@@ -65,7 +65,6 @@ define(['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
 
             _initDefineProp(this, 'vertical', _descriptor2, this);
 
-            this.active = 0;
             this.tabsClass = 'nav-tabs';
 
             _initDefineProp(this, 'tabs', _descriptor3, this);
@@ -91,7 +90,6 @@ define(['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
 
             if (!activeTab) {
                 activeTab = this.tabs[0];
-                activeTab.active = true;
             }
 
             this.selectTab(activeTab);
