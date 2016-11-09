@@ -1,4 +1,4 @@
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
 
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -57,6 +57,8 @@ export let AubsAccordionGroupCustomElement = (_dec = inject(AubsAccordionCustomE
 
         _initDefineProp(this, "isOpen", _descriptor3, this);
 
+        _initDefineProp(this, "disabled", _descriptor4, this);
+
         this.accordion = accordion;
         this.accordion.register(this);
     }
@@ -108,6 +110,11 @@ export let AubsAccordionGroupCustomElement = (_dec = inject(AubsAccordionCustomE
         return 'panel-default';
     }
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec2], {
+    enumerable: true,
+    initializer: function () {
+        return false;
+    }
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "disabled", [bindable], {
     enumerable: true,
     initializer: function () {
         return false;

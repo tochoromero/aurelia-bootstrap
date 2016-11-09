@@ -3,7 +3,7 @@
 System.register(["aurelia-framework", "../utils/bootstrap-options", "velocity-animate", "./aubs-accordion"], function (_export, _context) {
     "use strict";
 
-    var inject, bindable, bindingMode, containerless, bootstrapOptions, velocity, AubsAccordionCustomElement, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, AubsAccordionGroupCustomElement;
+    var inject, bindable, bindingMode, containerless, bootstrapOptions, velocity, AubsAccordionCustomElement, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, AubsAccordionGroupCustomElement;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -78,6 +78,8 @@ System.register(["aurelia-framework", "../utils/bootstrap-options", "velocity-an
 
                     _initDefineProp(this, "isOpen", _descriptor3, this);
 
+                    _initDefineProp(this, "disabled", _descriptor4, this);
+
                     this.accordion = accordion;
                     this.accordion.register(this);
                 }
@@ -131,6 +133,11 @@ System.register(["aurelia-framework", "../utils/bootstrap-options", "velocity-an
                     return 'panel-default';
                 }
             }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec2], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return false;
+                }
+            }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "disabled", [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return false;

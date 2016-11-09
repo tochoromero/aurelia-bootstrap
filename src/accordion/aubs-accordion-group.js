@@ -10,6 +10,7 @@ export class AubsAccordionGroupCustomElement {
     @bindable title;
     @bindable panelClass = 'panel-default';
     @bindable({defaultBindingMode: bindingMode.twoWay}) isOpen = false;
+    @bindable disabled = false;
 
     constructor(accordion){
         this.accordion = accordion;

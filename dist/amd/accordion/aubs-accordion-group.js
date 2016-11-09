@@ -63,7 +63,7 @@ define(["exports", "aurelia-framework", "../utils/bootstrap-options", "velocity-
         throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
     }
 
-    var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
+    var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
 
     var AubsAccordionGroupCustomElement = exports.AubsAccordionGroupCustomElement = (_dec = (0, _aureliaFramework.inject)(_aubsAccordion.AubsAccordionCustomElement), _dec2 = (0, _aureliaFramework.bindable)({ defaultBindingMode: _aureliaFramework.bindingMode.twoWay }), (0, _aureliaFramework.containerless)(_class = _dec(_class = (_class2 = function () {
         function AubsAccordionGroupCustomElement(accordion) {
@@ -74,6 +74,8 @@ define(["exports", "aurelia-framework", "../utils/bootstrap-options", "velocity-
             _initDefineProp(this, "panelClass", _descriptor2, this);
 
             _initDefineProp(this, "isOpen", _descriptor3, this);
+
+            _initDefineProp(this, "disabled", _descriptor4, this);
 
             this.accordion = accordion;
             this.accordion.register(this);
@@ -128,6 +130,11 @@ define(["exports", "aurelia-framework", "../utils/bootstrap-options", "velocity-
             return 'panel-default';
         }
     }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec2], {
+        enumerable: true,
+        initializer: function initializer() {
+            return false;
+        }
+    }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "disabled", [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: function initializer() {
             return false;

@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.AubsAccordionGroupCustomElement = undefined;
 
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
 
 var _aureliaFramework = require("aurelia-framework");
 
@@ -74,6 +74,8 @@ var AubsAccordionGroupCustomElement = exports.AubsAccordionGroupCustomElement = 
 
         _initDefineProp(this, "isOpen", _descriptor3, this);
 
+        _initDefineProp(this, "disabled", _descriptor4, this);
+
         this.accordion = accordion;
         this.accordion.register(this);
     }
@@ -127,6 +129,11 @@ var AubsAccordionGroupCustomElement = exports.AubsAccordionGroupCustomElement = 
         return 'panel-default';
     }
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec2], {
+    enumerable: true,
+    initializer: function initializer() {
+        return false;
+    }
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "disabled", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: function initializer() {
         return false;
