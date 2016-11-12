@@ -1,14 +1,13 @@
 'use strict';
 
-System.register(['./accordion/aubs-accordion', './accordion/aubs-accordion-group', './buttons/aubs-btn-checkbox', './buttons/aubs-btn-disabled', './buttons/aubs-btn-loading', './buttons/aubs-btn-radio', './dropdown/aubs-dropdown', './dropdown/aubs-dropdown-toggle', './popover/aubs-popover', './tabs/aubs-tab', './tabs/aubs-tabset', './tooltip/aubs-tooltip', './utils/bootstrap-config'], function (_export, _context) {
+System.register(['./accordion/aubs-accordion', './accordion/aubs-accordion-group', './buttons/aubs-btn-checkbox', './buttons/aubs-btn-loading', './buttons/aubs-btn-radio', './dropdown/aubs-dropdown', './dropdown/aubs-dropdown-toggle', './popover/aubs-popover', './tabs/aubs-tab', './tabs/aubs-tabset', './tooltip/aubs-tooltip', './utils/bootstrap-config'], function (_export, _context) {
     "use strict";
 
-    var AubsAccordionCustomElement, AubsAccordionGroupCustomElement, AubsBtnCheckboxCustomAttribute, AubsBtnDisabledCustomAttribute, AubsBtnLoadingCustomAttribute, AubsBtnRadioCustomAttribute, AubsDropdownCustomAttribute, AubsDropdownToggleCustomAttribute, AubsPopoverCustomAttribute, AubsTabCustomElement, AubsTabsetCustomElement, AubsTooltipCustomAttribute, BootstrapConfig;
+    var AubsAccordionCustomElement, AubsAccordionGroupCustomElement, AubsBtnCheckboxCustomAttribute, AubsBtnLoadingCustomAttribute, AubsBtnRadioCustomAttribute, AubsDropdownCustomAttribute, AubsDropdownToggleCustomAttribute, AubsPopoverCustomAttribute, AubsTabCustomElement, AubsTabsetCustomElement, AubsTooltipCustomAttribute, BootstrapConfig;
     function configure(aurelia, callback) {
         aurelia.globalResources('./accordion/aubs-accordion');
         aurelia.globalResources('./accordion/aubs-accordion-group');
         aurelia.globalResources('./buttons/aubs-btn-checkbox');
-        aurelia.globalResources('./buttons/aubs-btn-disabled');
         aurelia.globalResources('./buttons/aubs-btn-loading');
         aurelia.globalResources('./buttons/aubs-btn-radio');
         aurelia.globalResources('./dropdown/aubs-dropdown');
@@ -34,8 +33,6 @@ System.register(['./accordion/aubs-accordion', './accordion/aubs-accordion-group
             AubsAccordionGroupCustomElement = _accordionAubsAccordionGroup.AubsAccordionGroupCustomElement;
         }, function (_buttonsAubsBtnCheckbox) {
             AubsBtnCheckboxCustomAttribute = _buttonsAubsBtnCheckbox.AubsBtnCheckboxCustomAttribute;
-        }, function (_buttonsAubsBtnDisabled) {
-            AubsBtnDisabledCustomAttribute = _buttonsAubsBtnDisabled.AubsBtnDisabledCustomAttribute;
         }, function (_buttonsAubsBtnLoading) {
             AubsBtnLoadingCustomAttribute = _buttonsAubsBtnLoading.AubsBtnLoadingCustomAttribute;
         }, function (_buttonsAubsBtnRadio) {
@@ -61,8 +58,6 @@ System.register(['./accordion/aubs-accordion', './accordion/aubs-accordion-group
             _export('AubsAccordionGroupCustomElement', AubsAccordionGroupCustomElement);
 
             _export('AubsBtnCheckboxCustomAttribute', AubsBtnCheckboxCustomAttribute);
-
-            _export('AubsBtnDisabledCustomAttribute', AubsBtnDisabledCustomAttribute);
 
             _export('AubsBtnLoadingCustomAttribute', AubsBtnLoadingCustomAttribute);
 

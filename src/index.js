@@ -1,7 +1,6 @@
 import {AubsAccordionCustomElement} from './accordion/aubs-accordion';
 import {AubsAccordionGroupCustomElement} from './accordion/aubs-accordion-group';
 import {AubsBtnCheckboxCustomAttribute} from './buttons/aubs-btn-checkbox';
-import {AubsBtnDisabledCustomAttribute} from './buttons/aubs-btn-disabled';
 import {AubsBtnLoadingCustomAttribute} from './buttons/aubs-btn-loading';
 import {AubsBtnRadioCustomAttribute} from './buttons/aubs-btn-radio';
 import {AubsDropdownCustomAttribute} from './dropdown/aubs-dropdown';
@@ -16,7 +15,6 @@ export function configure(aurelia, callback) {
     aurelia.globalResources('./accordion/aubs-accordion');
     aurelia.globalResources('./accordion/aubs-accordion-group');
     aurelia.globalResources('./buttons/aubs-btn-checkbox');
-    aurelia.globalResources('./buttons/aubs-btn-disabled');
     aurelia.globalResources('./buttons/aubs-btn-loading');
     aurelia.globalResources('./buttons/aubs-btn-radio');
     aurelia.globalResources('./dropdown/aubs-dropdown');
@@ -37,7 +35,6 @@ export {
     AubsAccordionCustomElement,
     AubsAccordionGroupCustomElement,
     AubsBtnCheckboxCustomAttribute,
-    AubsBtnDisabledCustomAttribute,
     AubsBtnLoadingCustomAttribute,
     AubsBtnRadioCustomAttribute,
     AubsDropdownCustomAttribute,

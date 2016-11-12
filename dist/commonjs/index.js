@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.AubsTooltipCustomAttribute = exports.AubsTabsetCustomElement = exports.AubsTabCustomElement = exports.AubsPopoverCustomAttribute = exports.AubsDropdownToggleCustomAttribute = exports.AubsDropdownCustomAttribute = exports.AubsBtnRadioCustomAttribute = exports.AubsBtnLoadingCustomAttribute = exports.AubsBtnDisabledCustomAttribute = exports.AubsBtnCheckboxCustomAttribute = exports.AubsAccordionGroupCustomElement = exports.AubsAccordionCustomElement = undefined;
+exports.AubsTooltipCustomAttribute = exports.AubsTabsetCustomElement = exports.AubsTabCustomElement = exports.AubsPopoverCustomAttribute = exports.AubsDropdownToggleCustomAttribute = exports.AubsDropdownCustomAttribute = exports.AubsBtnRadioCustomAttribute = exports.AubsBtnLoadingCustomAttribute = exports.AubsBtnCheckboxCustomAttribute = exports.AubsAccordionGroupCustomElement = exports.AubsAccordionCustomElement = undefined;
 exports.configure = configure;
 
 var _aubsAccordion = require('./accordion/aubs-accordion');
@@ -11,8 +11,6 @@ var _aubsAccordion = require('./accordion/aubs-accordion');
 var _aubsAccordionGroup = require('./accordion/aubs-accordion-group');
 
 var _aubsBtnCheckbox = require('./buttons/aubs-btn-checkbox');
-
-var _aubsBtnDisabled = require('./buttons/aubs-btn-disabled');
 
 var _aubsBtnLoading = require('./buttons/aubs-btn-loading');
 
@@ -36,7 +34,6 @@ function configure(aurelia, callback) {
     aurelia.globalResources('./accordion/aubs-accordion');
     aurelia.globalResources('./accordion/aubs-accordion-group');
     aurelia.globalResources('./buttons/aubs-btn-checkbox');
-    aurelia.globalResources('./buttons/aubs-btn-disabled');
     aurelia.globalResources('./buttons/aubs-btn-loading');
     aurelia.globalResources('./buttons/aubs-btn-radio');
     aurelia.globalResources('./dropdown/aubs-dropdown');
@@ -56,7 +53,6 @@ function configure(aurelia, callback) {
 exports.AubsAccordionCustomElement = _aubsAccordion.AubsAccordionCustomElement;
 exports.AubsAccordionGroupCustomElement = _aubsAccordionGroup.AubsAccordionGroupCustomElement;
 exports.AubsBtnCheckboxCustomAttribute = _aubsBtnCheckbox.AubsBtnCheckboxCustomAttribute;
-exports.AubsBtnDisabledCustomAttribute = _aubsBtnDisabled.AubsBtnDisabledCustomAttribute;
 exports.AubsBtnLoadingCustomAttribute = _aubsBtnLoading.AubsBtnLoadingCustomAttribute;
 exports.AubsBtnRadioCustomAttribute = _aubsBtnRadio.AubsBtnRadioCustomAttribute;
 exports.AubsDropdownCustomAttribute = _aubsDropdown.AubsDropdownCustomAttribute;
