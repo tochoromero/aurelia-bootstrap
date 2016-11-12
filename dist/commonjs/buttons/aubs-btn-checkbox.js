@@ -62,9 +62,9 @@ var AubsBtnCheckboxCustomAttribute = exports.AubsBtnCheckboxCustomAttribute = (_
 
         _initDefineProp(this, 'state', _descriptor, this);
 
-        _initDefineProp(this, 'trueValue', _descriptor2, this);
+        _initDefineProp(this, 'checkedValue', _descriptor2, this);
 
-        _initDefineProp(this, 'falseValue', _descriptor3, this);
+        _initDefineProp(this, 'uncheckedValue', _descriptor3, this);
 
         this.element = element;
 
@@ -78,16 +78,16 @@ var AubsBtnCheckboxCustomAttribute = exports.AubsBtnCheckboxCustomAttribute = (_
     }
 
     AubsBtnCheckboxCustomAttribute.prototype.bind = function bind() {
-        if (this.trueValue == undefined || this.trueValue == null) {
-            this.trueValue = true;
+        if (this.checkedValue == undefined || this.checkedValue == null) {
+            this.checkedValue = true;
         }
 
-        if (this.falseValue == undefined || this.falseValue == null) {
-            this.falseValue = false;
+        if (this.uncheckedValue == undefined || this.uncheckedValue == null) {
+            this.uncheckedValue = false;
         }
 
-        if (this.state !== this.trueValue && this.state !== this.falseValue) {
-            this.state = this.falseValue;
+        if (this.state !== this.checkedValue && this.state !== this.uncheckedValue) {
+            this.state = this.uncheckedValue;
         }
     };
 
@@ -105,12 +105,12 @@ var AubsBtnCheckboxCustomAttribute = exports.AubsBtnCheckboxCustomAttribute = (_
     };
 
     AubsBtnCheckboxCustomAttribute.prototype.buttonClicked = function buttonClicked() {
-        this.state = this.state === this.trueValue ? this.falseValue : this.trueValue;
+        this.state = this.state === this.checkedValue ? this.uncheckedValue : this.checkedValue;
         this.setClass();
     };
 
     AubsBtnCheckboxCustomAttribute.prototype.setClass = function setClass() {
-        if (this.state == this.trueValue) {
+        if (this.state == this.checkedValue) {
             this.element.classList.add('active');
         } else {
             this.element.classList.remove('active');
@@ -121,10 +121,10 @@ var AubsBtnCheckboxCustomAttribute = exports.AubsBtnCheckboxCustomAttribute = (_
 }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'state', [_dec2], {
     enumerable: true,
     initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'trueValue', [_aureliaFramework.bindable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'checkedValue', [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: null
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'falseValue', [_aureliaFramework.bindable], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'uncheckedValue', [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: null
 })), _class2)) || _class);

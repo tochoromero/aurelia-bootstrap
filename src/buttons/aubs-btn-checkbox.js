@@ -4,8 +4,8 @@ import {inject, bindable, bindingMode} from "aurelia-framework";
 export class AubsBtnCheckboxCustomAttribute {
 
     @bindable({defaultBindingMode: bindingMode.twoWay}) state;
-    @bindable trueValue;
-    @bindable falseValue;
+    @bindable checkedValue;
+    @bindable uncheckedValue;
 
     constructor(element) {
         this.element = element;
@@ -18,16 +18,16 @@ export class AubsBtnCheckboxCustomAttribute {
     }
 
     bind() {
-        if (this.trueValue == undefined || this.trueValue == null) {
-            this.trueValue = true;
+        if (this.checkedValue == undefined || this.checkedValue == null) {
+            this.checkedValue = true;
         }
 
-        if (this.falseValue == undefined || this.falseValue == null) {
-            this.falseValue = false;
+        if (this.uncheckedValue == undefined || this.uncheckedValue == null) {
+            this.uncheckedValue = false;
         }
 
-        if (this.state !== this.trueValue && this.state !== this.falseValue) {
-            this.state = this.falseValue;
+        if (this.state !== this.checkedValue && this.state !== this.uncheckedValue) {
+            this.state = this.uncheckedValue;
         }
     }
 
@@ -45,12 +45,12 @@ export class AubsBtnCheckboxCustomAttribute {
     }
 
     buttonClicked() {
-        this.state = this.state === this.trueValue ? this.falseValue : this.trueValue;
+        this.state = this.state === this.checkedValue ? this.uncheckedValue : this.checkedValue;
         this.setClass();
     }
 
     setClass() {
-        if (this.state == this.trueValue) {
+        if (this.state == this.checkedValue) {
             this.element.classList.add('active');
         } else {
             this.element.classList.remove('active');
