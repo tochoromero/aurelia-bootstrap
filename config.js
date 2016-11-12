@@ -224,10 +224,19 @@ System.config({
       "accordion/accordion.js",
       "app.html!github:systemjs/plugin-text@0.0.8.js",
       "app.js",
+      "buttons/buttons.html!github:systemjs/plugin-text@0.0.8.js",
+      "buttons/buttons.js",
       "introduction/introduction.html!github:systemjs/plugin-text@0.0.8.js",
       "introduction/introduction.js",
       "main.js",
-      "nav-bar.html!github:systemjs/plugin-text@0.0.8.js"
+      "nav-bar.html!github:systemjs/plugin-text@0.0.8.js",
+      "resources/index.js",
+      "resources/settings-type/any.html!github:systemjs/plugin-text@0.0.8.js",
+      "resources/settings-type/boolean.html!github:systemjs/plugin-text@0.0.8.js",
+      "resources/settings-type/markup.html!github:systemjs/plugin-text@0.0.8.js",
+      "resources/settings-type/property.html!github:systemjs/plugin-text@0.0.8.js",
+      "resources/settings-type/string.html!github:systemjs/plugin-text@0.0.8.js",
+      "resources/settings-type/two-way.html!github:systemjs/plugin-text@0.0.8.js"
     ],
     "aurelia.js": [
       "github:github/fetch@1.0.0.js",
@@ -242,7 +251,6 @@ System.config({
       "github:tochoromero/aurelia-bootstrap@master/accordion/aubs-accordion.html!github:systemjs/plugin-text@0.0.8.js",
       "github:tochoromero/aurelia-bootstrap@master/accordion/aubs-accordion.js",
       "github:tochoromero/aurelia-bootstrap@master/buttons/aubs-btn-checkbox.js",
-      "github:tochoromero/aurelia-bootstrap@master/buttons/aubs-btn-disabled.js",
       "github:tochoromero/aurelia-bootstrap@master/buttons/aubs-btn-loading.js",
       "github:tochoromero/aurelia-bootstrap@master/buttons/aubs-btn-radio.js",
       "github:tochoromero/aurelia-bootstrap@master/dropdown/aubs-dropdown-toggle.js",
