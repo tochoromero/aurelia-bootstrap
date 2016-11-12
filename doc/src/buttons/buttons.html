@@ -1,0 +1,187 @@
+<template>
+    <div class="container-fluid">
+        <div class="page-header">
+            <a class="btn btn-default pull-right" target="_blank"
+               href="https://github.com/tochoromero/aurelia-bootstrap/tree/master/doc/src/buttons">
+                <i class="fa fa-edit"></i> Improve documentation</a>
+            <h1>Buttons</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <h3>Single Toggle</h3>
+                <pre>Checked: ${singleToggle.value}</pre>
+                <a class="btn btn-success"
+                   aubs-btn-checkbox="state.bind: singleToggle; checked-value.bind: myChecked; unchecked-value.bind: myUnchecked">
+                    Single Toggle
+                </a>
+
+                <h3>Checkbox</h3>
+                <pre>Values: {left: ${checkboxValues.left}, middle: ${checkboxValues.middle}, right: ${checkboxValues.right}}</pre>
+                <div class="btn-group">
+                    <a class="btn btn-warning" aubs-btn-checkbox="state.bind: checkboxValues.left">Left</a>
+                    <a class="btn btn-warning" aubs-btn-checkbox="state.bind: checkboxValues.middle;">Middle</a>
+                    <a class="btn btn-warning" aubs-btn-checkbox="state.bind: checkboxValues.right">Right</a>
+                </div>
+
+                <h3>Radio Button</h3>
+                <pre>Selection: ${radioSelection}</pre>
+                <div class="btn-group">
+                    <a class="btn btn-default" aubs-btn-radio="model.bind: radioSelection; value: left">Left</a>
+                    <a class="btn btn-default ${disabled ? 'disabled' : ''}"
+                       aubs-btn-radio="model.bind: radioSelection; value: middle">Middle</a>
+                    <a class="btn btn-default" aubs-btn-radio="model.bind: radioSelection; value: right">Right</a>
+                </div>
+                <div class="checkbox">
+                    <label> <input type="checkbox" checked.bind="disabled"> Disable Middle </label>
+                </div>
+
+                <h3>Loading Button</h3>
+                <a class="btn btn-default" click.delegate="ajaxCall()"
+                   aubs-btn-loading="loading.bind: isLoading; text: <i class='fa fa-refresh fa-spin'></i> Loading...">
+                    Ajax Call
+                </a>
+            </div>
+
+            <div class="col-sm-6 col-xs-12">
+                <p>We provide a couple of custom attributes to enhance buttons. Any of this custom attributes can be used with either the
+                    <code>a</code> or <code>button</code> tags.</p>
+
+                <h3>aubs-btn-checkbox</h3>
+                <p>This custom attribute allow you to use buttons instead of checkboxes. Buttons with this custom attribute behave like
+                    toggle buttons. One of the advantages over normal checkboxes is that you can use any object as the checked and unchecked
+                    values.</p>
+                <ul>
+                    <li><code>state</code>
+                        <property></property>
+                        <i>(default: <code>unchecked-value</code>)</i>: This field holds the state of your button. The
+                        button will toggle between <code>checked-value</code> and <code>unchecked-value</code>.
+                    </li>
+                    <li>
+                        <code>checked-value</code>
+                        <any></any>
+                        (default: true): Represents the checked value of your button.
+                    </li>
+                    <li>
+                        <code>unchecked-value</code>
+                        <any></any>
+                        (default: false): Represents the unchecked value of your button.
+                    </li>
+                </ul>
+
+                <h3>aubs-btn-radio</h3>
+                <p>This custom attribute allows you to use buttons instead of radio buttons. Buttons will behave like toggle buttons and
+                    again you can use any object as the value for your radios.</p>
+                <ul>
+                    <li><code>model</code>
+                        <property></property>
+                        : Holds the selected value in your radio group. All the
+                        <code>aubs-btn-radio</code> buttons that bind to the same property belong to the same radio group.
+                    </li>
+                    <li><code>value</code>
+                        <any></any>
+                        : The value for the radio button.
+                    </li>
+                </ul>
+
+                <h3>aubs-btn-loading</h3>
+                <p>Use this custom attribute to change your buttons into a loading state. On this state they are disabled and display a
+                    message.</p>
+                <ul>
+                    <li><code>loading</code>
+                        <boolean></boolean>
+                        : Allows you control the loading state of the button. If <code>true</code> the button inner html will be changed to
+                        the value of the provided <code>text</code>.
+                    </li>
+                    <li><code>text</code>
+                        <string></string>
+                        <markup></markup>
+                        <i>(default: Loading...)</i>: The text to use when the button is on a loading state.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-12">
+                <hr>
+                <aubs-tabset>
+                    <aubs-tab header="HTML">
+                        <pre><code class="language-markup" au-syntax>&lt;template>
+    &lt;h3>Single Toggle&lt;/h3>
+    &lt;pre>Checked: ${open}singleToggle.value}&lt;/pre>
+    &lt;a class="btn btn-success"
+       aubs-btn-checkbox="state.bind: singleToggle; checked-value.bind: myChecked; unchecked-value.bind: myUnchecked">
+        Single Toggle
+    &lt;/a>
+
+    &lt;h3>Checkbox&lt;/h3>
+    &lt;pre>Values: {left: ${open}checkboxValues.left}, middle: ${open}checkboxValues.middle}, right: ${open}checkboxValues.right}}&lt;/pre>
+    &lt;div class="btn-group">
+        &lt;a class="btn btn-warning" aubs-btn-checkbox="state.bind: checkboxValues.left">Left&lt;/a>
+        &lt;a class="btn btn-warning" aubs-btn-checkbox="state.bind: checkboxValues.middle;">Middle&lt;/a>
+        &lt;a class="btn btn-warning" aubs-btn-checkbox="state.bind: checkboxValues.right">Right&lt;/a>
+    &lt;/div>
+
+    &lt;h3>Radio Button&lt;/h3>
+    &lt;pre>Selection: ${open}radioSelection}&lt;/pre>
+    &lt;div class="btn-group">
+        &lt;a class="btn btn-default" aubs-btn-radio="model.bind: radioSelection; value: left">Left&lt;/a>
+        &lt;a class="btn btn-default ${open}disabled ? 'disabled' : ''}"
+           aubs-btn-radio="model.bind: radioSelection; value: middle">Middle&lt;/a>
+        &lt;a class="btn btn-default" aubs-btn-radio="model.bind: radioSelection; value: right">Right&lt;/a>
+    &lt;/div>
+    &lt;div class="checkbox">
+        &lt;label> &lt;input type="checkbox" checked.bind="disabled"> Disable Middle &lt;/label>
+    &lt;/div>
+
+    &lt;h3>Loading Button&lt;/h3>
+    &lt;a class="btn btn-default" click.delegate="ajaxCall()"
+       aubs-btn-loading="loading.bind: isLoading; text: &lt;i class='fa fa-refresh fa-spin'>&lt;/i> Loading...">
+        Ajax Call
+    &lt;/a>
+&lt;/template></code></pre>
+                    </aubs-tab>
+
+                    <aubs-tab header="JS">
+                        <pre><code class="language-js" au-syntax>export class Buttons {
+
+    myChecked = {
+        value: 1
+    };
+
+    myUnchecked = {
+        value: 0
+    };
+
+    singleToggle = this.myChecked;
+
+    checkboxValues = {
+        left: true,
+        middle: false,
+        right: false
+    };
+
+    radioSelection = 'middle';
+
+    disabled = true;
+
+    isLoading = false;
+
+    clicked(){
+        alert('Button Clicked!!');
+    }
+
+    ajaxCall() {
+        console.log('clicked');
+        this.isLoading = true;
+        setTimeout(() => {
+            this.isLoading = false
+        }, 3000);
+    }
+}</code></pre>
+                    </aubs-tab>
+                </aubs-tabset>
+
+            </div>
+        </div>
+    </div>
+</template>

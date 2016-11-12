@@ -5,7 +5,8 @@ export function configure(aurelia) {
         .standardConfiguration()
         .developmentLogging()
         .plugin('aurelia-syntax-highlighter')
-        .plugin('aurelia-bootstrap');
+        .plugin('aurelia-bootstrap')
+        .feature('resources');
 
     //Uncomment the line below to enable animation.
     //aurelia.use.plugin('aurelia-animator-css');

@@ -13,7 +13,9 @@
                     Components <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#/accordion">Accordion</a></li>
+                    <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+                        <a class="dropdown-item" href.bind="row.href">${row.title}</a>
+                    </li>
                 </ul>
             </li>
         </ul>
