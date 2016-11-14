@@ -127,7 +127,7 @@ var AubsDropdownCustomAttribute = exports.AubsDropdownCustomAttribute = (_dec = 
         this.state = !this.state;
 
         if (typeof this.onToggle === 'function') {
-            this.onToggle(this.state);
+            this.onToggle({ state: this.state });
         }
 
         this.setClass();

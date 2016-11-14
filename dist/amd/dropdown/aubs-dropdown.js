@@ -128,7 +128,7 @@ define(["exports", "aurelia-framework", "../utils/bootstrap-options"], function 
             this.state = !this.state;
 
             if (typeof this.onToggle === 'function') {
-                this.onToggle(this.state);
+                this.onToggle({ state: this.state });
             }
 
             this.setClass();
