@@ -213,11 +213,6 @@ System.config({
       "indexof": "npm:indexof@0.0.1"
     }
   },
-  depCache: {
-    "main.js": [
-      "fetch"
-    ]
-  },
   bundles: {
     "app-build.js": [
       "accordion/accordion.html!github:systemjs/plugin-text@0.0.8.js",
@@ -226,6 +221,8 @@ System.config({
       "app.js",
       "buttons/buttons.html!github:systemjs/plugin-text@0.0.8.js",
       "buttons/buttons.js",
+      "dropdown/dropdown.html!github:systemjs/plugin-text@0.0.8.js",
+      "dropdown/dropdown.js",
       "introduction/introduction.html!github:systemjs/plugin-text@0.0.8.js",
       "introduction/introduction.js",
       "main.js",
@@ -233,6 +230,7 @@ System.config({
       "resources/index.js",
       "resources/settings-type/any.html!github:systemjs/plugin-text@0.0.8.js",
       "resources/settings-type/boolean.html!github:systemjs/plugin-text@0.0.8.js",
+      "resources/settings-type/function.html!github:systemjs/plugin-text@0.0.8.js",
       "resources/settings-type/markup.html!github:systemjs/plugin-text@0.0.8.js",
       "resources/settings-type/property.html!github:systemjs/plugin-text@0.0.8.js",
       "resources/settings-type/string.html!github:systemjs/plugin-text@0.0.8.js",
@@ -355,6 +353,11 @@ System.config({
       "npm:process@0.11.9/browser.js",
       "npm:velocity-animate@1.3.1.js",
       "npm:velocity-animate@1.3.1/velocity.js"
+    ]
+  },
+  depCache: {
+    "main.js": [
+      "fetch"
     ]
   }
 });

@@ -1,0 +1,121 @@
+<template>
+    <div class="container-fluid">
+        <div class="page-header">
+            <a class="btn btn-default pull-right" target="_blank"
+               href="https://github.com/tochoromero/aurelia-bootstrap/tree/master/doc/src/dropdown">
+                <i class="fa fa-edit"></i> Improve documentation</a>
+            <h1>Dropdown</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <div class="btn-group">
+                    <a class="btn btn-default" aubs-btn-radio="model.bind: autoClose; value: always">Always</a>
+                    <a class="btn btn-default" aubs-btn-radio="model.bind: autoClose; value: outside">Outside</a>
+                    <a class="btn btn-default" aubs-btn-radio="model.bind: autoClose; value: disabled">Disabled</a>
+                </div>
+
+                <br/><br/>
+
+                <div class="btn-group dropdown" aubs-dropdown="auto-close.bind: autoClose; on-toggle.call: toggled(state)">
+                    <button class="btn btn-primary dropdown-toggle" aubs-dropdown-toggle>
+                        Dropdown trigger
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-left">
+                        <li><a class="dropdown-item" href="javascript:void(0)">First Action</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)">Second Action</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)">Third Action</a></li>
+                        <li class="divider"></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)">Separated Action</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-xs-12">
+                <p>The <code>aubs-dropdown</code> and <code>aubs-dropdown-toggle</code> custom attributes allow you to easily toggle a
+                    dropdown menu.</p>
+
+                <p>You need to follow the Bootstrap markup for dropdown menus, and then you can just add our custom attributes on top of
+                    that. Because of this you have complete control over the styling and we just take care of toggling the menu.</p>
+
+                <h3>aubs-dropdown</h3>
+                <p>This custom attribute belongs to the wrapper of the dropdown, in Bootstrap 3 this would be the div with the <code>dropdown</code>
+                    class. It has several settings:</p>
+                <ul>
+                    <li><code>is-open</code>
+                        <property></property>
+                        <boolean property.bind="true"></boolean>
+                        <two-way></two-way>
+                        <i>(default: false)</i>: Indicates whether or not the dropdown menu is visible. You can use this property to
+                        programmatically toggle the dropdown menu.
+                    </li>
+                    <li>
+                        <code>auto-close</code>
+                        <string></string>
+                        <i>(default: always)</i>: This setting allow you to control what actions cause the dropdown menu to close. By
+                        default the dropdown menu will always close when the <code>aubs-dropdown-toggle</code> element is clicked. On
+                        top of that we have the following options:
+                        <ul>
+                            <li><code>outside</code>: The dropdown menu is closed when anything outside the menu itself is clicked.</li>
+                            <li><code>always</code>: The dropdown menu is closed whenever anything is clicked, including a menu item.</li>
+                            <li><code>disabled</code>: The dropdown can only be closed clicking the <code>aubs-dropdown-toggle</code>
+                                element.
+                            </li>
+                        </ul>
+                    </li>
+                    <li><code>on-toggle</code>
+                        <function></function>
+                        : Callback function called when the dropdown is toggled. It will receive a <code>state</code> parameter which is
+                        <code>true</code> if it the menu is open or <code>false</code> otherwise.
+                    </li>
+                </ul>
+
+                <h3>aubs-dropdown-toggle</h3>
+                <p>Add this Custom Attribute to the element that will function as the trigger in the dropdown group. Normally this would be
+                    a button or a link. This Custom Attribute must be inside the <code>aubs-dropdown</code> Element.
+                </p>
+            </div>
+
+            <div class="col-xs-12">
+                <hr>
+                <aubs-tabset>
+                    <aubs-tab header="HTML">
+                        <pre><code class="language-markup" au-syntax>&lt;template>
+    &lt;div class="btn-group">
+        &lt;a class="btn btn-default" aubs-btn-radio="model.bind: autoClose; value: always">Always&lt;/a>
+        &lt;a class="btn btn-default" aubs-btn-radio="model.bind: autoClose; value: outside">Outside&lt;/a>
+        &lt;a class="btn btn-default" aubs-btn-radio="model.bind: autoClose; value: disabled">Disabled&lt;/a>
+    &lt;/div>
+
+    &lt;br/>&lt;br/>
+
+    &lt;div class="btn-group dropdown" aubs-dropdown="auto-close.bind: autoClose; on-toggle.call: toggled(state)">
+        &lt;button class="btn btn-primary dropdown-toggle" aubs-dropdown-toggle>
+            Dropdown trigger
+            &lt;span class="caret">&lt;/span>
+        &lt;/button>
+        &lt;ul class="dropdown-menu dropdown-menu-left">
+            &lt;li>&lt;a class="dropdown-item" href="javascript:void(0)">First Action&lt;/a>&lt;/li>
+            &lt;li>&lt;a class="dropdown-item" href="javascript:void(0)">Second Action&lt;/a>&lt;/li>
+            &lt;li>&lt;a class="dropdown-item" href="javascript:void(0)">Third Action&lt;/a>&lt;/li>
+            &lt;li class="divider">&lt;/li>
+            &lt;li>&lt;a class="dropdown-item" href="javascript:void(0)">Separated Action&lt;/a>&lt;/li>
+        &lt;/ul>
+    &lt;/div>
+&lt;/template></code></pre>
+                    </aubs-tab>
+
+                    <aubs-tab header="JS">
+                        <pre><code class="language-js" au-syntax>export class Example {
+    autoClose = 'disabled';
+
+
+}</code></pre>
+                    </aubs-tab>
+                </aubs-tabset>
+
+            </div>
+        </div>
+    </div>
+</template>

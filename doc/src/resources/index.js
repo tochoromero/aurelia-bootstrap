@@ -5,6 +5,7 @@ export function configure(aurelia) {
         './settings-type/two-way.html',
         './settings-type/string.html',
         './settings-type/markup.html',
+        './settings-type/function.html',
         './settings-type/any.html'
     );
 }

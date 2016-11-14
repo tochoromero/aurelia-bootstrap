@@ -49,9 +49,8 @@
                 <ul>
                     <li><code>close-others</code>
                         <boolean></boolean>
-                        <i>(default: true)</i>: Boolean that determines whether or not we should close all the
-                        other items when one is
-                        opened
+                        <i>(default: true)</i>: Boolean that determines whether or not we should close all the other items when one is
+                        opened.
                     </li>
                 </ul>
 
@@ -72,9 +71,10 @@
                         <strong>Note:</strong> In bootstrap 4 mode this property is ignored.
                     </li>
                     <li><code>is-open</code>
-                        <boolean></boolean>
+                        <property></property>
+                        <boolean property.bind="true"></boolean>
                         <two-way></two-way>
-                        : Reflects the state of the item. You can use this property to programmatically toggle one item.
+                        <i>(default: false)</i>: Reflects the state of the item. You can use this property to programmatically toggle one item.
                     </li>
                     <li><code>disabled</code>
                         <boolean></boolean>
