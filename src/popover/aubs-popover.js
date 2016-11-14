@@ -10,7 +10,7 @@ export class AubsPopoverCustomAttribute {
     @bindable text;
     @bindable position = 'top';
     @bindable disabled = false;
-    @bindable({defaultBindingMode: bindingMode.twoWay}) open = false;
+    @bindable({defaultBindingMode: bindingMode.twoWay}) isOpen = false;
     @bindable trigger = 'mouseover';
     @bindable customPopover;
     @bindable onOpen;
@@ -54,7 +54,7 @@ export class AubsPopoverCustomAttribute {
         }
 
         this.attached = true;
-        if (this.open) {
+        if (this.isOpen) {
             this.handleShow();
         }
     }
@@ -68,7 +68,7 @@ export class AubsPopoverCustomAttribute {
             return;
         }
 
-        if (this.open) {
+        if (this.isOpen) {
             this.handleShow();
         } else {
             this.handleHide();
@@ -122,7 +122,7 @@ export class AubsPopoverCustomAttribute {
             });
 
         this.visible = true;
-        this.open = true;
+        this.isOpen = true;
 
         window.addEventListener('resize', this.listeners.resize);
     }
@@ -163,7 +163,7 @@ export class AubsPopoverCustomAttribute {
             });
 
         this.visible = false;
-        this.open = false;
+        this.isOpen = false;
 
         window.removeEventListener('resize', this.listeners.resize);
     }

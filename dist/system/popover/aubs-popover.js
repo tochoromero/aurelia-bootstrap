@@ -81,7 +81,7 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
 
                     _initDefineProp(this, "disabled", _descriptor4, this);
 
-                    _initDefineProp(this, "open", _descriptor5, this);
+                    _initDefineProp(this, "isOpen", _descriptor5, this);
 
                     _initDefineProp(this, "trigger", _descriptor6, this);
 
@@ -134,7 +134,7 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
                     }
 
                     this.attached = true;
-                    if (this.open) {
+                    if (this.isOpen) {
                         this.handleShow();
                     }
                 };
@@ -148,7 +148,7 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
                         return;
                     }
 
-                    if (this.open) {
+                    if (this.isOpen) {
                         this.handleShow();
                     } else {
                         this.handleHide();
@@ -200,7 +200,7 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
                     });
 
                     this.visible = true;
-                    this.open = true;
+                    this.isOpen = true;
 
                     window.addEventListener('resize', this.listeners.resize);
                 };
@@ -243,7 +243,7 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
                     });
 
                     this.visible = false;
-                    this.open = false;
+                    this.isOpen = false;
 
                     window.removeEventListener('resize', this.listeners.resize);
                 };
@@ -319,7 +319,7 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
                 initializer: function initializer() {
                     return false;
                 }
-            }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, "open", [_dec2], {
+            }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec2], {
                 enumerable: true,
                 initializer: function initializer() {
                     return false;

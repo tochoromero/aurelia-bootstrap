@@ -59,7 +59,7 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
 
         _initDefineProp(this, "disabled", _descriptor4, this);
 
-        _initDefineProp(this, "open", _descriptor5, this);
+        _initDefineProp(this, "isOpen", _descriptor5, this);
 
         _initDefineProp(this, "trigger", _descriptor6, this);
 
@@ -104,7 +104,7 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
         }
 
         this.attached = true;
-        if (this.open) {
+        if (this.isOpen) {
             this.handleShow();
         }
     }
@@ -118,7 +118,7 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
             return;
         }
 
-        if (this.open) {
+        if (this.isOpen) {
             this.handleShow();
         } else {
             this.handleHide();
@@ -168,7 +168,7 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
         });
 
         this.visible = true;
-        this.open = true;
+        this.isOpen = true;
 
         window.addEventListener('resize', this.listeners.resize);
     }
@@ -207,7 +207,7 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
         });
 
         this.visible = false;
-        this.open = false;
+        this.isOpen = false;
 
         window.removeEventListener('resize', this.listeners.resize);
     }
@@ -281,7 +281,7 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
     initializer: function () {
         return false;
     }
-}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, "open", [_dec2], {
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec2], {
     enumerable: true,
     initializer: function () {
         return false;
