@@ -87,6 +87,10 @@ var AubsDropdownCustomAttribute = exports.AubsDropdownCustomAttribute = (_dec = 
         this.isAttached = true;
         this.setClass();
 
+        this.setListener();
+    };
+
+    AubsDropdownCustomAttribute.prototype.setListener = function setListener() {
         if (this.autoClose !== 'disabled') {
             document.addEventListener('click', this.outsideClickListener);
         }
@@ -94,6 +98,18 @@ var AubsDropdownCustomAttribute = exports.AubsDropdownCustomAttribute = (_dec = 
 
     AubsDropdownCustomAttribute.prototype.detached = function detached() {
         document.removeEventListener('click', this.outsideClickListener);
+    };
+
+    AubsDropdownCustomAttribute.prototype.autoCloseChanged = function autoCloseChanged(newValue, oldValue) {
+        if (!this.isAttached) {
+            return;
+        }
+
+        if (oldValue !== 'disabled') {
+            this.detached();
+        }
+
+        this.setListener();
     };
 
     AubsDropdownCustomAttribute.prototype.isOpenChanged = function isOpenChanged() {
@@ -110,7 +126,7 @@ var AubsDropdownCustomAttribute = exports.AubsDropdownCustomAttribute = (_dec = 
         }
         this.state = !this.state;
 
-        if (this.onToggle !== undefined && this.onToggle !== null) {
+        if (typeof this.onToggle === 'function') {
             this.onToggle(this.state);
         }
 

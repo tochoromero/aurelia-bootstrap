@@ -28,6 +28,10 @@ export class AubsDropdownCustomAttribute {
         this.isAttached = true;
         this.setClass();
 
+        this.setListener();
+    }
+
+    setListener(){
         if (this.autoClose !== 'disabled') {
             document.addEventListener('click', this.outsideClickListener)
         }
@@ -35,6 +39,18 @@ export class AubsDropdownCustomAttribute {
 
     detached() {
         document.removeEventListener('click', this.outsideClickListener);
+    }
+
+    autoCloseChanged(newValue, oldValue){
+        if(!this.isAttached){
+            return;
+        }
+
+        if(oldValue !== 'disabled'){
+            this.detached();
+        }
+
+        this.setListener();
     }
 
     isOpenChanged() {
@@ -51,7 +67,7 @@ export class AubsDropdownCustomAttribute {
         }
         this.state = !this.state;
         
-        if(this.onToggle !== undefined && this.onToggle !== null) {
+        if(typeof  this.onToggle === 'function') {
             this.onToggle(this.state);
         }
 

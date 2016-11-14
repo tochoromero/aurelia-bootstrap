@@ -3,6 +3,7 @@ import {AubsDropdownCustomAttribute} from "./aubs-dropdown";
 
 @inject(AubsDropdownCustomAttribute, Element)
 export class AubsDropdownToggleCustomAttribute {
+
     constructor(dropdown, element){
         this.dropdown = dropdown;
         this.element = element;

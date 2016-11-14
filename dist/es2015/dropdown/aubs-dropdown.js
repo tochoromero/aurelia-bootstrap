@@ -72,6 +72,10 @@ export let AubsDropdownCustomAttribute = (_dec = inject(Element), _dec2 = bindab
         this.isAttached = true;
         this.setClass();
 
+        this.setListener();
+    }
+
+    setListener() {
         if (this.autoClose !== 'disabled') {
             document.addEventListener('click', this.outsideClickListener);
         }
@@ -79,6 +83,18 @@ export let AubsDropdownCustomAttribute = (_dec = inject(Element), _dec2 = bindab
 
     detached() {
         document.removeEventListener('click', this.outsideClickListener);
+    }
+
+    autoCloseChanged(newValue, oldValue) {
+        if (!this.isAttached) {
+            return;
+        }
+
+        if (oldValue !== 'disabled') {
+            this.detached();
+        }
+
+        this.setListener();
     }
 
     isOpenChanged() {
@@ -95,7 +111,7 @@ export let AubsDropdownCustomAttribute = (_dec = inject(Element), _dec2 = bindab
         }
         this.state = !this.state;
 
-        if (this.onToggle !== undefined && this.onToggle !== null) {
+        if (typeof this.onToggle === 'function') {
             this.onToggle(this.state);
         }
 

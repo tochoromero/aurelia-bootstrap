@@ -94,6 +94,10 @@ System.register(["aurelia-framework", "../utils/bootstrap-options"], function (_
                     this.isAttached = true;
                     this.setClass();
 
+                    this.setListener();
+                };
+
+                AubsDropdownCustomAttribute.prototype.setListener = function setListener() {
                     if (this.autoClose !== 'disabled') {
                         document.addEventListener('click', this.outsideClickListener);
                     }
@@ -101,6 +105,18 @@ System.register(["aurelia-framework", "../utils/bootstrap-options"], function (_
 
                 AubsDropdownCustomAttribute.prototype.detached = function detached() {
                     document.removeEventListener('click', this.outsideClickListener);
+                };
+
+                AubsDropdownCustomAttribute.prototype.autoCloseChanged = function autoCloseChanged(newValue, oldValue) {
+                    if (!this.isAttached) {
+                        return;
+                    }
+
+                    if (oldValue !== 'disabled') {
+                        this.detached();
+                    }
+
+                    this.setListener();
                 };
 
                 AubsDropdownCustomAttribute.prototype.isOpenChanged = function isOpenChanged() {
@@ -117,7 +133,7 @@ System.register(["aurelia-framework", "../utils/bootstrap-options"], function (_
                     }
                     this.state = !this.state;
 
-                    if (this.onToggle !== undefined && this.onToggle !== null) {
+                    if (typeof this.onToggle === 'function') {
                         this.onToggle(this.state);
                     }
 
