@@ -250,16 +250,14 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
         if (this.title) {
             let title = document.createElement('h3');
             title.classList.add('popover-title');
-            let titleText = document.createTextNode(this.title);
-            title.appendChild(titleText);
+            title.innerHTML = this.title;
             this.popover.appendChild(title);
         }
 
         let content = document.createElement('div');
         content.classList.add('popover-content');
         let contentParagraph = document.createElement('p');
-        let text = document.createTextNode(this.text);
-        contentParagraph.appendChild(text);
+        contentParagraph.innerHTML = this.text;
         content.appendChild(contentParagraph);
         this.popover.appendChild(content);
 

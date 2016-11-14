@@ -283,16 +283,14 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
         if (this.title) {
             var title = document.createElement('h3');
             title.classList.add('popover-title');
-            var titleText = document.createTextNode(this.title);
-            title.appendChild(titleText);
+            title.innerHTML = this.title;
             this.popover.appendChild(title);
         }
 
         var content = document.createElement('div');
         content.classList.add('popover-content');
         var contentParagraph = document.createElement('p');
-        var text = document.createTextNode(this.text);
-        contentParagraph.appendChild(text);
+        contentParagraph.innerHTML = this.text;
         content.appendChild(contentParagraph);
         this.popover.appendChild(content);
 
