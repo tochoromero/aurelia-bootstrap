@@ -141,7 +141,7 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service", "../utils/bo
             this.tooltipService.removeTriggers(this.element, this.triggers, this.listeners);
         };
 
-        AubsPopoverCustomAttribute.prototype.openChanged = function openChanged() {
+        AubsPopoverCustomAttribute.prototype.isOpenChanged = function isOpenChanged() {
             if (!this.attached) {
                 return;
             }
