@@ -200,7 +200,8 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service", "../utils/bo
 
             this.popover.setAttribute("style", "display: block;");
 
-            var position = this.tooltipService.calculatePosition(this.element, this.popover, this.position);
+            var isRelative = this.customPopover !== null;
+            var position = this.tooltipService.calculatePosition(this.element, this.popover, this.position, isRelative);
             this.popover.setAttribute("style", "top: " + position.top + "px; left: " + position.left + "px; display: block;");
 
             (0, _velocityAnimate2.default)(this.popover, 'stop').then(function () {

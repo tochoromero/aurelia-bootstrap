@@ -120,8 +120,8 @@ export class AubsPopoverCustomAttribute {
 
         this.popover.setAttribute("style", `display: block;`);
 
-
-        let position = this.tooltipService.calculatePosition(this.element, this.popover, this.position);
+        let isRelative = this.customPopover !== null;
+        let position = this.tooltipService.calculatePosition(this.element, this.popover, this.position, isRelative);
         this.popover.setAttribute("style", `top: ${position.top}px; left: ${position.left}px; display: block;`);
 
 

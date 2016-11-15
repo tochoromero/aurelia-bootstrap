@@ -1,7 +1,7 @@
 
 export class TooltipService{
 
-    calculatePosition(parent, floating, position) {
+    calculatePosition(parent, floating, position, isRelative = false) {
         let arrowSize = 10;
         let elementRect = parent.getBoundingClientRect();
         let floatingRect = floating.getBoundingClientRect();
@@ -9,17 +9,37 @@ export class TooltipService{
         let result = {};
 
         if (position === 'top') {
-            result.top = elementRect.top - floatingRect.height - floatingRect.top - arrowSize;
-            result.left = elementRect.left + (elementRect.width / 2) - (floatingRect.width / 2) - floatingRect.left;
+            result.top = elementRect.top - floatingRect.height;
+            result.left = elementRect.left + (elementRect.width / 2) - (floatingRect.width / 2);
+
+            if(isRelative){
+                result.top = result.top - floatingRect.top - arrowSize;
+                result.left = result.left - floatingRect.left;
+            }
         } else if (position === 'bottom') {
-            result.top = elementRect.top + elementRect.height - floatingRect.top + arrowSize;
-            result.left = (elementRect.left + (elementRect.width / 2) - (floatingRect.width / 2)) - floatingRect.left;
+            result.top = elementRect.top + elementRect.height;
+            result.left = (elementRect.left + (elementRect.width / 2) - (floatingRect.width / 2));
+
+            if(isRelative){
+                result.top = result.top - floatingRect.top + arrowSize;
+                result.left = result.left - floatingRect.left;
+            }
         } else if (position === 'left') {
-            result.top = elementRect.top + (elementRect.height / 2) - (floatingRect.height / 2) - floatingRect.top;
-            result.left = elementRect.left - floatingRect.width - floatingRect.left - arrowSize;
+            result.top = elementRect.top + (elementRect.height / 2) - (floatingRect.height / 2);
+            result.left = elementRect.left - floatingRect.width;
+
+            if(isRelative){
+                result.top = result.top - floatingRect.top;
+                result.left = result.left - floatingRect.left - arrowSize;
+            }
         } else {
             result.top = elementRect.top + (elementRect.height / 2) - (floatingRect.height / 2) - floatingRect.top;
             result.left = elementRect.left + elementRect.width - floatingRect.left + arrowSize;
+
+            if(isRelative){
+                result.top = result.top - floatingRect.top;
+                result.left = result.left - floatingRect.left + arrowSize;
+            }
         }
 
         result.top += window.scrollY;
