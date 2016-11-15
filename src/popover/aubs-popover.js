@@ -7,7 +7,7 @@ import velocity from "velocity-animate";
 export class AubsPopoverCustomAttribute {
 
     @bindable title;
-    @bindable text;
+    @bindable body;
     @bindable position = 'top';
     @bindable disabled = false;
     @bindable({defaultBindingMode: bindingMode.twoWay}) isOpen = false;
@@ -77,10 +77,18 @@ export class AubsPopoverCustomAttribute {
 
     titleChanged() {
         this.valuesChanged = true;
+
+        if (this.titleElement) {
+            this.titleElement.innerHTML = this.title;
+        }
     }
 
-    textChanged() {
+    bodyChanged() {
         this.valuesChanged = true;
+
+        if (this.bodyElement) {
+            this.bodyElement.innerHTML = this.body;
+        }
     }
 
     positionChanged(newValue, oldValue) {
@@ -115,7 +123,7 @@ export class AubsPopoverCustomAttribute {
                     .then(() => {
                         this.popover.classList.add('in');
 
-                        if(typeof this.onOpen === 'function'){
+                        if (typeof this.onOpen === 'function') {
                             this.onOpen();
                         }
                     });
@@ -207,18 +215,18 @@ export class AubsPopoverCustomAttribute {
         this.popover.appendChild(arrow);
 
         if (this.title) {
-            let title = document.createElement('h3');
-            title.classList.add('popover-title');
-            title.innerHTML = this.title;
-            this.popover.appendChild(title);
+            this.titleElement = document.createElement('h3');
+            this.titleElement.classList.add('popover-title');
+            this.titleElement.innerHTML = this.title;
+            this.popover.appendChild(this.titleElement);
         }
 
 
         let content = document.createElement('div');
         content.classList.add('popover-content');
-        let contentParagraph = document.createElement('p');
-        contentParagraph.innerHTML = this.text;
-        content.appendChild(contentParagraph);
+        this.bodyElement = document.createElement('p');
+        this.bodyElement.innerHTML = this.body;
+        content.appendChild(this.bodyElement);
         this.popover.appendChild(content);
 
         document.body.appendChild(this.popover);

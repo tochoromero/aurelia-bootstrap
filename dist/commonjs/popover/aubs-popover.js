@@ -72,7 +72,7 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
 
         _initDefineProp(this, "title", _descriptor, this);
 
-        _initDefineProp(this, "text", _descriptor2, this);
+        _initDefineProp(this, "body", _descriptor2, this);
 
         _initDefineProp(this, "position", _descriptor3, this);
 
@@ -154,10 +154,18 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
 
     AubsPopoverCustomAttribute.prototype.titleChanged = function titleChanged() {
         this.valuesChanged = true;
+
+        if (this.titleElement) {
+            this.titleElement.innerHTML = this.title;
+        }
     };
 
-    AubsPopoverCustomAttribute.prototype.textChanged = function textChanged() {
+    AubsPopoverCustomAttribute.prototype.bodyChanged = function bodyChanged() {
         this.valuesChanged = true;
+
+        if (this.bodyElement) {
+            this.bodyElement.innerHTML = this.body;
+        }
     };
 
     AubsPopoverCustomAttribute.prototype.positionChanged = function positionChanged(newValue, oldValue) {
@@ -281,17 +289,17 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
         this.popover.appendChild(arrow);
 
         if (this.title) {
-            var title = document.createElement('h3');
-            title.classList.add('popover-title');
-            title.innerHTML = this.title;
-            this.popover.appendChild(title);
+            this.titleElement = document.createElement('h3');
+            this.titleElement.classList.add('popover-title');
+            this.titleElement.innerHTML = this.title;
+            this.popover.appendChild(this.titleElement);
         }
 
         var content = document.createElement('div');
         content.classList.add('popover-content');
-        var contentParagraph = document.createElement('p');
-        contentParagraph.innerHTML = this.text;
-        content.appendChild(contentParagraph);
+        this.bodyElement = document.createElement('p');
+        this.bodyElement.innerHTML = this.body;
+        content.appendChild(this.bodyElement);
         this.popover.appendChild(content);
 
         document.body.appendChild(this.popover);
@@ -301,7 +309,7 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
 }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "title", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "text", [_aureliaFramework.bindable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "body", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: null
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "position", [_aureliaFramework.bindable], {

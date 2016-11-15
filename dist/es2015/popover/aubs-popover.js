@@ -53,7 +53,7 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
     constructor(element, tooltipService) {
         _initDefineProp(this, "title", _descriptor, this);
 
-        _initDefineProp(this, "text", _descriptor2, this);
+        _initDefineProp(this, "body", _descriptor2, this);
 
         _initDefineProp(this, "position", _descriptor3, this);
 
@@ -127,10 +127,18 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
 
     titleChanged() {
         this.valuesChanged = true;
+
+        if (this.titleElement) {
+            this.titleElement.innerHTML = this.title;
+        }
     }
 
-    textChanged() {
+    bodyChanged() {
         this.valuesChanged = true;
+
+        if (this.bodyElement) {
+            this.bodyElement.innerHTML = this.body;
+        }
     }
 
     positionChanged(newValue, oldValue) {
@@ -248,17 +256,17 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
         this.popover.appendChild(arrow);
 
         if (this.title) {
-            let title = document.createElement('h3');
-            title.classList.add('popover-title');
-            title.innerHTML = this.title;
-            this.popover.appendChild(title);
+            this.titleElement = document.createElement('h3');
+            this.titleElement.classList.add('popover-title');
+            this.titleElement.innerHTML = this.title;
+            this.popover.appendChild(this.titleElement);
         }
 
         let content = document.createElement('div');
         content.classList.add('popover-content');
-        let contentParagraph = document.createElement('p');
-        contentParagraph.innerHTML = this.text;
-        content.appendChild(contentParagraph);
+        this.bodyElement = document.createElement('p');
+        this.bodyElement.innerHTML = this.body;
+        content.appendChild(this.bodyElement);
         this.popover.appendChild(content);
 
         document.body.appendChild(this.popover);
@@ -266,7 +274,7 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "title", [bindable], {
     enumerable: true,
     initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "text", [bindable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "body", [bindable], {
     enumerable: true,
     initializer: null
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "position", [bindable], {
