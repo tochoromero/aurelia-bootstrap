@@ -178,6 +178,13 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service", "../utils/bo
             this.valuesChanged = true;
         };
 
+        AubsPopoverCustomAttribute.prototype.triggerChanged = function triggerChanged(newValue, oldValue) {
+            this.tooltipService.removeTriggers(this.element, this.triggers, this.listeners);
+
+            this.triggers = this.trigger.split(' ');
+            this.tooltipService.setTriggers(this.element, this.triggers, this.listeners);
+        };
+
         AubsPopoverCustomAttribute.prototype.handleShow = function handleShow() {
             var _this2 = this;
 

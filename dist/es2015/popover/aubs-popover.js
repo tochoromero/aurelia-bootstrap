@@ -150,6 +150,13 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
         this.valuesChanged = true;
     }
 
+    triggerChanged(newValue, oldValue) {
+        this.tooltipService.removeTriggers(this.element, this.triggers, this.listeners);
+
+        this.triggers = this.trigger.split(' ');
+        this.tooltipService.setTriggers(this.element, this.triggers, this.listeners);
+    }
+
     handleShow() {
         if (this.visible || this.disabled) {
             return;
