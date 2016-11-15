@@ -68,7 +68,7 @@ export class AubsDropdownCustomAttribute {
         this.state = !this.state;
         
         if(typeof  this.onToggle === 'function') {
-            this.onToggle({state: this.state});
+            this.onToggle({open: this.state});
         }
 
         this.setClass();

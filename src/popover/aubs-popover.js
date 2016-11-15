@@ -13,8 +13,7 @@ export class AubsPopoverCustomAttribute {
     @bindable({defaultBindingMode: bindingMode.twoWay}) isOpen = false;
     @bindable trigger = 'mouseover';
     @bindable customPopover;
-    @bindable onOpen;
-    @bindable onClose;
+    @bindable onToggle;
 
     triggers = [];
 
@@ -131,8 +130,8 @@ export class AubsPopoverCustomAttribute {
                     .then(() => {
                         this.popover.classList.add('in');
 
-                        if (typeof this.onOpen === 'function') {
-                            this.onOpen();
+                        if (typeof this.onToggle === 'function') {
+                            this.onToggle({open: true});
                         }
                     });
             });
@@ -172,8 +171,8 @@ export class AubsPopoverCustomAttribute {
                     .then(() => {
                         this.popover.classList.remove('in');
 
-                        if (typeof this.onClose === 'function') {
-                            this.onClose();
+                        if (typeof this.onToggle === 'function') {
+                            this.onToggle({open: false});
                         }
                     });
             });

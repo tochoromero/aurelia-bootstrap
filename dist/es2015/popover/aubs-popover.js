@@ -1,4 +1,4 @@
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8;
 
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -65,9 +65,7 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
 
         _initDefineProp(this, "customPopover", _descriptor7, this);
 
-        _initDefineProp(this, "onOpen", _descriptor8, this);
-
-        _initDefineProp(this, "onClose", _descriptor9, this);
+        _initDefineProp(this, "onToggle", _descriptor8, this);
 
         this.triggers = [];
         this.validPositions = ['top', 'bottom', 'left', 'right'];
@@ -178,8 +176,8 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
             velocity(this.popover, 'fadeIn').then(() => {
                 this.popover.classList.add('in');
 
-                if (typeof this.onOpen === 'function') {
-                    this.onOpen();
+                if (typeof this.onToggle === 'function') {
+                    this.onToggle({ open: true });
                 }
             });
         });
@@ -217,8 +215,8 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
             velocity(this.popover, 'fadeOut').then(() => {
                 this.popover.classList.remove('in');
 
-                if (typeof this.onClose === 'function') {
-                    this.onClose();
+                if (typeof this.onToggle === 'function') {
+                    this.onToggle({ open: false });
                 }
             });
         });
@@ -317,10 +315,7 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
 }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "customPopover", [bindable], {
     enumerable: true,
     initializer: null
-}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, "onOpen", [bindable], {
-    enumerable: true,
-    initializer: null
-}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, "onClose", [bindable], {
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, "onToggle", [bindable], {
     enumerable: true,
     initializer: null
 })), _class2)) || _class);

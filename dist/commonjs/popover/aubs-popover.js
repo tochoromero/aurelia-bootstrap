@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.AubsPopoverCustomAttribute = undefined;
 
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8;
 
 var _aureliaFramework = require("aurelia-framework");
 
@@ -84,9 +84,7 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
 
         _initDefineProp(this, "customPopover", _descriptor7, this);
 
-        _initDefineProp(this, "onOpen", _descriptor8, this);
-
-        _initDefineProp(this, "onClose", _descriptor9, this);
+        _initDefineProp(this, "onToggle", _descriptor8, this);
 
         this.triggers = [];
         this.validPositions = ['top', 'bottom', 'left', 'right'];
@@ -207,8 +205,8 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
             (0, _velocityAnimate2.default)(_this2.popover, 'fadeIn').then(function () {
                 _this2.popover.classList.add('in');
 
-                if (typeof _this2.onOpen === 'function') {
-                    _this2.onOpen();
+                if (typeof _this2.onToggle === 'function') {
+                    _this2.onToggle({ open: true });
                 }
             });
         });
@@ -250,8 +248,8 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
             (0, _velocityAnimate2.default)(_this4.popover, 'fadeOut').then(function () {
                 _this4.popover.classList.remove('in');
 
-                if (typeof _this4.onClose === 'function') {
-                    _this4.onClose();
+                if (typeof _this4.onToggle === 'function') {
+                    _this4.onToggle({ open: false });
                 }
             });
         });
@@ -352,10 +350,7 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
 }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "customPopover", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: null
-}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, "onOpen", [_aureliaFramework.bindable], {
-    enumerable: true,
-    initializer: null
-}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, "onClose", [_aureliaFramework.bindable], {
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, "onToggle", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: null
 })), _class2)) || _class);
