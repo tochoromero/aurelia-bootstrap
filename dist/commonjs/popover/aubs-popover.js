@@ -173,6 +173,7 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
             this.position = oldValue;
             return;
         }
+        this.oldPosition = oldValue;
 
         this.valuesChanged = true;
     };
@@ -270,15 +271,28 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
         }
     };
 
-    AubsPopoverCustomAttribute.prototype.getPositionClass = function getPositionClass() {
-        return this.popover.classList.add((_bootstrapOptions.bootstrapOptions.version === 4 ? 'popover-' : '') + this.position);
+    AubsPopoverCustomAttribute.prototype.getPositionClass = function getPositionClass(position) {
+        return (_bootstrapOptions.bootstrapOptions.version === 4 ? 'popover-' : '') + position;
     };
 
     AubsPopoverCustomAttribute.prototype.createPopover = function createPopover() {
+        var arrow = document.createElement('div');
+        arrow.classList.add('arrow');
+
         if (this.customPopover) {
             this.popover = this.customPopover;
+
+            this.popover.classList.remove(this.getPositionClass(this.oldPosition));
+
             this.popover.classList.add('popover');
-            this.popover.classList.add(this.getPositionClass());
+            this.popover.classList.add(this.getPositionClass(this.position));
+
+            var oldArrow = this.popover.querySelector('.arrow');
+            if (oldArrow) {
+                this.popover.removeChild(oldArrow);
+            }
+
+            this.popover.appendChild(arrow);
             return;
         }
 
@@ -288,11 +302,8 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
 
         this.popover = document.createElement('div');
         this.popover.classList.add('popover');
-        this.popover.classList.add('popover-' + this.position);
-        this.popover.classList.add(this.getPositionClass());
+        this.popover.classList.add(this.getPositionClass(this.position));
 
-        var arrow = document.createElement('div');
-        arrow.classList.add('arrow');
         this.popover.appendChild(arrow);
 
         if (this.title) {

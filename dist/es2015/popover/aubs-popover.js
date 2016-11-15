@@ -146,6 +146,7 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
             this.position = oldValue;
             return;
         }
+        this.oldPosition = oldValue;
 
         this.valuesChanged = true;
     }
@@ -237,15 +238,28 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
         }
     }
 
-    getPositionClass() {
-        return this.popover.classList.add((bootstrapOptions.version === 4 ? 'popover-' : '') + this.position);
+    getPositionClass(position) {
+        return (bootstrapOptions.version === 4 ? 'popover-' : '') + position;
     }
 
     createPopover() {
+        let arrow = document.createElement('div');
+        arrow.classList.add('arrow');
+
         if (this.customPopover) {
             this.popover = this.customPopover;
+
+            this.popover.classList.remove(this.getPositionClass(this.oldPosition));
+
             this.popover.classList.add('popover');
-            this.popover.classList.add(this.getPositionClass());
+            this.popover.classList.add(this.getPositionClass(this.position));
+
+            var oldArrow = this.popover.querySelector('.arrow');
+            if (oldArrow) {
+                this.popover.removeChild(oldArrow);
+            }
+
+            this.popover.appendChild(arrow);
             return;
         }
 
@@ -255,11 +269,8 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
 
         this.popover = document.createElement('div');
         this.popover.classList.add('popover');
-        this.popover.classList.add('popover-' + this.position);
-        this.popover.classList.add(this.getPositionClass());
+        this.popover.classList.add(this.getPositionClass(this.position));
 
-        let arrow = document.createElement('div');
-        arrow.classList.add('arrow');
         this.popover.appendChild(arrow);
 
         if (this.title) {
