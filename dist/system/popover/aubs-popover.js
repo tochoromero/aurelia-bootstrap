@@ -290,12 +290,10 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
                         this.popover.classList.add('popover');
                         this.popover.classList.add(this.getPositionClass(this.position));
 
-                        var oldArrow = this.popover.querySelector('.arrow');
-                        if (oldArrow) {
-                            this.popover.removeChild(oldArrow);
+                        if (!this.popover.querySelector('.arrow')) {
+                            this.popover.appendChild(arrow);
                         }
 
-                        this.popover.appendChild(arrow);
                         return;
                     }
 
