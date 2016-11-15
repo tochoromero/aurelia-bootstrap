@@ -1,0 +1,247 @@
+<template>
+    <div class="container-fluid">
+        <div class="page-header">
+            <a class="btn btn-default pull-right" target="_blank"
+               href="https://github.com/tochoromero/aurelia-bootstrap/tree/master/doc/src/popover">
+                <i class="fa fa-edit"></i> Improve documentation</a>
+            <h1>Popover</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Position:</label>
+                            <select class="form-control" value.bind="position">
+                                <option value="top">Top</option>
+                                <option value="bottom">Bottom</option>
+                                <option value="left">Left</option>
+                                <option value="right">Right</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Trigger:</label>
+                            <select class="form-control" value.bind="trigger">
+                                <option value="mouseover">Mouseover</option>
+                                <option value="focus">Focus</option>
+                                <option value="click">Click</option>
+                                <option value="outsideClick">Outside click</option>
+                                <option value="none">None</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <button class="btn btn-default" aubs-popover="title:My Title <i class='fa fa-heart'></i>;
+                                                                    body:<a href='#/popover'>Awesome</a> <strong>Content</strong>;
+                                                                    position.bind: position;
+                                                                    trigger.bind: trigger;
+                                                                    on-toggle.call:toggled(open)">
+                            Basic Popover
+                        </button>
+                        <br/> <br/>
+                        <button class="btn btn-primary" aubs-popover="custom-popover.bind: customPopover;
+                                                                    position.bind: position;
+                                                                    trigger.bind: trigger;
+                                                                    is-open.bind:isOpen;">
+                            Custom Popover
+                        </button>
+
+                        <div ref="customPopover">
+                            <h3 class="popover-title">
+                                Enter Password <i class="fa fa-lock"></i>
+                            </h3>
+
+                            <div class="popover-content">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Password">
+                                </div>
+
+                                <button class="btn btn-default" click.delegate="isOpen = false"> Unlock</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-xs-12">
+                <p>
+                    The <code>aubs-popover</code> Custom Attribute allows you to easily create Popover. It is flexible enough to allow you
+                    to
+                    create complex popovers with custom content.
+                </p>
+
+                <h3>aubs-popover</h3>
+                <p>The <code>aubs-popover</code> custom attribute has many settings. Because of this we will break them up on different
+                    sections:</p>
+
+                <h4>Popover Settings</h4>
+                <ul>
+                    <li><code>position</code>
+                        <string></string>
+                        <i>(default: top)</i>: The position of the popover. The possible values are: <code>top</code>, <code>bottom</code>,
+                        <code>left</code> and <code>right</code>.
+                    </li>
+                    <li><code>disabled</code>
+                        <boolean></boolean>
+                        <i>(default: false)</i>: Whether or not the popover is disabled.
+                    </li>
+                    <li><code>is-open</code>
+                        <property></property>
+                        <boolean property.bind="true"></boolean>
+                        <two-way></two-way>
+                        <i>(default: false)</i>: Reflects the state of the popover. You can use this property to programmatically toggle the
+                        popover.
+                    </li>
+                    <li><code>trigger</code>
+                        <string></string>
+                        <i>(default: mouseover)</i>: The event that triggers the popover. The options are:
+                        <ul>
+                            <li><code>mouseover</code>: The popover will open when the mouse enters the Element, and it will be closed when
+                                the mouse leaves it.
+                            </li>
+                            <li><code>focus</code>: The popover will open when the element gain focus. It will be closed when the focus is
+                                lost.
+                            </li>
+                            <li><code>click</code>: The popover will toggle when the element is clicked.</li>
+                            <li><code>outsideClick</code>: The popover will open when the element is clicked, and it will be closed with a
+                                click outside of the popover.
+                            </li>
+                            <li><code>none</code>: The only way to toggle the popover will be with external control of the
+                                <code>is-open</code> property.
+                            </li>
+                        </ul>
+                    </li>
+                    <li><code>on-toggle</code>
+                        <function></function>
+                        : Callback function called when the popover is toggled. It will receive a <code>open</code> parameter which is
+                        <code>true</code> if it the popover is open or <code>false</code> otherwise.
+                    </li>
+                </ul>
+
+                <h4>Simple Popover</h4>
+                <p>If you only need a simple popover with none or very little HTML <strong>that doesn't need to be compiled</strong> you can
+                    use the following settings:</p>
+                <ul>
+                    <li><code>title</code>
+                        <string></string>
+                        <markup></markup>
+                        : The popover title. It is not necessary to provide one.
+                    </li>
+                    <li><code>body</code>
+                        <string></string>
+                        <markup></markup>
+                        : The popover text body.
+                    </li>
+                </ul>
+
+                <h4>Custom Popover</h4>
+                <p>If you require a popover with complex content or you need access to your view model you can use a custom popover.</p>
+                <ul>
+                    <li><code>custom-popover</code>
+                        <ref></ref>
+                        : Specifies the DOM element to use as the popover. The DOM element will keep the right view-model context.
+                    </li>
+                </ul>
+                <p>Your DOM element needs to look something like this:
+                <pre><code class="language-markup" au-syntax>&lt;div ref="customPopover">
+    &lt;h3 class="popover-title">My Title&lt;/h3>
+    &lt;div class="popover-content">My Content&lt;/div>
+&lt;/div></code></pre>
+                Note how we have <code>ref="customPopover"</code>. This is the reference you need to provided in the
+                <code>custom-popover</code> setting.
+                </p>
+
+            </div>
+
+            <div class="col-xs-12">
+                <hr>
+                <aubs-tabset>
+                    <aubs-tab header="HTML">
+                        <pre><code class="language-markup" au-syntax>&lt;template>
+    &lt;div class="row">
+        &lt;div class="col-md-6">
+            &lt;div class="form-group">
+                &lt;label>Position:&lt;/label>
+                &lt;select class="form-control" value.bind="position">
+                    &lt;option value="top">Top&lt;/option>
+                    &lt;option value="bottom">Bottom&lt;/option>
+                    &lt;option value="left">Left&lt;/option>
+                    &lt;option value="right">Right&lt;/option>
+                &lt;/select>
+            &lt;/div>
+
+            &lt;div class="form-group">
+                &lt;label>Trigger:&lt;/label>
+                &lt;select class="form-control" value.bind="trigger">
+                    &lt;option value="mouseover">Mouseover&lt;/option>
+                    &lt;option value="focus">Focus&lt;/option>
+                    &lt;option value="click">Click&lt;/option>
+                    &lt;option value="outsideClick">Outside click&lt;/option>
+                    &lt;option value="none">None&lt;/option>
+                &lt;/select>
+            &lt;/div>
+        &lt;/div>
+
+        &lt;div class="col-md-6">
+
+            &lt;button class="btn btn-default" aubs-popover="title:My Title &lt;i class='fa fa-heart'>&lt;/i>;
+                                                        body:&lt;a href='#/popover'>Awesome&lt;/a> &lt;strong>Content&lt;/strong>;
+                                                        position.bind: position;
+                                                        trigger.bind: trigger;
+                                                        on-toggle.call:toggled(open)">
+                Basic Popover
+            &lt;/button>
+
+            &lt;br/> &lt;br/>
+
+            &lt;button class="btn btn-primary" aubs-popover="custom-popover.bind: customPopover;
+                                                        position.bind: position;
+                                                        trigger.bind: trigger;
+                                                        is-open.bind:isOpen;">
+                Custom Popover
+            &lt;/button>
+
+            &lt;div ref="customPopover">
+                &lt;h3 class="popover-title">
+                    Enter Password &lt;i class="fa fa-lock">&lt;/i>
+                &lt;/h3>
+
+                &lt;div class="popover-content">
+                    &lt;div class="form-group">
+                        &lt;input type="password" class="form-control" placeholder="Password">
+                    &lt;/div>
+
+                    &lt;button class="btn btn-default" click.delegate="isOpen = false"> Unlock&lt;/button>
+                &lt;/div>
+            &lt;/div>
+
+        &lt;/div>
+    &lt;/div>
+&lt;/template></code></pre>
+                    </aubs-tab>
+
+                    <aubs-tab header="JS">
+                        <pre><code class="language-js" au-syntax>export class Example {
+    position = 'top';
+    trigger = 'mouseover';
+
+    toggled(open) {
+        if (open) {
+            console.log('opened');
+        } else {
+            console.log('closed');
+        }
+    }
+}</code></pre>
+                    </aubs-tab>
+                </aubs-tabset>
+
+            </div>
+        </div>
+    </div>
+</template>

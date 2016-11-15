@@ -6,6 +6,7 @@ export function configure(aurelia) {
         './settings-type/string.html',
         './settings-type/markup.html',
         './settings-type/function.html',
+        './settings-type/ref.html',
         './settings-type/any.html'
     );
 }
