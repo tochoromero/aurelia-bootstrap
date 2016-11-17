@@ -33,8 +33,8 @@ export let TooltipService = class TooltipService {
                 result.left = result.left - floatingRect.left - arrowSize;
             }
         } else {
-            result.top = elementRect.top + elementRect.height / 2 - floatingRect.height / 2 - floatingRect.top;
-            result.left = elementRect.left + elementRect.width - floatingRect.left + arrowSize;
+            result.top = elementRect.top + elementRect.height / 2 - floatingRect.height / 2;
+            result.left = elementRect.left + elementRect.width;
 
             if (isRelative) {
                 result.top = result.top - floatingRect.top;

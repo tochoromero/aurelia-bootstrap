@@ -140,6 +140,13 @@ var AubsTooltipCustomAttribute = exports.AubsTooltipCustomAttribute = (_dec = (0
         }
     };
 
+    AubsTooltipCustomAttribute.prototype.triggerChanged = function triggerChanged() {
+        this.tooltipService.removeTriggers(this.element, this.triggers, this.listeners);
+
+        this.triggers = this.trigger.split(' ');
+        this.tooltipService.setTriggers(this.element, this.triggers, this.listeners);
+    };
+
     AubsTooltipCustomAttribute.prototype.textChanged = function textChanged() {
         this.valuesChanged = true;
 
@@ -169,6 +176,7 @@ var AubsTooltipCustomAttribute = exports.AubsTooltipCustomAttribute = (_dec = (0
             this.valuesChanged = false;
         }
 
+        this.tooltip.setAttribute("style", 'top: 0px; left: 0px');
         this.tooltip.style.display = 'block';
 
         var position = this.tooltipService.calculatePosition(this.element, this.tooltip, this.position);

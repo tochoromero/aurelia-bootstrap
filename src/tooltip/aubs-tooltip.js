@@ -65,6 +65,13 @@ export class AubsTooltipCustomAttribute {
         }
     }
 
+    triggerChanged(){
+        this.tooltipService.removeTriggers(this.element, this.triggers, this.listeners);
+
+        this.triggers = this.trigger.split(' ');
+        this.tooltipService.setTriggers(this.element, this.triggers, this.listeners);
+    }
+
     textChanged() {
         this.valuesChanged = true;
 
@@ -92,6 +99,7 @@ export class AubsTooltipCustomAttribute {
             this.valuesChanged = false;
         }
 
+        this.tooltip.setAttribute("style", 'top: 0px; left: 0px');
         this.tooltip.style.display = 'block';
 
         let position = this.tooltipService.calculatePosition(this.element, this.tooltip, this.position);

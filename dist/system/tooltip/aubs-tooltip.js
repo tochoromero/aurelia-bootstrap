@@ -143,6 +143,13 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
                     }
                 };
 
+                AubsTooltipCustomAttribute.prototype.triggerChanged = function triggerChanged() {
+                    this.tooltipService.removeTriggers(this.element, this.triggers, this.listeners);
+
+                    this.triggers = this.trigger.split(' ');
+                    this.tooltipService.setTriggers(this.element, this.triggers, this.listeners);
+                };
+
                 AubsTooltipCustomAttribute.prototype.textChanged = function textChanged() {
                     this.valuesChanged = true;
 
@@ -172,6 +179,7 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
                         this.valuesChanged = false;
                     }
 
+                    this.tooltip.setAttribute("style", 'top: 0px; left: 0px');
                     this.tooltip.style.display = 'block';
 
                     var position = this.tooltipService.calculatePosition(this.element, this.tooltip, this.position);
