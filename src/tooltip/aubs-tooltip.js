@@ -67,6 +67,10 @@ export class AubsTooltipCustomAttribute {
 
     textChanged() {
         this.valuesChanged = true;
+
+        if(this.body){
+            this.body.innerHTML = this.text;
+        }
     }
 
     positionChanged(newValue, oldValue) {
@@ -164,11 +168,10 @@ export class AubsTooltipCustomAttribute {
         arrow.classList.add('tooltip-arrow');
         this.tooltip.appendChild(arrow);
 
-        let inner = document.createElement('div');
-        inner.classList.add('tooltip-inner');
-        let text = document.createTextNode(this.text);
-        inner.appendChild(text);
-        this.tooltip.appendChild(inner);
+        this.body = document.createElement('div');
+        this.body.classList.add('tooltip-inner');
+        this.body.innerHTML = this.text;
+        this.tooltip.appendChild(this.body);
 
         document.body.appendChild(this.tooltip);
     }

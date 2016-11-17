@@ -142,6 +142,10 @@ var AubsTooltipCustomAttribute = exports.AubsTooltipCustomAttribute = (_dec = (0
 
     AubsTooltipCustomAttribute.prototype.textChanged = function textChanged() {
         this.valuesChanged = true;
+
+        if (this.body) {
+            this.body.innerHTML = this.text;
+        }
     };
 
     AubsTooltipCustomAttribute.prototype.positionChanged = function positionChanged(newValue, oldValue) {
@@ -241,11 +245,10 @@ var AubsTooltipCustomAttribute = exports.AubsTooltipCustomAttribute = (_dec = (0
         arrow.classList.add('tooltip-arrow');
         this.tooltip.appendChild(arrow);
 
-        var inner = document.createElement('div');
-        inner.classList.add('tooltip-inner');
-        var text = document.createTextNode(this.text);
-        inner.appendChild(text);
-        this.tooltip.appendChild(inner);
+        this.body = document.createElement('div');
+        this.body.classList.add('tooltip-inner');
+        this.body.innerHTML = this.text;
+        this.tooltip.appendChild(this.body);
 
         document.body.appendChild(this.tooltip);
     };
