@@ -166,11 +166,8 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
             this.valuesChanged = false;
         }
 
-        this.popover.setAttribute("style", `display: block;`);
-
-        let isRelative = this.customPopover !== null;
-        let position = this.tooltipService.calculatePosition(this.element, this.popover, this.position, isRelative);
-        this.popover.setAttribute("style", `top: ${ position.top }px; left: ${ position.left }px; display: block;`);
+        this.popover.style.display = 'block';
+        this.tether.position();
 
         velocity(this.popover, 'stop').then(() => {
             velocity(this.popover, 'fadeIn').then(() => {
@@ -256,35 +253,39 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
             if (!this.popover.querySelector('.arrow')) {
                 this.popover.appendChild(arrow);
             }
+        } else {
+            if (this.popover) {
+                document.body.removeChild(this.popover);
+            }
 
-            return;
+            this.popover = document.createElement('div');
+            this.popover.classList.add('popover');
+            this.popover.classList.add(this.getPositionClass(this.position));
+
+            this.popover.appendChild(arrow);
+
+            if (this.title) {
+                this.titleElement = document.createElement('h3');
+                this.titleElement.classList.add('popover-title');
+                this.titleElement.innerHTML = this.title;
+                this.popover.appendChild(this.titleElement);
+            }
+
+            let content = document.createElement('div');
+            content.classList.add('popover-content');
+            this.bodyElement = document.createElement('p');
+            this.bodyElement.innerHTML = this.body;
+            content.appendChild(this.bodyElement);
+            this.popover.appendChild(content);
+
+            document.body.appendChild(this.popover);
         }
 
-        if (this.popover) {
-            document.body.removeChild(this.popover);
+        if (this.tether) {
+            this.tether.destroy();
         }
 
-        this.popover = document.createElement('div');
-        this.popover.classList.add('popover');
-        this.popover.classList.add(this.getPositionClass(this.position));
-
-        this.popover.appendChild(arrow);
-
-        if (this.title) {
-            this.titleElement = document.createElement('h3');
-            this.titleElement.classList.add('popover-title');
-            this.titleElement.innerHTML = this.title;
-            this.popover.appendChild(this.titleElement);
-        }
-
-        let content = document.createElement('div');
-        content.classList.add('popover-content');
-        this.bodyElement = document.createElement('p');
-        this.bodyElement.innerHTML = this.body;
-        content.appendChild(this.bodyElement);
-        this.popover.appendChild(content);
-
-        document.body.appendChild(this.popover);
+        this.tether = this.tooltipService.createAttachment(this.element, this.popover, this.position);
     }
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "title", [bindable], {
     enumerable: true,

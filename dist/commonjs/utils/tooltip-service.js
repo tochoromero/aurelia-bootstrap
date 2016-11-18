@@ -3,6 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.TooltipService = undefined;
+
+var _tether = require('tether');
+
+var _tether2 = _interopRequireDefault(_tether);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11,55 +18,30 @@ var TooltipService = exports.TooltipService = function () {
         _classCallCheck(this, TooltipService);
     }
 
-    TooltipService.prototype.calculatePosition = function calculatePosition(parent, floating, position) {
-        var isRelative = arguments.length <= 3 || arguments[3] === undefined ? false : arguments[3];
-
-        var arrowSize = 10;
-        var elementRect = parent.getBoundingClientRect();
-        var floatingRect = floating.getBoundingClientRect();
-
-        var result = {};
+    TooltipService.prototype.createAttachment = function createAttachment(target, element, position) {
+        var attachment = void 0;
+        var targetAttachment = void 0;
 
         if (position === 'top') {
-            result.top = elementRect.top - floatingRect.height;
-            result.left = elementRect.left + elementRect.width / 2 - floatingRect.width / 2;
-
-            if (isRelative) {
-                result.top = result.top - floatingRect.top - arrowSize;
-                result.left = result.left - floatingRect.left;
-            }
+            attachment = 'bottom center';
+            targetAttachment = "top center";
         } else if (position === 'bottom') {
-            result.top = elementRect.top + elementRect.height;
-            result.left = elementRect.left + elementRect.width / 2 - floatingRect.width / 2;
-
-            if (isRelative) {
-                result.top = result.top - floatingRect.top + arrowSize;
-                result.left = result.left - floatingRect.left;
-            }
+            attachment = 'top center';
+            targetAttachment = "bottom center";
         } else if (position === 'left') {
-            result.top = elementRect.top + elementRect.height / 2 - floatingRect.height / 2;
-            result.left = elementRect.left - floatingRect.width;
-
-            if (isRelative) {
-                result.top = result.top - floatingRect.top;
-                result.left = result.left - floatingRect.left - arrowSize;
-            }
+            attachment = 'center right';
+            targetAttachment = "center left";
         } else {
-            result.top = elementRect.top + elementRect.height / 2 - floatingRect.height / 2;
-            result.left = elementRect.left + elementRect.width;
-
-            if (isRelative) {
-                result.top = result.top - floatingRect.top;
-                result.left = result.left - floatingRect.left + arrowSize;
-            }
+            attachment = 'center left';
+            targetAttachment = "center right";
         }
 
-        result.top += window.scrollY;
-
-        result.top = Math.round(result.top);
-        result.left = Math.round(result.left);
-
-        return result;
+        return new _tether2.default({
+            element: element,
+            target: target,
+            attachment: attachment,
+            targetAttachment: targetAttachment
+        });
     };
 
     TooltipService.prototype.setTriggers = function setTriggers(element, triggers, listeners) {

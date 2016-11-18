@@ -147,11 +147,8 @@ export let AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService),
             this.valuesChanged = false;
         }
 
-        this.tooltip.setAttribute("style", 'top: 0px; left: 0px');
         this.tooltip.style.display = 'block';
-
-        let position = this.tooltipService.calculatePosition(this.element, this.tooltip, this.position);
-        this.tooltip.setAttribute("style", `top: ${ position.top }px; left: ${ position.left }px`);
+        this.tether.position();
 
         velocity(this.tooltip, 'stop').then(() => {
             velocity(this.tooltip, 'fadeIn').then(() => {
@@ -226,6 +223,12 @@ export let AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService),
         this.tooltip.appendChild(this.body);
 
         document.body.appendChild(this.tooltip);
+
+        if (this.tether) {
+            this.tether.destroy();
+        }
+
+        this.tether = this.tooltipService.createAttachment(this.element, this.tooltip, this.position);
     }
 
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "text", [bindable], {

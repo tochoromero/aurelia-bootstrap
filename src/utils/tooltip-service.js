@@ -1,53 +1,31 @@
+import Tether from 'tether';
 
 export class TooltipService{
 
-    calculatePosition(parent, floating, position, isRelative = false) {
-        let arrowSize = 10;
-        let elementRect = parent.getBoundingClientRect();
-        let floatingRect = floating.getBoundingClientRect();
-
-        let result = {};
+    createAttachment(target, element, position) {
+        let attachment;
+        let targetAttachment;
 
         if (position === 'top') {
-            result.top = elementRect.top - floatingRect.height;
-            result.left = elementRect.left + (elementRect.width / 2) - (floatingRect.width / 2);
-
-            if(isRelative){
-                result.top = result.top - floatingRect.top - arrowSize;
-                result.left = result.left - floatingRect.left;
-            }
+            attachment = 'bottom center';
+            targetAttachment = "top center";
         } else if (position === 'bottom') {
-            result.top = elementRect.top + elementRect.height;
-            result.left = (elementRect.left + (elementRect.width / 2) - (floatingRect.width / 2));
-
-            if(isRelative){
-                result.top = result.top - floatingRect.top + arrowSize;
-                result.left = result.left - floatingRect.left;
-            }
+            attachment = 'top center';
+            targetAttachment = "bottom center";
         } else if (position === 'left') {
-            result.top = elementRect.top + (elementRect.height / 2) - (floatingRect.height / 2);
-            result.left = elementRect.left - floatingRect.width;
-
-            if(isRelative){
-                result.top = result.top - floatingRect.top;
-                result.left = result.left - floatingRect.left - arrowSize;
-            }
+            attachment = 'center right';
+            targetAttachment = "center left";
         } else {
-            result.top = elementRect.top + (elementRect.height / 2) - (floatingRect.height / 2);
-            result.left = elementRect.left + elementRect.width;
-
-            if(isRelative){
-                result.top = result.top - floatingRect.top;
-                result.left = result.left - floatingRect.left + arrowSize;
-            }
+            attachment = 'center left';
+            targetAttachment = "center right";
         }
 
-        result.top += window.scrollY;
-
-        result.top = Math.round(result.top);
-        result.left = Math.round(result.left);
-
-        return result;
+        return new Tether({
+            element: element,
+            target: target,
+            attachment: attachment,
+            targetAttachment: targetAttachment
+        });
     }
     
     setTriggers(element, triggers, listeners){

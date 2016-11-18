@@ -179,11 +179,8 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
                         this.valuesChanged = false;
                     }
 
-                    this.tooltip.setAttribute("style", 'top: 0px; left: 0px');
                     this.tooltip.style.display = 'block';
-
-                    var position = this.tooltipService.calculatePosition(this.element, this.tooltip, this.position);
-                    this.tooltip.setAttribute("style", "top: " + position.top + "px; left: " + position.left + "px");
+                    this.tether.position();
 
                     velocity(this.tooltip, 'stop').then(function () {
                         velocity(_this2.tooltip, 'fadeIn').then(function () {
@@ -262,6 +259,12 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
                     this.tooltip.appendChild(this.body);
 
                     document.body.appendChild(this.tooltip);
+
+                    if (this.tether) {
+                        this.tether.destroy();
+                    }
+
+                    this.tether = this.tooltipService.createAttachment(this.element, this.tooltip, this.position);
                 };
 
                 return AubsTooltipCustomAttribute;

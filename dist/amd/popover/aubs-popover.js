@@ -196,11 +196,8 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service", "../utils/bo
                 this.valuesChanged = false;
             }
 
-            this.popover.setAttribute("style", "display: block;");
-
-            var isRelative = this.customPopover !== null;
-            var position = this.tooltipService.calculatePosition(this.element, this.popover, this.position, isRelative);
-            this.popover.setAttribute("style", "top: " + position.top + "px; left: " + position.left + "px; display: block;");
+            this.popover.style.display = 'block';
+            this.tether.position();
 
             (0, _velocityAnimate2.default)(this.popover, 'stop').then(function () {
                 (0, _velocityAnimate2.default)(_this2.popover, 'fadeIn').then(function () {
@@ -290,35 +287,39 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service", "../utils/bo
                 if (!this.popover.querySelector('.arrow')) {
                     this.popover.appendChild(arrow);
                 }
+            } else {
+                if (this.popover) {
+                    document.body.removeChild(this.popover);
+                }
 
-                return;
+                this.popover = document.createElement('div');
+                this.popover.classList.add('popover');
+                this.popover.classList.add(this.getPositionClass(this.position));
+
+                this.popover.appendChild(arrow);
+
+                if (this.title) {
+                    this.titleElement = document.createElement('h3');
+                    this.titleElement.classList.add('popover-title');
+                    this.titleElement.innerHTML = this.title;
+                    this.popover.appendChild(this.titleElement);
+                }
+
+                var content = document.createElement('div');
+                content.classList.add('popover-content');
+                this.bodyElement = document.createElement('p');
+                this.bodyElement.innerHTML = this.body;
+                content.appendChild(this.bodyElement);
+                this.popover.appendChild(content);
+
+                document.body.appendChild(this.popover);
             }
 
-            if (this.popover) {
-                document.body.removeChild(this.popover);
+            if (this.tether) {
+                this.tether.destroy();
             }
 
-            this.popover = document.createElement('div');
-            this.popover.classList.add('popover');
-            this.popover.classList.add(this.getPositionClass(this.position));
-
-            this.popover.appendChild(arrow);
-
-            if (this.title) {
-                this.titleElement = document.createElement('h3');
-                this.titleElement.classList.add('popover-title');
-                this.titleElement.innerHTML = this.title;
-                this.popover.appendChild(this.titleElement);
-            }
-
-            var content = document.createElement('div');
-            content.classList.add('popover-content');
-            this.bodyElement = document.createElement('p');
-            this.bodyElement.innerHTML = this.body;
-            content.appendChild(this.bodyElement);
-            this.popover.appendChild(content);
-
-            document.body.appendChild(this.popover);
+            this.tether = this.tooltipService.createAttachment(this.element, this.popover, this.position);
         };
 
         return AubsPopoverCustomAttribute;
