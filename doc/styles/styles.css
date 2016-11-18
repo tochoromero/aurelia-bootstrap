@@ -12,6 +12,10 @@ body {
     color: #6E4D9B;
 }
 
+.navbar-fixed-top, .navbar-fixed-bottom {
+    z-index: 2000!important;
+}
+
 .splash .message {
     font-size: 72px;
     line-height: 72px;

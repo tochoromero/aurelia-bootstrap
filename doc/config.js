@@ -46,6 +46,7 @@ System.config({
     },
     "github:tochoromero/aurelia-bootstrap@master": {
       "aurelia-templating-resources": "npm:aurelia-templating-resources@1.0.0",
+      "tether": "npm:tether@1.3.7",
       "velocity-animate": "npm:velocity-animate@1.3.1"
     },
     "github:twbs/bootstrap@3.3.7": {
@@ -202,6 +203,10 @@ System.config({
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "vm": "github:jspm/nodelibs-vm@0.1.0"
     },
+    "npm:tether@1.3.7": {
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.2"
+    },
     "npm:util@0.10.3": {
       "inherits": "npm:inherits@2.0.1",
       "process": "github:jspm/nodelibs-process@0.1.2"
@@ -212,6 +217,11 @@ System.config({
     "npm:vm-browserify@0.0.4": {
       "indexof": "npm:indexof@0.0.1"
     }
+  },
+  depCache: {
+    "main.js": [
+      "fetch"
+    ]
   },
   bundles: {
     "app-build.js": [
@@ -356,13 +366,10 @@ System.config({
       "npm:prismjs@1.5.1/prism.js",
       "npm:process@0.11.9.js",
       "npm:process@0.11.9/browser.js",
+      "npm:tether@1.3.7.js",
+      "npm:tether@1.3.7/dist/js/tether.js",
       "npm:velocity-animate@1.3.1.js",
       "npm:velocity-animate@1.3.1/velocity.js"
-    ]
-  },
-  depCache: {
-    "main.js": [
-      "fetch"
     ]
   }
 });
