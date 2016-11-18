@@ -1,5 +1,5 @@
 export class Dropdown {
-    autoClose = 'disabled';
+    autoClose = 'always';
 
     toggled(state){
         console.log('Toggled: ' + state);

@@ -237,7 +237,9 @@ System.config({
       "resources/settings-type/property.html!github:systemjs/plugin-text@0.0.8.js",
       "resources/settings-type/ref.html!github:systemjs/plugin-text@0.0.8.js",
       "resources/settings-type/string.html!github:systemjs/plugin-text@0.0.8.js",
-      "resources/settings-type/two-way.html!github:systemjs/plugin-text@0.0.8.js"
+      "resources/settings-type/two-way.html!github:systemjs/plugin-text@0.0.8.js",
+      "tooltip/tooltip.html!github:systemjs/plugin-text@0.0.8.js",
+      "tooltip/tooltip.js"
     ],
     "aurelia.js": [
       "github:github/fetch@1.0.0.js",
