@@ -109,9 +109,6 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
                         },
                         outside: function outside(event) {
                             return _this.handleOutside(event);
-                        },
-                        resize: function resize() {
-                            return _this.resizeThrottler();
                         }
                     };
                 }
@@ -213,51 +210,27 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
 
                     this.visible = true;
                     this.isOpen = true;
-
-                    window.addEventListener('resize', this.listeners.resize);
                 };
 
-                AubsPopoverCustomAttribute.prototype.resizeThrottler = function resizeThrottler() {
+                AubsPopoverCustomAttribute.prototype.handleHide = function handleHide() {
                     var _this3 = this;
 
                     if (!this.visible) {
                         return;
                     }
 
-                    if (!this.resizeTimeout) {
-                        this.resizeTimeout = setTimeout(function () {
-                            _this3.resizeTimeout = null;
-                            _this3.handleResize();
-                        }, 66);
-                    }
-                };
-
-                AubsPopoverCustomAttribute.prototype.handleResize = function handleResize() {
-                    var position = this.tooltipService.calculatePosition();
-                    this.popover.setAttribute("style", "top: " + position.top + "px; left: " + position.left + "px");
-                };
-
-                AubsPopoverCustomAttribute.prototype.handleHide = function handleHide() {
-                    var _this4 = this;
-
-                    if (!this.visible) {
-                        return;
-                    }
-
                     velocity(this.popover, 'stop').then(function () {
-                        velocity(_this4.popover, 'fadeOut').then(function () {
-                            _this4.popover.classList.remove('in');
+                        velocity(_this3.popover, 'fadeOut').then(function () {
+                            _this3.popover.classList.remove('in');
 
-                            if (typeof _this4.onToggle === 'function') {
-                                _this4.onToggle({ open: false });
+                            if (typeof _this3.onToggle === 'function') {
+                                _this3.onToggle({ open: false });
                             }
                         });
                     });
 
                     this.visible = false;
                     this.isOpen = false;
-
-                    window.removeEventListener('resize', this.listeners.resize);
                 };
 
                 AubsPopoverCustomAttribute.prototype.handleOutside = function handleOutside(event) {

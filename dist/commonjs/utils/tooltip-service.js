@@ -84,8 +84,6 @@ var TooltipService = exports.TooltipService = function () {
                 document.removeEventListener('click', listeners.outside);
             }
         }
-
-        window.removeEventListener('resize', listeners.resize);
     };
 
     return TooltipService;

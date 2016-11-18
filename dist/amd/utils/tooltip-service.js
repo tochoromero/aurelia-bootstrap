@@ -91,8 +91,6 @@ define(['exports', 'tether'], function (exports, _tether) {
                     document.removeEventListener('click', listeners.outside);
                 }
             }
-
-            window.removeEventListener('resize', listeners.resize);
         };
 
         return TooltipService;

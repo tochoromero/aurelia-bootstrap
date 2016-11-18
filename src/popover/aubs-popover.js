@@ -31,8 +31,7 @@ export class AubsPopoverCustomAttribute {
             click: () => {
                 this.visible ? this.handleHide() : this.handleShow()
             },
-            outside: event => this.handleOutside(event),
-            resize: () => this.resizeThrottler()
+            outside: event => this.handleOutside(event)
         }
     }
 
@@ -135,25 +134,6 @@ export class AubsPopoverCustomAttribute {
         this.visible = true;
         this.isOpen = true;
 
-        window.addEventListener('resize', this.listeners.resize);
-    }
-
-    resizeThrottler() {
-        if (!this.visible) {
-            return;
-        }
-
-        if (!this.resizeTimeout) {
-            this.resizeTimeout = setTimeout(() => {
-                this.resizeTimeout = null;
-                this.handleResize();
-            }, 66);
-        }
-    }
-
-    handleResize() {
-        let position = this.tooltipService.calculatePosition();
-        this.popover.setAttribute("style", `top: ${position.top}px; left: ${position.left}px`);
     }
 
     handleHide() {
@@ -175,8 +155,6 @@ export class AubsPopoverCustomAttribute {
 
         this.visible = false;
         this.isOpen = false;
-
-        window.removeEventListener('resize', this.listeners.resize);
     }
 
     handleOutside(event) {

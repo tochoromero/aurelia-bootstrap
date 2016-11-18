@@ -68,7 +68,5 @@ export class TooltipService{
                 document.removeEventListener('click', listeners.outside);
             }
         }
-
-        window.removeEventListener('resize', listeners.resize);
     }
 }

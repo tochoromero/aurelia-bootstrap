@@ -87,8 +87,6 @@ System.register(['tether'], function (_export, _context) {
                             document.removeEventListener('click', listeners.outside);
                         }
                     }
-
-                    window.removeEventListener('resize', listeners.resize);
                 };
 
                 return TooltipService;

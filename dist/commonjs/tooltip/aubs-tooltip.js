@@ -100,9 +100,6 @@ var AubsTooltipCustomAttribute = exports.AubsTooltipCustomAttribute = (_dec = (0
             },
             outside: function outside(event) {
                 return _this.handleOutside(event);
-            },
-            resize: function resize() {
-                return _this.resizeThrottler();
             }
         };
     }
@@ -187,46 +184,23 @@ var AubsTooltipCustomAttribute = exports.AubsTooltipCustomAttribute = (_dec = (0
 
         this.visible = true;
         this.open = true;
-
-        window.addEventListener('resize', this.listeners.resize);
     };
 
-    AubsTooltipCustomAttribute.prototype.resizeThrottler = function resizeThrottler() {
+    AubsTooltipCustomAttribute.prototype.handleHide = function handleHide() {
         var _this3 = this;
 
         if (!this.visible) {
             return;
         }
 
-        if (!this.resizeTimeout) {
-            this.resizeTimeout = setTimeout(function () {
-                _this3.resizeTimeout = null;
-                _this3.handleResize();
-            }, 66);
-        }
-    };
-
-    AubsTooltipCustomAttribute.prototype.handleResize = function handleResize() {
-        var position = this.tooltipService.calculatePosition(this.element, this.tooltip, this.position);
-        this.tooltip.setAttribute("style", "top: " + position.top + "px; left: " + position.left + "px");
-    };
-
-    AubsTooltipCustomAttribute.prototype.handleHide = function handleHide() {
-        var _this4 = this;
-
-        if (!this.visible) {
-            return;
-        }
-
         (0, _velocityAnimate2.default)(this.tooltip, 'stop').then(function () {
-            (0, _velocityAnimate2.default)(_this4.tooltip, 'fadeOut').then(function () {
-                _this4.tooltip.classList.remove('in');
+            (0, _velocityAnimate2.default)(_this3.tooltip, 'fadeOut').then(function () {
+                _this3.tooltip.classList.remove('in');
             });
         });
 
         this.visible = false;
         this.open = false;
-        window.removeEventListener('resize', this.listeners.resize);
     };
 
     AubsTooltipCustomAttribute.prototype.handleOutside = function handleOutside(event) {

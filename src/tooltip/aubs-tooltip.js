@@ -27,8 +27,7 @@ export class AubsTooltipCustomAttribute {
             click: () => {
                 this.visible ? this.handleHide() : this.handleShow()
             },
-            outside: event => this.handleOutside(event),
-            resize: () => this.resizeThrottler()
+            outside: event => this.handleOutside(event)
         };
     }
 
@@ -112,27 +111,6 @@ export class AubsTooltipCustomAttribute {
 
         this.visible = true;
         this.open = true;
-
-
-        window.addEventListener('resize', this.listeners.resize);
-    }
-
-    resizeThrottler() {
-        if (!this.visible) {
-            return;
-        }
-
-        if (!this.resizeTimeout) {
-            this.resizeTimeout = setTimeout(() => {
-                this.resizeTimeout = null;
-                this.handleResize();
-            }, 66);
-        }
-    }
-
-    handleResize() {
-        let position = this.tooltipService.calculatePosition(this.element, this.tooltip, this.position);
-        this.tooltip.setAttribute("style", `top: ${position.top}px; left: ${position.left}px`);
     }
 
     handleHide() {
@@ -148,7 +126,6 @@ export class AubsTooltipCustomAttribute {
 
         this.visible = false;
         this.open = false;
-        window.removeEventListener('resize', this.listeners.resize);
     }
 
     handleOutside(event) {

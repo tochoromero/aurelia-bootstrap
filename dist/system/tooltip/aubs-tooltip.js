@@ -103,9 +103,6 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
                         },
                         outside: function outside(event) {
                             return _this.handleOutside(event);
-                        },
-                        resize: function resize() {
-                            return _this.resizeThrottler();
                         }
                     };
                 }
@@ -190,46 +187,23 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
 
                     this.visible = true;
                     this.open = true;
-
-                    window.addEventListener('resize', this.listeners.resize);
                 };
 
-                AubsTooltipCustomAttribute.prototype.resizeThrottler = function resizeThrottler() {
+                AubsTooltipCustomAttribute.prototype.handleHide = function handleHide() {
                     var _this3 = this;
 
                     if (!this.visible) {
                         return;
                     }
 
-                    if (!this.resizeTimeout) {
-                        this.resizeTimeout = setTimeout(function () {
-                            _this3.resizeTimeout = null;
-                            _this3.handleResize();
-                        }, 66);
-                    }
-                };
-
-                AubsTooltipCustomAttribute.prototype.handleResize = function handleResize() {
-                    var position = this.tooltipService.calculatePosition(this.element, this.tooltip, this.position);
-                    this.tooltip.setAttribute("style", "top: " + position.top + "px; left: " + position.left + "px");
-                };
-
-                AubsTooltipCustomAttribute.prototype.handleHide = function handleHide() {
-                    var _this4 = this;
-
-                    if (!this.visible) {
-                        return;
-                    }
-
                     velocity(this.tooltip, 'stop').then(function () {
-                        velocity(_this4.tooltip, 'fadeOut').then(function () {
-                            _this4.tooltip.classList.remove('in');
+                        velocity(_this3.tooltip, 'fadeOut').then(function () {
+                            _this3.tooltip.classList.remove('in');
                         });
                     });
 
                     this.visible = false;
                     this.open = false;
-                    window.removeEventListener('resize', this.listeners.resize);
                 };
 
                 AubsTooltipCustomAttribute.prototype.handleOutside = function handleOutside(event) {
