@@ -7,6 +7,7 @@ export function configure(aurelia) {
         './settings-type/markup.html',
         './settings-type/function.html',
         './settings-type/ref.html',
+        './settings-type/number.html',
         './settings-type/any.html'
     );
 }

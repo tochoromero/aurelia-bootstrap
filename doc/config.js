@@ -244,10 +244,13 @@ System.config({
       "resources/settings-type/boolean.html!github:systemjs/plugin-text@0.0.8.js",
       "resources/settings-type/function.html!github:systemjs/plugin-text@0.0.8.js",
       "resources/settings-type/markup.html!github:systemjs/plugin-text@0.0.8.js",
+      "resources/settings-type/number.html!github:systemjs/plugin-text@0.0.8.js",
       "resources/settings-type/property.html!github:systemjs/plugin-text@0.0.8.js",
       "resources/settings-type/ref.html!github:systemjs/plugin-text@0.0.8.js",
       "resources/settings-type/string.html!github:systemjs/plugin-text@0.0.8.js",
       "resources/settings-type/two-way.html!github:systemjs/plugin-text@0.0.8.js",
+      "tabs/tabs.html!github:systemjs/plugin-text@0.0.8.js",
+      "tabs/tabs.js",
       "tooltip/tooltip.html!github:systemjs/plugin-text@0.0.8.js",
       "tooltip/tooltip.js"
     ],

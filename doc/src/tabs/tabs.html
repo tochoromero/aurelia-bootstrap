@@ -1,0 +1,159 @@
+<template>
+    <div class="container-fluid">
+        <div class="page-header">
+            <a class="btn btn-default pull-right" target="_blank"
+               href="https://github.com/tochoromero/aurelia-bootstrap/tree/master/doc/src/tabs">
+                <i class="fa fa-edit"></i> Improve documentation</a>
+            <h1>Tabs</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <p>
+                <div class="btn-group">
+                    <a class="btn btn-default" aubs-btn-radio="model.bind: type; value: tabs">Tabs</a>
+                    <a class="btn btn-default" aubs-btn-radio="model.bind: type; value: pills">Pills</a>
+                </div>
+                &nbsp;
+                <a class="btn btn-default" aubs-btn-checkbox="state.bind: vertical">Vertical Navigation</a>
+                <a class="btn btn-default" aubs-btn-checkbox="state.bind: disabled">Disable Second Tab</a>
+                <a class="btn btn-default" click.delegate="active=1">Select Second</a>
+                </p>
+
+                <aubs-tabset vertical.bind="vertical" type.bind="type" active.bind="active">
+                    <aubs-tab header="My first tab">
+                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
+                            master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
+                            keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat
+                            salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                    </aubs-tab>
+
+                    <aubs-tab header="My second tab" disabled.bind="disabled">
+                        Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore
+                        velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui
+                        photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo
+                        nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit
+                        sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY
+                        ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente
+                        accusamus tattooed echo park.
+                    </aubs-tab>
+
+                    <aubs-tab on-select.call="selected(index)" on-deselect.call="deselected(index)"
+                              header="<i class='fa fa-warning'></i> My Third tab">
+                        I log to the console on Select and Deselect.
+                    </aubs-tab>
+                </aubs-tabset>
+            </div>
+
+            <div class="col-sm-6 col-xs-12">
+                <p>
+                    This Custom Elements allow you to organize your content in Tabs with little effort.
+                </p>
+
+                <h3>aubs-tabset</h3>
+                <p>The <code>aubs-tabset</code> Custom Element is the wrapper for all the tabs. It has a couple of settings:</p>
+                <ul>
+                    <li><code>active</code>
+                        <property></property>
+                        <number></number>
+                        <two-way></two-way>
+                        <i>(defualt: 0)</i>: Indicates the Tab that is currently selected. The Tabs have a 0 based index that correspond to
+                        the order you add them to the <code>aubs-tabset</code>. You can use this property to programmatically select one
+                        tab.
+                    </li>
+                    <li><code>type</code>
+                        <string></string>
+                        <i>(default: tabs)</i>: Specify the navigation type. The possible values are 'tabs' and 'pills'.
+                    </li>
+                    <li><code>vertical</code>
+                        <boolean></boolean>
+                        <i>(default: false)</i>: Whether the tabs should be vertically stacked.
+                    </li>
+                </ul>
+
+                <h3>aubs-tab</h3>
+                <p>The <code>aubs-tab</code> custom element represent one Tab. The Custom Element inner HTML will be used as the tab body.
+                </p>
+                <ul>
+                    <li><code>header</code>
+                        <string></string>
+                        <markup></markup>
+                        : The text for the Navigation Tab.
+                    </li>
+                    <li><code>disabled</code>
+                        <boolean></boolean>
+                        <i>(default: false)</i>: Whether or not the Tab is disabled. A disabled Tab cannot be clicked. But you can still
+                        select it using the <code>active</code> property in the <code>aubs-tabset</code> Custom Element.
+                    </li>
+                    <li><code>on-select</code>
+                        <function></function>
+                        : Callback function called when the Tab is selected. It will receive the Tab <code>index</code> as a parameter.
+                    </li>
+                    <li><code>on-deselect</code>
+                        <function></function>
+                        : Callback function called when the Tab is deselected. It will receive the Tab <code>index</code> as a parameter.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-12">
+                <hr>
+                <aubs-tabset>
+                    <aubs-tab header="HTML">
+                        <pre><code class="language-markup" au-syntax>&lt;template>
+    &lt;div class="btn-group">
+        &lt;a class="btn btn-default" aubs-btn-radio="model.bind: type; value: tabs">Tabs&lt;/a>
+        &lt;a class="btn btn-default" aubs-btn-radio="model.bind: type; value: pills">Pills&lt;/a>
+    &lt;/div>
+    &nbsp;
+    &lt;a class="btn btn-default" aubs-btn-checkbox="state.bind: vertical">Vertical Navigation&lt;/a>
+    &lt;a class="btn btn-default" aubs-btn-checkbox="state.bind: disabled">Disable Second Tab&lt;/a>
+    &lt;a class="btn btn-default" click.delegate="active=1">Select Second&lt;/a>
+
+    &lt;aubs-tabset vertical.bind="vertical" type.bind="type" active.bind="active">
+        &lt;aubs-tab header="My first tab">
+            &lt;p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
+                master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
+                keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat
+                salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.&lt;/p>
+        &lt;/aubs-tab>
+
+        &lt;aubs-tab header="My second tab" disabled.bind="disabled">
+            Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore
+            velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui
+            photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo
+            nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit
+            sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY
+            ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente
+            accusamus tattooed echo park.
+        &lt;/aubs-tab>
+
+        &lt;aubs-tab on-select.call="selected(index)" on-deselect.call="deselected(index)" header="&lt;i class='fa fa-warning'>&lt;/i> My Third tab">
+            I log to the console on Select and Deselect.
+        &lt;/aubs-tab>
+    &lt;/aubs-tabset>    
+&lt;/template></code></pre>
+                    </aubs-tab>
+
+                    <aubs-tab header="JS">
+                        <pre><code class="language-js" au-syntax>export class Example {
+    disabled = false;
+    vertical = false;
+    type = 'tabs';
+    active = 2;
+
+    selected(index){
+        console.log('Selected ' + index);
+    }
+
+    deselected(index){
+        console.log('Deselected ' + index)
+    }
+}</code></pre>
+                    </aubs-tab>
+                </aubs-tabset>
+
+            </div>
+        </div>
+    </div>
+</template>
