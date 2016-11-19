@@ -87,7 +87,7 @@ define(['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
                 return;
             }
 
-            this.selectTab(this.tabs[this.active]);
+            this.selectTab(this.tabs[this.active], true);
         };
 
         AubsTabsetCustomElement.prototype.tabsChanged = function tabsChanged() {
@@ -104,7 +104,9 @@ define(['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
         };
 
         AubsTabsetCustomElement.prototype.selectTab = function selectTab(tab) {
-            if (tab.disabled) {
+            var force = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+
+            if (tab.disabled && !force) {
                 return;
             }
 

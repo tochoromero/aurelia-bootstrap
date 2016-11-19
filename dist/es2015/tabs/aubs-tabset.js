@@ -73,7 +73,7 @@ export let AubsTabsetCustomElement = (_dec = bindable({ defaultBindingMode: bind
             return;
         }
 
-        this.selectTab(this.tabs[this.active]);
+        this.selectTab(this.tabs[this.active], true);
     }
 
     tabsChanged() {
@@ -89,8 +89,8 @@ export let AubsTabsetCustomElement = (_dec = bindable({ defaultBindingMode: bind
         this.selectTab(this.tabs[this.active]);
     }
 
-    selectTab(tab) {
-        if (tab.disabled) {
+    selectTab(tab, force = false) {
+        if (tab.disabled && !force) {
             return;
         }
 

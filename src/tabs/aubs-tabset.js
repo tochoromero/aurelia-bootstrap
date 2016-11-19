@@ -24,7 +24,7 @@ export class AubsTabsetCustomElement {
             return;
         }
 
-        this.selectTab(this.tabs[this.active]);
+        this.selectTab(this.tabs[this.active], true);
     }
 
     tabsChanged() {
@@ -40,8 +40,8 @@ export class AubsTabsetCustomElement {
         this.selectTab(this.tabs[this.active]);
     }
 
-    selectTab(tab) {
-        if (tab.disabled) {
+    selectTab(tab, force = false) {
+        if (tab.disabled && !force) {
             return;
         }
 
