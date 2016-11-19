@@ -56,10 +56,8 @@ export let AubsTabsetCustomElement = (_dec = children('aubs-tab'), (_class = cla
         _initDefineProp(this, 'tabs', _descriptor3, this);
     }
 
-    bind() {
-        if (this.type === 'pills') {
-            this.tabsClass = 'nav-pills';
-        }
+    typeChanged() {
+        this.tabsClass = this.type === 'pills' ? 'nav-pills' : 'nav-tabs';
     }
 
     tabsChanged() {

@@ -9,10 +9,8 @@ export class AubsTabsetCustomElement {
 
     @children('aubs-tab') tabs = [];
 
-    bind() {
-        if (this.type === 'pills') {
-            this.tabsClass = 'nav-pills';
-        }
+    typeChanged(){
+        this.tabsClass = this.type === 'pills' ? 'nav-pills' : 'nav-tabs';
     }
 
     tabsChanged() {

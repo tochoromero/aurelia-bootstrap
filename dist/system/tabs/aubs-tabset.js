@@ -73,10 +73,8 @@ System.register(['aurelia-framework'], function (_export, _context) {
                     _initDefineProp(this, 'tabs', _descriptor3, this);
                 }
 
-                AubsTabsetCustomElement.prototype.bind = function bind() {
-                    if (this.type === 'pills') {
-                        this.tabsClass = 'nav-pills';
-                    }
+                AubsTabsetCustomElement.prototype.typeChanged = function typeChanged() {
+                    this.tabsClass = this.type === 'pills' ? 'nav-pills' : 'nav-tabs';
                 };
 
                 AubsTabsetCustomElement.prototype.tabsChanged = function tabsChanged() {
