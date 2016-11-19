@@ -218,11 +218,6 @@ System.config({
       "indexof": "npm:indexof@0.0.1"
     }
   },
-  depCache: {
-    "main.js": [
-      "fetch"
-    ]
-  },
   bundles: {
     "app-build.js": [
       "accordion/accordion.html!github:systemjs/plugin-text@0.0.8.js",
@@ -231,6 +226,8 @@ System.config({
       "app.js",
       "buttons/buttons.html!github:systemjs/plugin-text@0.0.8.js",
       "buttons/buttons.js",
+      "collapse/collapse.html!github:systemjs/plugin-text@0.0.8.js",
+      "collapse/collapse.js",
       "dropdown/dropdown.html!github:systemjs/plugin-text@0.0.8.js",
       "dropdown/dropdown.js",
       "introduction/introduction.html!github:systemjs/plugin-text@0.0.8.js",
@@ -269,6 +266,7 @@ System.config({
       "github:tochoromero/aurelia-bootstrap@master/buttons/aubs-btn-checkbox.js",
       "github:tochoromero/aurelia-bootstrap@master/buttons/aubs-btn-loading.js",
       "github:tochoromero/aurelia-bootstrap@master/buttons/aubs-btn-radio.js",
+      "github:tochoromero/aurelia-bootstrap@master/collapse/aubs-collapse.js",
       "github:tochoromero/aurelia-bootstrap@master/dropdown/aubs-dropdown-toggle.js",
       "github:tochoromero/aurelia-bootstrap@master/dropdown/aubs-dropdown.js",
       "github:tochoromero/aurelia-bootstrap@master/index.js",
@@ -373,6 +371,11 @@ System.config({
       "npm:tether@1.3.7/dist/js/tether.js",
       "npm:velocity-animate@1.3.1.js",
       "npm:velocity-animate@1.3.1/velocity.js"
+    ]
+  },
+  depCache: {
+    "main.js": [
+      "fetch"
     ]
   }
 });
