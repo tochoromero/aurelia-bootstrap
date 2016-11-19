@@ -1,34 +1,36 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.AubsTooltipCustomAttribute = exports.AubsTabsetCustomElement = exports.AubsTabCustomElement = exports.AubsPopoverCustomAttribute = exports.AubsDropdownToggleCustomAttribute = exports.AubsDropdownCustomAttribute = exports.AubsBtnRadioCustomAttribute = exports.AubsBtnLoadingCustomAttribute = exports.AubsBtnCheckboxCustomAttribute = exports.AubsAccordionGroupCustomElement = exports.AubsAccordionCustomElement = undefined;
+exports.AubsTooltipCustomAttribute = exports.AubsTabsetCustomElement = exports.AubsTabCustomElement = exports.AubsPopoverCustomAttribute = exports.AubsDropdownToggleCustomAttribute = exports.AubsDropdownCustomAttribute = exports.AubsCollapseCustomAttribute = exports.AubsBtnRadioCustomAttribute = exports.AubsBtnLoadingCustomAttribute = exports.AubsBtnCheckboxCustomAttribute = exports.AubsAccordionGroupCustomElement = exports.AubsAccordionCustomElement = undefined;
 exports.configure = configure;
 
-var _aubsAccordion = require('./accordion/aubs-accordion');
+var _aubsAccordion = require("./accordion/aubs-accordion");
 
-var _aubsAccordionGroup = require('./accordion/aubs-accordion-group');
+var _aubsAccordionGroup = require("./accordion/aubs-accordion-group");
 
-var _aubsBtnCheckbox = require('./buttons/aubs-btn-checkbox');
+var _aubsBtnCheckbox = require("./buttons/aubs-btn-checkbox");
 
-var _aubsBtnLoading = require('./buttons/aubs-btn-loading');
+var _aubsBtnLoading = require("./buttons/aubs-btn-loading");
 
-var _aubsBtnRadio = require('./buttons/aubs-btn-radio');
+var _aubsBtnRadio = require("./buttons/aubs-btn-radio");
 
-var _aubsDropdown = require('./dropdown/aubs-dropdown');
+var _aubsCollapse = require("./collapse/aubs-collapse");
 
-var _aubsDropdownToggle = require('./dropdown/aubs-dropdown-toggle');
+var _aubsDropdown = require("./dropdown/aubs-dropdown");
 
-var _aubsPopover = require('./popover/aubs-popover');
+var _aubsDropdownToggle = require("./dropdown/aubs-dropdown-toggle");
 
-var _aubsTab = require('./tabs/aubs-tab');
+var _aubsPopover = require("./popover/aubs-popover");
 
-var _aubsTabset = require('./tabs/aubs-tabset');
+var _aubsTab = require("./tabs/aubs-tab");
 
-var _aubsTooltip = require('./tooltip/aubs-tooltip');
+var _aubsTabset = require("./tabs/aubs-tabset");
 
-var _bootstrapConfig = require('./utils/bootstrap-config');
+var _aubsTooltip = require("./tooltip/aubs-tooltip");
+
+var _bootstrapConfig = require("./utils/bootstrap-config");
 
 function configure(aurelia, callback) {
     aurelia.globalResources('./accordion/aubs-accordion');
@@ -36,6 +38,7 @@ function configure(aurelia, callback) {
     aurelia.globalResources('./buttons/aubs-btn-checkbox');
     aurelia.globalResources('./buttons/aubs-btn-loading');
     aurelia.globalResources('./buttons/aubs-btn-radio');
+    aurelia.globalResources('./collapse/aubs-collapse');
     aurelia.globalResources('./dropdown/aubs-dropdown');
     aurelia.globalResources('./dropdown/aubs-dropdown-toggle');
     aurelia.globalResources('./popover/aubs-popover');
@@ -55,6 +58,7 @@ exports.AubsAccordionGroupCustomElement = _aubsAccordionGroup.AubsAccordionGroup
 exports.AubsBtnCheckboxCustomAttribute = _aubsBtnCheckbox.AubsBtnCheckboxCustomAttribute;
 exports.AubsBtnLoadingCustomAttribute = _aubsBtnLoading.AubsBtnLoadingCustomAttribute;
 exports.AubsBtnRadioCustomAttribute = _aubsBtnRadio.AubsBtnRadioCustomAttribute;
+exports.AubsCollapseCustomAttribute = _aubsCollapse.AubsCollapseCustomAttribute;
 exports.AubsDropdownCustomAttribute = _aubsDropdown.AubsDropdownCustomAttribute;
 exports.AubsDropdownToggleCustomAttribute = _aubsDropdownToggle.AubsDropdownToggleCustomAttribute;
 exports.AubsPopoverCustomAttribute = _aubsPopover.AubsPopoverCustomAttribute;
