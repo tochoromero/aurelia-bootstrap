@@ -1,0 +1,67 @@
+<template>
+    <div class="container-fluid">
+        <div class="page-header">
+            <a class="btn btn-default pull-right" target="_blank"
+               href="https://github.com/tochoromero/aurelia-bootstrap/tree/master/doc/src/collapse">
+                <i class="fa fa-edit"></i> Improve documentation</a>
+            <h1>Collapse</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <a class="btn btn-default" aubs-btn-checkbox="state.bind: collapsed">Toggle Collapse</a>
+
+                <hr>
+
+                <p aubs-collapse="collapsed.bind: collapsed">
+                    Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
+                    master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
+                    keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat
+                    salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
+                </p>
+            </div>
+
+            <div class="col-sm-6 col-xs-12">
+                <p>
+                    Simple Custom Attribute that allows you to hide and show and element with a slide animation.
+                </p>
+
+                <h3>aubs-collapse</h3>
+                <ul>
+                    <li><code>collapsed</code>
+                        <property></property>
+                        <boolean></boolean>
+                        <i>(defualt: false)</i>: Whether or not the element is collapsed.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-12">
+                <hr>
+                <aubs-tabset>
+                    <aubs-tab header="HTML">
+                        <pre><code class="language-markup" au-syntax>&lt;template>
+    &lt;a class="btn btn-default" aubs-btn-checkbox="state.bind: collapsed">Toggle Collapse&lt;/a>
+
+    &lt;hr>
+
+    &lt;p aubs-collapse="collapsed.bind: collapsed">
+        Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
+        master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
+        keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat
+        salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
+    &lt;/p>
+&lt;/template></code></pre>
+                    </aubs-tab>
+
+                    <aubs-tab header="JS">
+                        <pre><code class="language-js" au-syntax>export class Example {
+    collapsed = false;
+}</code></pre>
+                    </aubs-tab>
+                </aubs-tabset>
+
+            </div>
+        </div>
+    </div>
+</template>
