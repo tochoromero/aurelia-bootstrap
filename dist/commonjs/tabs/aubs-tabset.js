@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.AubsTabsetCustomElement = undefined;
 
-var _dec, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3;
+var _dec, _dec2, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4;
 
 var _aureliaFramework = require('aurelia-framework');
 
@@ -54,7 +54,7 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var AubsTabsetCustomElement = exports.AubsTabsetCustomElement = (_dec = (0, _aureliaFramework.children)('aubs-tab'), (_class = function () {
+var AubsTabsetCustomElement = exports.AubsTabsetCustomElement = (_dec = (0, _aureliaFramework.bindable)({ defaultBindingMode: _aureliaFramework.bindingMode.twoWay }), _dec2 = (0, _aureliaFramework.children)('aubs-tab'), (_class = function () {
     function AubsTabsetCustomElement() {
         _classCallCheck(this, AubsTabsetCustomElement);
 
@@ -62,40 +62,46 @@ var AubsTabsetCustomElement = exports.AubsTabsetCustomElement = (_dec = (0, _aur
 
         _initDefineProp(this, 'vertical', _descriptor2, this);
 
+        _initDefineProp(this, 'active', _descriptor3, this);
+
         this.tabsClass = 'nav-tabs';
 
-        _initDefineProp(this, 'tabs', _descriptor3, this);
+        _initDefineProp(this, 'tabs', _descriptor4, this);
     }
 
     AubsTabsetCustomElement.prototype.typeChanged = function typeChanged() {
         this.tabsClass = this.type === 'pills' ? 'nav-pills' : 'nav-tabs';
     };
 
-    AubsTabsetCustomElement.prototype.tabsChanged = function tabsChanged() {
-        var activeTab = void 0;
+    AubsTabsetCustomElement.prototype.activeChanged = function activeChanged(newValue, oldValue) {
 
+        if (this.tabs.length == 0) {
+            return;
+        }
+
+        if (newValue > this.tabs.length) {
+            this.active = 0;
+            return;
+        }
+
+        this.selectTab(this.tabs[this.active]);
+    };
+
+    AubsTabsetCustomElement.prototype.tabsChanged = function tabsChanged() {
         for (var i = 0; i < this.tabs.length; i++) {
             var next = this.tabs[i];
             next.index = i;
-
-            if (next.active) {
-                activeTab = next;
-            }
         }
 
-        if (!activeTab) {
-            activeTab = this.tabs[0];
+        if (this.active >= this.tabs.length) {
+            this.active = 0;
         }
 
-        this.selectTab(activeTab);
+        this.selectTab(this.tabs[this.active]);
     };
 
     AubsTabsetCustomElement.prototype.selectTab = function selectTab(tab) {
         if (tab.disabled) {
-            return;
-        }
-
-        if (this.active === tab.index) {
             return;
         }
 
@@ -134,7 +140,12 @@ var AubsTabsetCustomElement = exports.AubsTabsetCustomElement = (_dec = (0, _aur
     initializer: function initializer() {
         return false;
     }
-}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'tabs', [_dec], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'active', [_dec], {
+    enumerable: true,
+    initializer: function initializer() {
+        return 0;
+    }
+}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'tabs', [_dec2], {
     enumerable: true,
     initializer: function initializer() {
         return [];

@@ -1,4 +1,4 @@
-var _dec, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3;
+var _dec, _dec2, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4;
 
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -43,48 +43,54 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-import { children, bindable } from "aurelia-framework";
+import { children, bindable, bindingMode } from "aurelia-framework";
 
-export let AubsTabsetCustomElement = (_dec = children('aubs-tab'), (_class = class AubsTabsetCustomElement {
+export let AubsTabsetCustomElement = (_dec = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec2 = children('aubs-tab'), (_class = class AubsTabsetCustomElement {
     constructor() {
         _initDefineProp(this, 'type', _descriptor, this);
 
         _initDefineProp(this, 'vertical', _descriptor2, this);
 
+        _initDefineProp(this, 'active', _descriptor3, this);
+
         this.tabsClass = 'nav-tabs';
 
-        _initDefineProp(this, 'tabs', _descriptor3, this);
+        _initDefineProp(this, 'tabs', _descriptor4, this);
     }
 
     typeChanged() {
         this.tabsClass = this.type === 'pills' ? 'nav-pills' : 'nav-tabs';
     }
 
-    tabsChanged() {
-        let activeTab;
+    activeChanged(newValue, oldValue) {
 
+        if (this.tabs.length == 0) {
+            return;
+        }
+
+        if (newValue > this.tabs.length) {
+            this.active = 0;
+            return;
+        }
+
+        this.selectTab(this.tabs[this.active]);
+    }
+
+    tabsChanged() {
         for (let i = 0; i < this.tabs.length; i++) {
             let next = this.tabs[i];
             next.index = i;
-
-            if (next.active) {
-                activeTab = next;
-            }
         }
 
-        if (!activeTab) {
-            activeTab = this.tabs[0];
+        if (this.active >= this.tabs.length) {
+            this.active = 0;
         }
 
-        this.selectTab(activeTab);
+        this.selectTab(this.tabs[this.active]);
     }
 
     selectTab(tab) {
         if (tab.disabled) {
-            return;
-        }
-
-        if (this.active === tab.index) {
             return;
         }
 
@@ -108,7 +114,12 @@ export let AubsTabsetCustomElement = (_dec = children('aubs-tab'), (_class = cla
     initializer: function () {
         return false;
     }
-}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'tabs', [_dec], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'active', [_dec], {
+    enumerable: true,
+    initializer: function () {
+        return 0;
+    }
+}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'tabs', [_dec2], {
     enumerable: true,
     initializer: function () {
         return [];

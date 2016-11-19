@@ -1,10 +1,10 @@
-import {children, bindable} from "aurelia-framework";
+import {children, bindable, bindingMode} from "aurelia-framework";
 
 export class AubsTabsetCustomElement {
     @bindable type = 'tabs';
     @bindable vertical = false;
+    @bindable({defaultBindingMode: bindingMode.twoWay}) active = 0;
 
-    active;
     tabsClass = 'nav-tabs';
 
     @children('aubs-tab') tabs = [];
@@ -13,31 +13,35 @@ export class AubsTabsetCustomElement {
         this.tabsClass = this.type === 'pills' ? 'nav-pills' : 'nav-tabs';
     }
 
-    tabsChanged() {
-        let activeTab;
+    activeChanged(newValue, oldValue){
 
+        if(this.tabs.length == 0) {
+            return;
+        }
+
+        if(newValue > this.tabs.length){
+            this.active = 0;
+            return;
+        }
+
+        this.selectTab(this.tabs[this.active]);
+    }
+
+    tabsChanged() {
         for(let i = 0; i < this.tabs.length; i++){
             let next = this.tabs[i];
             next.index = i;
-
-            if(next.active){
-                activeTab = next;
-            }
         }
 
-        if(!activeTab){
-            activeTab = this.tabs[0];
+        if(this.active >= this.tabs.length){
+            this.active = 0;
         }
 
-        this.selectTab(activeTab);
+        this.selectTab(this.tabs[this.active]);
     }
 
     selectTab(tab) {
         if (tab.disabled) {
-            return;
-        }
-
-        if (this.active === tab.index) {
             return;
         }
 

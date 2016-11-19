@@ -5,12 +5,12 @@ import velocity from 'velocity-animate';
 @inject(AubsTabsetCustomElement, Element)
 export class AubsTabCustomElement {
     @bindable header;
-    @bindable active = false;
     @bindable disabled = false;
     @bindable onSelect;
     @bindable onDeselect;
 
     index;
+    active = false;
 
     constructor(tabset, element) {
         this.tabset = tabset;
@@ -40,14 +40,14 @@ export class AubsTabCustomElement {
         if (isSelected) {
             velocity(this.$tabPane, 'fadeIn');
 
-            if (this.onSelect && typeof this.onSelect === 'function') {
-                this.onSelect();
+            if (typeof this.onSelect === 'function') {
+                this.onSelect({index: this.index});
             }
         } else {
             this.$tabPane.style.display = 'none';
 
-            if (this.onDeselect && typeof this.onDeselect == 'function') {
-                this.onDeselect();
+            if (typeof this.onDeselect === 'function') {
+                this.onDeselect({index: this.index});
             }
         }
     }

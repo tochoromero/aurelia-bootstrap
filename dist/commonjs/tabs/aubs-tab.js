@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.AubsTabCustomElement = undefined;
 
-var _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
+var _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
 
 var _aureliaFramework = require("aurelia-framework");
 
@@ -68,13 +68,13 @@ var AubsTabCustomElement = exports.AubsTabCustomElement = (_dec = (0, _aureliaFr
 
         _initDefineProp(this, "header", _descriptor, this);
 
-        _initDefineProp(this, "active", _descriptor2, this);
+        _initDefineProp(this, "disabled", _descriptor2, this);
 
-        _initDefineProp(this, "disabled", _descriptor3, this);
+        _initDefineProp(this, "onSelect", _descriptor3, this);
 
-        _initDefineProp(this, "onSelect", _descriptor4, this);
+        _initDefineProp(this, "onDeselect", _descriptor4, this);
 
-        _initDefineProp(this, "onDeselect", _descriptor5, this);
+        this.active = false;
 
         this.tabset = tabset;
         this.element = element;
@@ -103,14 +103,14 @@ var AubsTabCustomElement = exports.AubsTabCustomElement = (_dec = (0, _aureliaFr
         if (isSelected) {
             (0, _velocityAnimate2.default)(this.$tabPane, 'fadeIn');
 
-            if (this.onSelect && typeof this.onSelect === 'function') {
-                this.onSelect();
+            if (typeof this.onSelect === 'function') {
+                this.onSelect({ index: this.index });
             }
         } else {
             this.$tabPane.style.display = 'none';
 
-            if (this.onDeselect && typeof this.onDeselect == 'function') {
-                this.onDeselect();
+            if (typeof this.onDeselect === 'function') {
+                this.onDeselect({ index: this.index });
             }
         }
     };
@@ -119,20 +119,15 @@ var AubsTabCustomElement = exports.AubsTabCustomElement = (_dec = (0, _aureliaFr
 }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "header", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "active", [_aureliaFramework.bindable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "disabled", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: function initializer() {
         return false;
     }
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "disabled", [_aureliaFramework.bindable], {
-    enumerable: true,
-    initializer: function initializer() {
-        return false;
-    }
-}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "onSelect", [_aureliaFramework.bindable], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "onSelect", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: null
-}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, "onDeselect", [_aureliaFramework.bindable], {
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "onDeselect", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: null
 })), _class2)) || _class);

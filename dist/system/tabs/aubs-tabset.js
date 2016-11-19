@@ -3,7 +3,7 @@
 System.register(['aurelia-framework'], function (_export, _context) {
     "use strict";
 
-    var children, bindable, _dec, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, AubsTabsetCustomElement;
+    var children, bindable, bindingMode, _dec, _dec2, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, AubsTabsetCustomElement;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -58,9 +58,10 @@ System.register(['aurelia-framework'], function (_export, _context) {
         setters: [function (_aureliaFramework) {
             children = _aureliaFramework.children;
             bindable = _aureliaFramework.bindable;
+            bindingMode = _aureliaFramework.bindingMode;
         }],
         execute: function () {
-            _export('AubsTabsetCustomElement', AubsTabsetCustomElement = (_dec = children('aubs-tab'), (_class = function () {
+            _export('AubsTabsetCustomElement', AubsTabsetCustomElement = (_dec = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec2 = children('aubs-tab'), (_class = function () {
                 function AubsTabsetCustomElement() {
                     _classCallCheck(this, AubsTabsetCustomElement);
 
@@ -68,40 +69,46 @@ System.register(['aurelia-framework'], function (_export, _context) {
 
                     _initDefineProp(this, 'vertical', _descriptor2, this);
 
+                    _initDefineProp(this, 'active', _descriptor3, this);
+
                     this.tabsClass = 'nav-tabs';
 
-                    _initDefineProp(this, 'tabs', _descriptor3, this);
+                    _initDefineProp(this, 'tabs', _descriptor4, this);
                 }
 
                 AubsTabsetCustomElement.prototype.typeChanged = function typeChanged() {
                     this.tabsClass = this.type === 'pills' ? 'nav-pills' : 'nav-tabs';
                 };
 
-                AubsTabsetCustomElement.prototype.tabsChanged = function tabsChanged() {
-                    var activeTab = void 0;
+                AubsTabsetCustomElement.prototype.activeChanged = function activeChanged(newValue, oldValue) {
 
+                    if (this.tabs.length == 0) {
+                        return;
+                    }
+
+                    if (newValue > this.tabs.length) {
+                        this.active = 0;
+                        return;
+                    }
+
+                    this.selectTab(this.tabs[this.active]);
+                };
+
+                AubsTabsetCustomElement.prototype.tabsChanged = function tabsChanged() {
                     for (var i = 0; i < this.tabs.length; i++) {
                         var next = this.tabs[i];
                         next.index = i;
-
-                        if (next.active) {
-                            activeTab = next;
-                        }
                     }
 
-                    if (!activeTab) {
-                        activeTab = this.tabs[0];
+                    if (this.active >= this.tabs.length) {
+                        this.active = 0;
                     }
 
-                    this.selectTab(activeTab);
+                    this.selectTab(this.tabs[this.active]);
                 };
 
                 AubsTabsetCustomElement.prototype.selectTab = function selectTab(tab) {
                     if (tab.disabled) {
-                        return;
-                    }
-
-                    if (this.active === tab.index) {
                         return;
                     }
 
@@ -140,7 +147,12 @@ System.register(['aurelia-framework'], function (_export, _context) {
                 initializer: function initializer() {
                     return false;
                 }
-            }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'tabs', [_dec], {
+            }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'active', [_dec], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return 0;
+                }
+            }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'tabs', [_dec2], {
                 enumerable: true,
                 initializer: function initializer() {
                     return [];

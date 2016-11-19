@@ -3,7 +3,7 @@
 System.register(["aurelia-framework", "./aubs-tabset", "velocity-animate"], function (_export, _context) {
     "use strict";
 
-    var bindable, inject, AubsTabsetCustomElement, velocity, _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, AubsTabCustomElement;
+    var bindable, inject, AubsTabsetCustomElement, velocity, _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, AubsTabCustomElement;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -70,13 +70,13 @@ System.register(["aurelia-framework", "./aubs-tabset", "velocity-animate"], func
 
                     _initDefineProp(this, "header", _descriptor, this);
 
-                    _initDefineProp(this, "active", _descriptor2, this);
+                    _initDefineProp(this, "disabled", _descriptor2, this);
 
-                    _initDefineProp(this, "disabled", _descriptor3, this);
+                    _initDefineProp(this, "onSelect", _descriptor3, this);
 
-                    _initDefineProp(this, "onSelect", _descriptor4, this);
+                    _initDefineProp(this, "onDeselect", _descriptor4, this);
 
-                    _initDefineProp(this, "onDeselect", _descriptor5, this);
+                    this.active = false;
 
                     this.tabset = tabset;
                     this.element = element;
@@ -105,14 +105,14 @@ System.register(["aurelia-framework", "./aubs-tabset", "velocity-animate"], func
                     if (isSelected) {
                         velocity(this.$tabPane, 'fadeIn');
 
-                        if (this.onSelect && typeof this.onSelect === 'function') {
-                            this.onSelect();
+                        if (typeof this.onSelect === 'function') {
+                            this.onSelect({ index: this.index });
                         }
                     } else {
                         this.$tabPane.style.display = 'none';
 
-                        if (this.onDeselect && typeof this.onDeselect == 'function') {
-                            this.onDeselect();
+                        if (typeof this.onDeselect === 'function') {
+                            this.onDeselect({ index: this.index });
                         }
                     }
                 };
@@ -121,20 +121,15 @@ System.register(["aurelia-framework", "./aubs-tabset", "velocity-animate"], func
             }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "header", [bindable], {
                 enumerable: true,
                 initializer: null
-            }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "active", [bindable], {
+            }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "disabled", [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return false;
                 }
-            }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "disabled", [bindable], {
-                enumerable: true,
-                initializer: function initializer() {
-                    return false;
-                }
-            }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "onSelect", [bindable], {
+            }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "onSelect", [bindable], {
                 enumerable: true,
                 initializer: null
-            }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, "onDeselect", [bindable], {
+            }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "onDeselect", [bindable], {
                 enumerable: true,
                 initializer: null
             })), _class2)) || _class));
