@@ -218,6 +218,11 @@ System.config({
       "indexof": "npm:indexof@0.0.1"
     }
   },
+  depCache: {
+    "main.js": [
+      "fetch"
+    ]
+  },
   bundles: {
     "app-build.js": [
       "accordion/accordion.html!github:systemjs/plugin-text@0.0.8.js",
@@ -375,11 +380,6 @@ System.config({
       "npm:tether@1.3.7/dist/js/tether.js",
       "npm:velocity-animate@1.3.1.js",
       "npm:velocity-animate@1.3.1/velocity.js"
-    ]
-  },
-  depCache: {
-    "main.js": [
-      "fetch"
     ]
   }
 });

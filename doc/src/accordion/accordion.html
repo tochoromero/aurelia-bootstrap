@@ -37,6 +37,21 @@
                     <aubs-accordion-group title="With Panel Class" panel-class="panel-danger">
                         You can specify the class for the panel in the accordion group.
                     </aubs-accordion-group>
+
+                    <aubs-accordion-group>
+                        <template replace-part="header">
+                            <h4 class="panel-title">
+                                <a click.delegate="toggle()">
+                                    Replaceable Header <i class="fa fa-star"></i>
+                                </a>
+
+                                <div class="pull-right">
+                                    <button class="btn btn-danger btn-xs" click.delegate="deleteItem()"><i class="fa fa-trash"></i></button>
+                                </div>
+                            </h4>
+                        </template>
+                        You can replace the Accordion Group Header.
+                    </aubs-accordion-group>
                 </aubs-accordion>
             </div>
 
@@ -60,6 +75,7 @@
                 <ul>
                     <li><code>title</code>
                         <string></string>
+                        <markup></markup>
                         <i>(required)</i>: This String will be the clickable text for the panel header. You can provided
                         html markup.
                     </li>
@@ -74,7 +90,8 @@
                         <property></property>
                         <boolean property.bind="true"></boolean>
                         <two-way></two-way>
-                        <i>(default: false)</i>: Reflects the state of the item. You can use this property to programmatically toggle one item.
+                        <i>(default: false)</i>: Reflects the state of the item. You can use this property to programmatically toggle one
+                        item.
                     </li>
                     <li><code>disabled</code>
                         <boolean></boolean>
@@ -82,6 +99,31 @@
                         cannot be manually toggled, but it can still be programmatically toggled.
                     </li>
                 </ul>
+
+                <h4>Replaceable Header</h4>
+                <p>Instead of using the <code>title</code> property you can provide a template to replace the whole header with your own.
+                </p>
+
+                <p>To replace the header, you need to provide a template with the property <code>replace-part="header"</code> inside your
+                    <code>aubs-accordiong-group</code>. The content inside the template will be projected into the header.
+                </p>
+
+                <p>The template you provide has access to the following:</p>
+                <ul>
+                    <li><code>toggle()</code>: This is the function that toggles the accordion. You must provide an element that calls this
+                        function otherwise you will not be able to toggle the accordion.
+                    </li>
+                    <li><code>disabled</code>: This is a boolean that indicates whether or not the accordion group is disabled. You may want
+                        to use this property to change the state of you header.
+                    </li>
+                </ul>
+
+                <p>For reference, the following is the markup you will be replacing: </p>
+                <pre><code class="language-markup" au-syntax>&lt;h4 class="panel-title">
+    &lt;a href="javascript:void(0)" innerHTML.bind="title"
+                    click.delegate="toggle()" show.bind="!disabled">&lt;/a>
+    &lt;span class="text-muted" innerHTML.bind="title" show.bind="disabled">&lt;/span>
+&lt;/h4></code></pre>
             </div>
 
             <div class="col-xs-12">
@@ -95,7 +137,6 @@
         &lt;a class="btn btn-default" aubs-btn-checkbox="state.bind: firstTabState">Toggle First&lt;/a>
         &lt;a class="btn btn-default" aubs-btn-checkbox="state.bind: secondDisabled">Disable Second&lt;/a>
     &lt;/p>
-
 
     &lt;aubs-accordion close-others.bind="closeOthers">
         &lt;aubs-accordion-group title="Collapsible Group Item #1" is-open.bind="firstTabState">
@@ -118,13 +159,33 @@
         &lt;aubs-accordion-group title="With Panel Class" panel-class="panel-danger">
             You can specify the class for the panel in the accordion group.
         &lt;/aubs-accordion-group>
+                
+        &lt;aubs-accordion-group>
+            &lt;template replace-part="header">
+                &lt;h4 class="panel-title">
+                    &lt;a click.delegate="toggle()">
+                        Replaceable Header &lt;i class="fa fa-star">&lt;/i>
+                    &lt;/a>
+
+                    &lt;div class="pull-right">
+                        &lt;button class="btn btn-danger btn-xs" click.delegate="deleteItem()">
+                            &lt;i class="fa fa-trash">&lt;/i>
+                        &lt;/button>
+                    &lt;/div>
+                &lt;/h4>
+            &lt;/template>
+            You can replace the Accordion Group Header.
+        &lt;/aubs-accordion-group>
     &lt;/aubs-accordion>
 &lt;/template></code></pre>
                     </aubs-tab>
                     <aubs-tab header="JS">
 <pre><code class="language-js" au-syntax>export class Example {
-    firstTabState = true;
     closeOthers = true;
+
+    deleteItem(){
+        alert('Deleting item');
+    }
 }</code></pre>
                     </aubs-tab>
                 </aubs-tabset>
