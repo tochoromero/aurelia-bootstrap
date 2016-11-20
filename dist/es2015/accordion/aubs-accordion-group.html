@@ -1,10 +1,13 @@
 <template>
     <div class.bind="isBootstrapVersion(3) ? 'panel ' + panelClass : 'card' ">
         <div role="tab" class.bind="isBootstrapVersion(3) ? 'panel-heading' : 'card-header'">
-            <h5 class.bind="isBootstrapVersion(3) ? 'panel-title' : 'mb-0'">
-                <a href="javascript:void(0)" innerHTML.bind="title" click.delegate="toggle()" show.bind="!disabled"></a>
-                <span  class="text-muted" innerHTML.bind="title" show.bind="disabled"></span>
-            </h5>
+            <template replaceable part="header">
+                <h5 class.bind="isBootstrapVersion(3) ? 'panel-title' : 'mb-0'">
+
+                    <a href="javascript:void(0)" innerHTML.bind="title" click.delegate="toggle()" show.bind="!disabled"></a>
+                    <span class="text-muted" innerHTML.bind="title" show.bind="disabled"></span>
+                </h5>
+            </template>
         </div>
 
         <div class="collapse" role="tabpanel" ref="$collapse">
