@@ -6,6 +6,7 @@ import { AubsBtnRadioCustomAttribute } from "./buttons/aubs-btn-radio";
 import { AubsCollapseCustomAttribute } from "./collapse/aubs-collapse";
 import { AubsDropdownCustomAttribute } from "./dropdown/aubs-dropdown";
 import { AubsDropdownToggleCustomAttribute } from "./dropdown/aubs-dropdown-toggle";
+import { AubsPaginationCustomElement } from "./pagination/aubs-pagination";
 import { AubsPopoverCustomAttribute } from "./popover/aubs-popover";
 import { AubsTabCustomElement } from "./tabs/aubs-tab";
 import { AubsTabsetCustomElement } from "./tabs/aubs-tabset";
@@ -21,6 +22,7 @@ export function configure(aurelia, callback) {
     aurelia.globalResources('./collapse/aubs-collapse');
     aurelia.globalResources('./dropdown/aubs-dropdown');
     aurelia.globalResources('./dropdown/aubs-dropdown-toggle');
+    aurelia.globalResources('./pagination/aubs-pagination');
     aurelia.globalResources('./popover/aubs-popover');
     aurelia.globalResources('./tabs/aubs-tab');
     aurelia.globalResources('./tabs/aubs-tabset');
@@ -33,4 +35,4 @@ export function configure(aurelia, callback) {
     }
 }
 
-export { AubsAccordionCustomElement, AubsAccordionGroupCustomElement, AubsBtnCheckboxCustomAttribute, AubsBtnLoadingCustomAttribute, AubsBtnRadioCustomAttribute, AubsCollapseCustomAttribute, AubsDropdownCustomAttribute, AubsDropdownToggleCustomAttribute, AubsPopoverCustomAttribute, AubsTabCustomElement, AubsTabsetCustomElement, AubsTooltipCustomAttribute };
+export { AubsAccordionCustomElement, AubsAccordionGroupCustomElement, AubsBtnCheckboxCustomAttribute, AubsBtnLoadingCustomAttribute, AubsBtnRadioCustomAttribute, AubsCollapseCustomAttribute, AubsDropdownCustomAttribute, AubsDropdownToggleCustomAttribute, AubsPaginationCustomElement, AubsPopoverCustomAttribute, AubsTabCustomElement, AubsTabsetCustomElement, AubsTooltipCustomAttribute };
