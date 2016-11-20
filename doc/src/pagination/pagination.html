@@ -1,0 +1,132 @@
+<template>
+    <div class="container-fluid">
+        <div class="page-header">
+            <a class="btn btn-default pull-right" target="_blank"
+               href="https://github.com/tochoromero/aurelia-bootstrap/tree/master/doc/src/pagination">
+                <i class="fa fa-edit"></i> Improve documentation</a>
+            <h1>Pagination</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+
+                <pre><code>Current page is: ${currentPage}</code></pre>
+
+                <aubs-pagination pageSize.bind="pageSize" total-items.bind="totalItems" current-page.bind="currentPage"></aubs-pagination>
+
+                <aubs-pagination pageSize.bind="pageSize" total-items.bind="totalItems" current-page.bind="currentPage"
+                                 pagination-size.bind="5" direction-links.bind="false"></aubs-pagination>
+
+                <aubs-pagination pageSize.bind="pageSize" total-items.bind="totalItems" current-page.bind="currentPage"
+                                 boundary-links.bind="true"
+                                 first-text="<i class='fa fa-arrow-left'></i> First" last-text="Last <i class='fa fa-arrow-right'></i>"
+                                 previous-text="<i class='fa fa-chevron-left'></i>" next-text="<i class='fa fa-chevron-right'></i>">
+
+                </aubs-pagination>
+
+            </div>
+
+            <div class="col-sm-6 col-xs-12">
+                <p>The <code>aubs-pagination</code> Custom Element provides a pagination bar that takes care of the hard bits of pagination
+                    such as showing the right number of pages and enabling and disabling buttons correctly.</p>
+
+                <h3>aubs-pagination</h3>
+                <ul>
+                    <li><code>current-page</code>
+                        <property></property>
+                        <number></number>
+                        <two-way></two-way>
+                        <i>(default: 1)</i>: Determines the current active page. The first page has an index of 1. You can use this property
+                        to manipulate the current page.
+                    </li>
+                    <li><code>total-items</code>
+                        <number></number>
+                        : Specify the total number of items in all pages.
+                    </li>
+                    <li><code>page-size</code>
+                        <number></number>
+                        : Specify the number of items per page.
+                    </li>
+                </ul>
+
+                <h4>Optional Settings</h4>
+                <ul>
+                    <li><code>hide-single-page</code>
+                        <boolean></boolean>
+                        <i>(default: true)</i>: Whether or not the pagination bar should be hidden when there is only one page.
+                    </li>
+                    <li><code>pagination-size</code>
+                        <number></number>
+                        : Limit the number of visible page links for the pagination bar. By default we will show every single page link.
+                    </li>
+                    <li>
+                        <code>direction-links</code>
+                        <boolean></boolean>
+                        <i>(default: true)</i>: Determines whether or not to show the links to navigate back and forth between pages.
+                    </li>
+                    <li>
+                        <code>previous-text</code>
+                        <string></string>
+                        <markup></markup>
+                        <i>(default: &lt;)</i>: The text for the Previous Page Link.
+                    </li>
+                    <li>
+                        <code>next-text</code>
+                        <string></string>
+                        <markup></markup>
+                        <i>(default: &gt;)</i>: The text for the Next Page Link.
+                    </li>
+                    <li>
+                        <code>boundary-links</code>
+                        <boolean></boolean>
+                        <i>(default: false)</i>: Determines whether or not to show two links to navigate to the First and Last page.
+                    </li>
+                    <li>
+                        <code>first-text</code>
+                        <string></string>
+                        <markup></markup>
+                        <i>(default: First)</i>: The text for the First Page Link.
+                    </li>
+                    <li>
+                        <code>last-text</code>
+                        <string></string>
+                        <markup></markup>
+                        <i>(default: Last)</i>: The text for the Last Page Link.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-12">
+                <hr>
+
+                <aubs-tabset>
+                    <aubs-tab header="HTML">
+            <pre><code class="language-markup" au-syntax>&lt;template>
+    &lt;pre>&lt;code>Current page is: ${open}currentPage}&lt;/code>&lt;/pre>
+
+    &lt;aubs-pagination pageSize.bind="pageSize" total-items.bind="totalItems" current-page.bind="currentPage">&lt;/aubs-pagination>
+
+    &lt;aubs-pagination pageSize.bind="pageSize" total-items.bind="totalItems" current-page.bind="currentPage"
+                     pagination-size.bind="5" direction-links.bind="false">&lt;/aubs-pagination>
+
+    &lt;aubs-pagination pageSize.bind="pageSize" total-items.bind="totalItems" current-page.bind="currentPage"
+                     boundary-links.bind="true"
+                     first-text="&lt;i class='fa fa-arrow-left'>&lt;/i> First" last-text="Last &lt;i class='fa fa-arrow-right'>&lt;/i>"
+                     previous-text="&lt;i class='fa fa-chevron-left'>&lt;/i>" next-text="&lt;i class='fa fa-chevron-right'>&lt;/i>">
+
+    &lt;/aubs-pagination>
+&lt;/template></code></pre>
+                    </aubs-tab>
+                    <aubs-tab header="JS">
+<pre><code class="language-js" au-syntax>export class Example {
+    currentPage = 1;
+    pageSize = 5;
+    totalItems = 50;
+}</code></pre>
+                    </aubs-tab>
+                </aubs-tabset>
+
+            </div>
+        </div>
+    </div>
+</template>

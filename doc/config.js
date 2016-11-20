@@ -218,6 +218,11 @@ System.config({
       "indexof": "npm:indexof@0.0.1"
     }
   },
+  depCache: {
+    "main.js": [
+      "fetch"
+    ]
+  },
   bundles: {
     "app-build.js": [
       "accordion/accordion.html!github:systemjs/plugin-text@0.0.8.js",
@@ -234,6 +239,8 @@ System.config({
       "introduction/introduction.js",
       "main.js",
       "nav-bar.html!github:systemjs/plugin-text@0.0.8.js",
+      "pagination/pagination.html!github:systemjs/plugin-text@0.0.8.js",
+      "pagination/pagination.js",
       "popover/popover.html!github:systemjs/plugin-text@0.0.8.js",
       "popover/popover.js",
       "resources/index.js",
@@ -270,6 +277,8 @@ System.config({
       "github:tochoromero/aurelia-bootstrap@master/dropdown/aubs-dropdown-toggle.js",
       "github:tochoromero/aurelia-bootstrap@master/dropdown/aubs-dropdown.js",
       "github:tochoromero/aurelia-bootstrap@master/index.js",
+      "github:tochoromero/aurelia-bootstrap@master/pagination/aubs-pagination.html!github:systemjs/plugin-text@0.0.8.js",
+      "github:tochoromero/aurelia-bootstrap@master/pagination/aubs-pagination.js",
       "github:tochoromero/aurelia-bootstrap@master/popover/aubs-popover.js",
       "github:tochoromero/aurelia-bootstrap@master/tabs/aubs-tab.html!github:systemjs/plugin-text@0.0.8.js",
       "github:tochoromero/aurelia-bootstrap@master/tabs/aubs-tab.js",
@@ -371,11 +380,6 @@ System.config({
       "npm:tether@1.3.7/dist/js/tether.js",
       "npm:velocity-animate@1.3.1.js",
       "npm:velocity-animate@1.3.1/velocity.js"
-    ]
-  },
-  depCache: {
-    "main.js": [
-      "fetch"
     ]
   }
 });
