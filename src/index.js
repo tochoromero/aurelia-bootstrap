@@ -48,5 +48,6 @@ export {
     AubsPopoverCustomAttribute,
     AubsTabCustomElement,
     AubsTabsetCustomElement,
-    AubsTooltipCustomAttribute
+    AubsTooltipCustomAttribute,
+    BootstrapConfig
 }

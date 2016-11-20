@@ -35,4 +35,4 @@ export function configure(aurelia, callback) {
     }
 }
 
-export { AubsAccordionCustomElement, AubsAccordionGroupCustomElement, AubsBtnCheckboxCustomAttribute, AubsBtnLoadingCustomAttribute, AubsBtnRadioCustomAttribute, AubsCollapseCustomAttribute, AubsDropdownCustomAttribute, AubsDropdownToggleCustomAttribute, AubsPaginationCustomElement, AubsPopoverCustomAttribute, AubsTabCustomElement, AubsTabsetCustomElement, AubsTooltipCustomAttribute };
+export { AubsAccordionCustomElement, AubsAccordionGroupCustomElement, AubsBtnCheckboxCustomAttribute, AubsBtnLoadingCustomAttribute, AubsBtnRadioCustomAttribute, AubsCollapseCustomAttribute, AubsDropdownCustomAttribute, AubsDropdownToggleCustomAttribute, AubsPaginationCustomElement, AubsPopoverCustomAttribute, AubsTabCustomElement, AubsTabsetCustomElement, AubsTooltipCustomAttribute, BootstrapConfig };

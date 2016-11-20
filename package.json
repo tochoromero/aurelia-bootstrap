@@ -1,6 +1,6 @@
 {
   "name": "aurelia-bootstrap",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Bootstrap components written in Aurelia.",
   "keywords": [
     "aurelia",
@@ -8,6 +8,26 @@
     "twitter",
     "css"
   ],
+  "aurelia": {
+    "build": {
+      "resources": [
+        "aurelia-bootstrap/accordion/aubs-accordion",
+        "aurelia-bootstrap/accordion/aubs-accordion-group",
+        "aurelia-bootstrap/buttons/aubs-btn-checkbox",
+        "aurelia-bootstrap/buttons/aubs-btn-loading",
+        "aurelia-bootstrap/buttons/aubs-btn-radio",
+        "aurelia-bootstrap/collapse/aubs-collapse",
+        "aurelia-bootstrap/dropdown/aubs-dropdown",
+        "aurelia-bootstrap/dropdown/aubs-dropdown-toggle",
+        "aurelia-bootstrap/pagination/aubs-pagination",
+        "aurelia-bootstrap/popover/aubs-popover",
+        "aurelia-bootstrap/tabs/aubs-tab",
+        "aurelia-bootstrap/tabs/aubs-tabset",
+        "aurelia-bootstrap/tooltip/aubs-tooltip",
+        "aurelia-bootstrap/utils/bootstrap-config"
+      ]
+    }
+  },
   "homepage": "https://github.com/tochoromero/aurelia-bootstrap",
   "bugs": {
     "url": "https://github.com/tochoromero/aurelia-bootstrap/issues"

@@ -84,6 +84,8 @@ System.register(["./accordion/aubs-accordion", "./accordion/aubs-accordion-group
             _export("AubsTabsetCustomElement", AubsTabsetCustomElement);
 
             _export("AubsTooltipCustomAttribute", AubsTooltipCustomAttribute);
+
+            _export("BootstrapConfig", BootstrapConfig);
         }
     };
 });

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.AubsTooltipCustomAttribute = exports.AubsTabsetCustomElement = exports.AubsTabCustomElement = exports.AubsPopoverCustomAttribute = exports.AubsPaginationCustomElement = exports.AubsDropdownToggleCustomAttribute = exports.AubsDropdownCustomAttribute = exports.AubsCollapseCustomAttribute = exports.AubsBtnRadioCustomAttribute = exports.AubsBtnLoadingCustomAttribute = exports.AubsBtnCheckboxCustomAttribute = exports.AubsAccordionGroupCustomElement = exports.AubsAccordionCustomElement = undefined;
+exports.BootstrapConfig = exports.AubsTooltipCustomAttribute = exports.AubsTabsetCustomElement = exports.AubsTabCustomElement = exports.AubsPopoverCustomAttribute = exports.AubsPaginationCustomElement = exports.AubsDropdownToggleCustomAttribute = exports.AubsDropdownCustomAttribute = exports.AubsCollapseCustomAttribute = exports.AubsBtnRadioCustomAttribute = exports.AubsBtnLoadingCustomAttribute = exports.AubsBtnCheckboxCustomAttribute = exports.AubsAccordionGroupCustomElement = exports.AubsAccordionCustomElement = undefined;
 exports.configure = configure;
 
 var _aubsAccordion = require("./accordion/aubs-accordion");
@@ -69,3 +69,4 @@ exports.AubsPopoverCustomAttribute = _aubsPopover.AubsPopoverCustomAttribute;
 exports.AubsTabCustomElement = _aubsTab.AubsTabCustomElement;
 exports.AubsTabsetCustomElement = _aubsTabset.AubsTabsetCustomElement;
 exports.AubsTooltipCustomAttribute = _aubsTooltip.AubsTooltipCustomAttribute;
+exports.BootstrapConfig = _bootstrapConfig.BootstrapConfig;

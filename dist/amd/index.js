@@ -4,7 +4,7 @@ define(["exports", "./accordion/aubs-accordion", "./accordion/aubs-accordion-gro
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.AubsTooltipCustomAttribute = exports.AubsTabsetCustomElement = exports.AubsTabCustomElement = exports.AubsPopoverCustomAttribute = exports.AubsPaginationCustomElement = exports.AubsDropdownToggleCustomAttribute = exports.AubsDropdownCustomAttribute = exports.AubsCollapseCustomAttribute = exports.AubsBtnRadioCustomAttribute = exports.AubsBtnLoadingCustomAttribute = exports.AubsBtnCheckboxCustomAttribute = exports.AubsAccordionGroupCustomElement = exports.AubsAccordionCustomElement = undefined;
+    exports.BootstrapConfig = exports.AubsTooltipCustomAttribute = exports.AubsTabsetCustomElement = exports.AubsTabCustomElement = exports.AubsPopoverCustomAttribute = exports.AubsPaginationCustomElement = exports.AubsDropdownToggleCustomAttribute = exports.AubsDropdownCustomAttribute = exports.AubsCollapseCustomAttribute = exports.AubsBtnRadioCustomAttribute = exports.AubsBtnLoadingCustomAttribute = exports.AubsBtnCheckboxCustomAttribute = exports.AubsAccordionGroupCustomElement = exports.AubsAccordionCustomElement = undefined;
     exports.configure = configure;
     function configure(aurelia, callback) {
         aurelia.globalResources('./accordion/aubs-accordion');
@@ -41,4 +41,5 @@ define(["exports", "./accordion/aubs-accordion", "./accordion/aubs-accordion-gro
     exports.AubsTabCustomElement = _aubsTab.AubsTabCustomElement;
     exports.AubsTabsetCustomElement = _aubsTabset.AubsTabsetCustomElement;
     exports.AubsTooltipCustomAttribute = _aubsTooltip.AubsTooltipCustomAttribute;
+    exports.BootstrapConfig = _bootstrapConfig.BootstrapConfig;
 });
