@@ -18,22 +18,24 @@
                 </div>
 
                 <p>Aurelia Bootstrap is a collection of Custom Elements and Custom Attributes that facilitate working with
-                    Bootstrap on a native Aurelia way.</p>
+                    Bootstrap in a native Aurelia way.</p>
 
-                <p>It has no dependency on jQuery, all the Javascript code has been written for Aurelia. Our only dependency is Velocity for
-                    animations.</p>
+                <p>It has no dependency on jQuery, all the Javascript code has been written for Aurelia. Our only dependencies are Velocity
+                    for
+                    animations and Tether for positioning.</p>
 
                 <div class="page-header" id="installation">
                     <h1>Installation</h1>
                 </div>
 
+                <h2>JSPM</h2>
                 <p>
                     You can install the plugin directly from its Github repository with jspm:
                 <pre>jspm install aurelia-bootstrap -y</pre>
                 </p>
 
                 <p>
-                    Once the plugin is installed we need to indicate Aurelia to use it. To do this find your <code>main.js</code> file
+                    Once the plugin is installed you need to indicate Aurelia to use it. To do this find your <code>main.js</code> file
                     and add the plugin:
                 <pre><code class="language-js" au-syntax>export function configure(aurelia) {
   aurelia.use
@@ -45,23 +47,57 @@
 }</code></pre>
                 </p>
 
-                <p>You will also need to include the Bootstrap css file. We decided to do not include that css with our plugin, so you can
-                    choose where you want to get it from, or you may even want to compile your own version.</p>
-
-                <p>The simplest way to get it is through your Package Management, for JSPM that would be:
-                <pre>jspm install bootstrap -y</pre>
+                <h2>Aurelia CLI</h2>
+                <p>For Aurelia CLI there are a couple of things that need to be done. We need to install:
+                <pre>npm install aurelia-bootstrap -s</pre>
+                <pre>npm install velocity-animate -s</pre>
+                <pre>npm install tether -s</pre>
                 </p>
 
+                <p>Once the packages are installed we need to indicate Aurelia CLI how to load the plugins. Add the following in your
+                    <code>aurelia-project/aurelia.json</code> project file:</p>
+                <pre><code class="language-js" au-syntax>"velocity-animate",
+"tether",
+{
+  "name": "aurelia-bootstrap",
+  "path": "../node_modules/aurelia-bootstrap/dist/amd",
+  "main": "index",
+  "resources": [
+    "**/*.html"
+  ]
+}</code></pre>
+
+                <p>
+                    Finally you need to indicate Aurelia to use the plugin. To do this find your <code>main.js</code> file
+                    and add the plugin:
+                <pre><code class="language-js" au-syntax>export function configure(aurelia) {
+  aurelia.use
+    .standardConfiguration()
+    .developmentLogging()
+    .plugin('aurelia-bootstrap')
+    .feature('resources');
+
+  aurelia.start().then(() => aurelia.setRoot());
+}</code></pre>
+                </p>
+
+                <div class="page-header">
+                    <h1>Bootstrap CSS</h1>
+                </div>
+                <p>You also need to include the Bootstrap css file. We decided to do not include that css with our plugin, so you can
+                    choose where you want to get it from, or you may even want to compile your own version.</p>
+
+                <p>The simplest way to get it is through your Package Management, that could be JSPM or NPM. But you can even manually
+                    download the bootstrap.css file.
+
                 <p>Once you have installed the Bootstrap css with your preferred method you only need to include the bootstrap.css file,
-                    there is no need to include the fonts (which have been dropped on v4), or the javascript files. This is as simple as adding
-                    the following to your <code>app.html</code>:</p>
+                    there is no need to include the fonts (which have been dropped on v4), or the javascript files. This is as simple as
+                    adding the following to your <code>app.html</code>:</p>
 
                 <pre>&lt;require from="bootstrap/css/bootstrap.css">&lt;/require></pre>
 
-                <p>And with this you are ready to start using the plugin.</p>
-
                 <div class="page-header">
-                    <h1>Bootstrap Version</h1>
+                    <h1>Bootstrap 4</h1>
                 </div>
 
                 <p>Right now Bootstrap is in the middle of updating to v4, we have planned support for Bootstrap 4, and in fact it is
