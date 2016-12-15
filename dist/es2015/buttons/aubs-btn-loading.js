@@ -1,4 +1,4 @@
-var _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2;
+var _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -43,14 +43,16 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-import { inject, bindable, bindingMode } from "aurelia-framework";
+import { inject, bindable, bindingMode } from 'aurelia-framework';
 
 export let AubsBtnLoadingCustomAttribute = (_dec = inject(Element), _dec(_class = (_class2 = class AubsBtnLoadingCustomAttribute {
 
     constructor(element) {
-        _initDefineProp(this, "loading", _descriptor, this);
+        _initDefineProp(this, 'loading', _descriptor, this);
 
-        _initDefineProp(this, "text", _descriptor2, this);
+        _initDefineProp(this, 'text', _descriptor2, this);
+
+        _initDefineProp(this, 'disabled', _descriptor3, this);
 
         this.element = element;
 
@@ -71,6 +73,24 @@ export let AubsBtnLoadingCustomAttribute = (_dec = inject(Element), _dec(_class 
         }
     }
 
+    disabledChanged() {
+        if (!this.isAttached) {
+            return;
+        }
+
+        if (this.disabled) {
+            if (!this.loading) {
+                this.element.classList.add("disabled");
+                this.element.disabled = true;
+            }
+        } else {
+            if (!this.loading) {
+                this.element.classList.remove("disabled");
+                this.element.disabled = false;
+            }
+        }
+    }
+
     setClass() {
         if (this.loading) {
             this.innerHTML = this.element.innerHTML;
@@ -78,17 +98,25 @@ export let AubsBtnLoadingCustomAttribute = (_dec = inject(Element), _dec(_class 
             this.element.classList.add("disabled");
             this.element.disabled = true;
         } else {
-            this.element.classList.remove("disabled");
             this.element.innerHTML = this.innerHTML;
-            this.element.disabled = false;
+
+            if (!this.disabled) {
+                this.element.classList.remove("disabled");
+                this.element.disabled = false;
+            }
         }
     }
-}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "loading", [bindable], {
+}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'loading', [bindable], {
     enumerable: true,
     initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "text", [bindable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'text', [bindable], {
     enumerable: true,
     initializer: function () {
         return "Loading...";
+    }
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [bindable], {
+    enumerable: true,
+    initializer: function () {
+        return false;
     }
 })), _class2)) || _class);

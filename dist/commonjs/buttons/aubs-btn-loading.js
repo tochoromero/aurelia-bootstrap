@@ -1,13 +1,13 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.AubsBtnLoadingCustomAttribute = undefined;
 
-var _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2;
+var _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
-var _aureliaFramework = require("aurelia-framework");
+var _aureliaFramework = require('aurelia-framework');
 
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -58,9 +58,11 @@ var AubsBtnLoadingCustomAttribute = exports.AubsBtnLoadingCustomAttribute = (_de
     function AubsBtnLoadingCustomAttribute(element) {
         _classCallCheck(this, AubsBtnLoadingCustomAttribute);
 
-        _initDefineProp(this, "loading", _descriptor, this);
+        _initDefineProp(this, 'loading', _descriptor, this);
 
-        _initDefineProp(this, "text", _descriptor2, this);
+        _initDefineProp(this, 'text', _descriptor2, this);
+
+        _initDefineProp(this, 'disabled', _descriptor3, this);
 
         this.element = element;
 
@@ -81,6 +83,24 @@ var AubsBtnLoadingCustomAttribute = exports.AubsBtnLoadingCustomAttribute = (_de
         }
     };
 
+    AubsBtnLoadingCustomAttribute.prototype.disabledChanged = function disabledChanged() {
+        if (!this.isAttached) {
+            return;
+        }
+
+        if (this.disabled) {
+            if (!this.loading) {
+                this.element.classList.add("disabled");
+                this.element.disabled = true;
+            }
+        } else {
+            if (!this.loading) {
+                this.element.classList.remove("disabled");
+                this.element.disabled = false;
+            }
+        }
+    };
+
     AubsBtnLoadingCustomAttribute.prototype.setClass = function setClass() {
         if (this.loading) {
             this.innerHTML = this.element.innerHTML;
@@ -88,19 +108,27 @@ var AubsBtnLoadingCustomAttribute = exports.AubsBtnLoadingCustomAttribute = (_de
             this.element.classList.add("disabled");
             this.element.disabled = true;
         } else {
-            this.element.classList.remove("disabled");
             this.element.innerHTML = this.innerHTML;
-            this.element.disabled = false;
+
+            if (!this.disabled) {
+                this.element.classList.remove("disabled");
+                this.element.disabled = false;
+            }
         }
     };
 
     return AubsBtnLoadingCustomAttribute;
-}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "loading", [_aureliaFramework.bindable], {
+}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'loading', [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "text", [_aureliaFramework.bindable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'text', [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: function initializer() {
         return "Loading...";
+    }
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [_aureliaFramework.bindable], {
+    enumerable: true,
+    initializer: function initializer() {
+        return false;
     }
 })), _class2)) || _class);
