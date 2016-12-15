@@ -20,6 +20,7 @@ export class AubsBtnLoadingCustomAttribute {
         this.isAttached = true;
         this.innerHTML = this.element.innerHTML;
         this.setClass();
+        this.disabledChanged();
     }
 
     loadingChanged() {

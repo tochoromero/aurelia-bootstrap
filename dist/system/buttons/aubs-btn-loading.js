@@ -82,6 +82,7 @@ System.register(['aurelia-framework'], function (_export, _context) {
                     this.isAttached = true;
                     this.innerHTML = this.element.innerHTML;
                     this.setClass();
+                    this.disabledChanged();
                 };
 
                 AubsBtnLoadingCustomAttribute.prototype.loadingChanged = function loadingChanged() {

@@ -78,6 +78,7 @@ define(['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
             this.isAttached = true;
             this.innerHTML = this.element.innerHTML;
             this.setClass();
+            this.disabledChanged();
         };
 
         AubsBtnLoadingCustomAttribute.prototype.loadingChanged = function loadingChanged() {

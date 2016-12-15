@@ -65,6 +65,7 @@ export let AubsBtnLoadingCustomAttribute = (_dec = inject(Element), _dec(_class 
         this.isAttached = true;
         this.innerHTML = this.element.innerHTML;
         this.setClass();
+        this.disabledChanged();
     }
 
     loadingChanged() {

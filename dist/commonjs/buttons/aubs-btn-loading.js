@@ -75,6 +75,7 @@ var AubsBtnLoadingCustomAttribute = exports.AubsBtnLoadingCustomAttribute = (_de
         this.isAttached = true;
         this.innerHTML = this.element.innerHTML;
         this.setClass();
+        this.disabledChanged();
     };
 
     AubsBtnLoadingCustomAttribute.prototype.loadingChanged = function loadingChanged() {
