@@ -43,23 +43,23 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-import { bindable, inject, bindingMode } from "aurelia-framework";
-import { TooltipService } from "../utils/tooltip-service";
-import { bootstrapOptions } from "../utils/bootstrap-options";
-import velocity from "velocity-animate";
+import { bindable, inject, bindingMode } from 'aurelia-framework';
+import { TooltipService } from '../utils/tooltip-service';
+import { bootstrapOptions } from '../utils/bootstrap-options';
+import velocity from 'velocity-animate';
 
 export let AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = (_class2 = class AubsTooltipCustomAttribute {
 
     constructor(element, tooltipService) {
-        _initDefineProp(this, "text", _descriptor, this);
+        _initDefineProp(this, 'text', _descriptor, this);
 
-        _initDefineProp(this, "position", _descriptor2, this);
+        _initDefineProp(this, 'position', _descriptor2, this);
 
-        _initDefineProp(this, "disabled", _descriptor3, this);
+        _initDefineProp(this, 'disabled', _descriptor3, this);
 
-        _initDefineProp(this, "open", _descriptor4, this);
+        _initDefineProp(this, 'open', _descriptor4, this);
 
-        _initDefineProp(this, "trigger", _descriptor5, this);
+        _initDefineProp(this, 'trigger', _descriptor5, this);
 
         this.triggers = [];
         this.validPositions = ['top', 'bottom', 'left', 'right'];
@@ -98,6 +98,14 @@ export let AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService),
 
     detached() {
         this.tooltipService.removeTriggers(this.element, this.triggers, this.listeners);
+
+        if (this.tooltip) {
+            document.body.removeChild(this.tooltip);
+        }
+
+        if (this.tether) {
+            this.tether.destroy();
+        }
     }
 
     openChanged() {
@@ -209,25 +217,25 @@ export let AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService),
         this.tether = this.tooltipService.createAttachment(this.element, this.tooltip, this.position);
     }
 
-}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "text", [bindable], {
+}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'text', [bindable], {
     enumerable: true,
     initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "position", [bindable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'position', [bindable], {
     enumerable: true,
     initializer: function () {
         return 'top';
     }
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "disabled", [bindable], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [bindable], {
     enumerable: true,
     initializer: function () {
         return false;
     }
-}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "open", [_dec2], {
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'open', [_dec2], {
     enumerable: true,
     initializer: function () {
         return false;
     }
-}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, "trigger", [bindable], {
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'trigger', [bindable], {
     enumerable: true,
     initializer: function () {
         return 'mouseover';

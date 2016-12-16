@@ -1,7 +1,7 @@
-import {bindable, inject, bindingMode} from "aurelia-framework";
-import {TooltipService} from "../utils/tooltip-service";
-import {bootstrapOptions} from "../utils/bootstrap-options";
-import velocity from "velocity-animate";
+import {bindable, inject, bindingMode} from 'aurelia-framework';
+import {TooltipService} from '../utils/tooltip-service';
+import {bootstrapOptions} from '../utils/bootstrap-options';
+import velocity from 'velocity-animate';
 
 @inject(Element, TooltipService)
 export class AubsTooltipCustomAttribute {
@@ -50,6 +50,14 @@ export class AubsTooltipCustomAttribute {
 
     detached() {
         this.tooltipService.removeTriggers(this.element, this.triggers, this.listeners);
+
+        if (this.tooltip) {
+            document.body.removeChild(this.tooltip);
+        }
+
+        if (this.tether) {
+            this.tether.destroy();
+        }
     }
 
     openChanged() {

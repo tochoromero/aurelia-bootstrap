@@ -59,6 +59,14 @@ export class AubsPopoverCustomAttribute {
 
     detached() {
         this.tooltipService.removeTriggers(this.element, this.triggers, this.listeners);
+
+        if (this.popover) {
+            document.body.removeChild(this.popover);
+        }
+
+        if (this.tether) {
+            this.tether.destroy();
+        }
     }
 
     isOpenChanged() {

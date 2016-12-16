@@ -133,6 +133,14 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
 
     AubsPopoverCustomAttribute.prototype.detached = function detached() {
         this.tooltipService.removeTriggers(this.element, this.triggers, this.listeners);
+
+        if (this.popover) {
+            document.body.removeChild(this.popover);
+        }
+
+        if (this.tether) {
+            this.tether.destroy();
+        }
     };
 
     AubsPopoverCustomAttribute.prototype.isOpenChanged = function isOpenChanged() {

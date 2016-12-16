@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/bootstrap-options", "velocity-animate"], function (_export, _context) {
+System.register(['aurelia-framework', '../utils/tooltip-service', '../utils/bootstrap-options', 'velocity-animate'], function (_export, _context) {
     "use strict";
 
     var bindable, inject, bindingMode, TooltipService, bootstrapOptions, velocity, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, AubsTooltipCustomAttribute;
@@ -67,21 +67,21 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
             velocity = _velocityAnimate.default;
         }],
         execute: function () {
-            _export("AubsTooltipCustomAttribute", AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = (_class2 = function () {
+            _export('AubsTooltipCustomAttribute', AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = (_class2 = function () {
                 function AubsTooltipCustomAttribute(element, tooltipService) {
                     var _this = this;
 
                     _classCallCheck(this, AubsTooltipCustomAttribute);
 
-                    _initDefineProp(this, "text", _descriptor, this);
+                    _initDefineProp(this, 'text', _descriptor, this);
 
-                    _initDefineProp(this, "position", _descriptor2, this);
+                    _initDefineProp(this, 'position', _descriptor2, this);
 
-                    _initDefineProp(this, "disabled", _descriptor3, this);
+                    _initDefineProp(this, 'disabled', _descriptor3, this);
 
-                    _initDefineProp(this, "open", _descriptor4, this);
+                    _initDefineProp(this, 'open', _descriptor4, this);
 
-                    _initDefineProp(this, "trigger", _descriptor5, this);
+                    _initDefineProp(this, 'trigger', _descriptor5, this);
 
                     this.triggers = [];
                     this.validPositions = ['top', 'bottom', 'left', 'right'];
@@ -126,6 +126,14 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
 
                 AubsTooltipCustomAttribute.prototype.detached = function detached() {
                     this.tooltipService.removeTriggers(this.element, this.triggers, this.listeners);
+
+                    if (this.tooltip) {
+                        document.body.removeChild(this.tooltip);
+                    }
+
+                    if (this.tether) {
+                        this.tether.destroy();
+                    }
                 };
 
                 AubsTooltipCustomAttribute.prototype.openChanged = function openChanged() {
@@ -242,32 +250,32 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
                 };
 
                 return AubsTooltipCustomAttribute;
-            }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "text", [bindable], {
+            }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'text', [bindable], {
                 enumerable: true,
                 initializer: null
-            }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "position", [bindable], {
+            }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'position', [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return 'top';
                 }
-            }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "disabled", [bindable], {
+            }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return false;
                 }
-            }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "open", [_dec2], {
+            }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'open', [_dec2], {
                 enumerable: true,
                 initializer: function initializer() {
                     return false;
                 }
-            }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, "trigger", [bindable], {
+            }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'trigger', [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return 'mouseover';
                 }
             })), _class2)) || _class));
 
-            _export("AubsTooltipCustomAttribute", AubsTooltipCustomAttribute);
+            _export('AubsTooltipCustomAttribute', AubsTooltipCustomAttribute);
         }
     };
 });
