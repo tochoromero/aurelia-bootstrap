@@ -39,6 +39,11 @@
     "type": "git",
     "url": "http://github.com/tochoromero/aurelia-bootstrap"
   },
+  "dependencies": {
+    "aurelia-templating-resources": "1.1.1",
+    "velocity-animate": "^1.3.1",
+    "tether": "^1.3.7"
+  },
   "devDependencies": {
     "aurelia-tools": "^0.2.4",
     "babel": "^6.5.2",
