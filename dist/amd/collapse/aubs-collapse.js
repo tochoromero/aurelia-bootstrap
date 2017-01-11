@@ -83,19 +83,15 @@ define(["exports", "aurelia-framework", "velocity-animate"], function (exports, 
         };
 
         AubsCollapseCustomAttribute.prototype.collapsedChanged = function collapsedChanged() {
-            var _this = this;
-
             if (!this.isAttached) {
                 return;
             }
 
-            (0, _velocityAnimate2.default)(this.element, 'stop').then(function () {
-                if (_this.collapsed) {
-                    (0, _velocityAnimate2.default)(_this.element, 'slideUp');
-                } else {
-                    (0, _velocityAnimate2.default)(_this.element, 'slideDown');
-                }
-            });
+            if (this.collapsed) {
+                (0, _velocityAnimate2.default)(this.element, 'slideUp');
+            } else {
+                (0, _velocityAnimate2.default)(this.element, 'slideDown');
+            }
         };
 
         return AubsCollapseCustomAttribute;

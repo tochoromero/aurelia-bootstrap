@@ -80,19 +80,15 @@ System.register(["aurelia-framework", "velocity-animate"], function (_export, _c
                 };
 
                 AubsCollapseCustomAttribute.prototype.collapsedChanged = function collapsedChanged() {
-                    var _this = this;
-
                     if (!this.isAttached) {
                         return;
                     }
 
-                    velocity(this.element, 'stop').then(function () {
-                        if (_this.collapsed) {
-                            velocity(_this.element, 'slideUp');
-                        } else {
-                            velocity(_this.element, 'slideDown');
-                        }
-                    });
+                    if (this.collapsed) {
+                        velocity(this.element, 'slideUp');
+                    } else {
+                        velocity(this.element, 'slideDown');
+                    }
                 };
 
                 return AubsCollapseCustomAttribute;

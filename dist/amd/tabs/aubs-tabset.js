@@ -104,7 +104,7 @@ define(['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
         };
 
         AubsTabsetCustomElement.prototype.selectTab = function selectTab(tab) {
-            var force = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+            var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
             if (tab.disabled && !force) {
                 return;

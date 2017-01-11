@@ -67,13 +67,11 @@ export let AubsCollapseCustomAttribute = (_dec = inject(Element), _dec(_class = 
             return;
         }
 
-        velocity(this.element, 'stop').then(() => {
-            if (this.collapsed) {
-                velocity(this.element, 'slideUp');
-            } else {
-                velocity(this.element, 'slideDown');
-            }
-        });
+        if (this.collapsed) {
+            velocity(this.element, 'slideUp');
+        } else {
+            velocity(this.element, 'slideDown');
+        }
     }
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "collapsed", [bindable], {
     enumerable: true,

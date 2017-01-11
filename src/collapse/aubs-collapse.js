@@ -24,13 +24,10 @@ export class AubsCollapseCustomAttribute {
             return;
         }
 
-        velocity(this.element, 'stop')
-            .then(() => {
-                if (this.collapsed) {
-                    velocity(this.element, 'slideUp')
-                } else {
-                    velocity(this.element, 'slideDown');
-                }
-            });
+        if (this.collapsed) {
+            velocity(this.element, 'slideUp')
+        } else {
+            velocity(this.element, 'slideDown');
+        }
     }
 }
