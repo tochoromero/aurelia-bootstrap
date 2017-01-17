@@ -104,7 +104,9 @@ System.register(["aurelia-framework", "../utils/bootstrap-options"], function (_
                 };
 
                 AubsDropdownCustomAttribute.prototype.detached = function detached() {
-                    document.removeEventListener('click', this.outsideClickListener);
+                    if (this.autoClose !== 'disabled') {
+                        document.removeEventListener('click', this.outsideClickListener);
+                    }
                 };
 
                 AubsDropdownCustomAttribute.prototype.autoCloseChanged = function autoCloseChanged(newValue, oldValue) {

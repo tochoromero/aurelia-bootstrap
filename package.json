@@ -1,10 +1,11 @@
 {
   "name": "aurelia-bootstrap",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Bootstrap components written in Aurelia.",
   "keywords": [
     "aurelia",
     "bootstrap",
+    "typeahead",
     "twitter",
     "css"
   ],
@@ -24,6 +25,7 @@
         "aurelia-bootstrap/tabs/aubs-tab",
         "aurelia-bootstrap/tabs/aubs-tabset",
         "aurelia-bootstrap/tooltip/aubs-tooltip",
+        "aurelia-bootstrap/typeahead/aubs-typeahead",
         "aurelia-bootstrap/utils/bootstrap-config"
       ]
     }

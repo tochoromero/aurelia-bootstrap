@@ -1,10 +1,10 @@
-define(["exports", "./accordion/aubs-accordion", "./accordion/aubs-accordion-group", "./buttons/aubs-btn-checkbox", "./buttons/aubs-btn-loading", "./buttons/aubs-btn-radio", "./collapse/aubs-collapse", "./dropdown/aubs-dropdown", "./dropdown/aubs-dropdown-toggle", "./pagination/aubs-pagination", "./popover/aubs-popover", "./tabs/aubs-tab", "./tabs/aubs-tabset", "./tooltip/aubs-tooltip", "./utils/bootstrap-config"], function (exports, _aubsAccordion, _aubsAccordionGroup, _aubsBtnCheckbox, _aubsBtnLoading, _aubsBtnRadio, _aubsCollapse, _aubsDropdown, _aubsDropdownToggle, _aubsPagination, _aubsPopover, _aubsTab, _aubsTabset, _aubsTooltip, _bootstrapConfig) {
+define(["exports", "./accordion/aubs-accordion", "./accordion/aubs-accordion-group", "./buttons/aubs-btn-checkbox", "./buttons/aubs-btn-loading", "./buttons/aubs-btn-radio", "./collapse/aubs-collapse", "./dropdown/aubs-dropdown", "./dropdown/aubs-dropdown-toggle", "./pagination/aubs-pagination", "./popover/aubs-popover", "./tabs/aubs-tab", "./tabs/aubs-tabset", "./tooltip/aubs-tooltip", "./typeahead/aubs-typeahead", "./utils/bootstrap-config"], function (exports, _aubsAccordion, _aubsAccordionGroup, _aubsBtnCheckbox, _aubsBtnLoading, _aubsBtnRadio, _aubsCollapse, _aubsDropdown, _aubsDropdownToggle, _aubsPagination, _aubsPopover, _aubsTab, _aubsTabset, _aubsTooltip, _aubsTypeahead, _bootstrapConfig) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.BootstrapConfig = exports.AubsTooltipCustomAttribute = exports.AubsTabsetCustomElement = exports.AubsTabCustomElement = exports.AubsPopoverCustomAttribute = exports.AubsPaginationCustomElement = exports.AubsDropdownToggleCustomAttribute = exports.AubsDropdownCustomAttribute = exports.AubsCollapseCustomAttribute = exports.AubsBtnRadioCustomAttribute = exports.AubsBtnLoadingCustomAttribute = exports.AubsBtnCheckboxCustomAttribute = exports.AubsAccordionGroupCustomElement = exports.AubsAccordionCustomElement = undefined;
+    exports.BootstrapConfig = exports.AubsTypeaheadCustomElement = exports.AubsTooltipCustomAttribute = exports.AubsTabsetCustomElement = exports.AubsTabCustomElement = exports.AubsPopoverCustomAttribute = exports.AubsPaginationCustomElement = exports.AubsDropdownToggleCustomAttribute = exports.AubsDropdownCustomAttribute = exports.AubsCollapseCustomAttribute = exports.AubsBtnRadioCustomAttribute = exports.AubsBtnLoadingCustomAttribute = exports.AubsBtnCheckboxCustomAttribute = exports.AubsAccordionGroupCustomElement = exports.AubsAccordionCustomElement = undefined;
     exports.configure = configure;
     function configure(aurelia, callback) {
         aurelia.globalResources('./accordion/aubs-accordion');
@@ -20,6 +20,7 @@ define(["exports", "./accordion/aubs-accordion", "./accordion/aubs-accordion-gro
         aurelia.globalResources('./tabs/aubs-tab');
         aurelia.globalResources('./tabs/aubs-tabset');
         aurelia.globalResources('./tooltip/aubs-tooltip');
+        aurelia.globalResources('./typeahead/aubs-typeahead');
 
         var config = new _bootstrapConfig.BootstrapConfig();
 
@@ -41,5 +42,6 @@ define(["exports", "./accordion/aubs-accordion", "./accordion/aubs-accordion-gro
     exports.AubsTabCustomElement = _aubsTab.AubsTabCustomElement;
     exports.AubsTabsetCustomElement = _aubsTabset.AubsTabsetCustomElement;
     exports.AubsTooltipCustomAttribute = _aubsTooltip.AubsTooltipCustomAttribute;
+    exports.AubsTypeaheadCustomElement = _aubsTypeahead.AubsTypeaheadCustomElement;
     exports.BootstrapConfig = _bootstrapConfig.BootstrapConfig;
 });

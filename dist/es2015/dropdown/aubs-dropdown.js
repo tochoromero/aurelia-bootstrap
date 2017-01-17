@@ -82,7 +82,9 @@ export let AubsDropdownCustomAttribute = (_dec = inject(Element), _dec2 = bindab
     }
 
     detached() {
-        document.removeEventListener('click', this.outsideClickListener);
+        if (this.autoClose !== 'disabled') {
+            document.removeEventListener('click', this.outsideClickListener);
+        }
     }
 
     autoCloseChanged(newValue, oldValue) {

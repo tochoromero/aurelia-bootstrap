@@ -11,6 +11,7 @@ import {AubsPopoverCustomAttribute} from "./popover/aubs-popover";
 import {AubsTabCustomElement} from "./tabs/aubs-tab";
 import {AubsTabsetCustomElement} from "./tabs/aubs-tabset";
 import {AubsTooltipCustomAttribute} from "./tooltip/aubs-tooltip";
+import {AubsTypeaheadCustomElement} from "./typeahead/aubs-typeahead";
 import {BootstrapConfig} from "./utils/bootstrap-config";
 
 export function configure(aurelia, callback) {
@@ -27,6 +28,7 @@ export function configure(aurelia, callback) {
     aurelia.globalResources('./tabs/aubs-tab');
     aurelia.globalResources('./tabs/aubs-tabset');
     aurelia.globalResources('./tooltip/aubs-tooltip');
+    aurelia.globalResources('./typeahead/aubs-typeahead');
 
     let config = new BootstrapConfig();
 
@@ -49,5 +51,6 @@ export {
     AubsTabCustomElement,
     AubsTabsetCustomElement,
     AubsTooltipCustomAttribute,
+    AubsTypeaheadCustomElement,
     BootstrapConfig
 }

@@ -38,7 +38,9 @@ export class AubsDropdownCustomAttribute {
     }
 
     detached() {
-        document.removeEventListener('click', this.outsideClickListener);
+        if (this.autoClose !== 'disabled') {
+            document.removeEventListener('click', this.outsideClickListener);
+        }
     }
 
     autoCloseChanged(newValue, oldValue){
