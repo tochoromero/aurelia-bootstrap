@@ -51,6 +51,7 @@ function configure(aurelia, callback) {
     aurelia.globalResources('./tabs/aubs-tabset');
     aurelia.globalResources('./tooltip/aubs-tooltip');
     aurelia.globalResources('./typeahead/aubs-typeahead');
+    aurelia.globalResources('./typeahead/typeahead-highlight');
 
     var config = new _bootstrapConfig.BootstrapConfig();
 

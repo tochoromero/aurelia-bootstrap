@@ -26,6 +26,7 @@
         "aurelia-bootstrap/tabs/aubs-tabset",
         "aurelia-bootstrap/tooltip/aubs-tooltip",
         "aurelia-bootstrap/typeahead/aubs-typeahead",
+        "aurelia-bootstrap/typeahead/typeahead-highlight",
         "aurelia-bootstrap/utils/bootstrap-config"
       ]
     }
