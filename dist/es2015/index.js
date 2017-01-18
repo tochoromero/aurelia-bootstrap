@@ -12,6 +12,7 @@ import { AubsTabCustomElement } from "./tabs/aubs-tab";
 import { AubsTabsetCustomElement } from "./tabs/aubs-tabset";
 import { AubsTooltipCustomAttribute } from "./tooltip/aubs-tooltip";
 import { AubsTypeaheadCustomElement } from "./typeahead/aubs-typeahead";
+import { TypeaheadHighlightValueConverter } from "./typeahead/typeahead-highlight";
 import { BootstrapConfig } from "./utils/bootstrap-config";
 
 export function configure(aurelia, callback) {
@@ -38,4 +39,4 @@ export function configure(aurelia, callback) {
     }
 }
 
-export { AubsAccordionCustomElement, AubsAccordionGroupCustomElement, AubsBtnCheckboxCustomAttribute, AubsBtnLoadingCustomAttribute, AubsBtnRadioCustomAttribute, AubsCollapseCustomAttribute, AubsDropdownCustomAttribute, AubsDropdownToggleCustomAttribute, AubsPaginationCustomElement, AubsPopoverCustomAttribute, AubsTabCustomElement, AubsTabsetCustomElement, AubsTooltipCustomAttribute, AubsTypeaheadCustomElement, BootstrapConfig };
+export { AubsAccordionCustomElement, AubsAccordionGroupCustomElement, AubsBtnCheckboxCustomAttribute, AubsBtnLoadingCustomAttribute, AubsBtnRadioCustomAttribute, AubsCollapseCustomAttribute, AubsDropdownCustomAttribute, AubsDropdownToggleCustomAttribute, AubsPaginationCustomElement, AubsPopoverCustomAttribute, AubsTabCustomElement, AubsTabsetCustomElement, AubsTooltipCustomAttribute, AubsTypeaheadCustomElement, TypeaheadHighlightValueConverter, BootstrapConfig };

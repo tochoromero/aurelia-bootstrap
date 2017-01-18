@@ -1,9 +1,9 @@
 "use strict";
 
-System.register(["./accordion/aubs-accordion", "./accordion/aubs-accordion-group", "./buttons/aubs-btn-checkbox", "./buttons/aubs-btn-loading", "./buttons/aubs-btn-radio", "./collapse/aubs-collapse", "./dropdown/aubs-dropdown", "./dropdown/aubs-dropdown-toggle", "./pagination/aubs-pagination", "./popover/aubs-popover", "./tabs/aubs-tab", "./tabs/aubs-tabset", "./tooltip/aubs-tooltip", "./typeahead/aubs-typeahead", "./utils/bootstrap-config"], function (_export, _context) {
+System.register(["./accordion/aubs-accordion", "./accordion/aubs-accordion-group", "./buttons/aubs-btn-checkbox", "./buttons/aubs-btn-loading", "./buttons/aubs-btn-radio", "./collapse/aubs-collapse", "./dropdown/aubs-dropdown", "./dropdown/aubs-dropdown-toggle", "./pagination/aubs-pagination", "./popover/aubs-popover", "./tabs/aubs-tab", "./tabs/aubs-tabset", "./tooltip/aubs-tooltip", "./typeahead/aubs-typeahead", "./typeahead/typeahead-highlight", "./utils/bootstrap-config"], function (_export, _context) {
     "use strict";
 
-    var AubsAccordionCustomElement, AubsAccordionGroupCustomElement, AubsBtnCheckboxCustomAttribute, AubsBtnLoadingCustomAttribute, AubsBtnRadioCustomAttribute, AubsCollapseCustomAttribute, AubsDropdownCustomAttribute, AubsDropdownToggleCustomAttribute, AubsPaginationCustomElement, AubsPopoverCustomAttribute, AubsTabCustomElement, AubsTabsetCustomElement, AubsTooltipCustomAttribute, AubsTypeaheadCustomElement, BootstrapConfig;
+    var AubsAccordionCustomElement, AubsAccordionGroupCustomElement, AubsBtnCheckboxCustomAttribute, AubsBtnLoadingCustomAttribute, AubsBtnRadioCustomAttribute, AubsCollapseCustomAttribute, AubsDropdownCustomAttribute, AubsDropdownToggleCustomAttribute, AubsPaginationCustomElement, AubsPopoverCustomAttribute, AubsTabCustomElement, AubsTabsetCustomElement, AubsTooltipCustomAttribute, AubsTypeaheadCustomElement, TypeaheadHighlightValueConverter, BootstrapConfig;
     function configure(aurelia, callback) {
         aurelia.globalResources('./accordion/aubs-accordion');
         aurelia.globalResources('./accordion/aubs-accordion-group');
@@ -59,6 +59,8 @@ System.register(["./accordion/aubs-accordion", "./accordion/aubs-accordion-group
             AubsTooltipCustomAttribute = _tooltipAubsTooltip.AubsTooltipCustomAttribute;
         }, function (_typeaheadAubsTypeahead) {
             AubsTypeaheadCustomElement = _typeaheadAubsTypeahead.AubsTypeaheadCustomElement;
+        }, function (_typeaheadTypeaheadHighlight) {
+            TypeaheadHighlightValueConverter = _typeaheadTypeaheadHighlight.TypeaheadHighlightValueConverter;
         }, function (_utilsBootstrapConfig) {
             BootstrapConfig = _utilsBootstrapConfig.BootstrapConfig;
         }],
@@ -90,6 +92,8 @@ System.register(["./accordion/aubs-accordion", "./accordion/aubs-accordion-group
             _export("AubsTooltipCustomAttribute", AubsTooltipCustomAttribute);
 
             _export("AubsTypeaheadCustomElement", AubsTypeaheadCustomElement);
+
+            _export("TypeaheadHighlightValueConverter", TypeaheadHighlightValueConverter);
 
             _export("BootstrapConfig", BootstrapConfig);
         }

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.BootstrapConfig = exports.AubsTypeaheadCustomElement = exports.AubsTooltipCustomAttribute = exports.AubsTabsetCustomElement = exports.AubsTabCustomElement = exports.AubsPopoverCustomAttribute = exports.AubsPaginationCustomElement = exports.AubsDropdownToggleCustomAttribute = exports.AubsDropdownCustomAttribute = exports.AubsCollapseCustomAttribute = exports.AubsBtnRadioCustomAttribute = exports.AubsBtnLoadingCustomAttribute = exports.AubsBtnCheckboxCustomAttribute = exports.AubsAccordionGroupCustomElement = exports.AubsAccordionCustomElement = undefined;
+exports.BootstrapConfig = exports.TypeaheadHighlightValueConverter = exports.AubsTypeaheadCustomElement = exports.AubsTooltipCustomAttribute = exports.AubsTabsetCustomElement = exports.AubsTabCustomElement = exports.AubsPopoverCustomAttribute = exports.AubsPaginationCustomElement = exports.AubsDropdownToggleCustomAttribute = exports.AubsDropdownCustomAttribute = exports.AubsCollapseCustomAttribute = exports.AubsBtnRadioCustomAttribute = exports.AubsBtnLoadingCustomAttribute = exports.AubsBtnCheckboxCustomAttribute = exports.AubsAccordionGroupCustomElement = exports.AubsAccordionCustomElement = undefined;
 exports.configure = configure;
 
 var _aubsAccordion = require("./accordion/aubs-accordion");
@@ -33,6 +33,8 @@ var _aubsTabset = require("./tabs/aubs-tabset");
 var _aubsTooltip = require("./tooltip/aubs-tooltip");
 
 var _aubsTypeahead = require("./typeahead/aubs-typeahead");
+
+var _typeaheadHighlight = require("./typeahead/typeahead-highlight");
 
 var _bootstrapConfig = require("./utils/bootstrap-config");
 
@@ -74,4 +76,5 @@ exports.AubsTabCustomElement = _aubsTab.AubsTabCustomElement;
 exports.AubsTabsetCustomElement = _aubsTabset.AubsTabsetCustomElement;
 exports.AubsTooltipCustomAttribute = _aubsTooltip.AubsTooltipCustomAttribute;
 exports.AubsTypeaheadCustomElement = _aubsTypeahead.AubsTypeaheadCustomElement;
+exports.TypeaheadHighlightValueConverter = _typeaheadHighlight.TypeaheadHighlightValueConverter;
 exports.BootstrapConfig = _bootstrapConfig.BootstrapConfig;
