@@ -1,5 +1,6 @@
 import {children, bindable, bindingMode} from "aurelia-framework";
 
+@children({ name: "tabs", selector: "aubs-tab" })
 export class AubsTabsetCustomElement {
     @bindable type = 'tabs';
     @bindable vertical = false;
@@ -7,15 +8,13 @@ export class AubsTabsetCustomElement {
 
     tabsClass = 'nav-tabs';
 
-    @children('aubs-tab') tabs = [];
-
     typeChanged(){
         this.tabsClass = this.type === 'pills' ? 'nav-pills' : 'nav-tabs';
     }
 
     activeChanged(newValue, oldValue){
 
-        if(this.tabs.length == 0) {
+        if(!this.tabs || this.tabs.length == 0) {
             return;
         }
 

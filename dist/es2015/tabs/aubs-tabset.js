@@ -1,4 +1,4 @@
-var _dec, _dec2, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -45,17 +45,15 @@ function _initializerWarningHelper(descriptor, context) {
 
 import { children, bindable, bindingMode } from "aurelia-framework";
 
-export let AubsTabsetCustomElement = (_dec = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec2 = children('aubs-tab'), (_class = class AubsTabsetCustomElement {
+export let AubsTabsetCustomElement = (_dec = children({ name: "tabs", selector: "aubs-tab" }), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = (_class2 = class AubsTabsetCustomElement {
     constructor() {
-        _initDefineProp(this, 'type', _descriptor, this);
+        _initDefineProp(this, "type", _descriptor, this);
 
-        _initDefineProp(this, 'vertical', _descriptor2, this);
+        _initDefineProp(this, "vertical", _descriptor2, this);
 
-        _initDefineProp(this, 'active', _descriptor3, this);
+        _initDefineProp(this, "active", _descriptor3, this);
 
         this.tabsClass = 'nav-tabs';
-
-        _initDefineProp(this, 'tabs', _descriptor4, this);
     }
 
     typeChanged() {
@@ -64,7 +62,7 @@ export let AubsTabsetCustomElement = (_dec = bindable({ defaultBindingMode: bind
 
     activeChanged(newValue, oldValue) {
 
-        if (this.tabs.length == 0) {
+        if (!this.tabs || this.tabs.length == 0) {
             return;
         }
 
@@ -104,24 +102,19 @@ export let AubsTabsetCustomElement = (_dec = bindable({ defaultBindingMode: bind
             next.handleTabChanged(this.active);
         }
     }
-}, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'type', [bindable], {
+}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "type", [bindable], {
     enumerable: true,
     initializer: function () {
         return 'tabs';
     }
-}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'vertical', [bindable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "vertical", [bindable], {
     enumerable: true,
     initializer: function () {
         return false;
     }
-}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'active', [_dec], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "active", [_dec2], {
     enumerable: true,
     initializer: function () {
         return 0;
     }
-}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'tabs', [_dec2], {
-    enumerable: true,
-    initializer: function () {
-        return [];
-    }
-})), _class));
+})), _class2)) || _class);

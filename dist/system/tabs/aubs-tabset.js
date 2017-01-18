@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-System.register(['aurelia-framework'], function (_export, _context) {
+System.register(["aurelia-framework"], function (_export, _context) {
     "use strict";
 
-    var children, bindable, bindingMode, _dec, _dec2, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, AubsTabsetCustomElement;
+    var children, bindable, bindingMode, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, AubsTabsetCustomElement;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -61,19 +61,17 @@ System.register(['aurelia-framework'], function (_export, _context) {
             bindingMode = _aureliaFramework.bindingMode;
         }],
         execute: function () {
-            _export('AubsTabsetCustomElement', AubsTabsetCustomElement = (_dec = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec2 = children('aubs-tab'), (_class = function () {
+            _export("AubsTabsetCustomElement", AubsTabsetCustomElement = (_dec = children({ name: "tabs", selector: "aubs-tab" }), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = (_class2 = function () {
                 function AubsTabsetCustomElement() {
                     _classCallCheck(this, AubsTabsetCustomElement);
 
-                    _initDefineProp(this, 'type', _descriptor, this);
+                    _initDefineProp(this, "type", _descriptor, this);
 
-                    _initDefineProp(this, 'vertical', _descriptor2, this);
+                    _initDefineProp(this, "vertical", _descriptor2, this);
 
-                    _initDefineProp(this, 'active', _descriptor3, this);
+                    _initDefineProp(this, "active", _descriptor3, this);
 
                     this.tabsClass = 'nav-tabs';
-
-                    _initDefineProp(this, 'tabs', _descriptor4, this);
                 }
 
                 AubsTabsetCustomElement.prototype.typeChanged = function typeChanged() {
@@ -82,7 +80,7 @@ System.register(['aurelia-framework'], function (_export, _context) {
 
                 AubsTabsetCustomElement.prototype.activeChanged = function activeChanged(newValue, oldValue) {
 
-                    if (this.tabs.length == 0) {
+                    if (!this.tabs || this.tabs.length == 0) {
                         return;
                     }
 
@@ -139,29 +137,24 @@ System.register(['aurelia-framework'], function (_export, _context) {
                 };
 
                 return AubsTabsetCustomElement;
-            }(), (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'type', [bindable], {
+            }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "type", [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return 'tabs';
                 }
-            }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'vertical', [bindable], {
+            }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "vertical", [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return false;
                 }
-            }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'active', [_dec], {
+            }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "active", [_dec2], {
                 enumerable: true,
                 initializer: function initializer() {
                     return 0;
                 }
-            }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'tabs', [_dec2], {
-                enumerable: true,
-                initializer: function initializer() {
-                    return [];
-                }
-            })), _class)));
+            })), _class2)) || _class));
 
-            _export('AubsTabsetCustomElement', AubsTabsetCustomElement);
+            _export("AubsTabsetCustomElement", AubsTabsetCustomElement);
         }
     };
 });
