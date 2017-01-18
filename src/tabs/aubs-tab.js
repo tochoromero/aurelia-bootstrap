@@ -38,7 +38,9 @@ export class AubsTabCustomElement {
         this.active = isSelected;
 
         if (isSelected) {
-            velocity(this.$tabPane, 'fadeIn');
+            if(this.$tabPane){
+                velocity(this.$tabPane, 'fadeIn');
+            }
 
             if (typeof this.onSelect === 'function') {
                 this.onSelect({index: this.index});

@@ -101,7 +101,9 @@ var AubsTabCustomElement = exports.AubsTabCustomElement = (_dec = (0, _aureliaFr
         this.active = isSelected;
 
         if (isSelected) {
-            (0, _velocityAnimate2.default)(this.$tabPane, 'fadeIn');
+            if (this.$tabPane) {
+                (0, _velocityAnimate2.default)(this.$tabPane, 'fadeIn');
+            }
 
             if (typeof this.onSelect === 'function') {
                 this.onSelect({ index: this.index });
