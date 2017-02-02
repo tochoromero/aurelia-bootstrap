@@ -1,0 +1,23 @@
+<template>
+    <div class="container-fluid">
+        <div class="page-header">
+            <a class="btn btn-default pull-right" target="_blank"
+               href="https://github.com/tochoromero/aurelia-bootstrap/tree/master/doc/src/typeahead">
+                <i class="fa fa-edit"></i> Improve documentation</a>
+            <h1>Typeahead</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <aubs-typeahead data.call="getData(filter, limit)" value.bind="value" open-on-focus.bind="true"
+                                instant-clean-empty.bind="false" focus-first.bind="true" results-limit.bind="10"
+                loading-text="<i class='fa fa-refresh fa-spin'></i>"></aubs-typeahead>
+            </div>
+
+            <div class="pull-right">
+                Values is: ${value.name}
+            </div>
+
+        </div>
+    </div>
+</template>
