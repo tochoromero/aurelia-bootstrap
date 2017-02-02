@@ -5,7 +5,7 @@ import {bootstrapOptions} from "../utils/bootstrap-options";
 export class AubsDropdownCustomAttribute {
 
     @bindable({defaultBindingMode: bindingMode.twoWay}) isOpen;
-    @bindable autoClose = 'always';
+    @bindable autoClose = bootstrapOptions.dropdownAutoClose;
     @bindable onToggle;
 
     state;

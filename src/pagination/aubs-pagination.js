@@ -1,18 +1,19 @@
 import {bindable, bindingMode} from "aurelia-framework";
+import {bootstrapOptions} from "../utils/bootstrap-options";
 
 export class AubsPaginationCustomElement {
 
     @bindable({defaultBindingMode: bindingMode.twoWay}) currentPage;
     @bindable pageSize;
     @bindable totalItems;
-    @bindable hideSinglePage = true;
+    @bindable hideSinglePage = bootstrapOptions.paginationHideSinglePage;
     @bindable paginationSize;
-    @bindable boundaryLinks = false;
-    @bindable firstText = 'First';
-    @bindable lastText = 'Last';
-    @bindable directionLinks = true;
-    @bindable previousText = '<';
-    @bindable nextText = '>';
+    @bindable boundaryLinks = bootstrapOptions.paginationBoundaryLinks;
+    @bindable firstText = bootstrapOptions.paginationFirstText;
+    @bindable lastText = bootstrapOptions.paginationLastText;
+    @bindable directionLinks = bootstrapOptions.paginationDirectionLinks;
+    @bindable previousText = bootstrapOptions.paginationPreviousText;
+    @bindable nextText = bootstrapOptions.paginationNextText;
 
     totalPages = 1;
     displayPages = [];

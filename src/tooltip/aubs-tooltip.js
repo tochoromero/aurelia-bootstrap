@@ -6,10 +6,10 @@ import velocity from 'velocity-animate';
 @inject(Element, TooltipService)
 export class AubsTooltipCustomAttribute {
     @bindable text;
-    @bindable position = 'top';
+    @bindable position = bootstrapOptions.tooltipPosition;
     @bindable disabled = false;
     @bindable({defaultBindingMode: bindingMode.twoWay}) open = false;
-    @bindable trigger = 'mouseover';
+    @bindable trigger = bootstrapOptions.tooltipTrigger;
 
     triggers = [];
 

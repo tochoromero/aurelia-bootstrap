@@ -1,9 +1,10 @@
 import {children, bindable, bindingMode} from "aurelia-framework";
+import {bootstrapOptions} from "../utils/bootstrap-options";
 
 @children({ name: "tabs", selector: "aubs-tab" })
 export class AubsTabsetCustomElement {
-    @bindable type = 'tabs';
-    @bindable vertical = false;
+    @bindable type = bootstrapOptions.tabsetType;
+    @bindable vertical = bootstrapOptions.tabsetVertical;
     @bindable({defaultBindingMode: bindingMode.twoWay}) active = 0;
 
     tabsClass = 'nav-tabs';
@@ -12,7 +13,7 @@ export class AubsTabsetCustomElement {
         this.tabsClass = this.type === 'pills' ? 'nav-pills' : 'nav-tabs';
     }
 
-    activeChanged(newValue, oldValue){
+    activeChanged(newValue){
 
         if(!this.tabs || this.tabs.length == 0) {
             return;

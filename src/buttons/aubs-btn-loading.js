@@ -1,10 +1,11 @@
 import {inject, bindable, bindingMode} from 'aurelia-framework';
+import {bootstrapOptions} from "../utils/bootstrap-options";
 
 @inject(Element)
 export class AubsBtnLoadingCustomAttribute {
 
     @bindable loading;
-    @bindable text = "Loading...";
+    @bindable text = bootstrapOptions.btnLoadingText;
     @bindable disabled = false;
 
     constructor(element) {

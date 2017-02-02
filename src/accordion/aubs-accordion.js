@@ -4,7 +4,7 @@ import {bootstrapOptions} from "../utils/bootstrap-options";
 @inject(BindingEngine)
 export class AubsAccordionCustomElement {
 
-    @bindable closeOthers = true;
+    @bindable closeOthers = bootstrapOptions.accordionCloseOthers;
     @children('aubs-accordion-group') groups = [];
 
     toggledListeners = [];

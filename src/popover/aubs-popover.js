@@ -8,10 +8,10 @@ export class AubsPopoverCustomAttribute {
 
     @bindable title;
     @bindable body;
-    @bindable position = 'top';
+    @bindable position = bootstrapOptions.popoverPosition;
     @bindable disabled = false;
     @bindable({defaultBindingMode: bindingMode.twoWay}) isOpen = false;
-    @bindable trigger = 'mouseover';
+    @bindable trigger = bootstrapOptions.popoverTrigger;
     @bindable customPopover;
     @bindable onToggle;
 

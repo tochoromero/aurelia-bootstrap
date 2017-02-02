@@ -8,7 +8,7 @@ import {AubsAccordionCustomElement} from './aubs-accordion';
 export class AubsAccordionGroupCustomElement {
 
     @bindable title;
-    @bindable panelClass = 'panel-default';
+    @bindable panelClass = bootstrapOptions.accordionGroupPanelClass;
     @bindable({defaultBindingMode: bindingMode.twoWay}) isOpen = false;
     @bindable disabled = false;
 
