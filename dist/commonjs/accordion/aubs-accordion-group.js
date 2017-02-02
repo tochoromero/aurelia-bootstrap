@@ -126,7 +126,7 @@ var AubsAccordionGroupCustomElement = exports.AubsAccordionGroupCustomElement = 
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "panelClass", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: function initializer() {
-        return 'panel-default';
+        return _bootstrapOptions.bootstrapOptions.accordionGroupPanelClass;
     }
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec2], {
     enumerable: true,

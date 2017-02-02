@@ -155,7 +155,7 @@ export let AubsDropdownCustomAttribute = (_dec = inject(Element), _dec2 = bindab
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "autoClose", [bindable], {
     enumerable: true,
     initializer: function () {
-        return 'always';
+        return bootstrapOptions.dropdownAutoClose;
     }
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "onToggle", [bindable], {
     enumerable: true,

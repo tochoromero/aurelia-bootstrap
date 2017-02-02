@@ -172,7 +172,7 @@ var AubsDropdownCustomAttribute = exports.AubsDropdownCustomAttribute = (_dec = 
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "autoClose", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: function initializer() {
-        return 'always';
+        return _bootstrapOptions.bootstrapOptions.dropdownAutoClose;
     }
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "onToggle", [_aureliaFramework.bindable], {
     enumerable: true,

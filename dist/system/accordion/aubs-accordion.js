@@ -134,7 +134,7 @@ System.register(["aurelia-framework", "../utils/bootstrap-options"], function (_
             }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "closeOthers", [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
-                    return true;
+                    return bootstrapOptions.accordionCloseOthers;
                 }
             }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "groups", [_dec2], {
                 enumerable: true,

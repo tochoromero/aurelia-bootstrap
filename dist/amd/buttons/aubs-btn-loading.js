@@ -1,4 +1,4 @@
-define(['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
+define(['exports', 'aurelia-framework', '../utils/bootstrap-options'], function (exports, _aureliaFramework, _bootstrapOptions) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -128,7 +128,7 @@ define(['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
     }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'text', [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: function initializer() {
-            return "Loading...";
+            return _bootstrapOptions.bootstrapOptions.btnLoadingText;
         }
     }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [_aureliaFramework.bindable], {
         enumerable: true,

@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['aurelia-framework'], function (_export, _context) {
+System.register(['aurelia-framework', '../utils/bootstrap-options'], function (_export, _context) {
     "use strict";
 
-    var inject, bindable, bindingMode, _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, AubsBtnLoadingCustomAttribute;
+    var inject, bindable, bindingMode, bootstrapOptions, _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, AubsBtnLoadingCustomAttribute;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -59,6 +59,8 @@ System.register(['aurelia-framework'], function (_export, _context) {
             inject = _aureliaFramework.inject;
             bindable = _aureliaFramework.bindable;
             bindingMode = _aureliaFramework.bindingMode;
+        }, function (_utilsBootstrapOptions) {
+            bootstrapOptions = _utilsBootstrapOptions.bootstrapOptions;
         }],
         execute: function () {
             _export('AubsBtnLoadingCustomAttribute', AubsBtnLoadingCustomAttribute = (_dec = inject(Element), _dec(_class = (_class2 = function () {
@@ -132,7 +134,7 @@ System.register(['aurelia-framework'], function (_export, _context) {
             }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'text', [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
-                    return "Loading...";
+                    return bootstrapOptions.btnLoadingText;
                 }
             }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [bindable], {
                 enumerable: true,

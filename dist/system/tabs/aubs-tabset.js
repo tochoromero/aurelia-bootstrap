@@ -1,9 +1,9 @@
 "use strict";
 
-System.register(["aurelia-framework"], function (_export, _context) {
+System.register(["aurelia-framework", "../utils/bootstrap-options"], function (_export, _context) {
     "use strict";
 
-    var children, bindable, bindingMode, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, AubsTabsetCustomElement;
+    var children, bindable, bindingMode, bootstrapOptions, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, AubsTabsetCustomElement;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -59,6 +59,8 @@ System.register(["aurelia-framework"], function (_export, _context) {
             children = _aureliaFramework.children;
             bindable = _aureliaFramework.bindable;
             bindingMode = _aureliaFramework.bindingMode;
+        }, function (_utilsBootstrapOptions) {
+            bootstrapOptions = _utilsBootstrapOptions.bootstrapOptions;
         }],
         execute: function () {
             _export("AubsTabsetCustomElement", AubsTabsetCustomElement = (_dec = children({ name: "tabs", selector: "aubs-tab" }), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = (_class2 = function () {
@@ -78,7 +80,7 @@ System.register(["aurelia-framework"], function (_export, _context) {
                     this.tabsClass = this.type === 'pills' ? 'nav-pills' : 'nav-tabs';
                 };
 
-                AubsTabsetCustomElement.prototype.activeChanged = function activeChanged(newValue, oldValue) {
+                AubsTabsetCustomElement.prototype.activeChanged = function activeChanged(newValue) {
 
                     if (!this.tabs || this.tabs.length == 0) {
                         return;
@@ -140,12 +142,12 @@ System.register(["aurelia-framework"], function (_export, _context) {
             }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "type", [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
-                    return 'tabs';
+                    return bootstrapOptions.tabsetType;
                 }
             }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "vertical", [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
-                    return false;
+                    return bootstrapOptions.tabsetVertical;
                 }
             }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "active", [_dec2], {
                 enumerable: true,

@@ -44,6 +44,7 @@ function _initializerWarningHelper(descriptor, context) {
 }
 
 import { inject, bindable, bindingMode } from 'aurelia-framework';
+import { bootstrapOptions } from "../utils/bootstrap-options";
 
 export let AubsBtnLoadingCustomAttribute = (_dec = inject(Element), _dec(_class = (_class2 = class AubsBtnLoadingCustomAttribute {
 
@@ -113,7 +114,7 @@ export let AubsBtnLoadingCustomAttribute = (_dec = inject(Element), _dec(_class 
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'text', [bindable], {
     enumerable: true,
     initializer: function () {
-        return "Loading...";
+        return bootstrapOptions.btnLoadingText;
     }
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [bindable], {
     enumerable: true,

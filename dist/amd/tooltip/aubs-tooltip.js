@@ -254,7 +254,7 @@ define(['exports', 'aurelia-framework', '../utils/tooltip-service', '../utils/bo
     }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'position', [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: function initializer() {
-            return 'top';
+            return _bootstrapOptions.bootstrapOptions.tooltipPosition;
         }
     }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [_aureliaFramework.bindable], {
         enumerable: true,
@@ -269,7 +269,7 @@ define(['exports', 'aurelia-framework', '../utils/tooltip-service', '../utils/bo
     }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'trigger', [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: function initializer() {
-            return 'mouseover';
+            return _bootstrapOptions.bootstrapOptions.tooltipTrigger;
         }
     })), _class2)) || _class);
 });

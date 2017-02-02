@@ -223,7 +223,7 @@ export let AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService),
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'position', [bindable], {
     enumerable: true,
     initializer: function () {
-        return 'top';
+        return bootstrapOptions.tooltipPosition;
     }
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [bindable], {
     enumerable: true,
@@ -238,6 +238,6 @@ export let AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService),
 }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'trigger', [bindable], {
     enumerable: true,
     initializer: function () {
-        return 'mouseover';
+        return bootstrapOptions.tooltipTrigger;
     }
 })), _class2)) || _class);

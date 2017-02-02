@@ -9,6 +9,8 @@ var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _des
 
 var _aureliaFramework = require("aurelia-framework");
 
+var _bootstrapOptions = require("../utils/bootstrap-options");
+
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
     Object.defineProperty(target, property, {
@@ -71,7 +73,7 @@ var AubsTabsetCustomElement = exports.AubsTabsetCustomElement = (_dec = (0, _aur
         this.tabsClass = this.type === 'pills' ? 'nav-pills' : 'nav-tabs';
     };
 
-    AubsTabsetCustomElement.prototype.activeChanged = function activeChanged(newValue, oldValue) {
+    AubsTabsetCustomElement.prototype.activeChanged = function activeChanged(newValue) {
 
         if (!this.tabs || this.tabs.length == 0) {
             return;
@@ -133,12 +135,12 @@ var AubsTabsetCustomElement = exports.AubsTabsetCustomElement = (_dec = (0, _aur
 }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "type", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: function initializer() {
-        return 'tabs';
+        return _bootstrapOptions.bootstrapOptions.tabsetType;
     }
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "vertical", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: function initializer() {
-        return false;
+        return _bootstrapOptions.bootstrapOptions.tabsetVertical;
     }
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "active", [_dec2], {
     enumerable: true,

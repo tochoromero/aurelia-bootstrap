@@ -130,7 +130,7 @@ System.register(["aurelia-framework", "../utils/bootstrap-options", "velocity-an
             }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "panelClass", [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
-                    return 'panel-default';
+                    return bootstrapOptions.accordionGroupPanelClass;
                 }
             }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec2], {
                 enumerable: true,

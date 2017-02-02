@@ -179,7 +179,7 @@ System.register(["aurelia-framework", "../utils/bootstrap-options"], function (_
             }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "autoClose", [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
-                    return 'always';
+                    return bootstrapOptions.dropdownAutoClose;
                 }
             }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "onToggle", [bindable], {
                 enumerable: true,

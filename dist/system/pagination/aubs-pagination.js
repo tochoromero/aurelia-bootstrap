@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-System.register(['aurelia-framework'], function (_export, _context) {
+System.register(["aurelia-framework", "../utils/bootstrap-options"], function (_export, _context) {
     "use strict";
 
-    var bindable, bindingMode, _dec, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, AubsPaginationCustomElement;
+    var bindable, bindingMode, bootstrapOptions, _dec, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, AubsPaginationCustomElement;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -58,33 +58,35 @@ System.register(['aurelia-framework'], function (_export, _context) {
         setters: [function (_aureliaFramework) {
             bindable = _aureliaFramework.bindable;
             bindingMode = _aureliaFramework.bindingMode;
+        }, function (_utilsBootstrapOptions) {
+            bootstrapOptions = _utilsBootstrapOptions.bootstrapOptions;
         }],
         execute: function () {
-            _export('AubsPaginationCustomElement', AubsPaginationCustomElement = (_dec = bindable({ defaultBindingMode: bindingMode.twoWay }), (_class = function () {
+            _export("AubsPaginationCustomElement", AubsPaginationCustomElement = (_dec = bindable({ defaultBindingMode: bindingMode.twoWay }), (_class = function () {
                 function AubsPaginationCustomElement() {
                     _classCallCheck(this, AubsPaginationCustomElement);
 
-                    _initDefineProp(this, 'currentPage', _descriptor, this);
+                    _initDefineProp(this, "currentPage", _descriptor, this);
 
-                    _initDefineProp(this, 'pageSize', _descriptor2, this);
+                    _initDefineProp(this, "pageSize", _descriptor2, this);
 
-                    _initDefineProp(this, 'totalItems', _descriptor3, this);
+                    _initDefineProp(this, "totalItems", _descriptor3, this);
 
-                    _initDefineProp(this, 'hideSinglePage', _descriptor4, this);
+                    _initDefineProp(this, "hideSinglePage", _descriptor4, this);
 
-                    _initDefineProp(this, 'paginationSize', _descriptor5, this);
+                    _initDefineProp(this, "paginationSize", _descriptor5, this);
 
-                    _initDefineProp(this, 'boundaryLinks', _descriptor6, this);
+                    _initDefineProp(this, "boundaryLinks", _descriptor6, this);
 
-                    _initDefineProp(this, 'firstText', _descriptor7, this);
+                    _initDefineProp(this, "firstText", _descriptor7, this);
 
-                    _initDefineProp(this, 'lastText', _descriptor8, this);
+                    _initDefineProp(this, "lastText", _descriptor8, this);
 
-                    _initDefineProp(this, 'directionLinks', _descriptor9, this);
+                    _initDefineProp(this, "directionLinks", _descriptor9, this);
 
-                    _initDefineProp(this, 'previousText', _descriptor10, this);
+                    _initDefineProp(this, "previousText", _descriptor10, this);
 
-                    _initDefineProp(this, 'nextText', _descriptor11, this);
+                    _initDefineProp(this, "nextText", _descriptor11, this);
 
                     this.totalPages = 1;
                     this.displayPages = [];
@@ -204,56 +206,56 @@ System.register(['aurelia-framework'], function (_export, _context) {
                 };
 
                 return AubsPaginationCustomElement;
-            }(), (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'currentPage', [_dec], {
+            }(), (_descriptor = _applyDecoratedDescriptor(_class.prototype, "currentPage", [_dec], {
                 enumerable: true,
                 initializer: null
-            }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'pageSize', [bindable], {
+            }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "pageSize", [bindable], {
                 enumerable: true,
                 initializer: null
-            }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'totalItems', [bindable], {
+            }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "totalItems", [bindable], {
                 enumerable: true,
                 initializer: null
-            }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'hideSinglePage', [bindable], {
+            }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "hideSinglePage", [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
-                    return true;
+                    return bootstrapOptions.paginationHideSinglePage;
                 }
-            }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, 'paginationSize', [bindable], {
+            }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "paginationSize", [bindable], {
                 enumerable: true,
                 initializer: null
-            }), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'boundaryLinks', [bindable], {
+            }), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, "boundaryLinks", [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
-                    return false;
+                    return bootstrapOptions.paginationBoundaryLinks;
                 }
-            }), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, 'firstText', [bindable], {
+            }), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, "firstText", [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
-                    return 'First';
+                    return bootstrapOptions.paginationFirstText;
                 }
-            }), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, 'lastText', [bindable], {
+            }), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "lastText", [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
-                    return 'Last';
+                    return bootstrapOptions.paginationLastText;
                 }
-            }), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, 'directionLinks', [bindable], {
+            }), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, "directionLinks", [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
-                    return true;
+                    return bootstrapOptions.paginationDirectionLinks;
                 }
-            }), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, 'previousText', [bindable], {
+            }), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, "previousText", [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
-                    return '<';
+                    return bootstrapOptions.paginationPreviousText;
                 }
-            }), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, 'nextText', [bindable], {
+            }), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, "nextText", [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
-                    return '>';
+                    return bootstrapOptions.paginationNextText;
                 }
             })), _class)));
 
-            _export('AubsPaginationCustomElement', AubsPaginationCustomElement);
+            _export("AubsPaginationCustomElement", AubsPaginationCustomElement);
         }
     };
 });

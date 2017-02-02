@@ -9,6 +9,8 @@ var _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor
 
 var _aureliaFramework = require('aurelia-framework');
 
+var _bootstrapOptions = require('../utils/bootstrap-options');
+
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
     Object.defineProperty(target, property, {
@@ -125,7 +127,7 @@ var AubsBtnLoadingCustomAttribute = exports.AubsBtnLoadingCustomAttribute = (_de
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'text', [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: function initializer() {
-        return "Loading...";
+        return _bootstrapOptions.bootstrapOptions.btnLoadingText;
     }
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [_aureliaFramework.bindable], {
     enumerable: true,

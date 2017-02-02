@@ -44,6 +44,7 @@ function _initializerWarningHelper(descriptor, context) {
 }
 
 import { children, bindable, bindingMode } from "aurelia-framework";
+import { bootstrapOptions } from "../utils/bootstrap-options";
 
 export let AubsTabsetCustomElement = (_dec = children({ name: "tabs", selector: "aubs-tab" }), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = (_class2 = class AubsTabsetCustomElement {
     constructor() {
@@ -60,7 +61,7 @@ export let AubsTabsetCustomElement = (_dec = children({ name: "tabs", selector: 
         this.tabsClass = this.type === 'pills' ? 'nav-pills' : 'nav-tabs';
     }
 
-    activeChanged(newValue, oldValue) {
+    activeChanged(newValue) {
 
         if (!this.tabs || this.tabs.length == 0) {
             return;
@@ -105,12 +106,12 @@ export let AubsTabsetCustomElement = (_dec = children({ name: "tabs", selector: 
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "type", [bindable], {
     enumerable: true,
     initializer: function () {
-        return 'tabs';
+        return bootstrapOptions.tabsetType;
     }
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "vertical", [bindable], {
     enumerable: true,
     initializer: function () {
-        return false;
+        return bootstrapOptions.tabsetVertical;
     }
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "active", [_dec2], {
     enumerable: true,

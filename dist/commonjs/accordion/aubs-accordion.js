@@ -126,7 +126,7 @@ var AubsAccordionCustomElement = exports.AubsAccordionCustomElement = (_dec = (0
 }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "closeOthers", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: function initializer() {
-        return true;
+        return _bootstrapOptions.bootstrapOptions.accordionCloseOthers;
     }
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "groups", [_dec2], {
     enumerable: true,

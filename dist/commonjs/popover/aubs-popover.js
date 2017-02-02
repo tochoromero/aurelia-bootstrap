@@ -312,7 +312,7 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "position", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: function initializer() {
-        return 'top';
+        return _bootstrapOptions.bootstrapOptions.popoverPosition;
     }
 }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "disabled", [_aureliaFramework.bindable], {
     enumerable: true,
@@ -327,7 +327,7 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
 }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, "trigger", [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: function initializer() {
-        return 'mouseover';
+        return _bootstrapOptions.bootstrapOptions.popoverTrigger;
     }
 }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "customPopover", [_aureliaFramework.bindable], {
     enumerable: true,

@@ -256,7 +256,7 @@ System.register(['aurelia-framework', '../utils/tooltip-service', '../utils/boot
             }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'position', [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
-                    return 'top';
+                    return bootstrapOptions.tooltipPosition;
                 }
             }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [bindable], {
                 enumerable: true,
@@ -271,7 +271,7 @@ System.register(['aurelia-framework', '../utils/tooltip-service', '../utils/boot
             }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'trigger', [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
-                    return 'mouseover';
+                    return bootstrapOptions.tooltipTrigger;
                 }
             })), _class2)) || _class));
 

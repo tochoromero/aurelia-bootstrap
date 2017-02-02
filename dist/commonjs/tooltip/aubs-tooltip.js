@@ -253,7 +253,7 @@ var AubsTooltipCustomAttribute = exports.AubsTooltipCustomAttribute = (_dec = (0
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'position', [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: function initializer() {
-        return 'top';
+        return _bootstrapOptions.bootstrapOptions.tooltipPosition;
     }
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [_aureliaFramework.bindable], {
     enumerable: true,
@@ -268,6 +268,6 @@ var AubsTooltipCustomAttribute = exports.AubsTooltipCustomAttribute = (_dec = (0
 }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'trigger', [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: function initializer() {
-        return 'mouseover';
+        return _bootstrapOptions.bootstrapOptions.tooltipTrigger;
     }
 })), _class2)) || _class);

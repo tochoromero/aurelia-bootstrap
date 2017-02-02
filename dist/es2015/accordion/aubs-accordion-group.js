@@ -107,7 +107,7 @@ export let AubsAccordionGroupCustomElement = (_dec = inject(AubsAccordionCustomE
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "panelClass", [bindable], {
     enumerable: true,
     initializer: function () {
-        return 'panel-default';
+        return bootstrapOptions.accordionGroupPanelClass;
     }
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "isOpen", [_dec2], {
     enumerable: true,
