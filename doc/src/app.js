@@ -4,6 +4,7 @@ export class App {
         config.title = 'Aurelia Bootstrap';
         config.map([
             {route: ['', 'introduction'], name: 'introduction', moduleId: 'introduction/introduction', nav: false},
+            {route: ['defaults'], name: 'global-defaults', moduleId: 'global-defaults/global-defaults', nav: false},
             {route: ['accordion'], name: 'accordion', moduleId: 'accordion/accordion', nav: true, title: 'Accordion'},
             {route: ['buttons'], name: 'buttons', moduleId: 'buttons/buttons', nav: true, title: 'Buttons'},
             {route: ['collapse'], name: 'collapse', moduleId: 'collapse/collapse', nav: true, title: 'Collapse'},

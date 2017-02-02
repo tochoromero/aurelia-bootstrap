@@ -1,0 +1,48 @@
+<template>
+    <div class="container-fluid">
+        <div class="page-header">
+            <a class="btn btn-default pull-right" target="_blank"
+               href="https://github.com/tochoromero/aurelia-bootstrap/tree/master/doc/src/global-defaults">
+                <i class="fa fa-edit"></i> Improve documentation</a>
+            <h1>Global Defaults</h1>
+        </div>
+
+        <p>Many of the Aurelia Bootstrap components have sensible defaults. You can always change the default value on a per component
+            basis. But sometimes, you want to change the default for <strong>all</strong> the components. For those cases you want to use
+            Global
+            Defaults.</p>
+
+        <p>When initializing the Aurelia Bootstrap plugin in your <code>main.js</code>, you can obtain the configuration object and change the desired
+            defaults,
+            this example contains all the available defaults with their respective value:</p>
+
+        <pre><code class="language-js" au-syntax>export function configure(aurelia) {
+  aurelia.use
+    .standardConfiguration()
+    .developmentLogging()
+    .plugin('aurelia-bootstrap', config => {
+        config.options.accordionCloseOthers: true,
+        config.options.accordionGroupPanelClass: 'panel-default',
+        config.options.btnLoadingText: 'Loading...',
+        config.options.dropdownAutoClose: 'always',
+        config.options.paginationBoundaryLinks: false,
+        config.options.paginationDirectionLinks: true,
+        config.options.paginationFirstText: 'First',
+        config.options.paginationHideSinglePage: true,
+        config.options.paginationLastText: 'Last',
+        config.options.paginationNextText: '>',
+        config.options.paginationPreviousText: '&lt;',
+        config.options.popoverPosition: 'top',
+        config.options.popoverTrigger: 'mouseover',
+        config.options.tabsetType: 'tabs',
+        config.options.tabsetVertical: false,
+        config.options.tooltipPosition: 'top',
+        config.options.tooltipTrigger: 'mouseover'
+    });
+
+  aurelia.start().then(() => aurelia.setRoot());
+}</code></pre>
+
+        <p>Please note that <strong>you don't need to add the whole list</strong>, you only add what you need to change.</p>
+    </div>
+</template>
