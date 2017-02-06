@@ -60,7 +60,7 @@ export class AubsPopoverCustomAttribute {
     detached() {
         this.tooltipService.removeTriggers(this.element, this.triggers, this.listeners);
 
-        if (this.popover) {
+        if (this.popover && document.body.contains(this.popover)) {
             document.body.removeChild(this.popover);
         }
 
@@ -107,7 +107,7 @@ export class AubsPopoverCustomAttribute {
         this.valuesChanged = true;
     }
 
-    triggerChanged(newValue, oldValue){
+    triggerChanged(newValue, oldValue) {
         this.tooltipService.removeTriggers(this.element, this.triggers, this.listeners);
 
         this.triggers = this.trigger.split(' ');
@@ -192,10 +192,10 @@ export class AubsPopoverCustomAttribute {
             this.popover.classList.add('popover');
             this.popover.classList.add(this.getPositionClass(this.position));
 
-            if(!this.popover.querySelector('.arrow')){
+            if (!this.popover.querySelector('.arrow')) {
                 this.popover.appendChild(arrow);
             }
-        }else{
+        } else {
             if (this.popover) {
                 document.body.removeChild(this.popover);
             }
@@ -224,7 +224,7 @@ export class AubsPopoverCustomAttribute {
             document.body.appendChild(this.popover);
         }
 
-        if(this.tether){
+        if (this.tether) {
             this.tether.destroy();
         }
 

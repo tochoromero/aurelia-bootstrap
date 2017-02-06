@@ -135,7 +135,7 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service", "../utils/bo
         AubsPopoverCustomAttribute.prototype.detached = function detached() {
             this.tooltipService.removeTriggers(this.element, this.triggers, this.listeners);
 
-            if (this.popover) {
+            if (this.popover && document.body.contains(this.popover)) {
                 document.body.removeChild(this.popover);
             }
 
