@@ -13,7 +13,7 @@ export class App {
             {route: ['popover'], name: 'popover', moduleId: 'popover/popover', nav: true, title: 'Popover'},
             {route: ['tabs'], name: 'tabs', moduleId: 'tabs/tabs', nav: true, title: 'Tabs'},
             {route: ['tooltip'], name: 'tooltip', moduleId: 'tooltip/tooltip', nav: true, title: 'Tooltip'},
-            {route: ['typeahead'], name: 'typeahead', moduleId: 'typeahead/typeahead', nav: false, title: 'Typeahead'}
+            {route: ['typeahead'], name: 'typeahead', moduleId: 'typeahead/typeahead', nav: true, title: 'Typeahead'}
         ]);
 
         this.router = router;

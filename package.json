@@ -1,11 +1,12 @@
 {
   "name": "aurelia-bootstrap",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Bootstrap components written in Aurelia.",
   "keywords": [
     "aurelia",
     "bootstrap",
     "typeahead",
+    "aurelia-typeahead",
     "twitter",
     "css"
   ],
