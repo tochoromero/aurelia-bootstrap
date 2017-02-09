@@ -103,12 +103,10 @@ System.register(["aurelia-framework", "../utils/bootstrap-options"], function (_
                 };
 
                 AubsPaginationCustomElement.prototype.totalItemsChanged = function totalItemsChanged() {
-                    this.currentPage = 1;
                     this.calculatePages();
                 };
 
                 AubsPaginationCustomElement.prototype.pageSizeChanged = function pageSizeChanged() {
-                    this.currentPage = 1;
                     this.calculatePages();
                 };
 
@@ -118,6 +116,10 @@ System.register(["aurelia-framework", "../utils/bootstrap-options"], function (_
 
                 AubsPaginationCustomElement.prototype.calculatePages = function calculatePages() {
                     this.totalPages = this.totalItems <= this.pageSize ? 1 : Math.ceil(this.totalItems / this.pageSize);
+
+                    if (this.currentPage > this.totalPages) {
+                        this.currentPage = 1;
+                    }
 
                     if (isNaN(this.paginationSize) || this.paginationSize <= 0) {
                         this.displayAllPages();

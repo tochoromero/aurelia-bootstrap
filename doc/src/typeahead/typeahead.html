@@ -1,23 +1,287 @@
 <template>
-    <div class="container-fluid">
-        <div class="page-header">
-            <a class="btn btn-default pull-right" target="_blank"
-               href="https://github.com/tochoromero/aurelia-bootstrap/tree/master/doc/src/typeahead">
-                <i class="fa fa-edit"></i> Improve documentation</a>
-            <h1>Typeahead</h1>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12">
-                <aubs-typeahead data.call="getData(filter, limit)" value.bind="value" open-on-focus.bind="true"
-                                instant-clean-empty.bind="false" focus-first.bind="true" results-limit.bind="10"
-                loading-text="<i class='fa fa-refresh fa-spin'></i>"></aubs-typeahead>
-            </div>
-
-            <div class="pull-right">
-                Values is: ${value.name}
-            </div>
-
-        </div>
+  <div class="container-fluid">
+    <div class="page-header">
+      <a class="btn btn-default pull-right" target="_blank"
+         href="https://github.com/tochoromero/aurelia-bootstrap/tree/master/doc/src/typeahead">
+        <i class="fa fa-edit"></i> Improve documentation</a>
+      <h1>Typeahead</h1>
     </div>
+
+
+    <div class="row">
+      <div class="col-sm-6 col-xs-12">
+
+        <h4>Simplest Typeahead</h4>
+        <div class="row">
+          <div class="col-xs-6">
+            <aubs-typeahead data.bind="daysOfTheWeek" value.bind="dayOfTheWeek" placeholder="Days of the week"></aubs-typeahead>
+          </div>
+          <div class="col-xs-6">
+            <label>Selected Day: &nbsp;</label> ${dayOfTheWeek}
+          </div>
+        </div>
+
+        <h4>With Objects</h4>
+        <div class="row">
+          <div class="col-xs-6">
+            <aubs-typeahead data.bind="monthsOfTheYear" value.bind="monthOfTheYear" placeholder="Months of the year"
+                            open-on-focus.bind="true" on-select.call="monthSelected(item)"></aubs-typeahead>
+          </div>
+          <div class="col-xs-6">
+            <label>Selected Month: &nbsp;</label> ${monthOfTheYear.name} - ${monthOfTheYear.short} - ${monthOfTheYear.number}
+          </div>
+        </div>
+
+        <h4>Allow Custom Entry</h4>
+        <div class="row">
+          <div class="col-xs-6">
+            <aubs-typeahead data.bind="fruits" value.bind="fruit" custom-entry.bind="true" placeholder="Enter your fruit"
+                            open-on-focus.bind="true" debounce.bind="0"></aubs-typeahead>
+          </div>
+          <div class="col-xs-6">
+            <label>Selected Fruit: &nbsp;</label> ${fruit}
+          </div>
+        </div>
+
+        <h4>Async Data</h4>
+        <div class="row">
+          <div class="col-xs-6">
+            <aubs-typeahead data.call="getStates(filter, limit)" value.bind="state" debounce.bind="350" placeholder="States"
+                            open-on-focus.bind="true" key="state" results-limit.bind="10" select-single-result.bind="true">
+            </aubs-typeahead>
+            <br/>
+            <button class="btn btn-default" click.delegate="state = null" disabled.bind="!state">Clear State</button>
+          </div>
+          <div class="col-xs-6">
+            <label>Selected State: &nbsp;</label> ${state.short}
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-6 col-xs-12">
+        <p>
+          The <code>aubs-typeahead</code> Custom Element provides you with an input with suggestions. As the user types, the
+          suggestions list will change to match the entered text. The suggestions list can be a simple array of Strings or
+          Objects, or the list can be asynchronously retrieved from a web service.
+        </p>
+
+        <h3>The Data</h3>
+        The <code>data</code> attribute supports two types of data sources, Arrays and Functions.
+        <h4>Arrays</h4>
+        <ul>
+          <li><strong>Strings:</strong> This is the simplest way to get started, just bind the <code>data</code> property to an array of
+            Strings and you can call it a day.
+          </li>
+          <li><strong>Objects:</strong> You can also bind your <code>data</code> to an array of objects. The only condition is that your
+            object has a property <code>name</code>. That is the property that will be shown on the suggestions. Alternatively you can
+            specify the name of the property to use for the suggestions, just provide it with the <code>key</code> attribute.<br/>
+            When using array with Objects the selected value will be the actual object, not just the <code>name</code> property.
+          </li>
+        </ul>
+        <h4>Functions</h4>
+        If you need to retrieve your data from a service, or a file, or really from wherever you want, you can provide a function as your
+        <code>data</code> property. However there are a couple of requirements:
+        <ul>
+          <li>You must use <code>call</code> for the <code>data</code> attribute.</li>
+          <li>The function you call will receive two arguments:
+            <ul>
+              <li><code>filter</code>: This is a string with the value of the filtered entered by the user, it can be empty. It is your
+                job to filter the results.
+              </li>
+              <li><code>limit</code>: If the suggestions are to be limited, you will receive the limit. It is your job to limit the
+                results.
+              </li>
+            </ul>
+          </li>
+          <li>The function must return a promise. We will wait until the promise is resolved to display the suggestions.</li>
+          <li>The promise must resolve on a Array of Strings or Objects following the rules described on the Arrays section.</li>
+        </ul>
+        An example of a function datasource would be: <code>data.call="myFunction(filter, limit)"</code>
+
+        <h3>Options</h3>
+        <ul>
+          <li><code>value</code>
+            <property></property>
+            <two-way></two-way>
+            : The property where the selected value will be set. You can also set it to <code>null</code> if you wish to clear the filter.
+          </li>
+          <li><code>key</code>
+            <string></string>
+            <i>(default: name)</i>: The property used as the displayed suggestion when the data is an array of objects.
+          </li>
+          <li><code>custom-entry</code>
+            <boolean></boolean>
+            <i>(default: false)</i>: Whether or not the user is allowed to enter values not present in the suggestion list. If enabled, the
+            <code>value</code> property will be updated as the user types.<br/>
+            It is important to note that custom entries will only be used if the data is an array of Strings.
+          </li>
+          <li><code>results-limit</code>
+            <number></number>
+            <i>(default: null)</i>: Limits the number of displayed suggestions. If not provided all the matching suggestions will be
+            displayed.
+          </li>
+          <li><code>debounce</code>
+            <number></number>
+            <i>(default: 0)</i>: The number of milliseconds used to debounce the filter. It will only be used if using a function
+            datasource.
+          </li>
+          <li><code>on-select</code>
+            <function></function>
+            : Callback function called when an item is selected. It will receive an <code>item</code> argument corresponding to the selected
+            item. Beware when the user clears the filter you will receive <code>null</code>.
+          </li>
+          <li><code>instant-clean-empty</code>
+            <boolean></boolean>
+            <i>(default: true)</i>: When the users cleans the filter, if set to <code>true</code>, the <code>value</code> property will be
+            immediately set to <code>null</code>. Otherwise it will wait until the input looses focus.
+          </li>
+          <li><code>disabled</code>
+            <boolean></boolean>
+            <i>(default: false)</i>: Disables the input element.
+          </li>
+          <li><code>open-on-focus</code>
+            <boolean></boolean>
+            <i>(default: false)</i>: Whether or not the suggestions should be displayed as soon the input gain focus. If set to
+            <code>false</code> the suggestion will be displayed when the user starts typing.
+          </li>
+          <li><code>focus-first</code>
+            <boolean></boolean>
+            <i>(default: true)</i>: Whether or not the first item on the suggestion list should be focused. The focused item is the one
+            selected when the user hits <kbd>Enter</kbd> or <kbd>Tab</kbd>.
+          </li>
+          <li><code>select-single-result</code>
+            <boolean></boolean>
+            <i>(default: false)</i>: If <code>true</code>, when the user is filtering results, if there is only one single match it will be
+            automatically selected.
+          </li>
+          <li><code>loading-text</code>
+            <string></string>
+            <markup></markup>
+            <i>(default: Loading...</i>: The text to display while waiting for the data promise to resolve.
+          </li>
+          <li><code>input-class</code>
+            <string></string>
+            : Additional classes for the input element.
+          </li>
+          <li><code>placeholder</code>
+            <string></string>
+            : Placeholder text for the input element.
+          </li>
+          <li><code>no-results-text</code>
+            <string></string>
+            <i>(default: No Results)</i>: Text displayed when there are no matching suggestions.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <hr>
+        <aubs-tabset>
+          <aubs-tab header="HTML">
+                        <pre><code class="language-markup" au-syntax>&lt;template>
+    &lt;h4>Simplest Typeahead&lt;/h4>
+        &lt;div class="row">
+          &lt;div class="col-xs-6">
+            &lt;aubs-typeahead data.bind="daysOfTheWeek" value.bind="dayOfTheWeek" placeholder="Days of the week">&lt;/aubs-typeahead>
+          &lt;/div>
+          &lt;div class="col-xs-6">
+            &lt;label>Selected Day: &nbsp;&lt;/label> ${open}dayOfTheWeek}
+          &lt;/div>
+        &lt;/div>
+
+        &lt;h4>With Objects&lt;/h4>
+        &lt;div class="row">
+          &lt;div class="col-xs-6">
+            &lt;aubs-typeahead data.bind="monthsOfTheYear" value.bind="monthOfTheYear" placeholder="Months of the year"
+                            open-on-focus.bind="true" on-select.call="monthSelected(item)">&lt;/aubs-typeahead>
+          &lt;/div>
+          &lt;div class="col-xs-6">
+            &lt;label>Selected Month: &nbsp;&lt;/label> ${open}monthOfTheYear.name} - ${open}monthOfTheYear.short} - ${open}monthOfTheYear.number}
+          &lt;/div>
+        &lt;/div>
+
+        &lt;h4>Allow Custom Entry&lt;/h4>
+        &lt;div class="row">
+          &lt;div class="col-xs-6">
+            &lt;aubs-typeahead data.bind="fruits" value.bind="fruit" custom-entry.bind="true" placeholder="Enter your fruit"
+                            open-on-focus.bind="true" debounce.bind="0">&lt;/aubs-typeahead>
+          &lt;/div>
+          &lt;div class="col-xs-6">
+            &lt;label>Selected Fruit: &nbsp;&lt;/label> ${open}fruit}
+          &lt;/div>
+        &lt;/div>
+
+        &lt;h4>Async Data&lt;/h4>
+        &lt;div class="row">
+          &lt;div class="col-xs-6">
+            &lt;aubs-typeahead data.call="getStates(filter, limit)" value.bind="state" debounce.bind="350" placeholder="States"
+                            open-on-focus.bind="true" key="state" results-limit.bind="10" select-single-result.bind="true">
+            &lt;/aubs-typeahead>
+            &lt;br/>
+            &lt;button class="btn btn-default" click.delegate="state = null" disabled.bind="!state">Clear State&lt;/button>
+          &lt;/div>
+          &lt;div class="col-xs-6">
+            &lt;label>Selected State: &nbsp;&lt;/label> ${open}state.short}
+          &lt;/div>
+        &lt;/div>
+&lt;/template></code></pre>
+          </aubs-tab>
+
+          <aubs-tab header="JS">
+                        <pre><code class="language-js" au-syntax>import {inject} from 'aurelia-framework';
+import {HttpClient} from 'aurelia-fetch-client';
+
+@inject(HttpClient)
+export class Example {
+  daysOfTheWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+  monthsOfTheYear = [
+    {name: 'January', short: 'Jan', number: 1},
+    {name: 'February', short: 'Feb', number: 2},
+    {name: 'March', short: 'Mar', number: 3},
+    {name: 'April', short: 'Apr', number: 4},
+    {name: 'May', short: 'May', number: 5},
+    {name: 'June', short: 'Jun', number: 6},
+    {name: 'July', short: 'Jul', number: 7},
+    {name: 'August', short: 'Aug', number: 8},
+    {name: 'September', short: 'Sep', number: 9},
+    {name: 'October', short: 'Oct', number: 10},
+    {name: 'November', short: 'Nov', number: 11},
+    {name: 'December', short: 'Dec', number: 12}
+  ];
+
+  fruits = ['Apple', 'Orange', 'Grapes', 'Pineaple', 'Peach', 'Bananas'];
+
+
+  constructor(httpClient) {
+    this.httpClient = httpClient;
+  }
+
+  getStates(filter, limit) {
+    let promise = this.httpClient.fetch('states.json')
+      .then(response => {
+        return response.json();
+      })
+      .then(states => filter.length > 0 ? states.filter(item => item.state.toLowerCase().indexOf(filter.toLowerCase()) > -1) : states)
+      .then(states => limit ? states.splice(0, limit) : states);
+
+    return Promise.delay(500, promise);
+  }
+
+  monthSelected(item) {
+    if (item) {
+      console.log('Month Selected: ' + item.short);
+    } else {
+      console.log('Month cleared');
+    }
+  }
+}</code></pre>
+          </aubs-tab>
+        </aubs-tabset>
+      </div>
+    </div>
+  </div>
 </template>

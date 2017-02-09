@@ -85,12 +85,10 @@ export let AubsPaginationCustomElement = (_dec = bindable({ defaultBindingMode: 
     }
 
     totalItemsChanged() {
-        this.currentPage = 1;
         this.calculatePages();
     }
 
     pageSizeChanged() {
-        this.currentPage = 1;
         this.calculatePages();
     }
 
@@ -100,6 +98,10 @@ export let AubsPaginationCustomElement = (_dec = bindable({ defaultBindingMode: 
 
     calculatePages() {
         this.totalPages = this.totalItems <= this.pageSize ? 1 : Math.ceil(this.totalItems / this.pageSize);
+
+        if (this.currentPage > this.totalPages) {
+            this.currentPage = 1;
+        }
 
         if (isNaN(this.paginationSize) || this.paginationSize <= 0) {
             this.displayAllPages();

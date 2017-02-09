@@ -10,7 +10,8 @@ module.exports = {
     'jspm_packages/system.js',
     'jspm_packages/system-polyfills.js',
     'jspm_packages/system-csp-production.js',
-    'styles/*'
+    'styles/*',
+    'states.json'
   ],
   // this section lists any jspm packages that have
   // unbundled resources that need to be exported.
@@ -24,6 +25,10 @@ module.exports = {
         '/css/font-awesome.min.css',
         '/fonts/*'
       ]
+    ],
+    [
+      'bootstrap',
+      ['/css/bootstrap.min.css']
     ],
     [
       'bluebird', [

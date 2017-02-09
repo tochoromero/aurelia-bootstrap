@@ -4,7 +4,7 @@
 
     <div class="dropdown" ref="dropdown">
         <input class="form form-control ${inputClass}" placeholder.one-way="placeholder" ref="input"
-               value.bind="filter & debounce:waitTime" disabled.bind="disabled">
+               value.bind="filter & debounce:debounce" disabled.bind="disabled">
 
         <ul class="dropdown-menu" if.bind="!v4">
             <li show.bind="displayData.length === 0 && !loading" class="text-center">
@@ -15,7 +15,7 @@
                 <span class="text-muted" innerhtml.bind="loadingText"></span>
             </li>
 
-            <li repeat.for="item of displayData" show.bind="!loading" class.bind="item.$focused ? 'active' : ''">
+            <li repeat.for="item of displayData" show.bind="!loading" class.bind="focusedItem === item ? 'active' : ''">
                 <a class="dropdown-item" href="javascript:void(0)" click.delegate="itemSelected(item)"
                    innerhtml.bind="getName(item) | typeaheadHighlight:filter">
 
@@ -27,7 +27,7 @@
             <h6 class="dropdown-header text-center" show.bind="displayData.length == 0 && !loading" innerhtml.bind="noResultsText"></h6>
             <h6 class="dropdown-header text-center" show.bind="loading" innerhtml.bind="loadingText"></h6>
 
-            <a repeat.for="item of displayData" class="dropdown-item ${item.$focused ? 'active' : ''}" href="javascript:void(0)"
+            <a repeat.for="item of displayData" class="dropdown-item ${focusedItem === item  ? 'active' : ''}" href="javascript:void(0)"
                show.bind="!loading" click.delegate="itemSelected(item)"
                innerhtml.bind="getName(item) | typeaheadHighlight:filter"></a>
 

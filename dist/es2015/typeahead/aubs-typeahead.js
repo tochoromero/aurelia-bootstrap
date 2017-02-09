@@ -1,4 +1,4 @@
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17;
 
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
@@ -49,43 +49,46 @@ import { bootstrapOptions } from "../utils/bootstrap-options";
 export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = (_class2 = class AubsTypeaheadCustomElement {
 
   constructor(bindingEngine) {
-    _initDefineProp(this, 'value', _descriptor, this);
+    _initDefineProp(this, 'data', _descriptor, this);
 
-    _initDefineProp(this, 'data', _descriptor2, this);
+    _initDefineProp(this, 'value', _descriptor2, this);
 
-    _initDefineProp(this, 'disabled', _descriptor3, this);
+    _initDefineProp(this, 'key', _descriptor3, this);
 
-    _initDefineProp(this, 'openOnFocus', _descriptor4, this);
+    _initDefineProp(this, 'customEntry', _descriptor4, this);
 
     _initDefineProp(this, 'resultsLimit', _descriptor5, this);
 
-    _initDefineProp(this, 'focusFirst', _descriptor6, this);
+    _initDefineProp(this, 'debounce', _descriptor6, this);
 
-    _initDefineProp(this, 'selectSingleResult', _descriptor7, this);
+    _initDefineProp(this, 'onSelect', _descriptor7, this);
 
-    _initDefineProp(this, 'loadingText', _descriptor8, this);
+    _initDefineProp(this, 'instantCleanEmpty', _descriptor8, this);
 
-    _initDefineProp(this, 'inputClass', _descriptor9, this);
+    _initDefineProp(this, 'disabled', _descriptor9, this);
 
-    _initDefineProp(this, 'placeholder', _descriptor10, this);
+    _initDefineProp(this, 'openOnFocus', _descriptor10, this);
 
-    _initDefineProp(this, 'key', _descriptor11, this);
+    _initDefineProp(this, 'focusFirst', _descriptor11, this);
 
-    _initDefineProp(this, 'noResultsText', _descriptor12, this);
+    _initDefineProp(this, 'selectSingleResult', _descriptor12, this);
 
-    _initDefineProp(this, 'waitTime', _descriptor13, this);
+    _initDefineProp(this, 'loadingText', _descriptor13, this);
 
-    _initDefineProp(this, 'instantCleanEmpty', _descriptor14, this);
+    _initDefineProp(this, 'inputClass', _descriptor14, this);
 
-    _initDefineProp(this, 'customEntry', _descriptor15, this);
+    _initDefineProp(this, 'placeholder', _descriptor15, this);
+
+    _initDefineProp(this, 'noResultsText', _descriptor16, this);
 
     this.promiseQueue = [];
     this.v4 = false;
     this.displayData = [];
 
-    _initDefineProp(this, 'filter', _descriptor16, this);
+    _initDefineProp(this, 'filter', _descriptor17, this);
 
     this.focusedIndex = -1;
+    this.focusedItem = null;
     this.loading = false;
 
     this.bindingEngine = bindingEngine;
@@ -134,6 +137,19 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
     }
   }
 
+  dataChanged() {
+    if (this.dataObserver) {
+      this.dataObserver.dispose();
+    }
+
+    if (Array.isArray(this.data)) {
+      this.dataObserver = this.bindingEngine.collectionObserver(this.data).subscribe(() => {
+        this.checkCustomEntry();
+        this.applyPlugins();
+      });
+    }
+  }
+
   valueChanged() {
     let newFilter = this.getName(this.value);
 
@@ -155,13 +171,13 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
 
   doFocusFirst() {
     if (this.focusFirst && this.displayData.length > 0) {
-      this.displayData[0].$focused = true;
       this.focusedIndex = 0;
+      this.focusedItem = this.displayData[0];
     }
   }
 
   checkCustomEntry() {
-    if (this.data.length > 0 && typeof this.data[0] === 'object') {
+    if (this.data.length > 0 && typeof this.data[0] !== 'string') {
       this.customEntry = false;
     }
   }
@@ -175,8 +191,16 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
     this.applyPlugins().then(() => {
       if (this.instantCleanEmpty && this.filter.length === 0) {
         this.value = null;
+
+        if (typeof this.onSelect === 'function') {
+          this.onSelect({ item: null });
+        }
       } else if (this.customEntry) {
         this.value = this.filter;
+
+        if (typeof this.onSelect === 'function') {
+          this.onSelect({ item: this.value });
+        }
       } else if (this.selectSingleResult && this.displayData.length === 1) {
         this.itemSelected(this.displayData[0]);
       }
@@ -201,10 +225,10 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
         this.doFocusFirst();
         this.promiseQueue.splice(0, 1);
         this.loading = false;
-      }).catch(() => {
+      }).catch(error => {
         this.loading = false;
         this.displayData = [];
-        throw new Error('Unable to retrieve data');
+        throw error;
       });
 
       this.promiseQueue.push(promise);
@@ -227,11 +251,7 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
   }
 
   focusNone() {
-    let focused = this.displayData.find(next => next.$focused);
-    if (focused) {
-      focused.$focused = false;
-    }
-
+    this.focusedItem = null;
     this.focusedIndex = -1;
   }
 
@@ -280,7 +300,7 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
         this.focusNone();
         this.resetFilter();
       }
-    }, this.waitTime);
+    }, this.debounce);
   }
 
   itemSelected(item) {
@@ -292,6 +312,10 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
       this.ignoreChange = true;
       this.filter = newFilter;
     }
+
+    if (typeof this.onSelect === 'function') {
+      this.onSelect({ item: item });
+    }
   }
 
   isNull(item) {
@@ -299,9 +323,19 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
   }
 
   onKeyDown(evt) {
-    this.dropdown.classList.add('open');
+    if (this.dropdown.classList.contains('open')) {
+      this.switchKeyCode(evt.keyCode);
+      return;
+    }
 
-    switch (evt.keyCode) {
+    this.applyPlugins().then(() => {
+      this.switchKeyCode(evt.keyCode);
+      this.dropdown.classList.add('open');
+    });
+  }
+
+  switchKeyCode(keyCode) {
+    switch (keyCode) {
       case 40:
         return this.handleDown();
       case 38:
@@ -321,10 +355,8 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
       return;
     }
 
-    if (this.focusedIndex >= 0) {
-      this.displayData[this.focusedIndex].$focused = false;
-    }
-    this.displayData[++this.focusedIndex].$focused = true;
+    this.focusedIndex++;
+    this.focusedItem = this.displayData[this.focusedIndex];
   }
 
   handleUp() {
@@ -332,12 +364,12 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
       return;
     }
 
-    this.displayData[this.focusedIndex--].$focused = false;
-    this.displayData[this.focusedIndex].$focused = true;
+    this.focusedIndex--;
+    this.focusedItem = this.displayData[this.focusedIndex];
   }
 
   handleEnter() {
-    if (this.displayData.length === 0 || this.focusedIndex < 0) {
+    if (this.displayData.length === 0 || this.focusedIndex < 0 || !this.dropdown.classList.contains('open')) {
       return;
     }
 
@@ -349,76 +381,81 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
     this.focusNone();
     this.resetFilter();
   }
-}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec2], {
+}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'data', [bindable], {
   enumerable: true,
   initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'data', [bindable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec2], {
   enumerable: true,
   initializer: null
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [bindable], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'key', [bindable], {
   enumerable: true,
   initializer: function () {
-    return false;
+    return 'name';
   }
-}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'openOnFocus', [bindable], {
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'customEntry', [bindable], {
   enumerable: true,
   initializer: function () {
     return false;
   }
 }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'resultsLimit', [bindable], {
   enumerable: true,
+  initializer: function () {
+    return null;
+  }
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'debounce', [bindable], {
+  enumerable: true,
+  initializer: function () {
+    return 0;
+  }
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'onSelect', [bindable], {
+  enumerable: true,
   initializer: null
-}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'focusFirst', [bindable], {
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'instantCleanEmpty', [bindable], {
   enumerable: true,
   initializer: function () {
     return true;
   }
-}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'selectSingleResult', [bindable], {
+}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [bindable], {
   enumerable: true,
   initializer: function () {
     return false;
   }
-}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'loadingText', [bindable], {
+}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'openOnFocus', [bindable], {
+  enumerable: true,
+  initializer: function () {
+    return false;
+  }
+}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'focusFirst', [bindable], {
+  enumerable: true,
+  initializer: function () {
+    return true;
+  }
+}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'selectSingleResult', [bindable], {
+  enumerable: true,
+  initializer: function () {
+    return false;
+  }
+}), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'loadingText', [bindable], {
   enumerable: true,
   initializer: function () {
     return 'Loading...';
   }
-}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'inputClass', [bindable], {
+}), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'inputClass', [bindable], {
   enumerable: true,
   initializer: function () {
     return '';
   }
-}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [bindable], {
+}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [bindable], {
   enumerable: true,
   initializer: function () {
-    return 'Start typing to get results';
+    return '';
   }
-}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'key', [bindable], {
-  enumerable: true,
-  initializer: function () {
-    return 'name';
-  }
-}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'noResultsText', [bindable], {
+}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'noResultsText', [bindable], {
   enumerable: true,
   initializer: function () {
     return 'No Results';
   }
-}), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'waitTime', [bindable], {
-  enumerable: true,
-  initializer: function () {
-    return 350;
-  }
-}), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'instantCleanEmpty', [bindable], {
-  enumerable: true,
-  initializer: function () {
-    return true;
-  }
-}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'customEntry', [bindable], {
-  enumerable: true,
-  initializer: function () {
-    return false;
-  }
-}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'filter', [observable], {
+}), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'filter', [observable], {
   enumerable: true,
   initializer: function () {
     return '';

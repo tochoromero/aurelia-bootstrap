@@ -7,7 +7,7 @@ exports.AubsTypeaheadCustomElement = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17;
 
 var _aureliaFramework = require('aurelia-framework');
 
@@ -64,43 +64,46 @@ var AubsTypeaheadCustomElement = exports.AubsTypeaheadCustomElement = (_dec = (0
 
     _classCallCheck(this, AubsTypeaheadCustomElement);
 
-    _initDefineProp(this, 'value', _descriptor, this);
+    _initDefineProp(this, 'data', _descriptor, this);
 
-    _initDefineProp(this, 'data', _descriptor2, this);
+    _initDefineProp(this, 'value', _descriptor2, this);
 
-    _initDefineProp(this, 'disabled', _descriptor3, this);
+    _initDefineProp(this, 'key', _descriptor3, this);
 
-    _initDefineProp(this, 'openOnFocus', _descriptor4, this);
+    _initDefineProp(this, 'customEntry', _descriptor4, this);
 
     _initDefineProp(this, 'resultsLimit', _descriptor5, this);
 
-    _initDefineProp(this, 'focusFirst', _descriptor6, this);
+    _initDefineProp(this, 'debounce', _descriptor6, this);
 
-    _initDefineProp(this, 'selectSingleResult', _descriptor7, this);
+    _initDefineProp(this, 'onSelect', _descriptor7, this);
 
-    _initDefineProp(this, 'loadingText', _descriptor8, this);
+    _initDefineProp(this, 'instantCleanEmpty', _descriptor8, this);
 
-    _initDefineProp(this, 'inputClass', _descriptor9, this);
+    _initDefineProp(this, 'disabled', _descriptor9, this);
 
-    _initDefineProp(this, 'placeholder', _descriptor10, this);
+    _initDefineProp(this, 'openOnFocus', _descriptor10, this);
 
-    _initDefineProp(this, 'key', _descriptor11, this);
+    _initDefineProp(this, 'focusFirst', _descriptor11, this);
 
-    _initDefineProp(this, 'noResultsText', _descriptor12, this);
+    _initDefineProp(this, 'selectSingleResult', _descriptor12, this);
 
-    _initDefineProp(this, 'waitTime', _descriptor13, this);
+    _initDefineProp(this, 'loadingText', _descriptor13, this);
 
-    _initDefineProp(this, 'instantCleanEmpty', _descriptor14, this);
+    _initDefineProp(this, 'inputClass', _descriptor14, this);
 
-    _initDefineProp(this, 'customEntry', _descriptor15, this);
+    _initDefineProp(this, 'placeholder', _descriptor15, this);
+
+    _initDefineProp(this, 'noResultsText', _descriptor16, this);
 
     this.promiseQueue = [];
     this.v4 = false;
     this.displayData = [];
 
-    _initDefineProp(this, 'filter', _descriptor16, this);
+    _initDefineProp(this, 'filter', _descriptor17, this);
 
     this.focusedIndex = -1;
+    this.focusedItem = null;
     this.loading = false;
 
     this.bindingEngine = bindingEngine;
@@ -157,6 +160,21 @@ var AubsTypeaheadCustomElement = exports.AubsTypeaheadCustomElement = (_dec = (0
     }
   };
 
+  AubsTypeaheadCustomElement.prototype.dataChanged = function dataChanged() {
+    var _this3 = this;
+
+    if (this.dataObserver) {
+      this.dataObserver.dispose();
+    }
+
+    if (Array.isArray(this.data)) {
+      this.dataObserver = this.bindingEngine.collectionObserver(this.data).subscribe(function () {
+        _this3.checkCustomEntry();
+        _this3.applyPlugins();
+      });
+    }
+  };
+
   AubsTypeaheadCustomElement.prototype.valueChanged = function valueChanged() {
     var newFilter = this.getName(this.value);
 
@@ -178,19 +196,19 @@ var AubsTypeaheadCustomElement = exports.AubsTypeaheadCustomElement = (_dec = (0
 
   AubsTypeaheadCustomElement.prototype.doFocusFirst = function doFocusFirst() {
     if (this.focusFirst && this.displayData.length > 0) {
-      this.displayData[0].$focused = true;
       this.focusedIndex = 0;
+      this.focusedItem = this.displayData[0];
     }
   };
 
   AubsTypeaheadCustomElement.prototype.checkCustomEntry = function checkCustomEntry() {
-    if (this.data.length > 0 && _typeof(this.data[0]) === 'object') {
+    if (this.data.length > 0 && typeof this.data[0] !== 'string') {
       this.customEntry = false;
     }
   };
 
   AubsTypeaheadCustomElement.prototype.filterChanged = function filterChanged() {
-    var _this3 = this;
+    var _this4 = this;
 
     if (this.ignoreChange) {
       this.ignoreChange = false;
@@ -198,18 +216,26 @@ var AubsTypeaheadCustomElement = exports.AubsTypeaheadCustomElement = (_dec = (0
     }
 
     this.applyPlugins().then(function () {
-      if (_this3.instantCleanEmpty && _this3.filter.length === 0) {
-        _this3.value = null;
-      } else if (_this3.customEntry) {
-        _this3.value = _this3.filter;
-      } else if (_this3.selectSingleResult && _this3.displayData.length === 1) {
-        _this3.itemSelected(_this3.displayData[0]);
+      if (_this4.instantCleanEmpty && _this4.filter.length === 0) {
+        _this4.value = null;
+
+        if (typeof _this4.onSelect === 'function') {
+          _this4.onSelect({ item: null });
+        }
+      } else if (_this4.customEntry) {
+        _this4.value = _this4.filter;
+
+        if (typeof _this4.onSelect === 'function') {
+          _this4.onSelect({ item: _this4.value });
+        }
+      } else if (_this4.selectSingleResult && _this4.displayData.length === 1) {
+        _this4.itemSelected(_this4.displayData[0]);
       }
     });
   };
 
   AubsTypeaheadCustomElement.prototype.applyPlugins = function applyPlugins() {
-    var _this4 = this;
+    var _this5 = this;
 
     this.focusNone();
     var localData = void 0;
@@ -219,19 +245,19 @@ var AubsTypeaheadCustomElement = exports.AubsTypeaheadCustomElement = (_dec = (0
       this.loading = true;
 
       var promise = this.data({ filter: this.filter, limit: this.resultsLimit }).then(function (data) {
-        if (_this4.promiseQueue.length > 1) {
-          _this4.promiseQueue.splice(0, 1);
+        if (_this5.promiseQueue.length > 1) {
+          _this5.promiseQueue.splice(0, 1);
           return;
         }
 
-        _this4.displayData = data;
-        _this4.doFocusFirst();
-        _this4.promiseQueue.splice(0, 1);
-        _this4.loading = false;
-      }).catch(function () {
-        _this4.loading = false;
-        _this4.displayData = [];
-        throw new Error('Unable to retrieve data');
+        _this5.displayData = data;
+        _this5.doFocusFirst();
+        _this5.promiseQueue.splice(0, 1);
+        _this5.loading = false;
+      }).catch(function (error) {
+        _this5.loading = false;
+        _this5.displayData = [];
+        throw error;
       });
 
       this.promiseQueue.push(promise);
@@ -254,21 +280,15 @@ var AubsTypeaheadCustomElement = exports.AubsTypeaheadCustomElement = (_dec = (0
   };
 
   AubsTypeaheadCustomElement.prototype.focusNone = function focusNone() {
-    var focused = this.displayData.find(function (next) {
-      return next.$focused;
-    });
-    if (focused) {
-      focused.$focused = false;
-    }
-
+    this.focusedItem = null;
     this.focusedIndex = -1;
   };
 
   AubsTypeaheadCustomElement.prototype.doFilter = function doFilter(toFilter) {
-    var _this5 = this;
+    var _this6 = this;
 
     return toFilter.filter(function (item) {
-      return !_this5.isNull(item) && _this5.getName(item).toLowerCase().indexOf(_this5.filter.toLowerCase()) > -1;
+      return !_this6.isNull(item) && _this6.getName(item).toLowerCase().indexOf(_this6.filter.toLowerCase()) > -1;
     });
   };
 
@@ -303,19 +323,19 @@ var AubsTypeaheadCustomElement = exports.AubsTypeaheadCustomElement = (_dec = (0
   };
 
   AubsTypeaheadCustomElement.prototype.handleBlur = function handleBlur(evt) {
-    var _this6 = this;
+    var _this7 = this;
 
     if (!this.dropdown.classList.contains('open')) {
       return;
     }
 
     setTimeout(function () {
-      if (!_this6.dropdown.contains(evt.target)) {
-        _this6.dropdown.classList.remove('open');
-        _this6.focusNone();
-        _this6.resetFilter();
+      if (!_this7.dropdown.contains(evt.target)) {
+        _this7.dropdown.classList.remove('open');
+        _this7.focusNone();
+        _this7.resetFilter();
       }
-    }, this.waitTime);
+    }, this.debounce);
   };
 
   AubsTypeaheadCustomElement.prototype.itemSelected = function itemSelected(item) {
@@ -327,6 +347,10 @@ var AubsTypeaheadCustomElement = exports.AubsTypeaheadCustomElement = (_dec = (0
       this.ignoreChange = true;
       this.filter = newFilter;
     }
+
+    if (typeof this.onSelect === 'function') {
+      this.onSelect({ item: item });
+    }
   };
 
   AubsTypeaheadCustomElement.prototype.isNull = function isNull(item) {
@@ -334,9 +358,21 @@ var AubsTypeaheadCustomElement = exports.AubsTypeaheadCustomElement = (_dec = (0
   };
 
   AubsTypeaheadCustomElement.prototype.onKeyDown = function onKeyDown(evt) {
-    this.dropdown.classList.add('open');
+    var _this8 = this;
 
-    switch (evt.keyCode) {
+    if (this.dropdown.classList.contains('open')) {
+      this.switchKeyCode(evt.keyCode);
+      return;
+    }
+
+    this.applyPlugins().then(function () {
+      _this8.switchKeyCode(evt.keyCode);
+      _this8.dropdown.classList.add('open');
+    });
+  };
+
+  AubsTypeaheadCustomElement.prototype.switchKeyCode = function switchKeyCode(keyCode) {
+    switch (keyCode) {
       case 40:
         return this.handleDown();
       case 38:
@@ -356,10 +392,8 @@ var AubsTypeaheadCustomElement = exports.AubsTypeaheadCustomElement = (_dec = (0
       return;
     }
 
-    if (this.focusedIndex >= 0) {
-      this.displayData[this.focusedIndex].$focused = false;
-    }
-    this.displayData[++this.focusedIndex].$focused = true;
+    this.focusedIndex++;
+    this.focusedItem = this.displayData[this.focusedIndex];
   };
 
   AubsTypeaheadCustomElement.prototype.handleUp = function handleUp() {
@@ -367,12 +401,12 @@ var AubsTypeaheadCustomElement = exports.AubsTypeaheadCustomElement = (_dec = (0
       return;
     }
 
-    this.displayData[this.focusedIndex--].$focused = false;
-    this.displayData[this.focusedIndex].$focused = true;
+    this.focusedIndex--;
+    this.focusedItem = this.displayData[this.focusedIndex];
   };
 
   AubsTypeaheadCustomElement.prototype.handleEnter = function handleEnter() {
-    if (this.displayData.length === 0 || this.focusedIndex < 0) {
+    if (this.displayData.length === 0 || this.focusedIndex < 0 || !this.dropdown.classList.contains('open')) {
       return;
     }
 
@@ -386,76 +420,81 @@ var AubsTypeaheadCustomElement = exports.AubsTypeaheadCustomElement = (_dec = (0
   };
 
   return AubsTypeaheadCustomElement;
-}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec2], {
+}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'data', [_aureliaFramework.bindable], {
   enumerable: true,
   initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'data', [_aureliaFramework.bindable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec2], {
   enumerable: true,
   initializer: null
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [_aureliaFramework.bindable], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'key', [_aureliaFramework.bindable], {
   enumerable: true,
   initializer: function initializer() {
-    return false;
+    return 'name';
   }
-}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'openOnFocus', [_aureliaFramework.bindable], {
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'customEntry', [_aureliaFramework.bindable], {
   enumerable: true,
   initializer: function initializer() {
     return false;
   }
 }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'resultsLimit', [_aureliaFramework.bindable], {
   enumerable: true,
+  initializer: function initializer() {
+    return null;
+  }
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'debounce', [_aureliaFramework.bindable], {
+  enumerable: true,
+  initializer: function initializer() {
+    return 0;
+  }
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'onSelect', [_aureliaFramework.bindable], {
+  enumerable: true,
   initializer: null
-}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'focusFirst', [_aureliaFramework.bindable], {
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'instantCleanEmpty', [_aureliaFramework.bindable], {
   enumerable: true,
   initializer: function initializer() {
     return true;
   }
-}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'selectSingleResult', [_aureliaFramework.bindable], {
+}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [_aureliaFramework.bindable], {
   enumerable: true,
   initializer: function initializer() {
     return false;
   }
-}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'loadingText', [_aureliaFramework.bindable], {
+}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'openOnFocus', [_aureliaFramework.bindable], {
+  enumerable: true,
+  initializer: function initializer() {
+    return false;
+  }
+}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'focusFirst', [_aureliaFramework.bindable], {
+  enumerable: true,
+  initializer: function initializer() {
+    return true;
+  }
+}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'selectSingleResult', [_aureliaFramework.bindable], {
+  enumerable: true,
+  initializer: function initializer() {
+    return false;
+  }
+}), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'loadingText', [_aureliaFramework.bindable], {
   enumerable: true,
   initializer: function initializer() {
     return 'Loading...';
   }
-}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'inputClass', [_aureliaFramework.bindable], {
+}), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'inputClass', [_aureliaFramework.bindable], {
   enumerable: true,
   initializer: function initializer() {
     return '';
   }
-}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [_aureliaFramework.bindable], {
+}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [_aureliaFramework.bindable], {
   enumerable: true,
   initializer: function initializer() {
-    return 'Start typing to get results';
+    return '';
   }
-}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'key', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return 'name';
-  }
-}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'noResultsText', [_aureliaFramework.bindable], {
+}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'noResultsText', [_aureliaFramework.bindable], {
   enumerable: true,
   initializer: function initializer() {
     return 'No Results';
   }
-}), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'waitTime', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return 350;
-  }
-}), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'instantCleanEmpty', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return true;
-  }
-}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'customEntry', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return false;
-  }
-}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'filter', [_aureliaFramework.observable], {
+}), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'filter', [_aureliaFramework.observable], {
   enumerable: true,
   initializer: function initializer() {
     return '';

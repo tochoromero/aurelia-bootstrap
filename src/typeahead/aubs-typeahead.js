@@ -3,21 +3,22 @@ import {bootstrapOptions} from "../utils/bootstrap-options";
 
 @inject(BindingEngine)
 export class AubsTypeaheadCustomElement {
-  @bindable({defaultBindingMode: bindingMode.twoWay}) value;
   @bindable data;
+  @bindable({defaultBindingMode: bindingMode.twoWay}) value;
+  @bindable key = 'name';
+  @bindable customEntry = false;
+  @bindable resultsLimit = null;
+  @bindable debounce = 0;
+  @bindable onSelect;
+  @bindable instantCleanEmpty = true;
   @bindable disabled = false;
   @bindable openOnFocus = false;
-  @bindable resultsLimit;
   @bindable focusFirst = true;
   @bindable selectSingleResult = false;
   @bindable loadingText = 'Loading...';
   @bindable inputClass = '';
-  @bindable placeholder = 'Start typing to get results';
-  @bindable key = 'name';
+  @bindable placeholder = '';
   @bindable noResultsText = 'No Results';
-  @bindable waitTime = 350;
-  @bindable instantCleanEmpty = true;
-  @bindable customEntry = false;
 
   promiseQueue = [];
   v4 = false;
@@ -26,6 +27,7 @@ export class AubsTypeaheadCustomElement {
   displayData = [];
   @observable filter = '';
   focusedIndex = -1;
+  focusedItem = null;
   loading = false;
 
   constructor(bindingEngine) {
@@ -75,6 +77,19 @@ export class AubsTypeaheadCustomElement {
     }
   }
 
+  dataChanged() {
+    if (this.dataObserver) {
+      this.dataObserver.dispose();
+    }
+
+    if (Array.isArray(this.data)) {
+      this.dataObserver = this.bindingEngine.collectionObserver(this.data).subscribe(() => {
+        this.checkCustomEntry();
+        this.applyPlugins();
+      });
+    }
+  }
+
   valueChanged() {
     let newFilter = this.getName(this.value);
 
@@ -96,13 +111,13 @@ export class AubsTypeaheadCustomElement {
 
   doFocusFirst() {
     if (this.focusFirst && this.displayData.length > 0) {
-      this.displayData[0].$focused = true;
       this.focusedIndex = 0;
+      this.focusedItem = this.displayData[0];
     }
   }
 
   checkCustomEntry() {
-    if (this.data.length > 0 && typeof this.data[0] === 'object') {
+    if (this.data.length > 0 && typeof this.data[0] !== 'string') {
       this.customEntry = false;
     }
   }
@@ -117,8 +132,16 @@ export class AubsTypeaheadCustomElement {
       .then(() => {
         if (this.instantCleanEmpty && this.filter.length === 0) {
           this.value = null;
+
+          if (typeof this.onSelect === 'function') {
+            this.onSelect({item: null});
+          }
         } else if (this.customEntry) {
           this.value = this.filter;
+
+          if (typeof this.onSelect === 'function') {
+            this.onSelect({item: this.value});
+          }
         } else if (this.selectSingleResult && this.displayData.length === 1) {
           this.itemSelected(this.displayData[0]);
         }
@@ -145,10 +168,10 @@ export class AubsTypeaheadCustomElement {
           this.promiseQueue.splice(0, 1);
           this.loading = false;
         })
-        .catch(() => {
+        .catch(error => {
           this.loading = false;
           this.displayData = [];
-          throw new Error('Unable to retrieve data');
+          throw error;
         });
 
       this.promiseQueue.push(promise);
@@ -171,11 +194,7 @@ export class AubsTypeaheadCustomElement {
   }
 
   focusNone() {
-    let focused = this.displayData.find(next => next.$focused);
-    if (focused) {
-      focused.$focused = false;
-    }
-
+    this.focusedItem = null;
     this.focusedIndex = -1;
   }
 
@@ -225,7 +244,7 @@ export class AubsTypeaheadCustomElement {
         this.focusNone();
         this.resetFilter();
       }
-    }, this.waitTime);
+    }, this.debounce);
   }
 
   itemSelected(item) {
@@ -237,6 +256,10 @@ export class AubsTypeaheadCustomElement {
       this.ignoreChange = true;
       this.filter = newFilter;
     }
+
+    if (typeof this.onSelect === 'function') {
+      this.onSelect({item: item});
+    }
   }
 
   isNull(item) {
@@ -244,9 +267,20 @@ export class AubsTypeaheadCustomElement {
   }
 
   onKeyDown(evt) {
-    this.dropdown.classList.add('open');
+    if (this.dropdown.classList.contains('open')) {
+      this.switchKeyCode(evt.keyCode);
+      return;
+    }
 
-    switch (evt.keyCode) {
+    this.applyPlugins()
+      .then(() => {
+        this.switchKeyCode(evt.keyCode);
+        this.dropdown.classList.add('open');
+      });
+  }
+
+  switchKeyCode(keyCode) {
+    switch (keyCode) {
     case 40:
       return this.handleDown();
     case 38:
@@ -266,10 +300,8 @@ export class AubsTypeaheadCustomElement {
       return;
     }
 
-    if (this.focusedIndex >= 0) {
-      this.displayData[this.focusedIndex].$focused = false;
-    }
-    this.displayData[++this.focusedIndex].$focused = true;
+    this.focusedIndex++;
+    this.focusedItem = this.displayData[this.focusedIndex];
   }
 
   handleUp() {
@@ -277,12 +309,12 @@ export class AubsTypeaheadCustomElement {
       return;
     }
 
-    this.displayData[this.focusedIndex--].$focused = false;
-    this.displayData[this.focusedIndex].$focused = true;
+    this.focusedIndex--;
+    this.focusedItem = this.displayData[this.focusedIndex];
   }
 
   handleEnter() {
-    if (this.displayData.length === 0 || this.focusedIndex < 0) {
+    if (this.displayData.length === 0 || this.focusedIndex < 0 || !this.dropdown.classList.contains('open')) {
       return;
     }
 
