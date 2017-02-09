@@ -1,0 +1,238 @@
+[
+  {
+    "state": "Alabama",
+    "short": "AL"
+  },
+  {
+    "state": "Alaska",
+    "short": "AK"
+  },
+  {
+    "state": "American Samoa",
+    "short": "AS"
+  },
+  {
+    "state": "Arizona",
+    "short": "AZ"
+  },
+  {
+    "state": "Arkansas",
+    "short": "AR"
+  },
+  {
+    "state": "California",
+    "short": "CA"
+  },
+  {
+    "state": "Colorado",
+    "short": "CO"
+  },
+  {
+    "state": "Connecticut",
+    "short": "CT"
+  },
+  {
+    "state": "Delaware",
+    "short": "DE"
+  },
+  {
+    "state": "District Of Columbia",
+    "short": "DC"
+  },
+  {
+    "state": "Federated States Of Micronesia",
+    "short": "FM"
+  },
+  {
+    "state": "Florida",
+    "short": "FL"
+  },
+  {
+    "state": "Georgia",
+    "short": "GA"
+  },
+  {
+    "state": "Guam",
+    "short": "GU"
+  },
+  {
+    "state": "Hawaii",
+    "short": "HI"
+  },
+  {
+    "state": "Idaho",
+    "short": "ID"
+  },
+  {
+    "state": "Illinois",
+    "short": "IL"
+  },
+  {
+    "state": "Indiana",
+    "short": "IN"
+  },
+  {
+    "state": "Iowa",
+    "short": "IA"
+  },
+  {
+    "state": "Kansas",
+    "short": "KS"
+  },
+  {
+    "state": "Kentucky",
+    "short": "KY"
+  },
+  {
+    "state": "Louisiana",
+    "short": "LA"
+  },
+  {
+    "state": "Maine",
+    "short": "ME"
+  },
+  {
+    "state": "Marshall Islands",
+    "short": "MH"
+  },
+  {
+    "state": "Maryland",
+    "short": "MD"
+  },
+  {
+    "state": "Massachusetts",
+    "short": "MA"
+  },
+  {
+    "state": "Michigan",
+    "short": "MI"
+  },
+  {
+    "state": "Minnesota",
+    "short": "MN"
+  },
+  {
+    "state": "Mississippi",
+    "short": "MS"
+  },
+  {
+    "state": "Missouri",
+    "short": "MO"
+  },
+  {
+    "state": "Montana",
+    "short": "MT"
+  },
+  {
+    "state": "Nebraska",
+    "short": "NE"
+  },
+  {
+    "state": "Nevada",
+    "short": "NV"
+  },
+  {
+    "state": "New Hampshire",
+    "short": "NH"
+  },
+  {
+    "state": "New Jersey",
+    "short": "NJ"
+  },
+  {
+    "state": "New Mexico",
+    "short": "NM"
+  },
+  {
+    "state": "New York",
+    "short": "NY"
+  },
+  {
+    "state": "North Carolina",
+    "short": "NC"
+  },
+  {
+    "state": "North Dakota",
+    "short": "ND"
+  },
+  {
+    "state": "Northern Mariana Islands",
+    "short": "MP"
+  },
+  {
+    "state": "Ohio",
+    "short": "OH"
+  },
+  {
+    "state": "Oklahoma",
+    "short": "OK"
+  },
+  {
+    "state": "Oregon",
+    "short": "OR"
+  },
+  {
+    "state": "Palau",
+    "short": "PW"
+  },
+  {
+    "state": "Pennsylvania",
+    "short": "PA"
+  },
+  {
+    "state": "Puerto Rico",
+    "short": "PR"
+  },
+  {
+    "state": "Rhode Island",
+    "short": "RI"
+  },
+  {
+    "state": "South Carolina",
+    "short": "SC"
+  },
+  {
+    "state": "South Dakota",
+    "short": "SD"
+  },
+  {
+    "state": "Tennessee",
+    "short": "TN"
+  },
+  {
+    "state": "Texas",
+    "short": "TX"
+  },
+  {
+    "state": "Utah",
+    "short": "UT"
+  },
+  {
+    "state": "Vermont",
+    "short": "VT"
+  },
+  {
+    "state": "Virgin Islands",
+    "short": "VI"
+  },
+  {
+    "state": "Virginia",
+    "short": "VA"
+  },
+  {
+    "state": "Washington",
+    "short": "WA"
+  },
+  {
+    "state": "West Virginia",
+    "short": "WV"
+  },
+  {
+    "state": "Wisconsin",
+    "short": "WI"
+  },
+  {
+    "state": "Wyoming",
+    "short": "WY"
+  }
+]
