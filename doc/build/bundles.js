@@ -30,7 +30,6 @@ module.exports = {
                 "aurelia-templating-binding",
                 "aurelia-templating-resources",
                 "aurelia-templating-router",
-                "bootstrap/css/bootstrap.css!text",
                 "fetch",
                 "text"
             ],
