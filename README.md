@@ -16,6 +16,9 @@ Please check our documentation for installation details and the reference manual
 * Typeahead
 
 ###Release Notes
+####0.1.15
+Handle Custom Popovers better when the same popover is used in multiple elements.
+
 ####0.1.14
 Typeahead tweaks and the [documentation](https://tochoromero.github.io/aurelia-bootstrap/#/typeahead) for it is now live.
 

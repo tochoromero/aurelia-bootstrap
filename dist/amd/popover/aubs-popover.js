@@ -135,8 +135,12 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service", "../utils/bo
         AubsPopoverCustomAttribute.prototype.detached = function detached() {
             this.tooltipService.removeTriggers(this.element, this.triggers, this.listeners);
 
-            if (this.popover && document.body.contains(this.popover)) {
-                document.body.removeChild(this.popover);
+            if (!this.customPopover) {
+                if (this.popover && document.body.contains(this.popover)) {
+                    document.body.removeChild(this.popover);
+                }
+            } else {
+                this.popover.style.display = 'none';
             }
 
             if (this.tether) {
@@ -199,6 +203,14 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service", "../utils/bo
             if (!this.popover || this.valuesChanged) {
                 this.createPopover();
                 this.valuesChanged = false;
+            }
+
+            if (this.customPopover) {
+                if (this.tether) {
+                    this.tether.destroy();
+                }
+
+                this.tether = this.tooltipService.createAttachment(this.element, this.popover, this.position);
             }
 
             this.popover.style.display = 'block';
@@ -294,13 +306,13 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service", "../utils/bo
                 this.popover.appendChild(content);
 
                 document.body.appendChild(this.popover);
-            }
 
-            if (this.tether) {
-                this.tether.destroy();
-            }
+                if (this.tether) {
+                    this.tether.destroy();
+                }
 
-            this.tether = this.tooltipService.createAttachment(this.element, this.popover, this.position);
+                this.tether = this.tooltipService.createAttachment(this.element, this.popover, this.position);
+            }
         };
 
         return AubsPopoverCustomAttribute;
