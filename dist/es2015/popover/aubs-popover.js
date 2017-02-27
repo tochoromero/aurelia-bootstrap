@@ -109,12 +109,12 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
     detached() {
         this.tooltipService.removeTriggers(this.element, this.triggers, this.listeners);
 
-        if (!this.customPopover) {
-            if (this.popover && document.body.contains(this.popover)) {
+        if (this.popover && document.body.contains(this.popover)) {
+            if (!this.customPopover) {
                 document.body.removeChild(this.popover);
+            } else {
+                this.popover.style.display = 'none';
             }
-        } else {
-            this.popover.style.display = 'none';
         }
 
         if (this.tether) {
