@@ -1,9 +1,9 @@
 "use strict";
 
-System.register(["aurelia-framework", "velocity-animate"], function (_export, _context) {
+System.register(["aurelia-framework", "velocity-animate", "../utils/bootstrap-options"], function (_export, _context) {
     "use strict";
 
-    var inject, bindable, velocity, _dec, _class, _desc, _value, _class2, _descriptor, AubsCollapseCustomAttribute;
+    var inject, bindable, velocity, bootstrapOptions, _dec, _class, _desc, _value, _class2, _descriptor, AubsCollapseCustomAttribute;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -60,6 +60,8 @@ System.register(["aurelia-framework", "velocity-animate"], function (_export, _c
             bindable = _aureliaFramework.bindable;
         }, function (_velocityAnimate) {
             velocity = _velocityAnimate.default;
+        }, function (_utilsBootstrapOptions) {
+            bootstrapOptions = _utilsBootstrapOptions.bootstrapOptions;
         }],
         execute: function () {
             _export("AubsCollapseCustomAttribute", AubsCollapseCustomAttribute = (_dec = inject(Element), _dec(_class = (_class2 = function () {
@@ -70,6 +72,10 @@ System.register(["aurelia-framework", "velocity-animate"], function (_export, _c
 
                     this.element = element;
                 }
+
+                AubsCollapseCustomAttribute.prototype.bind = function bind() {
+                    this.showClass = bootstrapOptions.version === 4 ? 'show' : 'in';
+                };
 
                 AubsCollapseCustomAttribute.prototype.attached = function attached() {
                     if (this.collapsed) {
@@ -86,7 +92,9 @@ System.register(["aurelia-framework", "velocity-animate"], function (_export, _c
 
                     if (this.collapsed) {
                         velocity(this.element, 'slideUp');
+                        this.element.classList.remove(this.showClass);
                     } else {
+                        this.element.classList.add(this.showClass);
                         velocity(this.element, 'slideDown');
                     }
                 };

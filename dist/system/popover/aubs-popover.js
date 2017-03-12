@@ -119,6 +119,8 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
                     }
 
                     this.triggers = this.trigger.split(' ');
+
+                    this.showClass = bootstrapOptions.version === 4 ? 'show' : 'in';
                 };
 
                 AubsPopoverCustomAttribute.prototype.attached = function attached() {
@@ -220,7 +222,7 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
 
                     velocity(this.popover, 'stop').then(function () {
                         velocity(_this2.popover, 'fadeIn').then(function () {
-                            _this2.popover.classList.add('in');
+                            _this2.popover.classList.add(_this2.showClass);
 
                             if (typeof _this2.onToggle === 'function') {
                                 _this2.onToggle({ open: true });
@@ -241,7 +243,7 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
 
                     velocity(this.popover, 'stop').then(function () {
                         velocity(_this3.popover, 'fadeOut').then(function () {
-                            _this3.popover.classList.remove('in');
+                            _this3.popover.classList.remove(_this3.showClass);
 
                             if (typeof _this3.onToggle === 'function') {
                                 _this3.onToggle({ open: false });

@@ -1,4 +1,4 @@
-define(["exports", "aurelia-framework", "velocity-animate"], function (exports, _aureliaFramework, _velocityAnimate) {
+define(["exports", "aurelia-framework", "velocity-animate", "../utils/bootstrap-options"], function (exports, _aureliaFramework, _velocityAnimate, _bootstrapOptions) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
@@ -74,6 +74,10 @@ define(["exports", "aurelia-framework", "velocity-animate"], function (exports, 
             this.element = element;
         }
 
+        AubsCollapseCustomAttribute.prototype.bind = function bind() {
+            this.showClass = _bootstrapOptions.bootstrapOptions.version === 4 ? 'show' : 'in';
+        };
+
         AubsCollapseCustomAttribute.prototype.attached = function attached() {
             if (this.collapsed) {
                 this.element.style.display = 'none';
@@ -89,7 +93,9 @@ define(["exports", "aurelia-framework", "velocity-animate"], function (exports, 
 
             if (this.collapsed) {
                 (0, _velocityAnimate2.default)(this.element, 'slideUp');
+                this.element.classList.remove(this.showClass);
             } else {
+                this.element.classList.add(this.showClass);
                 (0, _velocityAnimate2.default)(this.element, 'slideDown');
             }
         };

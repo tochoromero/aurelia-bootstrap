@@ -3,7 +3,7 @@
 System.register(['aurelia-framework', '../utils/tooltip-service', '../utils/bootstrap-options', 'velocity-animate'], function (_export, _context) {
     "use strict";
 
-    var bindable, inject, bindingMode, TooltipService, bootstrapOptions, velocity, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, AubsTooltipCustomAttribute;
+    var bindable, inject, bindingMode, TooltipService, bootstrapOptions, velocity, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, AubsTooltipCustomAttribute;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -82,6 +82,8 @@ System.register(['aurelia-framework', '../utils/tooltip-service', '../utils/boot
                     _initDefineProp(this, 'open', _descriptor4, this);
 
                     _initDefineProp(this, 'trigger', _descriptor5, this);
+
+                    _initDefineProp(this, 'class', _descriptor6, this);
 
                     this.triggers = [];
                     this.validPositions = ['top', 'bottom', 'left', 'right'];
@@ -221,12 +223,16 @@ System.register(['aurelia-framework', '../utils/tooltip-service', '../utils/boot
                 };
 
                 AubsTooltipCustomAttribute.prototype.createTooltip = function createTooltip() {
+                    var _this4 = this;
+
                     if (this.tooltip) {
                         document.body.removeChild(this.tooltip);
                     }
 
                     this.tooltip = document.createElement('div');
-                    this.tooltip.classList.add('tooltip');
+                    this.parseClassList().forEach(function (next) {
+                        return _this4.tooltip.classList.add(next.trim());
+                    });
 
                     this.tooltip.classList.add((bootstrapOptions.version === 4 ? 'tooltip-' : '') + this.position);
                     this.tooltip.setAttribute('role', 'tooltip');
@@ -247,6 +253,14 @@ System.register(['aurelia-framework', '../utils/tooltip-service', '../utils/boot
                     }
 
                     this.tether = this.tooltipService.createAttachment(this.element, this.tooltip, this.position);
+                };
+
+                AubsTooltipCustomAttribute.prototype.parseClassList = function parseClassList() {
+                    if (!this.class || this.class.length === 0) {
+                        return ['tooltip'];
+                    }
+
+                    return this.class.split(',');
                 };
 
                 return AubsTooltipCustomAttribute;
@@ -272,6 +286,11 @@ System.register(['aurelia-framework', '../utils/tooltip-service', '../utils/boot
                 enumerable: true,
                 initializer: function initializer() {
                     return bootstrapOptions.tooltipTrigger;
+                }
+            }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'class', [bindable], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return bootstrapOptions.tooltipClass;
                 }
             })), _class2)) || _class));
 

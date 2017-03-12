@@ -116,6 +116,8 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
         }
 
         this.triggers = this.trigger.split(' ');
+
+        this.showClass = _bootstrapOptions.bootstrapOptions.version === 4 ? 'show' : 'in';
     };
 
     AubsPopoverCustomAttribute.prototype.attached = function attached() {
@@ -217,7 +219,7 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
 
         (0, _velocityAnimate2.default)(this.popover, 'stop').then(function () {
             (0, _velocityAnimate2.default)(_this2.popover, 'fadeIn').then(function () {
-                _this2.popover.classList.add('in');
+                _this2.popover.classList.add(_this2.showClass);
 
                 if (typeof _this2.onToggle === 'function') {
                     _this2.onToggle({ open: true });
@@ -238,7 +240,7 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
 
         (0, _velocityAnimate2.default)(this.popover, 'stop').then(function () {
             (0, _velocityAnimate2.default)(_this3.popover, 'fadeOut').then(function () {
-                _this3.popover.classList.remove('in');
+                _this3.popover.classList.remove(_this3.showClass);
 
                 if (typeof _this3.onToggle === 'function') {
                     _this3.onToggle({ open: false });

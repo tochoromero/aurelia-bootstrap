@@ -84,6 +84,8 @@ var AubsAccordionGroupCustomElement = exports.AubsAccordionGroupCustomElement = 
         if (typeof this.isOpen !== 'boolean') {
             this.isOpen = false;
         }
+
+        this.showClass = this.isBootstrapVersion(4) ? 'show' : 'in';
     };
 
     AubsAccordionGroupCustomElement.prototype.attached = function attached() {
@@ -111,11 +113,11 @@ var AubsAccordionGroupCustomElement = exports.AubsAccordionGroupCustomElement = 
 
     AubsAccordionGroupCustomElement.prototype.animate = function animate() {
         if (this.isOpen) {
-            this.$collapse.classList.add('in');
+            this.$collapse.classList.add(this.showClass);
             (0, _velocityAnimate2.default)(this.$collapse, 'slideDown');
         } else {
             (0, _velocityAnimate2.default)(this.$collapse, 'slideUp');
-            this.$collapse.classList.remove('in');
+            this.$collapse.classList.remove(this.showClass);
         }
     };
 

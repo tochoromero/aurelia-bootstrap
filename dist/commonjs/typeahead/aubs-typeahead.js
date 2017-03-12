@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.AubsTypeaheadCustomElement = undefined;
 
@@ -14,489 +14,491 @@ var _aureliaFramework = require('aurelia-framework');
 var _bootstrapOptions = require('../utils/bootstrap-options');
 
 function _initDefineProp(target, property, descriptor, context) {
-  if (!descriptor) return;
-  Object.defineProperty(target, property, {
-    enumerable: descriptor.enumerable,
-    configurable: descriptor.configurable,
-    writable: descriptor.writable,
-    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
-  });
+    if (!descriptor) return;
+    Object.defineProperty(target, property, {
+        enumerable: descriptor.enumerable,
+        configurable: descriptor.configurable,
+        writable: descriptor.writable,
+        value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+    });
 }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-  var desc = {};
-  Object['ke' + 'ys'](descriptor).forEach(function (key) {
-    desc[key] = descriptor[key];
-  });
-  desc.enumerable = !!desc.enumerable;
-  desc.configurable = !!desc.configurable;
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
 
-  if ('value' in desc || desc.initializer) {
-    desc.writable = true;
-  }
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
 
-  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-    return decorator(target, property, desc) || desc;
-  }, desc);
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
 
-  if (context && desc.initializer !== void 0) {
-    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-    desc.initializer = undefined;
-  }
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
 
-  if (desc.initializer === void 0) {
-    Object['define' + 'Property'](target, property, desc);
-    desc = null;
-  }
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
 
-  return desc;
+    return desc;
 }
 
 function _initializerWarningHelper(descriptor, context) {
-  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+    throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
 var AubsTypeaheadCustomElement = exports.AubsTypeaheadCustomElement = (_dec = (0, _aureliaFramework.inject)(_aureliaFramework.BindingEngine), _dec2 = (0, _aureliaFramework.bindable)({ defaultBindingMode: _aureliaFramework.bindingMode.twoWay }), _dec(_class = (_class2 = function () {
-  function AubsTypeaheadCustomElement(bindingEngine) {
-    var _this = this;
+    function AubsTypeaheadCustomElement(bindingEngine) {
+        var _this = this;
 
-    _classCallCheck(this, AubsTypeaheadCustomElement);
+        _classCallCheck(this, AubsTypeaheadCustomElement);
 
-    _initDefineProp(this, 'data', _descriptor, this);
+        _initDefineProp(this, 'data', _descriptor, this);
 
-    _initDefineProp(this, 'value', _descriptor2, this);
+        _initDefineProp(this, 'value', _descriptor2, this);
 
-    _initDefineProp(this, 'key', _descriptor3, this);
+        _initDefineProp(this, 'key', _descriptor3, this);
 
-    _initDefineProp(this, 'customEntry', _descriptor4, this);
+        _initDefineProp(this, 'customEntry', _descriptor4, this);
 
-    _initDefineProp(this, 'resultsLimit', _descriptor5, this);
+        _initDefineProp(this, 'resultsLimit', _descriptor5, this);
 
-    _initDefineProp(this, 'debounce', _descriptor6, this);
+        _initDefineProp(this, 'debounce', _descriptor6, this);
 
-    _initDefineProp(this, 'onSelect', _descriptor7, this);
+        _initDefineProp(this, 'onSelect', _descriptor7, this);
 
-    _initDefineProp(this, 'instantCleanEmpty', _descriptor8, this);
+        _initDefineProp(this, 'instantCleanEmpty', _descriptor8, this);
 
-    _initDefineProp(this, 'disabled', _descriptor9, this);
+        _initDefineProp(this, 'disabled', _descriptor9, this);
 
-    _initDefineProp(this, 'openOnFocus', _descriptor10, this);
+        _initDefineProp(this, 'openOnFocus', _descriptor10, this);
 
-    _initDefineProp(this, 'focusFirst', _descriptor11, this);
+        _initDefineProp(this, 'focusFirst', _descriptor11, this);
 
-    _initDefineProp(this, 'selectSingleResult', _descriptor12, this);
+        _initDefineProp(this, 'selectSingleResult', _descriptor12, this);
 
-    _initDefineProp(this, 'loadingText', _descriptor13, this);
+        _initDefineProp(this, 'loadingText', _descriptor13, this);
 
-    _initDefineProp(this, 'inputClass', _descriptor14, this);
+        _initDefineProp(this, 'inputClass', _descriptor14, this);
 
-    _initDefineProp(this, 'placeholder', _descriptor15, this);
+        _initDefineProp(this, 'placeholder', _descriptor15, this);
 
-    _initDefineProp(this, 'noResultsText', _descriptor16, this);
+        _initDefineProp(this, 'noResultsText', _descriptor16, this);
 
-    this.promiseQueue = [];
-    this.v4 = false;
-    this.displayData = [];
+        this.promiseQueue = [];
+        this.v4 = false;
+        this.displayData = [];
 
-    _initDefineProp(this, 'filter', _descriptor17, this);
+        _initDefineProp(this, 'filter', _descriptor17, this);
 
-    this.focusedIndex = -1;
-    this.focusedItem = null;
-    this.loading = false;
+        this.focusedIndex = -1;
+        this.focusedItem = null;
+        this.loading = false;
 
-    this.bindingEngine = bindingEngine;
+        this.bindingEngine = bindingEngine;
 
-    this.openListener = function () {
-      return _this.openDropdown();
-    };
-    this.outsideClickListener = function (evt) {
-      return _this.handleBlur(evt);
-    };
-    this.keyDownListener = function (evt) {
-      return _this.onKeyDown(evt);
-    };
-  }
-
-  AubsTypeaheadCustomElement.prototype.bind = function bind() {
-    var _this2 = this;
-
-    if (_bootstrapOptions.bootstrapOptions.version === 4) {
-      this.v4 = true;
+        this.openListener = function () {
+            return _this.openDropdown();
+        };
+        this.outsideClickListener = function (evt) {
+            return _this.handleBlur(evt);
+        };
+        this.keyDownListener = function (evt) {
+            return _this.onKeyDown(evt);
+        };
     }
 
-    if (Array.isArray(this.data)) {
-      this.dataObserver = this.bindingEngine.collectionObserver(this.data).subscribe(function () {
-        _this2.checkCustomEntry();
-        _this2.applyPlugins();
-      });
-    }
+    AubsTypeaheadCustomElement.prototype.bind = function bind() {
+        var _this2 = this;
 
-    this.checkCustomEntry();
-  };
-
-  AubsTypeaheadCustomElement.prototype.attached = function attached() {
-    if (this.openOnFocus) {
-      this.input.addEventListener('focus', this.openListener);
-      this.input.addEventListener('click', this.openListener);
-    }
-
-    document.addEventListener('click', this.outsideClickListener);
-    this.input.addEventListener('keydown', this.keyDownListener);
-  };
-
-  AubsTypeaheadCustomElement.prototype.detached = function detached() {
-    if (this.dataObserver) {
-      this.dataObserver.dispose();
-    }
-
-    document.removeEventListener('click', this.outsideClickListener);
-    this.input.removeEventListener('keydown', this.keyDownListener);
-
-    if (this.openOnFocus) {
-      this.input.removeEventListener('focus', this.openListener);
-      this.input.removeEventListener('click', this.openListener);
-    }
-  };
-
-  AubsTypeaheadCustomElement.prototype.dataChanged = function dataChanged() {
-    var _this3 = this;
-
-    if (this.dataObserver) {
-      this.dataObserver.dispose();
-    }
-
-    if (Array.isArray(this.data)) {
-      this.dataObserver = this.bindingEngine.collectionObserver(this.data).subscribe(function () {
-        _this3.checkCustomEntry();
-        _this3.applyPlugins();
-      });
-    }
-  };
-
-  AubsTypeaheadCustomElement.prototype.valueChanged = function valueChanged() {
-    var newFilter = this.getName(this.value);
-
-    if (newFilter !== this.filter) {
-      this.ignoreChange = true;
-      this.filter = newFilter;
-    }
-  };
-
-  AubsTypeaheadCustomElement.prototype.openDropdown = function openDropdown() {
-    if (this.dropdown.classList.contains('open')) {
-      return;
-    }
-
-    this.dropdown.classList.add('open');
-    this.focusNone();
-    this.applyPlugins();
-  };
-
-  AubsTypeaheadCustomElement.prototype.doFocusFirst = function doFocusFirst() {
-    if (this.focusFirst && this.displayData.length > 0) {
-      this.focusedIndex = 0;
-      this.focusedItem = this.displayData[0];
-    }
-  };
-
-  AubsTypeaheadCustomElement.prototype.checkCustomEntry = function checkCustomEntry() {
-    if (this.data.length > 0 && typeof this.data[0] !== 'string') {
-      this.customEntry = false;
-    }
-  };
-
-  AubsTypeaheadCustomElement.prototype.filterChanged = function filterChanged() {
-    var _this4 = this;
-
-    if (this.ignoreChange) {
-      this.ignoreChange = false;
-      return;
-    }
-
-    this.applyPlugins().then(function () {
-      if (_this4.instantCleanEmpty && _this4.filter.length === 0) {
-        _this4.value = null;
-
-        if (typeof _this4.onSelect === 'function') {
-          _this4.onSelect({ item: null });
-        }
-      } else if (_this4.customEntry) {
-        _this4.value = _this4.filter;
-
-        if (typeof _this4.onSelect === 'function') {
-          _this4.onSelect({ item: _this4.value });
-        }
-      } else if (_this4.selectSingleResult && _this4.displayData.length === 1) {
-        _this4.itemSelected(_this4.displayData[0]);
-      }
-    });
-  };
-
-  AubsTypeaheadCustomElement.prototype.applyPlugins = function applyPlugins() {
-    var _this5 = this;
-
-    this.focusNone();
-    var localData = void 0;
-
-    if (typeof this.data === 'function') {
-      this.displayData = [];
-      this.loading = true;
-
-      var promise = this.data({ filter: this.filter, limit: this.resultsLimit }).then(function (data) {
-        if (_this5.promiseQueue.length > 1) {
-          _this5.promiseQueue.splice(0, 1);
-          return;
+        if (_bootstrapOptions.bootstrapOptions.version === 4) {
+            this.v4 = true;
         }
 
-        _this5.displayData = data;
-        _this5.doFocusFirst();
-        _this5.promiseQueue.splice(0, 1);
-        _this5.loading = false;
-      }).catch(function (error) {
-        _this5.loading = false;
-        _this5.displayData = [];
-        throw error;
-      });
+        if (Array.isArray(this.data)) {
+            this.dataObserver = this.bindingEngine.collectionObserver(this.data).subscribe(function () {
+                _this2.checkCustomEntry();
+                _this2.applyPlugins();
+            });
+        }
 
-      this.promiseQueue.push(promise);
-      return promise;
-    }
+        this.checkCustomEntry();
 
-    localData = [].concat(this.data);
-    if (this.filter && this.filter.length > 0) {
-      localData = this.doFilter(localData);
-    }
+        this.showClass = _bootstrapOptions.bootstrapOptions.version === 4 ? 'show' : 'open';
+    };
 
-    if (!this.isNull(this.resultsLimit) && !isNaN(this.resultsLimit)) {
-      localData = localData.slice(0, this.resultsLimit);
-    }
+    AubsTypeaheadCustomElement.prototype.attached = function attached() {
+        if (this.openOnFocus) {
+            this.input.addEventListener('focus', this.openListener);
+            this.input.addEventListener('click', this.openListener);
+        }
 
-    this.displayData = localData;
-    this.doFocusFirst();
+        document.addEventListener('click', this.outsideClickListener);
+        this.input.addEventListener('keydown', this.keyDownListener);
+    };
 
-    return Promise.resolve({});
-  };
+    AubsTypeaheadCustomElement.prototype.detached = function detached() {
+        if (this.dataObserver) {
+            this.dataObserver.dispose();
+        }
 
-  AubsTypeaheadCustomElement.prototype.focusNone = function focusNone() {
-    this.focusedItem = null;
-    this.focusedIndex = -1;
-  };
+        document.removeEventListener('click', this.outsideClickListener);
+        this.input.removeEventListener('keydown', this.keyDownListener);
 
-  AubsTypeaheadCustomElement.prototype.doFilter = function doFilter(toFilter) {
-    var _this6 = this;
+        if (this.openOnFocus) {
+            this.input.removeEventListener('focus', this.openListener);
+            this.input.removeEventListener('click', this.openListener);
+        }
+    };
 
-    return toFilter.filter(function (item) {
-      return !_this6.isNull(item) && _this6.getName(item).toLowerCase().indexOf(_this6.filter.toLowerCase()) > -1;
-    });
-  };
+    AubsTypeaheadCustomElement.prototype.dataChanged = function dataChanged() {
+        var _this3 = this;
 
-  AubsTypeaheadCustomElement.prototype.getName = function getName(item) {
-    if (this.isNull(item)) {
-      return '';
-    }
+        if (this.dataObserver) {
+            this.dataObserver.dispose();
+        }
 
-    if ((typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object') {
-      return item[this.key].toString();
-    }
+        if (Array.isArray(this.data)) {
+            this.dataObserver = this.bindingEngine.collectionObserver(this.data).subscribe(function () {
+                _this3.checkCustomEntry();
+                _this3.applyPlugins();
+            });
+        }
+    };
 
-    return item.toString();
-  };
+    AubsTypeaheadCustomElement.prototype.valueChanged = function valueChanged() {
+        var newFilter = this.getName(this.value);
 
-  AubsTypeaheadCustomElement.prototype.resetFilter = function resetFilter() {
-    if (this.filter.length === 0) {
-      this.value = null;
-    }
+        if (newFilter !== this.filter) {
+            this.ignoreChange = true;
+            this.filter = newFilter;
+        }
+    };
 
-    var newFilter = void 0;
-    if (this.isNull(this.value)) {
-      newFilter = '';
-    } else {
-      newFilter = this.getName(this.value);
-    }
+    AubsTypeaheadCustomElement.prototype.openDropdown = function openDropdown() {
+        if (this.dropdown.classList.contains(this.showClass)) {
+            return;
+        }
 
-    if (newFilter !== this.filter) {
-      this.ignoreChange = true;
-      this.filter = newFilter;
-    }
-  };
+        this.dropdown.classList.add(this.showClass);
+        this.focusNone();
+        this.applyPlugins();
+    };
 
-  AubsTypeaheadCustomElement.prototype.handleBlur = function handleBlur(evt) {
-    var _this7 = this;
+    AubsTypeaheadCustomElement.prototype.doFocusFirst = function doFocusFirst() {
+        if (this.focusFirst && this.displayData.length > 0) {
+            this.focusedIndex = 0;
+            this.focusedItem = this.displayData[0];
+        }
+    };
 
-    if (!this.dropdown.classList.contains('open')) {
-      return;
-    }
+    AubsTypeaheadCustomElement.prototype.checkCustomEntry = function checkCustomEntry() {
+        if (this.data.length > 0 && typeof this.data[0] !== 'string') {
+            this.customEntry = false;
+        }
+    };
 
-    setTimeout(function () {
-      if (!_this7.dropdown.contains(evt.target)) {
-        _this7.dropdown.classList.remove('open');
-        _this7.focusNone();
-        _this7.resetFilter();
-      }
-    }, this.debounce);
-  };
+    AubsTypeaheadCustomElement.prototype.filterChanged = function filterChanged() {
+        var _this4 = this;
 
-  AubsTypeaheadCustomElement.prototype.itemSelected = function itemSelected(item) {
-    this.value = item;
-    this.dropdown.classList.remove('open');
+        if (this.ignoreChange) {
+            this.ignoreChange = false;
+            return;
+        }
 
-    var newFilter = this.getName(this.value);
-    if (newFilter !== this.filter) {
-      this.ignoreChange = true;
-      this.filter = newFilter;
-    }
+        this.applyPlugins().then(function () {
+            if (_this4.instantCleanEmpty && _this4.filter.length === 0) {
+                _this4.value = null;
 
-    if (typeof this.onSelect === 'function') {
-      this.onSelect({ item: item });
-    }
-  };
+                if (typeof _this4.onSelect === 'function') {
+                    _this4.onSelect({ item: null });
+                }
+            } else if (_this4.customEntry) {
+                _this4.value = _this4.filter;
 
-  AubsTypeaheadCustomElement.prototype.isNull = function isNull(item) {
-    return item === null || item === undefined;
-  };
+                if (typeof _this4.onSelect === 'function') {
+                    _this4.onSelect({ item: _this4.value });
+                }
+            } else if (_this4.selectSingleResult && _this4.displayData.length === 1) {
+                _this4.itemSelected(_this4.displayData[0]);
+            }
+        });
+    };
 
-  AubsTypeaheadCustomElement.prototype.onKeyDown = function onKeyDown(evt) {
-    var _this8 = this;
+    AubsTypeaheadCustomElement.prototype.applyPlugins = function applyPlugins() {
+        var _this5 = this;
 
-    if (this.dropdown.classList.contains('open')) {
-      this.switchKeyCode(evt.keyCode);
-      return;
-    }
+        this.focusNone();
+        var localData = void 0;
 
-    this.applyPlugins().then(function () {
-      _this8.switchKeyCode(evt.keyCode);
-      _this8.dropdown.classList.add('open');
-    });
-  };
+        if (typeof this.data === 'function') {
+            this.displayData = [];
+            this.loading = true;
 
-  AubsTypeaheadCustomElement.prototype.switchKeyCode = function switchKeyCode(keyCode) {
-    switch (keyCode) {
-      case 40:
-        return this.handleDown();
-      case 38:
-        return this.handleUp();
-      case 13:
-      case 9:
-        return this.handleEnter();
-      case 27:
-        return this.handleScape();
-      default:
-        return;
-    }
-  };
+            var promise = this.data({ filter: this.filter, limit: this.resultsLimit }).then(function (data) {
+                if (_this5.promiseQueue.length > 1) {
+                    _this5.promiseQueue.splice(0, 1);
+                    return;
+                }
 
-  AubsTypeaheadCustomElement.prototype.handleDown = function handleDown() {
-    if (this.focusedIndex >= this.displayData.length - 1) {
-      return;
-    }
+                _this5.displayData = data;
+                _this5.doFocusFirst();
+                _this5.promiseQueue.splice(0, 1);
+                _this5.loading = false;
+            }).catch(function (error) {
+                _this5.loading = false;
+                _this5.displayData = [];
+                throw error;
+            });
 
-    this.focusedIndex++;
-    this.focusedItem = this.displayData[this.focusedIndex];
-  };
+            this.promiseQueue.push(promise);
+            return promise;
+        }
 
-  AubsTypeaheadCustomElement.prototype.handleUp = function handleUp() {
-    if (this.focusedIndex === 0) {
-      return;
-    }
+        localData = [].concat(this.data);
+        if (this.filter && this.filter.length > 0) {
+            localData = this.doFilter(localData);
+        }
 
-    this.focusedIndex--;
-    this.focusedItem = this.displayData[this.focusedIndex];
-  };
+        if (!this.isNull(this.resultsLimit) && !isNaN(this.resultsLimit)) {
+            localData = localData.slice(0, this.resultsLimit);
+        }
 
-  AubsTypeaheadCustomElement.prototype.handleEnter = function handleEnter() {
-    if (this.displayData.length === 0 || this.focusedIndex < 0 || !this.dropdown.classList.contains('open')) {
-      return;
-    }
+        this.displayData = localData;
+        this.doFocusFirst();
 
-    this.itemSelected(this.displayData[this.focusedIndex]);
-  };
+        return Promise.resolve({});
+    };
 
-  AubsTypeaheadCustomElement.prototype.handleScape = function handleScape() {
-    this.dropdown.classList.remove('open');
-    this.focusNone();
-    this.resetFilter();
-  };
+    AubsTypeaheadCustomElement.prototype.focusNone = function focusNone() {
+        this.focusedItem = null;
+        this.focusedIndex = -1;
+    };
 
-  return AubsTypeaheadCustomElement;
+    AubsTypeaheadCustomElement.prototype.doFilter = function doFilter(toFilter) {
+        var _this6 = this;
+
+        return toFilter.filter(function (item) {
+            return !_this6.isNull(item) && _this6.getName(item).toLowerCase().indexOf(_this6.filter.toLowerCase()) > -1;
+        });
+    };
+
+    AubsTypeaheadCustomElement.prototype.getName = function getName(item) {
+        if (this.isNull(item)) {
+            return '';
+        }
+
+        if ((typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object') {
+            return item[this.key].toString();
+        }
+
+        return item.toString();
+    };
+
+    AubsTypeaheadCustomElement.prototype.resetFilter = function resetFilter() {
+        if (this.filter.length === 0) {
+            this.value = null;
+        }
+
+        var newFilter = void 0;
+        if (this.isNull(this.value)) {
+            newFilter = '';
+        } else {
+            newFilter = this.getName(this.value);
+        }
+
+        if (newFilter !== this.filter) {
+            this.ignoreChange = true;
+            this.filter = newFilter;
+        }
+    };
+
+    AubsTypeaheadCustomElement.prototype.handleBlur = function handleBlur(evt) {
+        var _this7 = this;
+
+        if (!this.dropdown.classList.contains(this.showClass)) {
+            return;
+        }
+
+        setTimeout(function () {
+            if (!_this7.dropdown.contains(evt.target)) {
+                _this7.dropdown.classList.remove(_this7.showClass);
+                _this7.focusNone();
+                _this7.resetFilter();
+            }
+        }, this.debounce);
+    };
+
+    AubsTypeaheadCustomElement.prototype.itemSelected = function itemSelected(item) {
+        this.value = item;
+        this.dropdown.classList.remove(this.showClass);
+
+        var newFilter = this.getName(this.value);
+        if (newFilter !== this.filter) {
+            this.ignoreChange = true;
+            this.filter = newFilter;
+        }
+
+        if (typeof this.onSelect === 'function') {
+            this.onSelect({ item: item });
+        }
+    };
+
+    AubsTypeaheadCustomElement.prototype.isNull = function isNull(item) {
+        return item === null || item === undefined;
+    };
+
+    AubsTypeaheadCustomElement.prototype.onKeyDown = function onKeyDown(evt) {
+        var _this8 = this;
+
+        if (this.dropdown.classList.contains(this.showClass)) {
+            this.switchKeyCode(evt.keyCode);
+            return;
+        }
+
+        this.applyPlugins().then(function () {
+            _this8.switchKeyCode(evt.keyCode);
+            _this8.dropdown.classList.add(_this8.showClass);
+        });
+    };
+
+    AubsTypeaheadCustomElement.prototype.switchKeyCode = function switchKeyCode(keyCode) {
+        switch (keyCode) {
+            case 40:
+                return this.handleDown();
+            case 38:
+                return this.handleUp();
+            case 13:
+            case 9:
+                return this.handleEnter();
+            case 27:
+                return this.handleScape();
+            default:
+                return;
+        }
+    };
+
+    AubsTypeaheadCustomElement.prototype.handleDown = function handleDown() {
+        if (this.focusedIndex >= this.displayData.length - 1) {
+            return;
+        }
+
+        this.focusedIndex++;
+        this.focusedItem = this.displayData[this.focusedIndex];
+    };
+
+    AubsTypeaheadCustomElement.prototype.handleUp = function handleUp() {
+        if (this.focusedIndex === 0) {
+            return;
+        }
+
+        this.focusedIndex--;
+        this.focusedItem = this.displayData[this.focusedIndex];
+    };
+
+    AubsTypeaheadCustomElement.prototype.handleEnter = function handleEnter() {
+        if (this.displayData.length === 0 || this.focusedIndex < 0 || !this.dropdown.classList.contains(this.showClass)) {
+            return;
+        }
+
+        this.itemSelected(this.displayData[this.focusedIndex]);
+    };
+
+    AubsTypeaheadCustomElement.prototype.handleScape = function handleScape() {
+        this.dropdown.classList.remove(this.showClass);
+        this.focusNone();
+        this.resetFilter();
+    };
+
+    return AubsTypeaheadCustomElement;
 }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'data', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: null
+    enumerable: true,
+    initializer: null
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec2], {
-  enumerable: true,
-  initializer: null
+    enumerable: true,
+    initializer: null
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'key', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return 'name';
-  }
+    enumerable: true,
+    initializer: function initializer() {
+        return 'name';
+    }
 }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'customEntry', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return false;
-  }
+    enumerable: true,
+    initializer: function initializer() {
+        return false;
+    }
 }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'resultsLimit', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return null;
-  }
+    enumerable: true,
+    initializer: function initializer() {
+        return null;
+    }
 }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'debounce', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return 0;
-  }
+    enumerable: true,
+    initializer: function initializer() {
+        return 0;
+    }
 }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'onSelect', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: null
+    enumerable: true,
+    initializer: null
 }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'instantCleanEmpty', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return true;
-  }
+    enumerable: true,
+    initializer: function initializer() {
+        return true;
+    }
 }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return false;
-  }
+    enumerable: true,
+    initializer: function initializer() {
+        return false;
+    }
 }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'openOnFocus', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return false;
-  }
+    enumerable: true,
+    initializer: function initializer() {
+        return false;
+    }
 }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'focusFirst', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return true;
-  }
+    enumerable: true,
+    initializer: function initializer() {
+        return true;
+    }
 }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'selectSingleResult', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return false;
-  }
+    enumerable: true,
+    initializer: function initializer() {
+        return false;
+    }
 }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'loadingText', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return 'Loading...';
-  }
+    enumerable: true,
+    initializer: function initializer() {
+        return 'Loading...';
+    }
 }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'inputClass', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return '';
-  }
+    enumerable: true,
+    initializer: function initializer() {
+        return '';
+    }
 }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return '';
-  }
+    enumerable: true,
+    initializer: function initializer() {
+        return '';
+    }
 }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'noResultsText', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return 'No Results';
-  }
+    enumerable: true,
+    initializer: function initializer() {
+        return 'No Results';
+    }
 }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'filter', [_aureliaFramework.observable], {
-  enumerable: true,
-  initializer: function initializer() {
-    return '';
-  }
+    enumerable: true,
+    initializer: function initializer() {
+        return '';
+    }
 })), _class2)) || _class);

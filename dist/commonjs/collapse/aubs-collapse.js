@@ -13,6 +13,8 @@ var _velocityAnimate = require("velocity-animate");
 
 var _velocityAnimate2 = _interopRequireDefault(_velocityAnimate);
 
+var _bootstrapOptions = require("../utils/bootstrap-options");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _initDefineProp(target, property, descriptor, context) {
@@ -69,6 +71,10 @@ var AubsCollapseCustomAttribute = exports.AubsCollapseCustomAttribute = (_dec = 
         this.element = element;
     }
 
+    AubsCollapseCustomAttribute.prototype.bind = function bind() {
+        this.showClass = _bootstrapOptions.bootstrapOptions.version === 4 ? 'show' : 'in';
+    };
+
     AubsCollapseCustomAttribute.prototype.attached = function attached() {
         if (this.collapsed) {
             this.element.style.display = 'none';
@@ -84,7 +90,9 @@ var AubsCollapseCustomAttribute = exports.AubsCollapseCustomAttribute = (_dec = 
 
         if (this.collapsed) {
             (0, _velocityAnimate2.default)(this.element, 'slideUp');
+            this.element.classList.remove(this.showClass);
         } else {
+            this.element.classList.add(this.showClass);
             (0, _velocityAnimate2.default)(this.element, 'slideDown');
         }
     };

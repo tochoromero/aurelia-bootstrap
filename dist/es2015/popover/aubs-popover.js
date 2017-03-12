@@ -91,6 +91,8 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
         }
 
         this.triggers = this.trigger.split(' ');
+
+        this.showClass = bootstrapOptions.version === 4 ? 'show' : 'in';
     }
 
     attached() {
@@ -190,7 +192,7 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
 
         velocity(this.popover, 'stop').then(() => {
             velocity(this.popover, 'fadeIn').then(() => {
-                this.popover.classList.add('in');
+                this.popover.classList.add(this.showClass);
 
                 if (typeof this.onToggle === 'function') {
                     this.onToggle({ open: true });
@@ -209,7 +211,7 @@ export let AubsPopoverCustomAttribute = (_dec = inject(Element, TooltipService),
 
         velocity(this.popover, 'stop').then(() => {
             velocity(this.popover, 'fadeOut').then(() => {
-                this.popover.classList.remove('in');
+                this.popover.classList.remove(this.showClass);
 
                 if (typeof this.onToggle === 'function') {
                     this.onToggle({ open: false });

@@ -67,6 +67,8 @@ export let AubsAccordionGroupCustomElement = (_dec = inject(AubsAccordionCustomE
         if (typeof this.isOpen !== 'boolean') {
             this.isOpen = false;
         }
+
+        this.showClass = this.isBootstrapVersion(4) ? 'show' : 'in';
     }
 
     attached() {
@@ -94,11 +96,11 @@ export let AubsAccordionGroupCustomElement = (_dec = inject(AubsAccordionCustomE
 
     animate() {
         if (this.isOpen) {
-            this.$collapse.classList.add('in');
+            this.$collapse.classList.add(this.showClass);
             velocity(this.$collapse, 'slideDown');
         } else {
             velocity(this.$collapse, 'slideUp');
-            this.$collapse.classList.remove('in');
+            this.$collapse.classList.remove(this.showClass);
         }
     }
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "title", [bindable], {

@@ -64,8 +64,10 @@ export let AubsDropdownCustomAttribute = (_dec = inject(Element), _dec2 = bindab
         if (this.hasIsOpen()) {
             this.state = false;
         } else {
-            this.state = this.isOpen ? true : false;
+            this.state = this.isOpen;
         }
+
+        this.showClass = bootstrapOptions.version === 4 ? 'show' : 'open';
     }
 
     attached() {
@@ -100,7 +102,7 @@ export let AubsDropdownCustomAttribute = (_dec = inject(Element), _dec2 = bindab
     }
 
     isOpenChanged() {
-        this.state = this.isOpen ? true : false;
+        this.state = this.isOpen;
 
         if (this.isAttached) {
             this.setClass();
@@ -140,9 +142,9 @@ export let AubsDropdownCustomAttribute = (_dec = inject(Element), _dec2 = bindab
 
     setClass() {
         if (this.state) {
-            this.element.classList.add('open');
+            this.element.classList.add(this.showClass);
         } else {
-            this.element.classList.remove('open');
+            this.element.classList.remove(this.showClass);
         }
     }
 

@@ -1,4 +1,4 @@
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
 
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -60,6 +60,8 @@ export let AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService),
         _initDefineProp(this, 'open', _descriptor4, this);
 
         _initDefineProp(this, 'trigger', _descriptor5, this);
+
+        _initDefineProp(this, 'class', _descriptor6, this);
 
         this.triggers = [];
         this.validPositions = ['top', 'bottom', 'left', 'right'];
@@ -194,7 +196,7 @@ export let AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService),
         }
 
         this.tooltip = document.createElement('div');
-        this.tooltip.classList.add('tooltip');
+        this.parseClassList().forEach(next => this.tooltip.classList.add(next.trim()));
 
         this.tooltip.classList.add((bootstrapOptions.version === 4 ? 'tooltip-' : '') + this.position);
         this.tooltip.setAttribute('role', 'tooltip');
@@ -215,6 +217,14 @@ export let AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService),
         }
 
         this.tether = this.tooltipService.createAttachment(this.element, this.tooltip, this.position);
+    }
+
+    parseClassList() {
+        if (!this.class || this.class.length === 0) {
+            return ['tooltip'];
+        }
+
+        return this.class.split(',');
     }
 
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'text', [bindable], {
@@ -239,5 +249,10 @@ export let AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService),
     enumerable: true,
     initializer: function () {
         return bootstrapOptions.tooltipTrigger;
+    }
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'class', [bindable], {
+    enumerable: true,
+    initializer: function () {
+        return bootstrapOptions.tooltipClass;
     }
 })), _class2)) || _class);

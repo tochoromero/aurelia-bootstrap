@@ -45,6 +45,7 @@ function _initializerWarningHelper(descriptor, context) {
 
 import { inject, bindable } from "aurelia-framework";
 import velocity from "velocity-animate";
+import { bootstrapOptions } from "../utils/bootstrap-options";
 
 export let AubsCollapseCustomAttribute = (_dec = inject(Element), _dec(_class = (_class2 = class AubsCollapseCustomAttribute {
 
@@ -52,6 +53,10 @@ export let AubsCollapseCustomAttribute = (_dec = inject(Element), _dec(_class = 
         _initDefineProp(this, "collapsed", _descriptor, this);
 
         this.element = element;
+    }
+
+    bind() {
+        this.showClass = bootstrapOptions.version === 4 ? 'show' : 'in';
     }
 
     attached() {
@@ -69,7 +74,9 @@ export let AubsCollapseCustomAttribute = (_dec = inject(Element), _dec(_class = 
 
         if (this.collapsed) {
             velocity(this.element, 'slideUp');
+            this.element.classList.remove(this.showClass);
         } else {
+            this.element.classList.add(this.showClass);
             velocity(this.element, 'slideDown');
         }
     }
