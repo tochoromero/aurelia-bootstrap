@@ -21,6 +21,8 @@ export class AubsPopoverCustomAttribute {
     valuesChanged = false;
     visible = false;
 
+    showClass;
+
     constructor(element, tooltipService) {
         this.element = element;
         this.tooltipService = tooltipService;
@@ -41,6 +43,8 @@ export class AubsPopoverCustomAttribute {
         }
 
         this.triggers = this.trigger.split(' ');
+
+        this.showClass = bootstrapOptions.version === 4 ? 'show' : 'in';
     }
 
     attached() {
@@ -143,7 +147,7 @@ export class AubsPopoverCustomAttribute {
             .then(() => {
                 velocity(this.popover, 'fadeIn')
                     .then(() => {
-                        this.popover.classList.add('in');
+                        this.popover.classList.add(this.showClass);
 
                         if (typeof this.onToggle === 'function') {
                             this.onToggle({open: true});
@@ -165,7 +169,7 @@ export class AubsPopoverCustomAttribute {
             .then(() => {
                 velocity(this.popover, 'fadeOut')
                     .then(() => {
-                        this.popover.classList.remove('in');
+                        this.popover.classList.remove(this.showClass);
 
                         if (typeof this.onToggle === 'function') {
                             this.onToggle({open: false});
