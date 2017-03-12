@@ -185,3 +185,7 @@ ul.custom-pagination li a.disabled {
         opacity: 1;
     }
 }
+
+.custom-tooltip .tooltip-inner{
+  color: #ff66e1;
+}
