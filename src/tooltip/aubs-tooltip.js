@@ -10,6 +10,7 @@ export class AubsTooltipCustomAttribute {
     @bindable disabled = false;
     @bindable({defaultBindingMode: bindingMode.twoWay}) open = false;
     @bindable trigger = bootstrapOptions.tooltipTrigger;
+    @bindable class = bootstrapOptions.tooltipClass;
 
     triggers = [];
 
@@ -148,7 +149,7 @@ export class AubsTooltipCustomAttribute {
         }
 
         this.tooltip = document.createElement('div');
-        this.tooltip.classList.add('tooltip');
+        this.parseClassList().forEach(next => this.tooltip.classList.add(next.trim()));
 
         this.tooltip.classList.add((bootstrapOptions.version === 4 ? 'tooltip-' : '') + this.position);
         this.tooltip.setAttribute('role', 'tooltip');
@@ -169,6 +170,14 @@ export class AubsTooltipCustomAttribute {
         }
 
         this.tether = this.tooltipService.createAttachment(this.element, this.tooltip, this.position);
+    }
+
+    parseClassList() {
+        if (!this.class || this.class.length === 0) {
+            return ['tooltip'];
+        }
+
+        return this.class.split(',');
     }
 
 }

@@ -1,112 +1,118 @@
 <template>
-    <div class="container-fluid">
-        <div class="page-header">
-            <a class="btn btn-default pull-right" target="_blank"
-               href="https://github.com/tochoromero/aurelia-bootstrap/tree/master/doc/src/tooltip">
-                <i class="fa fa-edit"></i> Improve documentation</a>
-            <h1>Tooltip</h1>
-        </div>
+  <div class="container-fluid">
+    <div class="page-header">
+      <a class="btn btn-default pull-right" target="_blank"
+         href="https://github.com/tochoromero/aurelia-bootstrap/tree/master/doc/src/tooltip">
+        <i class="fa fa-edit"></i> Improve documentation</a>
+      <h1>Tooltip</h1>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 col-xs-12">
 
         <div class="row">
-            <div class="col-sm-6 col-xs-12">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Position:</label>
+              <select class="form-control" value.bind="position">
+                <option value="top">Top</option>
+                <option value="bottom">Bottom</option>
+                <option value="left">Left</option>
+                <option value="right">Right</option>
+              </select>
+            </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Position:</label>
-                            <select class="form-control" value.bind="position">
-                                <option value="top">Top</option>
-                                <option value="bottom">Bottom</option>
-                                <option value="left">Left</option>
-                                <option value="right">Right</option>
-                            </select>
-                        </div>
+            <div class="form-group">
+              <label>Trigger:</label>
+              <select class="form-control" value.bind="trigger">
+                <option value="mouseover">Mouseover</option>
+                <option value="focus">Focus</option>
+                <option value="click">Click</option>
+                <option value="outsideClick">Outside click</option>
+                <option value="none">None</option>
+              </select>
+            </div>
 
-                        <div class="form-group">
-                            <label>Trigger:</label>
-                            <select class="form-control" value.bind="trigger">
-                                <option value="mouseover">Mouseover</option>
-                                <option value="focus">Focus</option>
-                                <option value="click">Click</option>
-                                <option value="outsideClick">Outside click</option>
-                                <option value="none">None</option>
-                            </select>
-                        </div>
+            <div class="form-group">
+              <label>Text:</label>
+              <input type="text" class="form-control" value.bind="text"/>
+            </div>
+          </div>
 
-                        <div class="form-group">
-                            <label>Text:</label>
-                            <input type="text" class="form-control" value.bind="text"/>
-                        </div>
-                    </div>
+          <div class="col-md-6">
 
-                    <div class="col-md-6">
-
-                        <button class="btn btn-default" aubs-tooltip="text.bind: text;
+            <button class="btn btn-default" aubs-tooltip="text.bind: text;
                                                                     position.bind: position;
                                                                     trigger.bind: trigger">
-                            Dynamic Tooltip
-                        </button>
+              Dynamic Tooltip
+            </button>
 
-                        <p>I'm a paragraph with a <strong aubs-tooltip="text:Simple tooltip">Tooltip</strong></p>
-                    </div>
-                </div>
-            </div>
+            <p>I'm a paragraph with a <strong aubs-tooltip="text:Custom Class; class: tooltip, custom-tooltip">Tooltip</strong> with custom
+              class</p>
+          </div>
+        </div>
+      </div>
 
-            <div class="col-sm-6 col-xs-12">
-                <p>
-                    The <code>aubs-tooltip</code> Custom Attribute allows you to add tooltips to your elements. It is very easy and
-                    configure to adapt to your needs.
-                </p>
+      <div class="col-sm-6 col-xs-12">
+        <p>
+          The <code>aubs-tooltip</code> Custom Attribute allows you to add tooltips to your elements. It is very easy and
+          configure to adapt to your needs.
+        </p>
 
-                <h3>aubs-tooltip</h3>
-                <ul>
-                    <li><code>text</code>
-                        <string></string>
-                        <markup></markup>
-                        : The text for the tooltip.
-                    </li>
-                    <li><code>position</code>
-                        <string></string>
-                        <i>(default: top)</i>: The position of the tooltip. The possible values are: <code>top</code>, <code>bottom</code>,
-                        <code>left</code> and <code>right</code>.
-                    </li>
-                    <li><code>disabled</code>
-                        <boolean></boolean>
-                        <i>(default: false)</i>: Whether or not the tooltip is disabled.
-                    </li>
-                    <li><code>is-open</code>
-                        <property></property>
-                        <boolean property.bind="true"></boolean>
-                        <two-way></two-way>
-                        <i>(default: false)</i>: Reflects the state of the tooltip. You can use this property to programmatically toggle the
-                        tooltip.
-                    </li>
-                    <li><code>trigger</code>
-                        <string></string>
-                        <i>(default: mouseover)</i>: The event that triggers the tooltip. The options are:
-                        <ul>
-                            <li><code>mouseover</code>: The tooltip will open when the mouse enters the Element, and it will be closed when
-                                the mouse leaves it.
-                            </li>
-                            <li><code>focus</code>: The tooltip will open when the element gain focus. It will be closed when the focus is
-                                lost.
-                            </li>
-                            <li><code>click</code>: The tooltip will toggle when the element is clicked.</li>
-                            <li><code>outsideClick</code>: The tooltip will open when the element is clicked, and it will be closed with a
-                                click outside of the popover.
-                            </li>
-                            <li><code>none</code>: The only way to toggle the tooltip will be with external control of the
-                                <code>is-open</code> property.
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+        <h3>aubs-tooltip</h3>
+        <ul>
+          <li><code>text</code>
+            <string></string>
+            <markup></markup>
+            : The text for the tooltip.
+          </li>
+          <li><code>class</code>
+            <string></string>
+            <i>(default: tooltip)</i>: Comma separated list of classes to apply to the tooltip element. You would normally include the
+            <code>tooltip</code> class plus your custom classes.
+          </li>
+          <li><code>position</code>
+            <string></string>
+            <i>(default: top)</i>: The position of the tooltip. The possible values are: <code>top</code>, <code>bottom</code>,
+            <code>left</code> and <code>right</code>.
+          </li>
+          <li><code>disabled</code>
+            <boolean></boolean>
+            <i>(default: false)</i>: Whether or not the tooltip is disabled.
+          </li>
+          <li><code>is-open</code>
+            <property></property>
+            <boolean property.bind="true"></boolean>
+            <two-way></two-way>
+            <i>(default: false)</i>: Reflects the state of the tooltip. You can use this property to programmatically toggle the
+            tooltip.
+          </li>
+          <li><code>trigger</code>
+            <string></string>
+            <i>(default: mouseover)</i>: The event that triggers the tooltip. The options are:
+            <ul>
+              <li><code>mouseover</code>: The tooltip will open when the mouse enters the Element, and it will be closed when
+                the mouse leaves it.
+              </li>
+              <li><code>focus</code>: The tooltip will open when the element gain focus. It will be closed when the focus is
+                lost.
+              </li>
+              <li><code>click</code>: The tooltip will toggle when the element is clicked.</li>
+              <li><code>outsideClick</code>: The tooltip will open when the element is clicked, and it will be closed with a
+                click outside of the popover.
+              </li>
+              <li><code>none</code>: The only way to toggle the tooltip will be with external control of the
+                <code>is-open</code> property.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
 
-            <div class="col-xs-12">
-                <hr>
-                <aubs-tabset>
-                    <aubs-tab header="HTML">
+      <div class="col-xs-12">
+        <hr>
+        <aubs-tabset>
+          <aubs-tab header="HTML">
                         <pre><code class="language-markup" au-syntax>&lt;template>
     &lt;div class="row">
         &lt;div class="col-md-6">
@@ -144,23 +150,24 @@
                                                         trigger.bind: trigger">
                 Dynamic Tooltip
             &lt;/button>
-    
-            &lt;p>I'm a paragraph with a &lt;strong aubs-tooltip="text:Simple tooltip">Tooltip&lt;/strong>&lt;/p>
+
+            &lt;p>I'm a paragraph with a &lt;strong aubs-tooltip="text:Custom Class; class: tooltip, custom-tooltip">Tooltip&lt;/strong>
+                  with custom class&lt;/p>
         &lt;/div>
     &lt;/div>
 &lt;/template></code></pre>
-                    </aubs-tab>
+          </aubs-tab>
 
-                    <aubs-tab header="JS">
+          <aubs-tab header="JS">
                         <pre><code class="language-js" au-syntax>export class Example {
     position = 'top';
     trigger = 'mouseover';
     text = 'Dynamic Tooltip <i class="fa fa-heart"></i>'
 }</code></pre>
-                    </aubs-tab>
-                </aubs-tabset>
+          </aubs-tab>
+        </aubs-tabset>
 
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </template>
