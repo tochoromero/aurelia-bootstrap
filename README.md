@@ -16,6 +16,12 @@ Please check our documentation for installation details and the reference manual
 * Typeahead
 
 ###Release Notes
+
+####0.1.17
+* Use 'show' classes according to Bootstrap 4 Alpha 6.
+* Add styles for pagination with Bootstrap 4.
+* Provide a way to add custom css classes to tooltips.
+
 ####0.1.16
 Check if we have an actual popover object when detaching the Popover before setting the display to none.
 
