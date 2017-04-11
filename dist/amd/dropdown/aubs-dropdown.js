@@ -150,7 +150,7 @@ define(["exports", "aurelia-framework", "../utils/bootstrap-options"], function 
 
         AubsDropdownCustomAttribute.prototype.isMenuItem = function isMenuItem(evt) {
             if (_bootstrapOptions.bootstrapOptions.version === 4) {
-                return evt.target.parentNode.classList.contains('dropdown-item');
+                return evt.target.classList.contains('dropdown-item');
             } else {
                 return evt.target.parentNode.parentNode.classList.contains('dropdown-menu');
             }

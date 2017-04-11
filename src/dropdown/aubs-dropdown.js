@@ -91,7 +91,7 @@ export class AubsDropdownCustomAttribute {
 
     isMenuItem(evt){
         if(bootstrapOptions.version === 4){
-            return evt.target.parentNode.classList.contains('dropdown-item');
+            return evt.target.classList.contains('dropdown-item');
         }else{
             return evt.target.parentNode.parentNode.classList.contains('dropdown-menu');
         }
