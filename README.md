@@ -18,7 +18,7 @@ Please check our documentation for installation details and the reference manual
 ### Release Notes
 
 #### 0.1.19
-Assign id to typeahead's input. This will allow you to use a label <strong>for</strong> property with a typeahead.
+Assign id to typeahead's input. This will allow you to use a label <strong>for</strong> attribute with a typeahead.
 
 #### 0.1.18
 Fix dropdown close 'always' for Bootstrap 4
