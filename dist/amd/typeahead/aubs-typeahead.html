@@ -3,8 +3,8 @@
     <require from="./typeahead-highlight"></require>
 
     <div class="dropdown" ref="dropdown">
-        <input class="form form-control ${inputClass}" placeholder.one-way="placeholder" ref="input"
-               value.bind="filter & debounce:debounce" disabled.bind="disabled">
+        <input class="form form-control ${inputClass}" placeholder.bind="placeholder" ref="input"
+               value.bind="filter & debounce:debounce" disabled.bind="disabled" id.bind="id">
 
         <ul class="dropdown-menu" if.bind="!v4">
             <li show.bind="displayData.length === 0 && !loading" class="text-center">

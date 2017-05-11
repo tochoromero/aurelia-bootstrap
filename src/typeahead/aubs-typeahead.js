@@ -1,11 +1,13 @@
-import {inject, bindable, bindingMode, observable, BindingEngine} from 'aurelia-framework';
+import {inject, bindable, bindingMode, observable, BindingEngine, containerless} from 'aurelia-framework';
 import {bootstrapOptions} from "../utils/bootstrap-options";
 
 @inject(BindingEngine)
+@containerless
 export class AubsTypeaheadCustomElement {
     @bindable data;
     @bindable({defaultBindingMode: bindingMode.twoWay}) value;
     @bindable key = 'name';
+    @bindable id = '';
     @bindable customEntry = false;
     @bindable resultsLimit = null;
     @bindable debounce = 0;

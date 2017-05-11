@@ -1,4 +1,4 @@
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18;
 
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -43,10 +43,10 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-import { inject, bindable, bindingMode, observable, BindingEngine } from 'aurelia-framework';
+import { inject, bindable, bindingMode, observable, BindingEngine, containerless } from 'aurelia-framework';
 import { bootstrapOptions } from "../utils/bootstrap-options";
 
-export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = (_class2 = class AubsTypeaheadCustomElement {
+export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = containerless(_class = (_class2 = class AubsTypeaheadCustomElement {
 
     constructor(bindingEngine) {
         _initDefineProp(this, 'data', _descriptor, this);
@@ -55,37 +55,39 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
 
         _initDefineProp(this, 'key', _descriptor3, this);
 
-        _initDefineProp(this, 'customEntry', _descriptor4, this);
+        _initDefineProp(this, 'id', _descriptor4, this);
 
-        _initDefineProp(this, 'resultsLimit', _descriptor5, this);
+        _initDefineProp(this, 'customEntry', _descriptor5, this);
 
-        _initDefineProp(this, 'debounce', _descriptor6, this);
+        _initDefineProp(this, 'resultsLimit', _descriptor6, this);
 
-        _initDefineProp(this, 'onSelect', _descriptor7, this);
+        _initDefineProp(this, 'debounce', _descriptor7, this);
 
-        _initDefineProp(this, 'instantCleanEmpty', _descriptor8, this);
+        _initDefineProp(this, 'onSelect', _descriptor8, this);
 
-        _initDefineProp(this, 'disabled', _descriptor9, this);
+        _initDefineProp(this, 'instantCleanEmpty', _descriptor9, this);
 
-        _initDefineProp(this, 'openOnFocus', _descriptor10, this);
+        _initDefineProp(this, 'disabled', _descriptor10, this);
 
-        _initDefineProp(this, 'focusFirst', _descriptor11, this);
+        _initDefineProp(this, 'openOnFocus', _descriptor11, this);
 
-        _initDefineProp(this, 'selectSingleResult', _descriptor12, this);
+        _initDefineProp(this, 'focusFirst', _descriptor12, this);
 
-        _initDefineProp(this, 'loadingText', _descriptor13, this);
+        _initDefineProp(this, 'selectSingleResult', _descriptor13, this);
 
-        _initDefineProp(this, 'inputClass', _descriptor14, this);
+        _initDefineProp(this, 'loadingText', _descriptor14, this);
 
-        _initDefineProp(this, 'placeholder', _descriptor15, this);
+        _initDefineProp(this, 'inputClass', _descriptor15, this);
 
-        _initDefineProp(this, 'noResultsText', _descriptor16, this);
+        _initDefineProp(this, 'placeholder', _descriptor16, this);
+
+        _initDefineProp(this, 'noResultsText', _descriptor17, this);
 
         this.promiseQueue = [];
         this.v4 = false;
         this.displayData = [];
 
-        _initDefineProp(this, 'filter', _descriptor17, this);
+        _initDefineProp(this, 'filter', _descriptor18, this);
 
         this.focusedIndex = -1;
         this.focusedItem = null;
@@ -394,72 +396,77 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
     initializer: function () {
         return 'name';
     }
-}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'customEntry', [bindable], {
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'id', [bindable], {
+    enumerable: true,
+    initializer: function () {
+        return '';
+    }
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'customEntry', [bindable], {
     enumerable: true,
     initializer: function () {
         return false;
     }
-}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'resultsLimit', [bindable], {
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'resultsLimit', [bindable], {
     enumerable: true,
     initializer: function () {
         return null;
     }
-}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'debounce', [bindable], {
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'debounce', [bindable], {
     enumerable: true,
     initializer: function () {
         return 0;
     }
-}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'onSelect', [bindable], {
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'onSelect', [bindable], {
     enumerable: true,
     initializer: null
-}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'instantCleanEmpty', [bindable], {
+}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'instantCleanEmpty', [bindable], {
     enumerable: true,
     initializer: function () {
         return true;
     }
-}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [bindable], {
+}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [bindable], {
     enumerable: true,
     initializer: function () {
         return false;
     }
-}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'openOnFocus', [bindable], {
+}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'openOnFocus', [bindable], {
     enumerable: true,
     initializer: function () {
         return false;
     }
-}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'focusFirst', [bindable], {
+}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'focusFirst', [bindable], {
     enumerable: true,
     initializer: function () {
         return true;
     }
-}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'selectSingleResult', [bindable], {
+}), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'selectSingleResult', [bindable], {
     enumerable: true,
     initializer: function () {
         return false;
     }
-}), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'loadingText', [bindable], {
+}), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'loadingText', [bindable], {
     enumerable: true,
     initializer: function () {
         return 'Loading...';
     }
-}), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'inputClass', [bindable], {
+}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'inputClass', [bindable], {
     enumerable: true,
     initializer: function () {
         return '';
     }
-}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [bindable], {
+}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [bindable], {
     enumerable: true,
     initializer: function () {
         return '';
     }
-}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'noResultsText', [bindable], {
+}), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'noResultsText', [bindable], {
     enumerable: true,
     initializer: function () {
         return 'No Results';
     }
-}), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'filter', [observable], {
+}), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'filter', [observable], {
     enumerable: true,
     initializer: function () {
         return '';
     }
-})), _class2)) || _class);
+})), _class2)) || _class) || _class);

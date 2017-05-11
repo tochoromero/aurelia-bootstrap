@@ -61,9 +61,9 @@ define(['exports', 'aurelia-framework', '../utils/bootstrap-options'], function 
         throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
     }
 
-    var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17;
+    var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18;
 
-    var AubsTypeaheadCustomElement = exports.AubsTypeaheadCustomElement = (_dec = (0, _aureliaFramework.inject)(_aureliaFramework.BindingEngine), _dec2 = (0, _aureliaFramework.bindable)({ defaultBindingMode: _aureliaFramework.bindingMode.twoWay }), _dec(_class = (_class2 = function () {
+    var AubsTypeaheadCustomElement = exports.AubsTypeaheadCustomElement = (_dec = (0, _aureliaFramework.inject)(_aureliaFramework.BindingEngine), _dec2 = (0, _aureliaFramework.bindable)({ defaultBindingMode: _aureliaFramework.bindingMode.twoWay }), _dec(_class = (0, _aureliaFramework.containerless)(_class = (_class2 = function () {
         function AubsTypeaheadCustomElement(bindingEngine) {
             var _this = this;
 
@@ -75,37 +75,39 @@ define(['exports', 'aurelia-framework', '../utils/bootstrap-options'], function 
 
             _initDefineProp(this, 'key', _descriptor3, this);
 
-            _initDefineProp(this, 'customEntry', _descriptor4, this);
+            _initDefineProp(this, 'id', _descriptor4, this);
 
-            _initDefineProp(this, 'resultsLimit', _descriptor5, this);
+            _initDefineProp(this, 'customEntry', _descriptor5, this);
 
-            _initDefineProp(this, 'debounce', _descriptor6, this);
+            _initDefineProp(this, 'resultsLimit', _descriptor6, this);
 
-            _initDefineProp(this, 'onSelect', _descriptor7, this);
+            _initDefineProp(this, 'debounce', _descriptor7, this);
 
-            _initDefineProp(this, 'instantCleanEmpty', _descriptor8, this);
+            _initDefineProp(this, 'onSelect', _descriptor8, this);
 
-            _initDefineProp(this, 'disabled', _descriptor9, this);
+            _initDefineProp(this, 'instantCleanEmpty', _descriptor9, this);
 
-            _initDefineProp(this, 'openOnFocus', _descriptor10, this);
+            _initDefineProp(this, 'disabled', _descriptor10, this);
 
-            _initDefineProp(this, 'focusFirst', _descriptor11, this);
+            _initDefineProp(this, 'openOnFocus', _descriptor11, this);
 
-            _initDefineProp(this, 'selectSingleResult', _descriptor12, this);
+            _initDefineProp(this, 'focusFirst', _descriptor12, this);
 
-            _initDefineProp(this, 'loadingText', _descriptor13, this);
+            _initDefineProp(this, 'selectSingleResult', _descriptor13, this);
 
-            _initDefineProp(this, 'inputClass', _descriptor14, this);
+            _initDefineProp(this, 'loadingText', _descriptor14, this);
 
-            _initDefineProp(this, 'placeholder', _descriptor15, this);
+            _initDefineProp(this, 'inputClass', _descriptor15, this);
 
-            _initDefineProp(this, 'noResultsText', _descriptor16, this);
+            _initDefineProp(this, 'placeholder', _descriptor16, this);
+
+            _initDefineProp(this, 'noResultsText', _descriptor17, this);
 
             this.promiseQueue = [];
             this.v4 = false;
             this.displayData = [];
 
-            _initDefineProp(this, 'filter', _descriptor17, this);
+            _initDefineProp(this, 'filter', _descriptor18, this);
 
             this.focusedIndex = -1;
             this.focusedItem = null;
@@ -438,73 +440,78 @@ define(['exports', 'aurelia-framework', '../utils/bootstrap-options'], function 
         initializer: function initializer() {
             return 'name';
         }
-    }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'customEntry', [_aureliaFramework.bindable], {
+    }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'id', [_aureliaFramework.bindable], {
+        enumerable: true,
+        initializer: function initializer() {
+            return '';
+        }
+    }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'customEntry', [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: function initializer() {
             return false;
         }
-    }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'resultsLimit', [_aureliaFramework.bindable], {
+    }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'resultsLimit', [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: function initializer() {
             return null;
         }
-    }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'debounce', [_aureliaFramework.bindable], {
+    }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'debounce', [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: function initializer() {
             return 0;
         }
-    }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'onSelect', [_aureliaFramework.bindable], {
+    }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'onSelect', [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: null
-    }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'instantCleanEmpty', [_aureliaFramework.bindable], {
+    }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'instantCleanEmpty', [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: function initializer() {
             return true;
         }
-    }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [_aureliaFramework.bindable], {
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: function initializer() {
             return false;
         }
-    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'openOnFocus', [_aureliaFramework.bindable], {
+    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'openOnFocus', [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: function initializer() {
             return false;
         }
-    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'focusFirst', [_aureliaFramework.bindable], {
+    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'focusFirst', [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: function initializer() {
             return true;
         }
-    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'selectSingleResult', [_aureliaFramework.bindable], {
+    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'selectSingleResult', [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: function initializer() {
             return false;
         }
-    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'loadingText', [_aureliaFramework.bindable], {
+    }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'loadingText', [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: function initializer() {
             return 'Loading...';
         }
-    }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'inputClass', [_aureliaFramework.bindable], {
+    }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'inputClass', [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: function initializer() {
             return '';
         }
-    }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [_aureliaFramework.bindable], {
+    }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: function initializer() {
             return '';
         }
-    }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'noResultsText', [_aureliaFramework.bindable], {
+    }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'noResultsText', [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: function initializer() {
             return 'No Results';
         }
-    }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'filter', [_aureliaFramework.observable], {
+    }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'filter', [_aureliaFramework.observable], {
         enumerable: true,
         initializer: function initializer() {
             return '';
         }
-    })), _class2)) || _class);
+    })), _class2)) || _class) || _class);
 });

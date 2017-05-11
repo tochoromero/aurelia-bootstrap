@@ -18,7 +18,7 @@ export let TypeaheadHighlightValueConverter = class TypeaheadHighlightValueConve
                 return result;
             }
 
-            result += value.substring(position, index) + `<strong>${ value.substr(index, filter.length) }</strong>`;
+            result += value.substring(position, index) + `<strong>${value.substr(index, filter.length)}</strong>`;
 
             position = index + filter.length;
 
