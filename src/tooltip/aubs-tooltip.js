@@ -1,6 +1,6 @@
-import {bindable, inject, bindingMode} from 'aurelia-framework';
-import {TooltipService} from '../utils/tooltip-service';
-import {bootstrapOptions} from '../utils/bootstrap-options';
+import { bindable, inject, bindingMode } from 'aurelia-framework';
+import { TooltipService } from '../utils/tooltip-service';
+import { bootstrapOptions } from '../utils/bootstrap-options';
 import velocity from 'velocity-animate';
 
 @inject(Element, TooltipService)
@@ -8,13 +8,13 @@ export class AubsTooltipCustomAttribute {
     @bindable text;
     @bindable position = bootstrapOptions.tooltipPosition;
     @bindable disabled = false;
-    @bindable({defaultBindingMode: bindingMode.twoWay}) open = false;
+    @bindable({ defaultBindingMode: bindingMode.twoWay }) open = false;
     @bindable trigger = bootstrapOptions.tooltipTrigger;
     @bindable class = bootstrapOptions.tooltipClass;
 
     triggers = [];
 
-    
+
     valuesChanged = false;
     visible = false;
 
@@ -151,7 +151,7 @@ export class AubsTooltipCustomAttribute {
         this.tooltip = document.createElement('div');
         this.parseClassList().forEach(next => this.tooltip.classList.add(next.trim()));
 
-        this.tooltip.classList.add((bootstrapOptions.version === 4 ? 'tooltip-' : '') + this.position);
+        this.tooltip.classList.add((bootstrapOptions.version === 4 ? 'tooltip-' : '') + this.position.split(' ').join('-'));
         this.tooltip.setAttribute('role', 'tooltip');
 
         let arrow = document.createElement('div');

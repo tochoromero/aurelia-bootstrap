@@ -3,7 +3,7 @@
 System.register(['tether'], function (_export, _context) {
     "use strict";
 
-    var Tether, TooltipService;
+    var Tether, attachmentModes, validPositions, TooltipService;
 
     function _classCallCheck(instance, Constructor) {
         if (!(instance instanceof Constructor)) {
@@ -11,33 +11,68 @@ System.register(['tether'], function (_export, _context) {
         }
     }
 
+    function getAttachmentMode(position) {
+        if (position in attachmentModes) {
+            return attachmentModes[position];
+        }
+
+        return attachmentModes.top;
+    }
+
     return {
         setters: [function (_tether) {
             Tether = _tether.default;
         }],
         execute: function () {
+            attachmentModes = {
+                'top': {
+                    attachment: 'bottom center',
+                    targetAttachment: 'top center'
+                },
+                'top left': {
+                    attachment: 'bottom left',
+                    targetAttachment: 'top left'
+                },
+                'top right': {
+                    attachment: 'bottom right',
+                    targetAttachment: 'top right'
+                },
+                'bottom': {
+                    attachment: 'top center',
+                    targetAttachment: 'bottom center'
+                },
+                'bottom left': {
+                    attachment: 'top left',
+                    targetAttachment: 'bottom left'
+                },
+                'bottom right': {
+                    attachment: 'top right',
+                    targetAttachment: 'bottom right'
+                },
+                'left': {
+                    attachment: 'center right',
+                    targetAttachment: 'center left'
+                },
+                'right': {
+                    attachment: 'center left',
+                    targetAttachment: 'center right'
+                }
+            };
+            validPositions = Object.keys(attachmentModes);
+
             _export('TooltipService', TooltipService = function () {
                 function TooltipService() {
                     _classCallCheck(this, TooltipService);
                 }
 
-                TooltipService.prototype.createAttachment = function createAttachment(target, element, position) {
-                    var attachment = void 0;
-                    var targetAttachment = void 0;
+                TooltipService.prototype.isValidPosition = function isValidPosition(position) {
+                    return validPositions.includes(position);
+                };
 
-                    if (position === 'top') {
-                        attachment = 'bottom center';
-                        targetAttachment = "top center";
-                    } else if (position === 'bottom') {
-                        attachment = 'top center';
-                        targetAttachment = "bottom center";
-                    } else if (position === 'left') {
-                        attachment = 'center right';
-                        targetAttachment = "center left";
-                    } else {
-                        attachment = 'center left';
-                        targetAttachment = "center right";
-                    }
+                TooltipService.prototype.createAttachment = function createAttachment(target, element, position) {
+                    var _getAttachmentMode = getAttachmentMode(position),
+                        attachment = _getAttachmentMode.attachment,
+                        targetAttachment = _getAttachmentMode.targetAttachment;
 
                     return new Tether({
                         element: element,

@@ -32,21 +32,17 @@ const attachmentModes = {
     'right': {
         attachment: 'center left',
         targetAttachment: 'center right'
-    },
-    'default': {
-        attachment: 'center left',
-        targetAttachment: 'center right'
     }
 };
 
 const validPositions = Object.keys(attachmentModes);
 
 function getAttachmentMode(position) {
-    if (!(position in attachmentModes)) {
+    if (position in attachmentModes) {
         return attachmentModes[position];
     }
 
-    return attachmentModes.default;
+    return attachmentModes.top;
 }
 
 export class TooltipService {

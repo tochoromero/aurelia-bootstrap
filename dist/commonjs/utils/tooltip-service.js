@@ -13,28 +13,64 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var attachmentModes = {
+    'top': {
+        attachment: 'bottom center',
+        targetAttachment: 'top center'
+    },
+    'top left': {
+        attachment: 'bottom left',
+        targetAttachment: 'top left'
+    },
+    'top right': {
+        attachment: 'bottom right',
+        targetAttachment: 'top right'
+    },
+    'bottom': {
+        attachment: 'top center',
+        targetAttachment: 'bottom center'
+    },
+    'bottom left': {
+        attachment: 'top left',
+        targetAttachment: 'bottom left'
+    },
+    'bottom right': {
+        attachment: 'top right',
+        targetAttachment: 'bottom right'
+    },
+    'left': {
+        attachment: 'center right',
+        targetAttachment: 'center left'
+    },
+    'right': {
+        attachment: 'center left',
+        targetAttachment: 'center right'
+    }
+};
+
+var validPositions = Object.keys(attachmentModes);
+
+function getAttachmentMode(position) {
+    if (position in attachmentModes) {
+        return attachmentModes[position];
+    }
+
+    return attachmentModes.top;
+}
+
 var TooltipService = exports.TooltipService = function () {
     function TooltipService() {
         _classCallCheck(this, TooltipService);
     }
 
-    TooltipService.prototype.createAttachment = function createAttachment(target, element, position) {
-        var attachment = void 0;
-        var targetAttachment = void 0;
+    TooltipService.prototype.isValidPosition = function isValidPosition(position) {
+        return validPositions.includes(position);
+    };
 
-        if (position === 'top') {
-            attachment = 'bottom center';
-            targetAttachment = "top center";
-        } else if (position === 'bottom') {
-            attachment = 'top center';
-            targetAttachment = "bottom center";
-        } else if (position === 'left') {
-            attachment = 'center right';
-            targetAttachment = "center left";
-        } else {
-            attachment = 'center left';
-            targetAttachment = "center right";
-        }
+    TooltipService.prototype.createAttachment = function createAttachment(target, element, position) {
+        var _getAttachmentMode = getAttachmentMode(position),
+            attachment = _getAttachmentMode.attachment,
+            targetAttachment = _getAttachmentMode.targetAttachment;
 
         return new _tether2.default({
             element: element,
