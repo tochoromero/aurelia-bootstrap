@@ -1,34 +1,73 @@
 import Tether from 'tether';
 
-export class TooltipService{
+const attachmentModes = {
+    'top': {
+        attachment: 'bottom center',
+        targetAttachment: 'top center'
+    },
+    'top left': {
+        attachment: 'bottom left',
+        targetAttachment: 'top left'
+    },
+    'top right': {
+        attachment: 'bottom right',
+        targetAttachment: 'top right'
+    },
+    'bottom': {
+        attachment: 'top center',
+        targetAttachment: 'bottom center'
+    },
+    'bottom left': {
+        attachment: 'top left',
+        targetAttachment: 'bottom left'
+    },
+    'bottom right': {
+        attachment: 'top right',
+        targetAttachment: 'bottom right'
+    },
+    'left': {
+        attachment: 'center right',
+        targetAttachment: 'center left'
+    },
+    'right': {
+        attachment: 'center left',
+        targetAttachment: 'center right'
+    },
+    'default': {
+        attachment: 'center left',
+        targetAttachment: 'center right'
+    }
+};
+
+const validPositions = Object.keys(attachmentModes);
+
+function getAttachmentMode(position) {
+    if (!(position in attachmentModes)) {
+        return attachmentModes[position];
+    }
+
+    return attachmentModes.default;
+}
+
+export class TooltipService {
+
+    isValidPosition(position){
+        return validPositions.includes(position);
+    }
 
     createAttachment(target, element, position) {
-        let attachment;
-        let targetAttachment;
 
-        if (position === 'top') {
-            attachment = 'bottom center';
-            targetAttachment = "top center";
-        } else if (position === 'bottom') {
-            attachment = 'top center';
-            targetAttachment = "bottom center";
-        } else if (position === 'left') {
-            attachment = 'center right';
-            targetAttachment = "center left";
-        } else {
-            attachment = 'center left';
-            targetAttachment = "center right";
-        }
+        const { attachment, targetAttachment } = getAttachmentMode(position)
 
         return new Tether({
-            element: element,
-            target: target,
-            attachment: attachment,
-            targetAttachment: targetAttachment
+            element,
+            target,
+            attachment,
+            targetAttachment
         });
     }
-    
-    setTriggers(element, triggers, listeners){
+
+    setTriggers(element, triggers, listeners) {
         if (!triggers.includes('none')) {
             if (triggers.includes('mouseover')) {
                 element.addEventListener('mouseover', listeners.in);
@@ -48,8 +87,8 @@ export class TooltipService{
             }
         }
     }
-    
-    removeTriggers(element, triggers, listeners){
+
+    removeTriggers(element, triggers, listeners) {
         if (!triggers.includes('none')) {
             if (triggers.includes('mouseover')) {
                 element.removeEventListener('mouseover', listeners.in);

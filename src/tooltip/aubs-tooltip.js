@@ -14,7 +14,7 @@ export class AubsTooltipCustomAttribute {
 
     triggers = [];
 
-    validPositions = ['top', 'bottom', 'left', 'right'];
+    
     valuesChanged = false;
     visible = false;
 
@@ -33,7 +33,7 @@ export class AubsTooltipCustomAttribute {
     }
 
     bind() {
-        if (!this.validPositions.includes(this.position)) {
+        if (!this.tooltipService.isValidPosition(this.position)) {
             this.position = 'top';
         }
 
@@ -89,7 +89,7 @@ export class AubsTooltipCustomAttribute {
     }
 
     positionChanged(newValue, oldValue) {
-        if (!this.validPositions.includes(newValue)) {
+        if (!this.tooltipService.isValidPosition(newValue)) {
             this.position = oldValue;
             return;
         }
