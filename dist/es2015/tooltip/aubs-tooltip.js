@@ -64,7 +64,6 @@ export let AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService),
         _initDefineProp(this, 'class', _descriptor6, this);
 
         this.triggers = [];
-        this.validPositions = ['top', 'bottom', 'left', 'right'];
         this.valuesChanged = false;
         this.visible = false;
 
@@ -82,7 +81,7 @@ export let AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService),
     }
 
     bind() {
-        if (!this.validPositions.includes(this.position)) {
+        if (!this.tooltipService.isValidPosition(this.position)) {
             this.position = 'top';
         }
 
@@ -138,7 +137,7 @@ export let AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService),
     }
 
     positionChanged(newValue, oldValue) {
-        if (!this.validPositions.includes(newValue)) {
+        if (!this.tooltipService.isValidPosition(newValue)) {
             this.position = oldValue;
             return;
         }
@@ -198,7 +197,7 @@ export let AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService),
         this.tooltip = document.createElement('div');
         this.parseClassList().forEach(next => this.tooltip.classList.add(next.trim()));
 
-        this.tooltip.classList.add((bootstrapOptions.version === 4 ? 'tooltip-' : '') + this.position);
+        this.tooltip.classList.add((bootstrapOptions.version === 4 ? 'tooltip-' : '') + this.position.split(' ').join('-'));
         this.tooltip.setAttribute('role', 'tooltip');
 
         let arrow = document.createElement('div');
