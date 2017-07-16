@@ -118,7 +118,7 @@ define(['exports', 'aurelia-framework', '../utils/tooltip-service', '../utils/bo
         AubsTooltipCustomAttribute.prototype.attached = function attached() {
             this.tooltipService.setTriggers(this.element, this.triggers, this.listeners);
 
-            this.attached = true;
+            this.isAttached = true;
             if (this.open) {
                 this.handleShow();
             }
@@ -137,7 +137,7 @@ define(['exports', 'aurelia-framework', '../utils/tooltip-service', '../utils/bo
         };
 
         AubsTooltipCustomAttribute.prototype.openChanged = function openChanged() {
-            if (!this.attached) {
+            if (!this.isAttached) {
                 return;
             }
 

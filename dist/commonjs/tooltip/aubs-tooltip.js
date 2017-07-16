@@ -117,7 +117,7 @@ var AubsTooltipCustomAttribute = exports.AubsTooltipCustomAttribute = (_dec = (0
     AubsTooltipCustomAttribute.prototype.attached = function attached() {
         this.tooltipService.setTriggers(this.element, this.triggers, this.listeners);
 
-        this.attached = true;
+        this.isAttached = true;
         if (this.open) {
             this.handleShow();
         }
@@ -136,7 +136,7 @@ var AubsTooltipCustomAttribute = exports.AubsTooltipCustomAttribute = (_dec = (0
     };
 
     AubsTooltipCustomAttribute.prototype.openChanged = function openChanged() {
-        if (!this.attached) {
+        if (!this.isAttached) {
             return;
         }
 

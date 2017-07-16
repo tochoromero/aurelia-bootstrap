@@ -130,7 +130,7 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
                         this.customPopover.style.display = 'none';
                     }
 
-                    this.attached = true;
+                    this.isAttached = true;
                     if (this.isOpen) {
                         this.handleShow();
                     }
@@ -153,7 +153,7 @@ System.register(["aurelia-framework", "../utils/tooltip-service", "../utils/boot
                 };
 
                 AubsPopoverCustomAttribute.prototype.isOpenChanged = function isOpenChanged() {
-                    if (!this.attached) {
+                    if (!this.isAttached) {
                         return;
                     }
 

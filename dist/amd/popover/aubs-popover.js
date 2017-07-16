@@ -128,7 +128,7 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service", "../utils/bo
                 this.customPopover.style.display = 'none';
             }
 
-            this.attached = true;
+            this.isAttached = true;
             if (this.isOpen) {
                 this.handleShow();
             }
@@ -151,7 +151,7 @@ define(["exports", "aurelia-framework", "../utils/tooltip-service", "../utils/bo
         };
 
         AubsPopoverCustomAttribute.prototype.isOpenChanged = function isOpenChanged() {
-            if (!this.attached) {
+            if (!this.isAttached) {
                 return;
             }
 

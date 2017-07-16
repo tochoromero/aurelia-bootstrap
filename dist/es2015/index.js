@@ -1,3 +1,4 @@
+import { PLATFORM } from 'aurelia-pal';
 import { AubsAccordionCustomElement } from "./accordion/aubs-accordion";
 import { AubsAccordionGroupCustomElement } from "./accordion/aubs-accordion-group";
 import { AubsBtnCheckboxCustomAttribute } from "./buttons/aubs-btn-checkbox";
@@ -16,21 +17,21 @@ import { TypeaheadHighlightValueConverter } from "./typeahead/typeahead-highligh
 import { BootstrapConfig } from "./utils/bootstrap-config";
 
 export function configure(aurelia, callback) {
-    aurelia.globalResources('./accordion/aubs-accordion');
-    aurelia.globalResources('./accordion/aubs-accordion-group');
-    aurelia.globalResources('./buttons/aubs-btn-checkbox');
-    aurelia.globalResources('./buttons/aubs-btn-loading');
-    aurelia.globalResources('./buttons/aubs-btn-radio');
-    aurelia.globalResources('./collapse/aubs-collapse');
-    aurelia.globalResources('./dropdown/aubs-dropdown');
-    aurelia.globalResources('./dropdown/aubs-dropdown-toggle');
-    aurelia.globalResources('./pagination/aubs-pagination');
-    aurelia.globalResources('./popover/aubs-popover');
-    aurelia.globalResources('./tabs/aubs-tab');
-    aurelia.globalResources('./tabs/aubs-tabset');
-    aurelia.globalResources('./tooltip/aubs-tooltip');
-    aurelia.globalResources('./typeahead/aubs-typeahead');
-    aurelia.globalResources('./typeahead/typeahead-highlight');
+    aurelia.globalResources(PLATFORM.moduleName('./accordion/aubs-accordion'));
+    aurelia.globalResources(PLATFORM.moduleName('./accordion/aubs-accordion-group'));
+    aurelia.globalResources(PLATFORM.moduleName('./buttons/aubs-btn-checkbox'));
+    aurelia.globalResources(PLATFORM.moduleName('./buttons/aubs-btn-loading'));
+    aurelia.globalResources(PLATFORM.moduleName('./buttons/aubs-btn-radio'));
+    aurelia.globalResources(PLATFORM.moduleName('./collapse/aubs-collapse'));
+    aurelia.globalResources(PLATFORM.moduleName('./dropdown/aubs-dropdown'));
+    aurelia.globalResources(PLATFORM.moduleName('./dropdown/aubs-dropdown-toggle'));
+    aurelia.globalResources(PLATFORM.moduleName('./pagination/aubs-pagination'));
+    aurelia.globalResources(PLATFORM.moduleName('./popover/aubs-popover'));
+    aurelia.globalResources(PLATFORM.moduleName('./tabs/aubs-tab'));
+    aurelia.globalResources(PLATFORM.moduleName('./tabs/aubs-tabset'));
+    aurelia.globalResources(PLATFORM.moduleName('./tooltip/aubs-tooltip'));
+    aurelia.globalResources(PLATFORM.moduleName('./typeahead/aubs-typeahead'));
+    aurelia.globalResources(PLATFORM.moduleName('./typeahead/typeahead-highlight'));
 
     let config = new BootstrapConfig();
 

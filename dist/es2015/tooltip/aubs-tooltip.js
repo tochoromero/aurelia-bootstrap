@@ -92,7 +92,7 @@ export let AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService),
     attached() {
         this.tooltipService.setTriggers(this.element, this.triggers, this.listeners);
 
-        this.attached = true;
+        this.isAttached = true;
         if (this.open) {
             this.handleShow();
         }
@@ -111,7 +111,7 @@ export let AubsTooltipCustomAttribute = (_dec = inject(Element, TooltipService),
     }
 
     openChanged() {
-        if (!this.attached) {
+        if (!this.isAttached) {
             return;
         }
 

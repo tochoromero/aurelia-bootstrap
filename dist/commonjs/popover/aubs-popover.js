@@ -127,7 +127,7 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
             this.customPopover.style.display = 'none';
         }
 
-        this.attached = true;
+        this.isAttached = true;
         if (this.isOpen) {
             this.handleShow();
         }
@@ -150,7 +150,7 @@ var AubsPopoverCustomAttribute = exports.AubsPopoverCustomAttribute = (_dec = (0
     };
 
     AubsPopoverCustomAttribute.prototype.isOpenChanged = function isOpenChanged() {
-        if (!this.attached) {
+        if (!this.isAttached) {
             return;
         }
 

@@ -120,7 +120,7 @@ System.register(['aurelia-framework', '../utils/tooltip-service', '../utils/boot
                 AubsTooltipCustomAttribute.prototype.attached = function attached() {
                     this.tooltipService.setTriggers(this.element, this.triggers, this.listeners);
 
-                    this.attached = true;
+                    this.isAttached = true;
                     if (this.open) {
                         this.handleShow();
                     }
@@ -139,7 +139,7 @@ System.register(['aurelia-framework', '../utils/tooltip-service', '../utils/boot
                 };
 
                 AubsTooltipCustomAttribute.prototype.openChanged = function openChanged() {
-                    if (!this.attached) {
+                    if (!this.isAttached) {
                         return;
                     }
 
