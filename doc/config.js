@@ -45,6 +45,7 @@ System.config({
       "vm-browserify": "npm:vm-browserify@0.0.4"
     },
     "github:tochoromero/aurelia-bootstrap@master": {
+      "aurelia-pal": "npm:aurelia-pal@1.3.0",
       "aurelia-templating-resources": "npm:aurelia-templating-resources@1.2.0",
       "tether": "npm:tether@1.4.0",
       "velocity-animate": "npm:velocity-animate@1.4.2"
@@ -60,13 +61,13 @@ System.config({
     },
     "npm:aurelia-animator-css@1.0.0": {
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
-      "aurelia-pal": "npm:aurelia-pal@1.2.0",
+      "aurelia-pal": "npm:aurelia-pal@1.3.0",
       "aurelia-templating": "npm:aurelia-templating@1.2.0"
     },
     "npm:aurelia-binding@1.1.1": {
       "aurelia-logging": "npm:aurelia-logging@1.2.0",
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
-      "aurelia-pal": "npm:aurelia-pal@1.2.0",
+      "aurelia-pal": "npm:aurelia-pal@1.3.0",
       "aurelia-task-queue": "npm:aurelia-task-queue@1.1.0"
     },
     "npm:aurelia-bootstrapper@1.0.0": {
@@ -76,7 +77,7 @@ System.config({
       "aurelia-history-browser": "npm:aurelia-history-browser@1.0.0",
       "aurelia-loader-default": "npm:aurelia-loader-default@1.0.0",
       "aurelia-logging-console": "npm:aurelia-logging-console@1.0.0",
-      "aurelia-pal": "npm:aurelia-pal@1.2.0",
+      "aurelia-pal": "npm:aurelia-pal@1.3.0",
       "aurelia-pal-browser": "npm:aurelia-pal-browser@1.0.0",
       "aurelia-polyfills": "npm:aurelia-polyfills@1.0.0",
       "aurelia-router": "npm:aurelia-router@1.0.2",
@@ -87,7 +88,7 @@ System.config({
     },
     "npm:aurelia-dependency-injection@1.3.0": {
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
-      "aurelia-pal": "npm:aurelia-pal@1.2.0"
+      "aurelia-pal": "npm:aurelia-pal@1.3.0"
     },
     "npm:aurelia-event-aggregator@1.0.0": {
       "aurelia-logging": "npm:aurelia-logging@1.2.0"
@@ -98,19 +99,19 @@ System.config({
       "aurelia-loader": "npm:aurelia-loader@1.0.0",
       "aurelia-logging": "npm:aurelia-logging@1.2.0",
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
-      "aurelia-pal": "npm:aurelia-pal@1.2.0",
+      "aurelia-pal": "npm:aurelia-pal@1.3.0",
       "aurelia-path": "npm:aurelia-path@1.1.1",
       "aurelia-task-queue": "npm:aurelia-task-queue@1.1.0",
       "aurelia-templating": "npm:aurelia-templating@1.2.0"
     },
     "npm:aurelia-history-browser@1.0.0": {
       "aurelia-history": "npm:aurelia-history@1.0.0",
-      "aurelia-pal": "npm:aurelia-pal@1.2.0"
+      "aurelia-pal": "npm:aurelia-pal@1.3.0"
     },
     "npm:aurelia-loader-default@1.0.0": {
       "aurelia-loader": "npm:aurelia-loader@1.0.0",
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
-      "aurelia-pal": "npm:aurelia-pal@1.2.0"
+      "aurelia-pal": "npm:aurelia-pal@1.3.0"
     },
     "npm:aurelia-loader@1.0.0": {
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
@@ -120,13 +121,13 @@ System.config({
       "aurelia-logging": "npm:aurelia-logging@1.2.0"
     },
     "npm:aurelia-metadata@1.0.3": {
-      "aurelia-pal": "npm:aurelia-pal@1.2.0"
+      "aurelia-pal": "npm:aurelia-pal@1.3.0"
     },
     "npm:aurelia-pal-browser@1.0.0": {
-      "aurelia-pal": "npm:aurelia-pal@1.2.0"
+      "aurelia-pal": "npm:aurelia-pal@1.3.0"
     },
     "npm:aurelia-polyfills@1.0.0": {
-      "aurelia-pal": "npm:aurelia-pal@1.2.0"
+      "aurelia-pal": "npm:aurelia-pal@1.3.0"
     },
     "npm:aurelia-route-recognizer@1.0.0": {
       "aurelia-path": "npm:aurelia-path@1.1.1"
@@ -144,7 +145,7 @@ System.config({
       "prismjs": "npm:prismjs@1.5.1"
     },
     "npm:aurelia-task-queue@1.1.0": {
-      "aurelia-pal": "npm:aurelia-pal@1.2.0"
+      "aurelia-pal": "npm:aurelia-pal@1.3.0"
     },
     "npm:aurelia-templating-binding@1.0.0": {
       "aurelia-binding": "npm:aurelia-binding@1.1.1",
@@ -157,7 +158,7 @@ System.config({
       "aurelia-loader": "npm:aurelia-loader@1.0.0",
       "aurelia-logging": "npm:aurelia-logging@1.2.0",
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
-      "aurelia-pal": "npm:aurelia-pal@1.2.0",
+      "aurelia-pal": "npm:aurelia-pal@1.3.0",
       "aurelia-path": "npm:aurelia-path@1.1.1",
       "aurelia-task-queue": "npm:aurelia-task-queue@1.1.0",
       "aurelia-templating": "npm:aurelia-templating@1.2.0"
@@ -166,7 +167,7 @@ System.config({
       "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.3.0",
       "aurelia-logging": "npm:aurelia-logging@1.2.0",
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
-      "aurelia-pal": "npm:aurelia-pal@1.2.0",
+      "aurelia-pal": "npm:aurelia-pal@1.3.0",
       "aurelia-path": "npm:aurelia-path@1.1.1",
       "aurelia-router": "npm:aurelia-router@1.0.2",
       "aurelia-templating": "npm:aurelia-templating@1.2.0"
@@ -177,7 +178,7 @@ System.config({
       "aurelia-loader": "npm:aurelia-loader@1.0.0",
       "aurelia-logging": "npm:aurelia-logging@1.2.0",
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
-      "aurelia-pal": "npm:aurelia-pal@1.2.0",
+      "aurelia-pal": "npm:aurelia-pal@1.3.0",
       "aurelia-path": "npm:aurelia-path@1.1.1",
       "aurelia-task-queue": "npm:aurelia-task-queue@1.1.0"
     },
@@ -217,5 +218,180 @@ System.config({
     "npm:vm-browserify@0.0.4": {
       "indexof": "npm:indexof@0.0.1"
     }
+  },
+  bundles: {
+    "app-build.js": [
+      "accordion/accordion.html!github:systemjs/plugin-text@0.0.8.js",
+      "accordion/accordion.js",
+      "app.html!github:systemjs/plugin-text@0.0.8.js",
+      "app.js",
+      "buttons/buttons.html!github:systemjs/plugin-text@0.0.8.js",
+      "buttons/buttons.js",
+      "collapse/collapse.html!github:systemjs/plugin-text@0.0.8.js",
+      "collapse/collapse.js",
+      "dropdown/dropdown.html!github:systemjs/plugin-text@0.0.8.js",
+      "dropdown/dropdown.js",
+      "global-defaults/global-defaults.html!github:systemjs/plugin-text@0.0.8.js",
+      "global-defaults/global-defaults.js",
+      "introduction/introduction.html!github:systemjs/plugin-text@0.0.8.js",
+      "introduction/introduction.js",
+      "main.js",
+      "nav-bar.html!github:systemjs/plugin-text@0.0.8.js",
+      "pagination/pagination.html!github:systemjs/plugin-text@0.0.8.js",
+      "pagination/pagination.js",
+      "popover/popover.html!github:systemjs/plugin-text@0.0.8.js",
+      "popover/popover.js",
+      "resources/index.js",
+      "resources/settings-type/any.html!github:systemjs/plugin-text@0.0.8.js",
+      "resources/settings-type/boolean.html!github:systemjs/plugin-text@0.0.8.js",
+      "resources/settings-type/function.html!github:systemjs/plugin-text@0.0.8.js",
+      "resources/settings-type/markup.html!github:systemjs/plugin-text@0.0.8.js",
+      "resources/settings-type/number.html!github:systemjs/plugin-text@0.0.8.js",
+      "resources/settings-type/property.html!github:systemjs/plugin-text@0.0.8.js",
+      "resources/settings-type/ref.html!github:systemjs/plugin-text@0.0.8.js",
+      "resources/settings-type/string.html!github:systemjs/plugin-text@0.0.8.js",
+      "resources/settings-type/two-way.html!github:systemjs/plugin-text@0.0.8.js",
+      "tabs/tabs.html!github:systemjs/plugin-text@0.0.8.js",
+      "tabs/tabs.js",
+      "tooltip/tooltip.html!github:systemjs/plugin-text@0.0.8.js",
+      "tooltip/tooltip.js",
+      "typeahead/typeahead.html!github:systemjs/plugin-text@0.0.8.js",
+      "typeahead/typeahead.js"
+    ],
+    "aurelia.js": [
+      "github:github/fetch@1.0.0.js",
+      "github:github/fetch@1.0.0/fetch.js",
+      "github:jspm/nodelibs-process@0.1.2.js",
+      "github:jspm/nodelibs-process@0.1.2/index.js",
+      "github:systemjs/plugin-text@0.0.8.js",
+      "github:systemjs/plugin-text@0.0.8/text.js",
+      "github:tochoromero/aurelia-bootstrap@master.js",
+      "github:tochoromero/aurelia-bootstrap@master/accordion/aubs-accordion-group.html!github:systemjs/plugin-text@0.0.8.js",
+      "github:tochoromero/aurelia-bootstrap@master/accordion/aubs-accordion-group.js",
+      "github:tochoromero/aurelia-bootstrap@master/accordion/aubs-accordion.html!github:systemjs/plugin-text@0.0.8.js",
+      "github:tochoromero/aurelia-bootstrap@master/accordion/aubs-accordion.js",
+      "github:tochoromero/aurelia-bootstrap@master/buttons/aubs-btn-checkbox.js",
+      "github:tochoromero/aurelia-bootstrap@master/buttons/aubs-btn-loading.js",
+      "github:tochoromero/aurelia-bootstrap@master/buttons/aubs-btn-radio.js",
+      "github:tochoromero/aurelia-bootstrap@master/collapse/aubs-collapse.js",
+      "github:tochoromero/aurelia-bootstrap@master/dropdown/aubs-dropdown-toggle.js",
+      "github:tochoromero/aurelia-bootstrap@master/dropdown/aubs-dropdown.js",
+      "github:tochoromero/aurelia-bootstrap@master/index.js",
+      "github:tochoromero/aurelia-bootstrap@master/pagination/aubs-pagination.html!github:systemjs/plugin-text@0.0.8.js",
+      "github:tochoromero/aurelia-bootstrap@master/pagination/aubs-pagination.js",
+      "github:tochoromero/aurelia-bootstrap@master/popover/aubs-popover.js",
+      "github:tochoromero/aurelia-bootstrap@master/tabs/aubs-tab.html!github:systemjs/plugin-text@0.0.8.js",
+      "github:tochoromero/aurelia-bootstrap@master/tabs/aubs-tab.js",
+      "github:tochoromero/aurelia-bootstrap@master/tabs/aubs-tabset.html!github:systemjs/plugin-text@0.0.8.js",
+      "github:tochoromero/aurelia-bootstrap@master/tabs/aubs-tabset.js",
+      "github:tochoromero/aurelia-bootstrap@master/tooltip/aubs-tooltip.js",
+      "github:tochoromero/aurelia-bootstrap@master/typeahead/aubs-typeahead.html!github:systemjs/plugin-text@0.0.8.js",
+      "github:tochoromero/aurelia-bootstrap@master/typeahead/aubs-typeahead.js",
+      "github:tochoromero/aurelia-bootstrap@master/typeahead/typeahead-highlight.js",
+      "github:tochoromero/aurelia-bootstrap@master/utils/bootstrap-config.js",
+      "github:tochoromero/aurelia-bootstrap@master/utils/bootstrap-options.js",
+      "github:tochoromero/aurelia-bootstrap@master/utils/tooltip-service.js",
+      "npm:aurelia-binding@1.1.1.js",
+      "npm:aurelia-binding@1.1.1/aurelia-binding.js",
+      "npm:aurelia-bootstrapper@1.0.0.js",
+      "npm:aurelia-bootstrapper@1.0.0/aurelia-bootstrapper.js",
+      "npm:aurelia-dependency-injection@1.3.0.js",
+      "npm:aurelia-dependency-injection@1.3.0/aurelia-dependency-injection.js",
+      "npm:aurelia-event-aggregator@1.0.0.js",
+      "npm:aurelia-event-aggregator@1.0.0/aurelia-event-aggregator.js",
+      "npm:aurelia-fetch-client@1.0.0.js",
+      "npm:aurelia-fetch-client@1.0.0/aurelia-fetch-client.js",
+      "npm:aurelia-framework@1.0.1.js",
+      "npm:aurelia-framework@1.0.1/aurelia-framework.js",
+      "npm:aurelia-history-browser@1.0.0.js",
+      "npm:aurelia-history-browser@1.0.0/aurelia-history-browser.js",
+      "npm:aurelia-history@1.0.0.js",
+      "npm:aurelia-history@1.0.0/aurelia-history.js",
+      "npm:aurelia-loader-default@1.0.0.js",
+      "npm:aurelia-loader-default@1.0.0/aurelia-loader-default.js",
+      "npm:aurelia-loader@1.0.0.js",
+      "npm:aurelia-loader@1.0.0/aurelia-loader.js",
+      "npm:aurelia-logging-console@1.0.0.js",
+      "npm:aurelia-logging-console@1.0.0/aurelia-logging-console.js",
+      "npm:aurelia-logging@1.2.0.js",
+      "npm:aurelia-logging@1.2.0/aurelia-logging.js",
+      "npm:aurelia-metadata@1.0.3.js",
+      "npm:aurelia-metadata@1.0.3/aurelia-metadata.js",
+      "npm:aurelia-pal-browser@1.0.0.js",
+      "npm:aurelia-pal-browser@1.0.0/aurelia-pal-browser.js",
+      "npm:aurelia-pal@1.3.0.js",
+      "npm:aurelia-pal@1.3.0/aurelia-pal.js",
+      "npm:aurelia-path@1.1.1.js",
+      "npm:aurelia-path@1.1.1/aurelia-path.js",
+      "npm:aurelia-polyfills@1.0.0.js",
+      "npm:aurelia-polyfills@1.0.0/aurelia-polyfills.js",
+      "npm:aurelia-route-recognizer@1.0.0.js",
+      "npm:aurelia-route-recognizer@1.0.0/aurelia-route-recognizer.js",
+      "npm:aurelia-router@1.0.2.js",
+      "npm:aurelia-router@1.0.2/aurelia-router.js",
+      "npm:aurelia-syntax-highlighter@0.0.4.js",
+      "npm:aurelia-syntax-highlighter@0.0.4/index.js",
+      "npm:aurelia-syntax-highlighter@0.0.4/syntax-highlighter.js",
+      "npm:aurelia-task-queue@1.1.0.js",
+      "npm:aurelia-task-queue@1.1.0/aurelia-task-queue.js",
+      "npm:aurelia-templating-binding@1.0.0.js",
+      "npm:aurelia-templating-binding@1.0.0/aurelia-templating-binding.js",
+      "npm:aurelia-templating-resources@1.2.0.js",
+      "npm:aurelia-templating-resources@1.2.0/abstract-repeater.js",
+      "npm:aurelia-templating-resources@1.2.0/analyze-view-factory.js",
+      "npm:aurelia-templating-resources@1.2.0/array-repeat-strategy.js",
+      "npm:aurelia-templating-resources@1.2.0/attr-binding-behavior.js",
+      "npm:aurelia-templating-resources@1.2.0/aurelia-hide-style.js",
+      "npm:aurelia-templating-resources@1.2.0/aurelia-templating-resources.js",
+      "npm:aurelia-templating-resources@1.2.0/binding-mode-behaviors.js",
+      "npm:aurelia-templating-resources@1.2.0/binding-signaler.js",
+      "npm:aurelia-templating-resources@1.2.0/compose.js",
+      "npm:aurelia-templating-resources@1.2.0/css-resource.js",
+      "npm:aurelia-templating-resources@1.2.0/debounce-binding-behavior.js",
+      "npm:aurelia-templating-resources@1.2.0/dynamic-element.js",
+      "npm:aurelia-templating-resources@1.2.0/focus.js",
+      "npm:aurelia-templating-resources@1.2.0/hide.js",
+      "npm:aurelia-templating-resources@1.2.0/html-resource-plugin.js",
+      "npm:aurelia-templating-resources@1.2.0/html-sanitizer.js",
+      "npm:aurelia-templating-resources@1.2.0/if.js",
+      "npm:aurelia-templating-resources@1.2.0/map-repeat-strategy.js",
+      "npm:aurelia-templating-resources@1.2.0/null-repeat-strategy.js",
+      "npm:aurelia-templating-resources@1.2.0/number-repeat-strategy.js",
+      "npm:aurelia-templating-resources@1.2.0/repeat-strategy-locator.js",
+      "npm:aurelia-templating-resources@1.2.0/repeat-utilities.js",
+      "npm:aurelia-templating-resources@1.2.0/repeat.js",
+      "npm:aurelia-templating-resources@1.2.0/replaceable.js",
+      "npm:aurelia-templating-resources@1.2.0/sanitize-html.js",
+      "npm:aurelia-templating-resources@1.2.0/set-repeat-strategy.js",
+      "npm:aurelia-templating-resources@1.2.0/show.js",
+      "npm:aurelia-templating-resources@1.2.0/signal-binding-behavior.js",
+      "npm:aurelia-templating-resources@1.2.0/throttle-binding-behavior.js",
+      "npm:aurelia-templating-resources@1.2.0/update-trigger-binding-behavior.js",
+      "npm:aurelia-templating-resources@1.2.0/with.js",
+      "npm:aurelia-templating-router@1.0.0.js",
+      "npm:aurelia-templating-router@1.0.0/aurelia-templating-router.js",
+      "npm:aurelia-templating-router@1.0.0/route-href.js",
+      "npm:aurelia-templating-router@1.0.0/route-loader.js",
+      "npm:aurelia-templating-router@1.0.0/router-view.js",
+      "npm:aurelia-templating@1.2.0.js",
+      "npm:aurelia-templating@1.2.0/aurelia-templating.js",
+      "npm:prismjs@1.5.1.js",
+      "npm:prismjs@1.5.1/prism.js",
+      "npm:process@0.11.9.js",
+      "npm:process@0.11.9/browser.js",
+      "npm:tether@1.4.0.js",
+      "npm:tether@1.4.0/dist/js/tether.js",
+      "npm:velocity-animate@1.4.2.js",
+      "npm:velocity-animate@1.4.2/velocity.js"
+    ]
+  },
+  depCache: {
+    "main.js": [
+      "fetch"
+    ],
+    "typeahead/typeahead.js": [
+      "aurelia-framework",
+      "aurelia-fetch-client"
+    ]
   }
 });

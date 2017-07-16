@@ -11,7 +11,8 @@ module.exports = {
     'jspm_packages/system-polyfills.js',
     'jspm_packages/system-csp-production.js',
     'styles/*',
-    'states.json'
+    'states.json',
+    'images/flags/*'
   ],
   // this section lists any jspm packages that have
   // unbundled resources that need to be exported.

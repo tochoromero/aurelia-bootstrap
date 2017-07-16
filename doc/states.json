@@ -1,238 +1,206 @@
 [
   {
     "state": "Alabama",
-    "short": "AL"
+    "short": "al"
   },
   {
     "state": "Alaska",
-    "short": "AK"
-  },
-  {
-    "state": "American Samoa",
-    "short": "AS"
+    "short": "ak"
   },
   {
     "state": "Arizona",
-    "short": "AZ"
+    "short": "az"
   },
   {
     "state": "Arkansas",
-    "short": "AR"
+    "short": "ar"
   },
   {
     "state": "California",
-    "short": "CA"
+    "short": "ca"
   },
   {
     "state": "Colorado",
-    "short": "CO"
+    "short": "co"
   },
   {
     "state": "Connecticut",
-    "short": "CT"
+    "short": "ct"
   },
   {
     "state": "Delaware",
-    "short": "DE"
-  },
-  {
-    "state": "District Of Columbia",
-    "short": "DC"
-  },
-  {
-    "state": "Federated States Of Micronesia",
-    "short": "FM"
+    "short": "de"
   },
   {
     "state": "Florida",
-    "short": "FL"
+    "short": "fl"
   },
   {
     "state": "Georgia",
-    "short": "GA"
-  },
-  {
-    "state": "Guam",
-    "short": "GU"
+    "short": "ga"
   },
   {
     "state": "Hawaii",
-    "short": "HI"
+    "short": "hi"
   },
   {
     "state": "Idaho",
-    "short": "ID"
+    "short": "id"
   },
   {
     "state": "Illinois",
-    "short": "IL"
+    "short": "il"
   },
   {
     "state": "Indiana",
-    "short": "IN"
+    "short": "in"
   },
   {
     "state": "Iowa",
-    "short": "IA"
+    "short": "ia"
   },
   {
     "state": "Kansas",
-    "short": "KS"
+    "short": "ks"
   },
   {
     "state": "Kentucky",
-    "short": "KY"
+    "short": "ky"
   },
   {
     "state": "Louisiana",
-    "short": "LA"
+    "short": "la"
   },
   {
     "state": "Maine",
-    "short": "ME"
+    "short": "me"
   },
   {
     "state": "Marshall Islands",
-    "short": "MH"
+    "short": "mh"
   },
   {
     "state": "Maryland",
-    "short": "MD"
+    "short": "md"
   },
   {
     "state": "Massachusetts",
-    "short": "MA"
+    "short": "ma"
   },
   {
     "state": "Michigan",
-    "short": "MI"
+    "short": "mi"
   },
   {
     "state": "Minnesota",
-    "short": "MN"
+    "short": "mn"
   },
   {
     "state": "Mississippi",
-    "short": "MS"
+    "short": "ms"
   },
   {
     "state": "Missouri",
-    "short": "MO"
+    "short": "mo"
   },
   {
     "state": "Montana",
-    "short": "MT"
+    "short": "mt"
   },
   {
     "state": "Nebraska",
-    "short": "NE"
+    "short": "ne"
   },
   {
     "state": "Nevada",
-    "short": "NV"
+    "short": "nv"
   },
   {
     "state": "New Hampshire",
-    "short": "NH"
+    "short": "nh"
   },
   {
     "state": "New Jersey",
-    "short": "NJ"
+    "short": "nj"
   },
   {
     "state": "New Mexico",
-    "short": "NM"
+    "short": "nm"
   },
   {
     "state": "New York",
-    "short": "NY"
+    "short": "ny"
   },
   {
     "state": "North Carolina",
-    "short": "NC"
+    "short": "nc"
   },
   {
     "state": "North Dakota",
-    "short": "ND"
-  },
-  {
-    "state": "Northern Mariana Islands",
-    "short": "MP"
+    "short": "nd"
   },
   {
     "state": "Ohio",
-    "short": "OH"
+    "short": "oh"
   },
   {
     "state": "Oklahoma",
-    "short": "OK"
+    "short": "ok"
   },
   {
     "state": "Oregon",
-    "short": "OR"
-  },
-  {
-    "state": "Palau",
-    "short": "PW"
+    "short": "or"
   },
   {
     "state": "Pennsylvania",
-    "short": "PA"
-  },
-  {
-    "state": "Puerto Rico",
-    "short": "PR"
+    "short": "pa"
   },
   {
     "state": "Rhode Island",
-    "short": "RI"
+    "short": "ri"
   },
   {
     "state": "South Carolina",
-    "short": "SC"
+    "short": "sc"
   },
   {
     "state": "South Dakota",
-    "short": "SD"
+    "short": "sd"
   },
   {
     "state": "Tennessee",
-    "short": "TN"
+    "short": "tn"
   },
   {
     "state": "Texas",
-    "short": "TX"
+    "short": "tx"
   },
   {
     "state": "Utah",
-    "short": "UT"
+    "short": "ut"
   },
   {
     "state": "Vermont",
-    "short": "VT"
-  },
-  {
-    "state": "Virgin Islands",
-    "short": "VI"
+    "short": "vt"
   },
   {
     "state": "Virginia",
-    "short": "VA"
+    "short": "va"
   },
   {
     "state": "Washington",
-    "short": "WA"
+    "short": "wa"
   },
   {
     "state": "West Virginia",
-    "short": "WV"
+    "short": "wv"
   },
   {
     "state": "Wisconsin",
-    "short": "WI"
+    "short": "wi"
   },
   {
     "state": "Wyoming",
-    "short": "WY"
+    "short": "wy"
   }
 ]
