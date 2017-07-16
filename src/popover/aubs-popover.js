@@ -55,7 +55,7 @@ export class AubsPopoverCustomAttribute {
             this.customPopover.style.display = 'none';
         }
 
-        this.attached = true;
+        this.isAttached = true;
         if (this.isOpen) {
             this.handleShow();
         }
@@ -78,7 +78,7 @@ export class AubsPopoverCustomAttribute {
     }
 
     isOpenChanged() {
-        if (!this.attached) {
+        if (!this.isAttached) {
             return;
         }
 

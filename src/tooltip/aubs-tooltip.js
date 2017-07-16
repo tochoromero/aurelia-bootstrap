@@ -43,7 +43,7 @@ export class AubsTooltipCustomAttribute {
     attached() {
         this.tooltipService.setTriggers(this.element, this.triggers, this.listeners);
 
-        this.attached = true;
+        this.isAttached = true;
         if (this.open) {
             this.handleShow();
         }
@@ -62,7 +62,7 @@ export class AubsTooltipCustomAttribute {
     }
 
     openChanged() {
-        if (!this.attached) {
+        if (!this.isAttached) {
             return;
         }
 
