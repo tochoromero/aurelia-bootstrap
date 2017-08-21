@@ -17,6 +17,7 @@ export class AubsTypeaheadCustomElement {
     @bindable openOnFocus = false;
     @bindable focusFirst = true;
     @bindable selectSingleResult = false;
+    @bindable autoComplete = false;
     @bindable loadingText = 'Loading...';
     @bindable inputClass = '';
     @bindable placeholder = '';

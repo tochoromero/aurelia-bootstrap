@@ -7,7 +7,7 @@ exports.AubsTypeaheadCustomElement = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19;
 
 var _aureliaFramework = require('aurelia-framework');
 
@@ -90,19 +90,21 @@ var AubsTypeaheadCustomElement = exports.AubsTypeaheadCustomElement = (_dec = (0
 
         _initDefineProp(this, 'selectSingleResult', _descriptor13, this);
 
-        _initDefineProp(this, 'loadingText', _descriptor14, this);
+        _initDefineProp(this, 'autoComplete', _descriptor14, this);
 
-        _initDefineProp(this, 'inputClass', _descriptor15, this);
+        _initDefineProp(this, 'loadingText', _descriptor15, this);
 
-        _initDefineProp(this, 'placeholder', _descriptor16, this);
+        _initDefineProp(this, 'inputClass', _descriptor16, this);
 
-        _initDefineProp(this, 'noResultsText', _descriptor17, this);
+        _initDefineProp(this, 'placeholder', _descriptor17, this);
+
+        _initDefineProp(this, 'noResultsText', _descriptor18, this);
 
         this.promiseQueue = [];
         this.v4 = false;
         this.displayData = [];
 
-        _initDefineProp(this, 'filter', _descriptor18, this);
+        _initDefineProp(this, 'filter', _descriptor19, this);
 
         this.focusedIndex = -1;
         this.focusedItem = null;
@@ -483,27 +485,32 @@ var AubsTypeaheadCustomElement = exports.AubsTypeaheadCustomElement = (_dec = (0
     initializer: function initializer() {
         return false;
     }
-}), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'loadingText', [_aureliaFramework.bindable], {
+}), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'autoComplete', [_aureliaFramework.bindable], {
+    enumerable: true,
+    initializer: function initializer() {
+        return false;
+    }
+}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'loadingText', [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: function initializer() {
         return 'Loading...';
     }
-}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'inputClass', [_aureliaFramework.bindable], {
+}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'inputClass', [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: function initializer() {
         return '';
     }
-}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [_aureliaFramework.bindable], {
+}), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: function initializer() {
         return '';
     }
-}), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'noResultsText', [_aureliaFramework.bindable], {
+}), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'noResultsText', [_aureliaFramework.bindable], {
     enumerable: true,
     initializer: function initializer() {
         return 'No Results';
     }
-}), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'filter', [_aureliaFramework.observable], {
+}), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'filter', [_aureliaFramework.observable], {
     enumerable: true,
     initializer: function initializer() {
         return '';
