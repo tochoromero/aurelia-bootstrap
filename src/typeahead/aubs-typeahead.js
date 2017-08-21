@@ -26,6 +26,7 @@ export class AubsTypeaheadCustomElement {
     promiseQueue = [];
     v4 = false;
     dropdown;
+    menu;
     input;
     displayData = [];
     @observable filter = '';
@@ -76,7 +77,7 @@ export class AubsTypeaheadCustomElement {
 
         document.removeEventListener('click', this.outsideClickListener);
         this.input.removeEventListener('keydown', this.keyDownListener);
-
+        
         if (this.openOnFocus) {
             this.input.removeEventListener('focus', this.openListener);
             this.input.removeEventListener('click', this.openListener);
@@ -111,6 +112,7 @@ export class AubsTypeaheadCustomElement {
         }
 
         this.dropdown.classList.add(this.showClass);
+        this.menu.classList.add(this.showClass);
         this.focusNone();
         this.applyPlugins();
     }
@@ -247,6 +249,7 @@ export class AubsTypeaheadCustomElement {
         setTimeout(() => {
             if (!this.dropdown.contains(evt.target)) {
                 this.dropdown.classList.remove(this.showClass);
+                this.menu.classList.remove(this.showClass);
                 this.focusNone();
                 this.resetFilter();
             }
@@ -256,7 +259,8 @@ export class AubsTypeaheadCustomElement {
     itemSelected(item) {
         this.value = item;
         this.dropdown.classList.remove(this.showClass);
-
+        this.menu.classList.remove(this.showClass);
+        
         let newFilter = this.getName(this.value);
         if (newFilter !== this.filter) {
             this.ignoreChange = true;
@@ -282,6 +286,7 @@ export class AubsTypeaheadCustomElement {
             .then(() => {
                 this.switchKeyCode(evt.keyCode);
                 this.dropdown.classList.add(this.showClass);
+                this.menu.classList.add(this.showClass);
             });
     }
 
@@ -329,6 +334,7 @@ export class AubsTypeaheadCustomElement {
 
     handleScape() {
         this.dropdown.classList.remove(this.showClass);
+        this.menu.classList.remove(this.showClass);
         this.focusNone();
         this.resetFilter();
     }
