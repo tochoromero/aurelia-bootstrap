@@ -4,8 +4,7 @@
 
     <div class="dropdown" ref="dropdown">
         <input class="form form-control ${inputClass}" placeholder.bind="placeholder" ref="input"
-               value.bind="filter & debounce:debounce" disabled.bind="disabled" id.bind="id" 
-               autocomplete.bind="autoComplete ? 'on' : 'off'">
+               value.bind="filter & debounce:debounce" disabled.bind="disabled" id.bind="id">
 
         <ul class="dropdown-menu" if.bind="!v4">
             <li show.bind="displayData.length === 0 && !loading" class="text-center">

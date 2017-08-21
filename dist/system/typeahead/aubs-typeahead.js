@@ -3,7 +3,7 @@
 System.register(['aurelia-framework', '../utils/bootstrap-options'], function (_export, _context) {
     "use strict";
 
-    var inject, bindable, bindingMode, observable, BindingEngine, containerless, bootstrapOptions, _typeof, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, AubsTypeaheadCustomElement;
+    var inject, bindable, bindingMode, observable, BindingEngine, containerless, bootstrapOptions, _typeof, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, AubsTypeaheadCustomElement;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -104,21 +104,19 @@ System.register(['aurelia-framework', '../utils/bootstrap-options'], function (_
 
                     _initDefineProp(this, 'selectSingleResult', _descriptor13, this);
 
-                    _initDefineProp(this, 'autoComplete', _descriptor14, this);
+                    _initDefineProp(this, 'loadingText', _descriptor14, this);
 
-                    _initDefineProp(this, 'loadingText', _descriptor15, this);
+                    _initDefineProp(this, 'inputClass', _descriptor15, this);
 
-                    _initDefineProp(this, 'inputClass', _descriptor16, this);
+                    _initDefineProp(this, 'placeholder', _descriptor16, this);
 
-                    _initDefineProp(this, 'placeholder', _descriptor17, this);
-
-                    _initDefineProp(this, 'noResultsText', _descriptor18, this);
+                    _initDefineProp(this, 'noResultsText', _descriptor17, this);
 
                     this.promiseQueue = [];
                     this.v4 = false;
                     this.displayData = [];
 
-                    _initDefineProp(this, 'filter', _descriptor19, this);
+                    _initDefineProp(this, 'filter', _descriptor18, this);
 
                     this.focusedIndex = -1;
                     this.focusedItem = null;
@@ -504,32 +502,27 @@ System.register(['aurelia-framework', '../utils/bootstrap-options'], function (_
                 initializer: function initializer() {
                     return false;
                 }
-            }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'autoComplete', [bindable], {
-                enumerable: true,
-                initializer: function initializer() {
-                    return false;
-                }
-            }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'loadingText', [bindable], {
+            }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'loadingText', [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return 'Loading...';
                 }
-            }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'inputClass', [bindable], {
+            }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'inputClass', [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return '';
                 }
-            }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [bindable], {
+            }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return '';
                 }
-            }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'noResultsText', [bindable], {
+            }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'noResultsText', [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return 'No Results';
                 }
-            }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'filter', [observable], {
+            }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'filter', [observable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return '';
