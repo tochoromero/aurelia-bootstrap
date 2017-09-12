@@ -152,6 +152,9 @@ System.register(['aurelia-framework', '../utils/bootstrap-options'], function (_
                     this.checkCustomEntry();
 
                     this.showClass = bootstrapOptions.version === 4 ? 'show' : 'open';
+
+                    this.ignoreChange = true;
+                    this.filter = this.value;
                 };
 
                 AubsTypeaheadCustomElement.prototype.attached = function attached() {
