@@ -26,7 +26,7 @@
             </li>
         </ul>
 
-        <div class="dropdown-menu" if.bind="v4">
+        <div class="dropdown-menu" if.bind="v4" ref="menu">
             <h6 class="dropdown-header text-center" show.bind="displayData.length == 0 && !loading" innerhtml.bind="noResultsText"></h6>
             <h6 class="dropdown-header text-center" show.bind="loading" innerhtml.bind="loadingText"></h6>
             

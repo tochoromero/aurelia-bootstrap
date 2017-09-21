@@ -201,6 +201,7 @@ define(['exports', 'aurelia-framework', '../utils/bootstrap-options'], function 
             }
 
             this.dropdown.classList.add(this.showClass);
+            this.menu.classList.add(this.showClass);
             this.focusNone();
             this.applyPlugins();
         };
@@ -343,6 +344,7 @@ define(['exports', 'aurelia-framework', '../utils/bootstrap-options'], function 
             setTimeout(function () {
                 if (!_this7.dropdown.contains(evt.target)) {
                     _this7.dropdown.classList.remove(_this7.showClass);
+                    _this7.menu.classList.remove(_this7.showClass);
                     _this7.focusNone();
                     _this7.resetFilter();
                 }
@@ -352,6 +354,7 @@ define(['exports', 'aurelia-framework', '../utils/bootstrap-options'], function 
         AubsTypeaheadCustomElement.prototype.itemSelected = function itemSelected(item) {
             this.value = item;
             this.dropdown.classList.remove(this.showClass);
+            this.menu.classList.remove(this.showClass);
 
             var newFilter = this.getName(this.value);
             if (newFilter !== this.filter) {
@@ -379,6 +382,7 @@ define(['exports', 'aurelia-framework', '../utils/bootstrap-options'], function 
             this.applyPlugins().then(function () {
                 _this8.switchKeyCode(evt.keyCode);
                 _this8.dropdown.classList.add(_this8.showClass);
+                _this8.menu.classList.add(_this8.showClass);
             });
         };
 
@@ -426,6 +430,7 @@ define(['exports', 'aurelia-framework', '../utils/bootstrap-options'], function 
 
         AubsTypeaheadCustomElement.prototype.handleScape = function handleScape() {
             this.dropdown.classList.remove(this.showClass);
+            this.menu.classList.remove(this.showClass);
             this.focusNone();
             this.resetFilter();
         };
