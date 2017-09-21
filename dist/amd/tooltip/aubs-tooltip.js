@@ -84,7 +84,6 @@ define(['exports', 'aurelia-framework', '../utils/tooltip-service', '../utils/bo
             _initDefineProp(this, 'class', _descriptor6, this);
 
             this.triggers = [];
-            this.validPositions = ['top', 'bottom', 'left', 'right'];
             this.valuesChanged = false;
             this.visible = false;
 
@@ -108,7 +107,7 @@ define(['exports', 'aurelia-framework', '../utils/tooltip-service', '../utils/bo
         }
 
         AubsTooltipCustomAttribute.prototype.bind = function bind() {
-            if (!this.validPositions.includes(this.position)) {
+            if (!this.tooltipService.isValidPosition(this.position)) {
                 this.position = 'top';
             }
 
@@ -164,7 +163,7 @@ define(['exports', 'aurelia-framework', '../utils/tooltip-service', '../utils/bo
         };
 
         AubsTooltipCustomAttribute.prototype.positionChanged = function positionChanged(newValue, oldValue) {
-            if (!this.validPositions.includes(newValue)) {
+            if (!this.tooltipService.isValidPosition(newValue)) {
                 this.position = oldValue;
                 return;
             }
@@ -232,7 +231,7 @@ define(['exports', 'aurelia-framework', '../utils/tooltip-service', '../utils/bo
                 return _this4.tooltip.classList.add(next.trim());
             });
 
-            this.tooltip.classList.add((_bootstrapOptions.bootstrapOptions.version === 4 ? 'tooltip-' : '') + this.position);
+            this.tooltip.classList.add((_bootstrapOptions.bootstrapOptions.version === 4 ? 'tooltip-' : '') + this.position.split(' ').join('-'));
             this.tooltip.setAttribute('role', 'tooltip');
 
             var arrow = document.createElement('div');

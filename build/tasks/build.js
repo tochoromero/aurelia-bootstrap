@@ -42,7 +42,7 @@ gulp.task('build-system', function () {
     .pipe(gulp.dest(paths.output + 'system'));
 });
 
-gulp.task('build', function(callback) {
+gulp.task('build', function (callback) {
   return runSequence(
     'clean',
     ['build-html', 'build-es2015', 'build-commonjs', 'build-amd', 'build-system'],

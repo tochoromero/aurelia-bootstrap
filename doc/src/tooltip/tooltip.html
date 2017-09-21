@@ -1,8 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="page-header">
-      <a class="btn btn-default pull-right" target="_blank"
-         href="https://github.com/tochoromero/aurelia-bootstrap/tree/master/doc/src/tooltip">
+      <a class="btn btn-default pull-right" target="_blank" href="https://github.com/tochoromero/aurelia-bootstrap/tree/master/doc/src/tooltip">
         <i class="fa fa-edit"></i> Improve documentation</a>
       <h1>Tooltip</h1>
     </div>
@@ -16,9 +15,13 @@
               <label>Position:</label>
               <select class="form-control" value.bind="position">
                 <option value="top">Top</option>
+                <option value="top left">Top Left</option>
+                <option value="top right">Top Right</option>
                 <option value="bottom">Bottom</option>
+                <option value="bottom left">Bottom Left</option>
+                <option value="bottom right">Bottom Right</option>
                 <option value="left">Left</option>
-                <option value="right">Right</option>
+                <option value="right">Right</option>                
               </select>
             </div>
 
@@ -35,7 +38,7 @@
 
             <div class="form-group">
               <label>Text:</label>
-              <input type="text" class="form-control" value.bind="text"/>
+              <input type="text" class="form-control" value.bind="text" />
             </div>
           </div>
 
@@ -47,8 +50,8 @@
               Dynamic Tooltip
             </button>
 
-            <p>I'm a paragraph with a <strong aubs-tooltip="text:Custom Class; class: tooltip, custom-tooltip">Tooltip</strong> with custom
-              class</p>
+            <p>I'm a paragraph with a <strong aubs-tooltip="text:Custom Class; class: tooltip, custom-tooltip">Tooltip</strong>
+            with custom class</p>
           </div>
         </div>
       </div>
@@ -68,13 +71,14 @@
           </li>
           <li><code>class</code>
             <string></string>
-            <i>(default: tooltip)</i>: Comma separated list of classes to apply to the tooltip element. You would normally include the
+            <i>(default: tooltip)</i>: Comma separated list of classes to apply to the tooltip element. You would normally
+            include the
             <code>tooltip</code> class plus your custom classes.
           </li>
           <li><code>position</code>
             <string></string>
-            <i>(default: top)</i>: The position of the tooltip. The possible values are: <code>top</code>, <code>bottom</code>,
-            <code>left</code> and <code>right</code>.
+            <i>(default: top)</i>: The position of the tooltip. The possible values are: <code>top</code>,<code>top left</code>,<code>top right</code>,
+            <code>bottom</code>,<code>bottom left</code>,<code>bottom right</code>, <code>left</code> and <code>right</code>.
           </li>
           <li><code>disabled</code>
             <boolean></boolean>
@@ -84,8 +88,8 @@
             <property></property>
             <boolean property.bind="true"></boolean>
             <two-way></two-way>
-            <i>(default: false)</i>: Reflects the state of the tooltip. You can use this property to programmatically toggle the
-            tooltip.
+            <i>(default: false)</i>: Reflects the state of the tooltip. You can use this property to programmatically toggle
+            the tooltip.
           </li>
           <li><code>trigger</code>
             <string></string>
@@ -113,7 +117,7 @@
         <hr>
         <aubs-tabset>
           <aubs-tab header="HTML">
-                        <pre><code class="language-markup" au-syntax>&lt;template>
+            <pre><code class="language-markup" au-syntax>&lt;template>
     &lt;div class="row">
         &lt;div class="col-md-6">
             &lt;div class="form-group">
@@ -159,7 +163,7 @@
           </aubs-tab>
 
           <aubs-tab header="JS">
-                        <pre><code class="language-js" au-syntax>export class Example {
+            <pre><code class="language-js" au-syntax>export class Example {
     position = 'top';
     trigger = 'mouseover';
     text = 'Dynamic Tooltip <i class="fa fa-heart"></i>'
