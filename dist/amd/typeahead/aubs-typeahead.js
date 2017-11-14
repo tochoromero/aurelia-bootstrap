@@ -148,6 +148,8 @@ define(['exports', 'aurelia-framework', '../utils/bootstrap-options'], function 
         };
 
         AubsTypeaheadCustomElement.prototype.attached = function attached() {
+            this.dropdownMenu = this.dropdown.getElementsByClassNAme("dropdown-menu")[0];
+
             if (this.openOnFocus) {
                 this.input.addEventListener('focus', this.openListener);
                 this.input.addEventListener('click', this.openListener);
@@ -196,11 +198,11 @@ define(['exports', 'aurelia-framework', '../utils/bootstrap-options'], function 
         };
 
         AubsTypeaheadCustomElement.prototype.openDropdown = function openDropdown() {
-            if (this.dropdown.classList.contains(this.showClass)) {
+            if (this.dropdownMenu.classList.contains(this.showClass)) {
                 return;
             }
 
-            this.dropdown.classList.add(this.showClass);
+            this.dropdownMenu.classList.add(this.showClass);
             this.focusNone();
             this.applyPlugins();
         };
@@ -336,13 +338,13 @@ define(['exports', 'aurelia-framework', '../utils/bootstrap-options'], function 
         AubsTypeaheadCustomElement.prototype.handleBlur = function handleBlur(evt) {
             var _this7 = this;
 
-            if (!this.dropdown.classList.contains(this.showClass)) {
+            if (!this.dropdownMenu.classList.contains(this.showClass)) {
                 return;
             }
 
             setTimeout(function () {
-                if (!_this7.dropdown.contains(evt.target)) {
-                    _this7.dropdown.classList.remove(_this7.showClass);
+                if (!_this7.dropdownMenu.contains(evt.target)) {
+                    _this7.dropdownMenu.classList.remove(_this7.showClass);
                     _this7.focusNone();
                     _this7.resetFilter();
                 }
@@ -351,7 +353,7 @@ define(['exports', 'aurelia-framework', '../utils/bootstrap-options'], function 
 
         AubsTypeaheadCustomElement.prototype.itemSelected = function itemSelected(item) {
             this.value = item;
-            this.dropdown.classList.remove(this.showClass);
+            this.dropdownMenu.classList.remove(this.showClass);
 
             var newFilter = this.getName(this.value);
             if (newFilter !== this.filter) {
@@ -371,14 +373,14 @@ define(['exports', 'aurelia-framework', '../utils/bootstrap-options'], function 
         AubsTypeaheadCustomElement.prototype.onKeyDown = function onKeyDown(evt) {
             var _this8 = this;
 
-            if (this.dropdown.classList.contains(this.showClass)) {
+            if (this.dropdownMenu.classList.contains(this.showClass)) {
                 this.switchKeyCode(evt.keyCode);
                 return;
             }
 
             this.applyPlugins().then(function () {
                 _this8.switchKeyCode(evt.keyCode);
-                _this8.dropdown.classList.add(_this8.showClass);
+                _this8.dropdownMenu.classList.add(_this8.showClass);
             });
         };
 
@@ -417,7 +419,7 @@ define(['exports', 'aurelia-framework', '../utils/bootstrap-options'], function 
         };
 
         AubsTypeaheadCustomElement.prototype.handleEnter = function handleEnter() {
-            if (this.displayData.length === 0 || this.focusedIndex < 0 || !this.dropdown.classList.contains(this.showClass)) {
+            if (this.displayData.length === 0 || this.focusedIndex < 0 || !this.dropdownMenu.classList.contains(this.showClass)) {
                 return;
             }
 
@@ -425,7 +427,7 @@ define(['exports', 'aurelia-framework', '../utils/bootstrap-options'], function 
         };
 
         AubsTypeaheadCustomElement.prototype.handleScape = function handleScape() {
-            this.dropdown.classList.remove(this.showClass);
+            this.dropdownMenu.classList.remove(this.showClass);
             this.focusNone();
             this.resetFilter();
         };

@@ -120,6 +120,8 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
     }
 
     attached() {
+        this.dropdownMenu = this.dropdown.getElementsByClassNAme("dropdown-menu")[0];
+
         if (this.openOnFocus) {
             this.input.addEventListener('focus', this.openListener);
             this.input.addEventListener('click', this.openListener);
@@ -166,11 +168,11 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
     }
 
     openDropdown() {
-        if (this.dropdown.classList.contains(this.showClass)) {
+        if (this.dropdownMenu.classList.contains(this.showClass)) {
             return;
         }
 
-        this.dropdown.classList.add(this.showClass);
+        this.dropdownMenu.classList.add(this.showClass);
         this.focusNone();
         this.applyPlugins();
     }
@@ -296,13 +298,13 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
     }
 
     handleBlur(evt) {
-        if (!this.dropdown.classList.contains(this.showClass)) {
+        if (!this.dropdownMenu.classList.contains(this.showClass)) {
             return;
         }
 
         setTimeout(() => {
-            if (!this.dropdown.contains(evt.target)) {
-                this.dropdown.classList.remove(this.showClass);
+            if (!this.dropdownMenu.contains(evt.target)) {
+                this.dropdownMenu.classList.remove(this.showClass);
                 this.focusNone();
                 this.resetFilter();
             }
@@ -311,7 +313,7 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
 
     itemSelected(item) {
         this.value = item;
-        this.dropdown.classList.remove(this.showClass);
+        this.dropdownMenu.classList.remove(this.showClass);
 
         let newFilter = this.getName(this.value);
         if (newFilter !== this.filter) {
@@ -329,14 +331,14 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
     }
 
     onKeyDown(evt) {
-        if (this.dropdown.classList.contains(this.showClass)) {
+        if (this.dropdownMenu.classList.contains(this.showClass)) {
             this.switchKeyCode(evt.keyCode);
             return;
         }
 
         this.applyPlugins().then(() => {
             this.switchKeyCode(evt.keyCode);
-            this.dropdown.classList.add(this.showClass);
+            this.dropdownMenu.classList.add(this.showClass);
         });
     }
 
@@ -375,7 +377,7 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
     }
 
     handleEnter() {
-        if (this.displayData.length === 0 || this.focusedIndex < 0 || !this.dropdown.classList.contains(this.showClass)) {
+        if (this.displayData.length === 0 || this.focusedIndex < 0 || !this.dropdownMenu.classList.contains(this.showClass)) {
             return;
         }
 
@@ -383,7 +385,7 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
     }
 
     handleScape() {
-        this.dropdown.classList.remove(this.showClass);
+        this.dropdownMenu.classList.remove(this.showClass);
         this.focusNone();
         this.resetFilter();
     }
