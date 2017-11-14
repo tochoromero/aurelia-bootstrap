@@ -120,7 +120,7 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
     }
 
     attached() {
-        this.dropdownMenu = this.dropdown.getElementsByClassNAme("dropdown-menu")[0];
+        this.dropdownMenu = this.dropdown.getElementsByClassName("dropdown-menu")[0];
 
         if (this.openOnFocus) {
             this.input.addEventListener('focus', this.openListener);
