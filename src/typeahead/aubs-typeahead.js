@@ -26,6 +26,7 @@ export class AubsTypeaheadCustomElement {
     promiseQueue = [];
     v4 = false;
     dropdown;
+    dropdownMenu;
     input;
     displayData = [];
     @observable filter = '';
@@ -60,6 +61,8 @@ export class AubsTypeaheadCustomElement {
     }
 
     attached() {
+        this.dropdownMenu = this.dropdown.getElementsByClassNAme("dropdown-menu")[0];
+
         if (this.openOnFocus) {
             this.input.addEventListener('focus', this.openListener);
             this.input.addEventListener('click', this.openListener);
@@ -106,11 +109,11 @@ export class AubsTypeaheadCustomElement {
     }
 
     openDropdown() {
-        if (this.dropdown.classList.contains(this.showClass)) {
+        if (this.dropdownMenu.classList.contains(this.showClass)) {
             return;
         }
 
-        this.dropdown.classList.add(this.showClass);
+        this.dropdownMenu.classList.add(this.showClass);
         this.focusNone();
         this.applyPlugins();
     }
@@ -240,13 +243,13 @@ export class AubsTypeaheadCustomElement {
 
 
     handleBlur(evt) {
-        if (!this.dropdown.classList.contains(this.showClass)) {
+        if (!this.dropdownMenu.classList.contains(this.showClass)) {
             return;
         }
 
         setTimeout(() => {
-            if (!this.dropdown.contains(evt.target)) {
-                this.dropdown.classList.remove(this.showClass);
+            if (!this.dropdownMenu.contains(evt.target)) {
+                this.dropdownMenu.classList.remove(this.showClass);
                 this.focusNone();
                 this.resetFilter();
             }
@@ -255,7 +258,7 @@ export class AubsTypeaheadCustomElement {
 
     itemSelected(item) {
         this.value = item;
-        this.dropdown.classList.remove(this.showClass);
+        this.dropdownMenu.classList.remove(this.showClass);
 
         let newFilter = this.getName(this.value);
         if (newFilter !== this.filter) {
@@ -273,7 +276,7 @@ export class AubsTypeaheadCustomElement {
     }
 
     onKeyDown(evt) {
-        if (this.dropdown.classList.contains(this.showClass)) {
+        if (this.dropdownMenu.classList.contains(this.showClass)) {
             this.switchKeyCode(evt.keyCode);
             return;
         }
@@ -281,7 +284,7 @@ export class AubsTypeaheadCustomElement {
         this.applyPlugins()
             .then(() => {
                 this.switchKeyCode(evt.keyCode);
-                this.dropdown.classList.add(this.showClass);
+                this.dropdownMenu.classList.add(this.showClass);
             });
     }
 
@@ -320,7 +323,7 @@ export class AubsTypeaheadCustomElement {
     }
 
     handleEnter() {
-        if (this.displayData.length === 0 || this.focusedIndex < 0 || !this.dropdown.classList.contains(this.showClass)) {
+        if (this.displayData.length === 0 || this.focusedIndex < 0 || !this.dropdownMenu.classList.contains(this.showClass)) {
             return;
         }
 
@@ -328,7 +331,7 @@ export class AubsTypeaheadCustomElement {
     }
 
     handleScape() {
-        this.dropdown.classList.remove(this.showClass);
+        this.dropdownMenu.classList.remove(this.showClass);
         this.focusNone();
         this.resetFilter();
     }
