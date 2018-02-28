@@ -24,7 +24,6 @@ export class AubsTypeaheadCustomElement {
     @bindable noResultsText = 'No Results';
 
     promiseQueue = [];
-    v4 = false;
     dropdown;
     input;
     displayData = [];
@@ -43,10 +42,6 @@ export class AubsTypeaheadCustomElement {
     }
 
     bind() {
-        if (bootstrapOptions.version === 4) {
-            this.v4 = true;
-        }
-
         if (Array.isArray(this.data)) {
             this.dataObserver = this.bindingEngine.collectionObserver(this.data).subscribe(() => {
                 this.checkCustomEntry();
