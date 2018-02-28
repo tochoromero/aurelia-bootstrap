@@ -106,7 +106,6 @@ define(['exports', 'aurelia-framework', '../utils/bootstrap-options'], function 
             _initDefineProp(this, 'noResultsText', _descriptor18, this);
 
             this.promiseQueue = [];
-            this.v4 = false;
             this.displayData = [];
 
             _initDefineProp(this, 'filter', _descriptor19, this);
@@ -130,10 +129,6 @@ define(['exports', 'aurelia-framework', '../utils/bootstrap-options'], function 
 
         AubsTypeaheadCustomElement.prototype.bind = function bind() {
             var _this2 = this;
-
-            if (_bootstrapOptions.bootstrapOptions.version === 4) {
-                this.v4 = true;
-            }
 
             if (Array.isArray(this.data)) {
                 this.dataObserver = this.bindingEngine.collectionObserver(this.data).subscribe(function () {

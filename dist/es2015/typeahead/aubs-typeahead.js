@@ -86,7 +86,6 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
         _initDefineProp(this, 'noResultsText', _descriptor18, this);
 
         this.promiseQueue = [];
-        this.v4 = false;
         this.displayData = [];
 
         _initDefineProp(this, 'filter', _descriptor19, this);
@@ -103,10 +102,6 @@ export let AubsTypeaheadCustomElement = (_dec = inject(BindingEngine), _dec2 = b
     }
 
     bind() {
-        if (bootstrapOptions.version === 4) {
-            this.v4 = true;
-        }
-
         if (Array.isArray(this.data)) {
             this.dataObserver = this.bindingEngine.collectionObserver(this.data).subscribe(() => {
                 this.checkCustomEntry();

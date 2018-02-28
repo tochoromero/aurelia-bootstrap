@@ -89,7 +89,7 @@ System.register(["aurelia-framework", "../utils/bootstrap-options"], function (_
                         this.state = this.isOpen;
                     }
 
-                    this.showClass = bootstrapOptions.version === 4 ? 'show' : 'open';
+                    this.showClass = 'show';
                 };
 
                 AubsDropdownCustomAttribute.prototype.attached = function attached() {
@@ -155,11 +155,7 @@ System.register(["aurelia-framework", "../utils/bootstrap-options"], function (_
                 };
 
                 AubsDropdownCustomAttribute.prototype.isMenuItem = function isMenuItem(evt) {
-                    if (bootstrapOptions.version === 4) {
-                        return evt.target.classList.contains('dropdown-item');
-                    } else {
-                        return evt.target.parentNode.parentNode.classList.contains('dropdown-menu');
-                    }
+                    return evt.target.classList.contains('dropdown-item');
                 };
 
                 AubsDropdownCustomAttribute.prototype.setClass = function setClass() {

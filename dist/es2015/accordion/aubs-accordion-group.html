@@ -1,17 +1,17 @@
 <template>
-    <div class.bind="isBootstrapVersion(3) ? 'panel ' + panelClass : 'card' ">
-        <div role="tab" class.bind="isBootstrapVersion(3) ? 'panel-heading' : 'card-header'">
+    <div class="card">
+        <div role="tab" class="card-header">
             <template replaceable part="header">
-                <h4 class.bind="isBootstrapVersion(3) ? 'panel-title' : 'mb-0'">
-
-                    <a href="javascript:void(0)" innerHTML.bind="title" click.delegate="toggle()" show.bind="!disabled"></a>
+                <h4 class="mb-0">
+                    <a href="javascript:void(0)" innerHTML.bind="title" click.delegate="toggle()"
+                       show.bind="!disabled"></a>
                     <span class="text-muted" innerHTML.bind="title" show.bind="disabled"></span>
                 </h4>
             </template>
         </div>
 
         <div class="collapse" role="tabpanel" ref="$collapse">
-            <div class.bind="isBootstrapVersion(3) ? 'panel-body' : 'card-block'">
+            <div class='card-block'>
                 <slot></slot>
             </div>
         </div>

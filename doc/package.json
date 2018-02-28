@@ -67,7 +67,7 @@
   },
   "jspm": {
     "dependencies": {
-      "aurelia-bootstrap": "github:tochoromero/aurelia-bootstrap@master",
+      "aurelia-bootstrap": "github:tochoromero/aurelia-bootstrap@0.2.xr",
       "aurelia-bootstrapper": "npm:aurelia-bootstrapper@^1.0.0-rc.1.0.0",
       "aurelia-fetch-client": "npm:aurelia-fetch-client@^1.0.0-rc.1.0.0",
       "aurelia-framework": "npm:aurelia-framework@^1.0.0-rc.1.0.0",

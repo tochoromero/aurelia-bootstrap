@@ -7,26 +7,7 @@
                value.bind="filter & debounce:debounce" disabled.bind="disabled" id.bind="id" 
                autocomplete.bind="autoComplete ? 'on' : 'off'">
 
-        <ul class="dropdown-menu" if.bind="!v4">
-            <li show.bind="displayData.length === 0 && !loading" class="text-center">
-                <span class="text-muted" innerhtml.bind="noResultsText"></span>
-            </li>
-
-            <li show.bind="loading" class="text-center">
-                <span class="text-muted" innerhtml.bind="loadingText"></span>
-            </li>
-
-            <li repeat.for="item of displayData" show.bind="!loading" class.bind="focusedItem === item ? 'active' : ''">
-                <template part="item-template" replaceable>
-                    <a class="dropdown-item" href="javascript:void(0)" click.delegate="itemSelected(item)"
-                     innerhtml.bind="getName(item) | typeaheadHighlight:filter">
-
-                    </a>
-                </template>              
-            </li>
-        </ul>
-
-        <div class="dropdown-menu" if.bind="v4">
+        <div class="dropdown-menu">
             <h6 class="dropdown-header text-center" show.bind="displayData.length == 0 && !loading" innerhtml.bind="noResultsText"></h6>
             <h6 class="dropdown-header text-center" show.bind="loading" innerhtml.bind="loadingText"></h6>
             
