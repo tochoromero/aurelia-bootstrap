@@ -104,6 +104,17 @@ export class AubsDropdownCustomAttribute {
         } else {
             this.element.classList.remove(this.showClass);
         }
+
+        if(bootstrapOptions.version === 4) {
+            let menus = this.element.getElementsByClassName('dropdown-menu');
+            for(let i = 0; i < menus.length; i++) {
+                if(this.state) {
+                    menus[i].classList.add(this.showClass);
+                }else{
+                    menus[i].classList.remove(this.showClass);
+                }
+            }
+        }
     }
 
     hasIsOpen() {
