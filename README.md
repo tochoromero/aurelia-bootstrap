@@ -1,5 +1,7 @@
 ### This project is no longer in development
-Hello guys. As it has been painfully obvious this project has not been updated in a long time.
+Hello guys. 
+As it has been painfully obvious this project has not been updated in a long time.
+
 Since I started the repo I changed Jobs, moved to another country and had my third child, I just don't have the time to actively work on it. A huge reason is because on my previous Job we were using Aurelia so I could justify spending time on the repo on work hours, but that is no longer the case.
 It is a shame because I enyojed working on it, I learned a LOT and it was amazing to see people actually using it.
 
