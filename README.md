@@ -1,3 +1,12 @@
+### This project is no longer in development
+Hello guys. As it has been painfully obvious this project has not been updated in a long time.
+Since I started the repo I changed Jobs, moved to another country and had my third child, I just don't have the time to actively work on it. A huge reason is because on my previous Job we were using Aurelia so I could justify spending time on the repo on work hours, but that is no longer the case.
+It is a shame because I enyojed working on it, I learned a LOT and it was amazing to see people actually using it.
+
+Fortunately, there is another similar project which seems to be actively developed, please check it out https://github.com/aurelia-toolbelt/aurelia-toolbelt
+
+So Long, and Thanks for All the Fish.
+
 ### Bootstrap Component for Aurelia
 
 Aurelia Bootstrap is a series of Custom Element and Custom Attributes that provide Bootstrap components native to Aurelia.
