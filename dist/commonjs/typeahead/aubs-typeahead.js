@@ -140,6 +140,9 @@ var AubsTypeaheadCustomElement = exports.AubsTypeaheadCustomElement = (_dec = (0
         this.checkCustomEntry();
 
         this.showClass = _bootstrapOptions.bootstrapOptions.version === 4 ? 'show' : 'open';
+
+        this.ignoreChange = true;
+        this.filter = this.value;
     };
 
     AubsTypeaheadCustomElement.prototype.attached = function attached() {

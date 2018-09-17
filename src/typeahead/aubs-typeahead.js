@@ -57,6 +57,9 @@ export class AubsTypeaheadCustomElement {
         this.checkCustomEntry();
 
         this.showClass = bootstrapOptions.version === 4 ? 'show' : 'open';
+
+        this.ignoreChange = true;
+        this.filter = this.value;
     }
 
     attached() {
