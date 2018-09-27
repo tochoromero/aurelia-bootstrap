@@ -6,6 +6,7 @@ export class AubsTabsetCustomElement {
     @bindable type = bootstrapOptions.tabsetType;
     @bindable vertical = bootstrapOptions.tabsetVertical;
     @bindable({defaultBindingMode: bindingMode.twoWay}) active = 0;
+    @bindable justified = bootstrapOptions.tabsetJustified;
 
     tabsClass = 'nav-tabs';
 
